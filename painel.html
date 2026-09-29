@@ -36,19 +36,17 @@ body{
     min-height:100vh;
 }
 
-/* ================= HEADER ================= */
-
 .header{
     position:sticky;
     top:0;
     z-index:1000;
-    height:72px;
+    min-height:72px;
     background:#070707;
     border-bottom:1px solid var(--gold2);
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 22px;
+    padding:8px 22px;
 }
 
 .brand{
@@ -92,12 +90,17 @@ body{
     border:1px solid #333;
     color:#fff;
     border-radius:9px;
-    height:40px;
+    min-height:40px;
     padding:0 14px;
     cursor:pointer;
 }
 
 .header-btn:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+}
+
+.header-btn.sound-on{
     border-color:var(--gold);
     color:var(--gold);
 }
@@ -118,15 +121,11 @@ body{
     box-shadow:0 0 8px rgba(54,199,111,.6);
 }
 
-/* ================= MAIN ================= */
-
 .main{
     max-width:1600px;
     margin:auto;
     padding:24px;
 }
-
-/* ================= TOP ================= */
 
 .top-area{
     display:flex;
@@ -151,8 +150,6 @@ body{
     color:var(--muted);
     font-size:13px;
 }
-
-/* ================= STATS ================= */
 
 .stats{
     display:grid;
@@ -202,8 +199,6 @@ body{
     color:var(--blue);
 }
 
-/* ================= FILTER ================= */
-
 .toolbar{
     display:flex;
     gap:10px;
@@ -234,8 +229,6 @@ body{
 .filter{
     width:200px;
 }
-
-/* ================= KANBAN ================= */
 
 .board{
     display:grid;
@@ -285,8 +278,6 @@ body{
 .column-body{
     padding:10px;
 }
-
-/* ================= PEDIDO ================= */
 
 .order{
     background:var(--panel);
@@ -473,16 +464,12 @@ body{
     border:1px solid #285f3b;
 }
 
-/* ================= EMPTY ================= */
-
 .empty{
     padding:30px 15px;
     text-align:center;
     color:#555;
     font-size:12px;
 }
-
-/* ================= MODAL ================= */
 
 .modal{
     position:fixed;
@@ -579,8 +566,6 @@ body{
     color:var(--gold);
 }
 
-/* ================= TOAST ================= */
-
 .toast{
     position:fixed;
     right:25px;
@@ -602,7 +587,76 @@ body{
     opacity:1;
 }
 
-/* ================= MOBILE ================= */
+/* AVISO DE NOVO PEDIDO */
+
+.new-order-alert{
+    position:fixed;
+    top:90px;
+    right:25px;
+    z-index:4500;
+    width:min(390px,calc(100% - 30px));
+    background:#0d0d0d;
+    border:2px solid var(--gold);
+    border-radius:14px;
+    padding:16px;
+    box-shadow:0 10px 40px rgba(0,0,0,.6);
+    display:none;
+}
+
+.new-order-alert.show{
+    display:block;
+    animation:alertIn .3s ease;
+}
+
+.new-order-alert-title{
+    color:var(--gold);
+    font-size:18px;
+    font-weight:bold;
+}
+
+.new-order-alert-text{
+    color:#ccc;
+    font-size:13px;
+    margin-top:6px;
+}
+
+.new-order-alert button{
+    margin-top:12px;
+    width:100%;
+    height:40px;
+    border:0;
+    border-radius:8px;
+    background:var(--gold);
+    color:#000;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+@keyframes alertIn{
+    from{
+        opacity:0;
+        transform:translateY(-15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* DESTAQUE DE PEDIDO NOVO */
+
+@keyframes pulseOrder{
+    0%,100%{
+        box-shadow:0 0 0 1px rgba(212,175,55,.15);
+    }
+    50%{
+        box-shadow:0 0 0 3px rgba(212,175,55,.4);
+    }
+}
+
+.order.new-order{
+    animation:pulseOrder 1.5s infinite;
+}
 
 @media(max-width:1100px){
 
@@ -619,7 +673,7 @@ body{
 @media(max-width:700px){
 
     .header{
-        padding:0 12px;
+        padding:8px 12px;
     }
 
     .brand-title{
@@ -660,6 +714,20 @@ body{
         display:none;
     }
 
+    .header-actions{
+        gap:5px;
+    }
+
+    .header-btn{
+        padding:0 9px;
+        font-size:11px;
+    }
+
+    .new-order-alert{
+        top:80px;
+        right:15px;
+    }
+
 }
 
 </style>
@@ -685,6 +753,13 @@ body{
     </div>
 
     <div class="header-actions">
+
+        <button
+            class="header-btn"
+            id="soundBtn"
+            onclick="ativarSom()">
+            🔇 Ativar som
+        </button>
 
         <div class="status-online">
             <span class="status-dot"></span>
@@ -724,84 +799,35 @@ body{
     </div>
 
 
-    <!-- ================= ESTATÍSTICAS ================= -->
-
     <section class="stats">
 
         <div class="stat gold">
-
-            <div class="stat-label">
-                Novos
-            </div>
-
-            <div
-                class="stat-number"
-                id="statNovo">
-                0
-            </div>
-
+            <div class="stat-label">Novos</div>
+            <div class="stat-number" id="statNovo">0</div>
         </div>
 
         <div class="stat">
-
-            <div class="stat-label">
-                Aceitos
-            </div>
-
-            <div
-                class="stat-number"
-                id="statAceito">
-                0
-            </div>
-
+            <div class="stat-label">Aceitos</div>
+            <div class="stat-number" id="statAceito">0</div>
         </div>
 
         <div class="stat orange">
-
-            <div class="stat-label">
-                Preparando
-            </div>
-
-            <div
-                class="stat-number"
-                id="statPreparando">
-                0
-            </div>
-
+            <div class="stat-label">Preparando</div>
+            <div class="stat-number" id="statPreparando">0</div>
         </div>
 
         <div class="stat blue">
-
-            <div class="stat-label">
-                Prontos
-            </div>
-
-            <div
-                class="stat-number"
-                id="statPronto">
-                0
-            </div>
-
+            <div class="stat-label">Prontos</div>
+            <div class="stat-number" id="statPronto">0</div>
         </div>
 
         <div class="stat green">
-
-            <div class="stat-label">
-                Entregues
-            </div>
-
-            <div
-                class="stat-number"
-                id="statEntregue">
-                0
-            </div>
-
+            <div class="stat-label">Entregues</div>
+            <div class="stat-number" id="statEntregue">0</div>
         </div>
 
     </section>
 
-
-    <!-- ================= FILTROS ================= -->
 
     <div class="toolbar">
 
@@ -822,37 +848,14 @@ body{
                 id="statusFilter"
                 onchange="renderPedidos()">
 
-                <option value="todos">
-                    Todos os pedidos
-                </option>
-
-                <option value="novo">
-                    Novos
-                </option>
-
-                <option value="aceito">
-                    Aceitos
-                </option>
-
-                <option value="preparando">
-                    Preparando
-                </option>
-
-                <option value="pronto">
-                    Prontos
-                </option>
-
-                <option value="saiu_entrega">
-                    Saiu para entrega
-                </option>
-
-                <option value="entregue">
-                    Entregues
-                </option>
-
-                <option value="cancelado">
-                    Cancelados
-                </option>
+                <option value="todos">Todos os pedidos</option>
+                <option value="novo">Novos</option>
+                <option value="aceito">Aceitos</option>
+                <option value="preparando">Preparando</option>
+                <option value="pronto">Prontos</option>
+                <option value="saiu_entrega">Saiu para entrega</option>
+                <option value="entregue">Entregues</option>
+                <option value="cancelado">Cancelados</option>
 
             </select>
 
@@ -861,24 +864,18 @@ body{
     </div>
 
 
-    <!-- ================= PAINEL ================= -->
-
     <section class="board">
 
         <div class="column">
 
             <div class="column-header">
-
-                <div class="column-title">
-                    Novos
-                </div>
+                <div class="column-title">Novos</div>
 
                 <div
                     class="column-count"
                     id="countNovo">
                     0
                 </div>
-
             </div>
 
             <div
@@ -892,17 +889,13 @@ body{
         <div class="column">
 
             <div class="column-header">
-
-                <div class="column-title">
-                    Aceitos
-                </div>
+                <div class="column-title">Aceitos</div>
 
                 <div
                     class="column-count"
                     id="countAceito">
                     0
                 </div>
-
             </div>
 
             <div
@@ -916,17 +909,13 @@ body{
         <div class="column">
 
             <div class="column-header">
-
-                <div class="column-title">
-                    Preparando
-                </div>
+                <div class="column-title">Preparando</div>
 
                 <div
                     class="column-count"
                     id="countPreparando">
                     0
                 </div>
-
             </div>
 
             <div
@@ -940,17 +929,13 @@ body{
         <div class="column">
 
             <div class="column-header">
-
-                <div class="column-title">
-                    Prontos
-                </div>
+                <div class="column-title">Prontos</div>
 
                 <div
                     class="column-count"
                     id="countPronto">
                     0
                 </div>
-
             </div>
 
             <div
@@ -964,17 +949,13 @@ body{
         <div class="column">
 
             <div class="column-header">
-
-                <div class="column-title">
-                    Em entrega
-                </div>
+                <div class="column-title">Em entrega</div>
 
                 <div
                     class="column-count"
                     id="countEntrega">
                     0
                 </div>
-
             </div>
 
             <div
@@ -989,7 +970,7 @@ body{
 </main>
 
 
-<!-- ================= MODAL DETALHES ================= -->
+<!-- MODAL -->
 
 <div
     class="modal"
@@ -1014,6 +995,29 @@ body{
         <div id="modalContent"></div>
 
     </div>
+
+</div>
+
+
+<!-- AVISO NOVO PEDIDO -->
+
+<div
+    class="new-order-alert"
+    id="newOrderAlert">
+
+    <div class="new-order-alert-title">
+        🔔 NOVO PEDIDO
+    </div>
+
+    <div
+        class="new-order-alert-text"
+        id="newOrderAlertText">
+        Chegou um novo pedido.
+    </div>
+
+    <button onclick="fecharAvisoNovoPedido()">
+        VER PEDIDO
+    </button>
 
 </div>
 
@@ -1043,6 +1047,418 @@ const SUPABASE_KEY =
 
 let pedidos = [];
 
+let audioContext = null;
+
+let somAtivado = false;
+
+let ultimoPedidoAvisado = null;
+
+let avisoTimeout = null;
+
+
+/* =====================================================
+   SOM
+===================================================== */
+
+function ativarSom(){
+
+    try{
+
+        if(!audioContext){
+
+            audioContext =
+                new (
+                    window.AudioContext ||
+                    window.webkitAudioContext
+                )();
+
+        }
+
+        if(
+            audioContext.state ===
+            "suspended"
+        ){
+
+            audioContext.resume();
+
+        }
+
+        somAtivado = true;
+
+
+        const botao =
+            document.getElementById(
+                "soundBtn"
+            );
+
+
+        botao.textContent =
+            "🔊 Som ativado";
+
+
+        botao.classList.add(
+            "sound-on"
+        );
+
+
+        mostrarToast(
+            "Som de novos pedidos ativado."
+        );
+
+
+        /*
+         * Toca um pequeno teste
+         * para liberar o áudio do navegador.
+         */
+
+        tocarSomNovoPedido();
+
+
+    }catch(erro){
+
+        console.error(
+            "Erro ao ativar som:",
+            erro
+        );
+
+        mostrarToast(
+            "Não foi possível ativar o som."
+        );
+
+    }
+
+}
+
+
+function tocarSomNovoPedido(){
+
+    if(!somAtivado){
+        return;
+    }
+
+
+    try{
+
+        if(!audioContext){
+
+            audioContext =
+                new (
+                    window.AudioContext ||
+                    window.webkitAudioContext
+                )();
+
+        }
+
+
+        if(
+            audioContext.state ===
+            "suspended"
+        ){
+
+            audioContext.resume();
+
+        }
+
+
+        const agora =
+            audioContext.currentTime;
+
+
+        /*
+         * Toque curto e profissional.
+         * Duração total aproximada: 1,9 segundos.
+         */
+
+        const notas = [
+
+            {
+                tempo:0,
+                frequencia:880,
+                duracao:.32
+            },
+
+            {
+                tempo:.30,
+                frequencia:1174.66,
+                duracao:.32
+            },
+
+            {
+                tempo:.60,
+                frequencia:1396.91,
+                duracao:.40
+            },
+
+            {
+                tempo:1.00,
+                frequencia:1174.66,
+                duracao:.32
+            },
+
+            {
+                tempo:1.32,
+                frequencia:1567.98,
+                duracao:.48
+            }
+
+        ];
+
+
+        notas.forEach(nota=>{
+
+            const oscilador =
+                audioContext.createOscillator();
+
+
+            const ganho =
+                audioContext.createGain();
+
+
+            oscilador.type =
+                "sine";
+
+
+            oscilador.frequency.value =
+                nota.frequencia;
+
+
+            ganho.gain.setValueAtTime(
+                0,
+                agora + nota.tempo
+            );
+
+
+            ganho.gain.linearRampToValueAtTime(
+                0.18,
+                agora +
+                nota.tempo +
+                .04
+            );
+
+
+            ganho.gain.exponentialRampToValueAtTime(
+                0.001,
+                agora +
+                nota.tempo +
+                nota.duracao
+            );
+
+
+            oscilador.connect(
+                ganho
+            );
+
+
+            ganho.connect(
+                audioContext.destination
+            );
+
+
+            oscilador.start(
+                agora +
+                nota.tempo
+            );
+
+
+            oscilador.stop(
+                agora +
+                nota.tempo +
+                nota.duracao
+            );
+
+        });
+
+
+    }catch(erro){
+
+        console.error(
+            "Erro no som:",
+            erro
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   VERIFICAR NOVO PEDIDO
+===================================================== */
+
+function verificarNovoPedido(lista){
+
+    if(
+        !somAtivado ||
+        !Array.isArray(lista)
+    ){
+
+        return;
+
+    }
+
+
+    const novos =
+        lista.filter(
+            pedido =>
+                String(
+                    pedido.status ||
+                    "novo"
+                ) === "novo"
+        );
+
+
+    if(!novos.length){
+        return;
+    }
+
+
+    /*
+     * Supabase retorna por criado_em desc,
+     * portanto o primeiro é o mais recente.
+     */
+
+    const maisRecente =
+        novos[0];
+
+
+    const idAtual =
+        String(
+            maisRecente.id ||
+            maisRecente.numero_pedido ||
+            ""
+        );
+
+
+    if(!idAtual){
+        return;
+    }
+
+
+    /*
+     * Primeira leitura:
+     * não toca.
+     *
+     * Isso evita o painel tocar todos
+     * os pedidos antigos ao ser aberto.
+     */
+
+    if(
+        ultimoPedidoAvisado === null
+    ){
+
+        ultimoPedidoAvisado =
+            idAtual;
+
+        return;
+
+    }
+
+
+    /*
+     * Só toca quando aparecer um pedido
+     * realmente diferente.
+     */
+
+    if(
+        ultimoPedidoAvisado !==
+        idAtual
+    ){
+
+        ultimoPedidoAvisado =
+            idAtual;
+
+
+        tocarSomNovoPedido();
+
+
+        mostrarAvisoNovoPedido(
+            maisRecente
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   AVISO VISUAL
+===================================================== */
+
+function mostrarAvisoNovoPedido(pedido){
+
+    const aviso =
+        document.getElementById(
+            "newOrderAlert"
+        );
+
+
+    const texto =
+        document.getElementById(
+            "newOrderAlertText"
+        );
+
+
+    const numero =
+        pedido.numero_pedido ||
+        "#" +
+        String(
+            pedido.id ||
+            ""
+        ).padStart(
+            4,
+            "0"
+        );
+
+
+    const cliente =
+        pedido.cliente_nome ||
+        "Cliente";
+
+
+    texto.textContent =
+        `Pedido ${numero} de ${cliente}`;
+
+
+    aviso.classList.add(
+        "show"
+    );
+
+
+    if(avisoTimeout){
+        clearTimeout(avisoTimeout);
+    }
+
+
+    /*
+     * O aviso visual desaparece sozinho
+     * depois de 5 segundos.
+     */
+
+    avisoTimeout =
+        setTimeout(
+            fecharAvisoNovoPedido,
+            5000
+        );
+
+}
+
+
+function fecharAvisoNovoPedido(){
+
+    const aviso =
+        document.getElementById(
+            "newOrderAlert"
+        );
+
+
+    aviso.classList.remove(
+        "show"
+    );
+
+    avisoTimeout = null;
+
+}
+
 
 /* =====================================================
    FORMATADORES
@@ -1051,26 +1467,50 @@ let pedidos = [];
 function dinheiro(valor){
 
     return Number(valor || 0)
-        .toLocaleString("pt-BR",{
-            style:"currency",
-            currency:"BRL"
-        });
+        .toLocaleString(
+            "pt-BR",
+            {
+                style:"currency",
+                currency:"BRL"
+            }
+        );
 
 }
 
 
 function escapeHTML(valor){
 
-    if(valor === null || valor === undefined){
+    if(
+        valor === null ||
+        valor === undefined
+    ){
+
         return "";
+
     }
 
+
     return String(valor)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 
 }
 
@@ -1078,15 +1518,28 @@ function escapeHTML(valor){
 function mostrarToast(texto){
 
     const toast =
-        document.getElementById("toast");
+        document.getElementById(
+            "toast"
+        );
 
-    toast.textContent = texto;
 
-    toast.classList.add("show");
+    toast.textContent =
+        texto;
 
-    setTimeout(()=>{
-        toast.classList.remove("show");
-    },2500);
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        ()=>{
+            toast.classList.remove(
+                "show"
+            );
+        },
+        2500
+    );
 
 }
 
@@ -1097,10 +1550,13 @@ function mostrarToast(texto){
 
 function atualizarData(){
 
-    const agora = new Date();
+    const agora =
+        new Date();
 
-    document.getElementById("dataAtual")
-        .textContent =
+
+    document.getElementById(
+        "dataAtual"
+    ).textContent =
         agora.toLocaleDateString(
             "pt-BR",
             {
@@ -1113,6 +1569,7 @@ function atualizarData(){
 
 }
 
+
 atualizarData();
 
 
@@ -1124,38 +1581,69 @@ async function carregarPedidos(){
 
     try{
 
-        const resposta = await fetch(
-            `${SUPABASE_URL}/rest/v1/pedidos?select=*&order=criado_em.desc`,
-            {
-                headers:{
-                    "apikey":SUPABASE_KEY,
-                    "Authorization":
-                        `Bearer ${SUPABASE_KEY}`
+        const resposta =
+            await fetch(
+                `${SUPABASE_URL}/rest/v1/pedidos?select=*&order=criado_em.desc`,
+                {
+                    headers:{
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            `Bearer ${SUPABASE_KEY}`
+                    }
                 }
-            }
-        );
+            );
+
 
         if(!resposta.ok){
 
             const erro =
                 await resposta.text();
 
-            console.error(erro);
+
+            console.error(
+                erro
+            );
+
 
             mostrarToast(
                 "Erro ao carregar pedidos."
             );
 
+
             return;
+
         }
 
-        pedidos = await resposta.json();
+
+        const novosPedidos =
+            await resposta.json();
+
+
+        /*
+         * Verifica o som antes de substituir
+         * a lista atual.
+         */
+
+        verificarNovoPedido(
+            novosPedidos
+        );
+
+
+        pedidos =
+            novosPedidos;
+
 
         renderPedidos();
 
+
     }catch(erro){
 
-        console.error(erro);
+        console.error(
+            erro
+        );
+
 
         mostrarToast(
             "Erro de conexão com o servidor."
@@ -1174,14 +1662,19 @@ function pedidoVisivel(pedido){
 
     const busca =
         document
-        .getElementById("search")
+        .getElementById(
+            "search"
+        )
         .value
         .trim()
         .toLowerCase();
 
+
     const filtro =
         document
-        .getElementById("statusFilter")
+        .getElementById(
+            "statusFilter"
+        )
         .value;
 
 
@@ -1189,7 +1682,9 @@ function pedidoVisivel(pedido){
         filtro !== "todos" &&
         pedido.status !== filtro
     ){
+
         return false;
+
     }
 
 
@@ -1200,21 +1695,27 @@ function pedidoVisivel(pedido){
 
     const numero =
         String(
-            pedido.numero_pedido || pedido.id || ""
+            pedido.numero_pedido ||
+            pedido.id ||
+            ""
         ).toLowerCase();
+
 
     const nome =
         String(
-            pedido.cliente_nome || ""
+            pedido.cliente_nome ||
+            ""
         ).toLowerCase();
+
 
     const telefone =
         String(
-            pedido.telefone || ""
+            pedido.telefone ||
+            ""
         ).toLowerCase();
 
 
-    return (
+    return(
         numero.includes(busca) ||
         nome.includes(busca) ||
         telefone.includes(busca)
@@ -1229,7 +1730,8 @@ function pedidoVisivel(pedido){
 
 function normalizarStatus(status){
 
-    return status || "novo";
+    return status ||
+        "novo";
 
 }
 
@@ -1243,87 +1745,137 @@ function renderPedidos(){
     const colunas = {
 
         novo:
-            document.getElementById("colNovo"),
+            document.getElementById(
+                "colNovo"
+            ),
 
         aceito:
-            document.getElementById("colAceito"),
+            document.getElementById(
+                "colAceito"
+            ),
 
         preparando:
-            document.getElementById("colPreparando"),
+            document.getElementById(
+                "colPreparando"
+            ),
 
         pronto:
-            document.getElementById("colPronto"),
+            document.getElementById(
+                "colPronto"
+            ),
 
         saiu_entrega:
-            document.getElementById("colEntrega")
+            document.getElementById(
+                "colEntrega"
+            )
 
     };
 
 
     Object.values(colunas)
-        .forEach(coluna=>{
-            coluna.innerHTML = "";
-        });
+        .forEach(
+            coluna=>{
+                coluna.innerHTML =
+                    "";
+            }
+        );
 
 
     const contagens = {
+
         novo:0,
+
         aceito:0,
+
         preparando:0,
+
         pronto:0,
+
         saiu_entrega:0,
-        entregue:0
+
+        entregue:0,
+
+        cancelado:0
+
     };
 
 
-    pedidos.forEach(pedido=>{
+    pedidos.forEach(
+        pedido=>{
 
-        const status =
-            normalizarStatus(pedido.status);
+            const status =
+                normalizarStatus(
+                    pedido.status
+                );
 
-        if(contagens[status] !== undefined){
-            contagens[status]++;
-        }
-
-
-        if(!pedidoVisivel(pedido)){
-            return;
-        }
-
-
-        if(!colunas[status]){
-            return;
-        }
-
-
-        colunas[status]
-            .insertAdjacentHTML(
-                "beforeend",
-                criarCard(pedido)
-            );
-
-    });
-
-
-    Object.keys(colunas)
-        .forEach(status=>{
 
             if(
-                colunas[status]
-                .children.length === 0
+                contagens[status]
+                !== undefined
             ){
 
-                colunas[status].innerHTML =
-                    `<div class="empty">
-                        Nenhum pedido aqui.
-                    </div>`;
+                contagens[status]++;
 
             }
 
-        });
+
+            if(
+                !pedidoVisivel(
+                    pedido
+                )
+            ){
+
+                return;
+
+            }
 
 
-    atualizarContadores(contagens);
+            if(
+                !colunas[status]
+            ){
+
+                return;
+
+            }
+
+
+            colunas[status]
+                .insertAdjacentHTML(
+                    "beforeend",
+                    criarCard(
+                        pedido
+                    )
+                );
+
+        }
+    );
+
+
+    Object.keys(colunas)
+        .forEach(
+            status=>{
+
+                if(
+                    colunas[status]
+                    .children
+                    .length === 0
+                ){
+
+                    colunas[status]
+                        .innerHTML =
+                        `<div class="empty">
+                            Nenhum pedido aqui.
+                        </div>`;
+
+                }
+
+            }
+        );
+
+
+    atualizarContadores(
+        contagens
+    );
 
 }
 
@@ -1334,36 +1886,64 @@ function renderPedidos(){
 
 function atualizarContadores(c){
 
-    document.getElementById("statNovo")
-        .textContent = c.novo;
-
-    document.getElementById("statAceito")
-        .textContent = c.aceito;
-
-    document.getElementById("statPreparando")
-        .textContent = c.preparando;
-
-    document.getElementById("statPronto")
-        .textContent = c.pronto;
-
-    document.getElementById("statEntregue")
-        .textContent = c.entregue;
+    document.getElementById(
+        "statNovo"
+    ).textContent =
+        c.novo;
 
 
-    document.getElementById("countNovo")
-        .textContent = c.novo;
+    document.getElementById(
+        "statAceito"
+    ).textContent =
+        c.aceito;
 
-    document.getElementById("countAceito")
-        .textContent = c.aceito;
 
-    document.getElementById("countPreparando")
-        .textContent = c.preparando;
+    document.getElementById(
+        "statPreparando"
+    ).textContent =
+        c.preparando;
 
-    document.getElementById("countPronto")
-        .textContent = c.pronto;
 
-    document.getElementById("countEntrega")
-        .textContent = c.saiu_entrega;
+    document.getElementById(
+        "statPronto"
+    ).textContent =
+        c.pronto;
+
+
+    document.getElementById(
+        "statEntregue"
+    ).textContent =
+        c.entregue;
+
+
+    document.getElementById(
+        "countNovo"
+    ).textContent =
+        c.novo;
+
+
+    document.getElementById(
+        "countAceito"
+    ).textContent =
+        c.aceito;
+
+
+    document.getElementById(
+        "countPreparando"
+    ).textContent =
+        c.preparando;
+
+
+    document.getElementById(
+        "countPronto"
+    ).textContent =
+        c.pronto;
+
+
+    document.getElementById(
+        "countEntrega"
+    ).textContent =
+        c.saiu_entrega;
 
 }
 
@@ -1375,44 +1955,69 @@ function atualizarContadores(c){
 function criarCard(pedido){
 
     const status =
-        normalizarStatus(pedido.status);
+        normalizarStatus(
+            pedido.status
+        );
 
 
     const novo =
         status === "novo"
-            ? "new-order"
-            : "";
+        ? "new-order"
+        : "";
 
 
     const numero =
         pedido.numero_pedido ||
         "#" +
-        String(pedido.id || 0)
-            .padStart(4,"0");
+        String(
+            pedido.id ||
+            0
+        ).padStart(
+            4,
+            "0"
+        );
 
 
     const hora =
         pedido.criado_em
-            ? new Date(
-                pedido.criado_em
-              ).toLocaleTimeString(
-                "pt-BR",
-                {
-                    hour:"2-digit",
-                    minute:"2-digit"
-                }
-              )
-            : "";
+        ?
+        new Date(
+            pedido.criado_em
+        ).toLocaleTimeString(
+            "pt-BR",
+            {
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        )
+        :
+        "";
 
 
     let itens = [];
 
+
     try{
 
-        if(Array.isArray(pedido.itens)){
-            itens = pedido.itens;
-        }else if(typeof pedido.itens === "string"){
-            itens = JSON.parse(pedido.itens);
+        if(
+            Array.isArray(
+                pedido.itens
+            )
+        ){
+
+            itens =
+                pedido.itens;
+
+        }else if(
+            typeof pedido.itens ===
+            "string"
+        ){
+
+            itens =
+                JSON.parse(
+                    pedido.itens
+                );
+
         }
 
     }catch(e){
@@ -1428,29 +2033,44 @@ function criarCard(pedido){
     const itensHTML =
         itens.length
         ?
-        itens.map(item=>`
+        itens.map(
+            item=>`
 
             <div class="item">
 
                 <span class="item-name">
+
                     ${escapeHTML(
-                        item.quantidade || 1
+                        item.quantidade ||
+                        1
                     )}x
+
                     ${escapeHTML(
-                        item.nome || "Produto"
+                        item.nome ||
+                        "Produto"
                     )}
+
                 </span>
 
                 <span class="item-price">
+
                     ${dinheiro(
-                        Number(item.preco || 0) *
-                        Number(item.quantidade || 1)
+                        Number(
+                            item.preco ||
+                            0
+                        ) *
+                        Number(
+                            item.quantidade ||
+                            1
+                        )
                     )}
+
                 </span>
 
             </div>
 
-        `).join("")
+        `
+        ).join("")
         :
         `
         <div class="item">
@@ -1461,37 +2081,66 @@ function criarCard(pedido){
         `;
 
 
-    let enderecoHTML = "";
+    let enderecoHTML =
+        "";
 
 
     if(
-        pedido.tipo_entrega === "Entrega"
+        pedido.tipo_entrega ===
+        "Entrega"
     ){
 
         enderecoHTML = `
 
             <div class="address">
 
-                ${escapeHTML(pedido.endereco)}
-                ${pedido.numero
-                    ? ", " +
-                      escapeHTML(pedido.numero)
-                    : ""}
+                ${escapeHTML(
+                    pedido.endereco
+                )}
 
-                ${pedido.bairro
-                    ? " - " +
-                      escapeHTML(pedido.bairro)
-                    : ""}
+                ${
+                    pedido.numero
+                    ?
+                    ", " +
+                    escapeHTML(
+                        pedido.numero
+                    )
+                    :
+                    ""
+                }
 
-                ${pedido.complemento
-                    ? "<br>" +
-                      escapeHTML(pedido.complemento)
-                    : ""}
+                ${
+                    pedido.bairro
+                    ?
+                    " - " +
+                    escapeHTML(
+                        pedido.bairro
+                    )
+                    :
+                    ""
+                }
 
-                ${pedido.referencia
-                    ? "<br>Ref.: " +
-                      escapeHTML(pedido.referencia)
-                    : ""}
+                ${
+                    pedido.complemento
+                    ?
+                    "<br>" +
+                    escapeHTML(
+                        pedido.complemento
+                    )
+                    :
+                    ""
+                }
+
+                ${
+                    pedido.referencia
+                    ?
+                    "<br>Ref.: " +
+                    escapeHTML(
+                        pedido.referencia
+                    )
+                    :
+                    ""
+                }
 
             </div>
 
@@ -1505,23 +2154,26 @@ function criarCard(pedido){
         <div class="payment">
 
             Pagamento:
+
             <strong>
+
                 ${escapeHTML(
                     pedido.pagamento ||
                     "Não informado"
                 )}
+
             </strong>
 
             ${
                 pedido.troco
                 ?
                 `<br>
-                 Troco:
-                 <strong>
+                Troco:
+                <strong>
                     ${escapeHTML(
                         pedido.troco
                     )}
-                 </strong>`
+                </strong>`
                 :
                 ""
             }
@@ -1537,7 +2189,11 @@ function criarCard(pedido){
         `
         <div class="notes">
 
-            <strong>Observação:</strong><br>
+            <strong>
+                Observação:
+            </strong>
+
+            <br>
 
             ${escapeHTML(
                 pedido.observacoes
@@ -1553,24 +2209,36 @@ function criarCard(pedido){
 
         <article
             class="order ${novo}"
-            onclick="abrirDetalhes(${pedido.id})">
+            onclick="abrirDetalhes(
+                ${pedido.id}
+            )">
 
             <div class="order-head">
 
                 <div>
 
                     <div class="order-number">
-                        ${escapeHTML(numero)}
+
+                        ${escapeHTML(
+                            numero
+                        )}
+
                     </div>
 
                     <div class="order-time">
+
                         ${hora}
+
                     </div>
 
                 </div>
 
                 <div class="order-total">
-                    ${dinheiro(pedido.total)}
+
+                    ${dinheiro(
+                        pedido.total
+                    )}
+
                 </div>
 
             </div>
@@ -1581,24 +2249,30 @@ function criarCard(pedido){
                 <div class="customer">
 
                     <div class="customer-name">
+
                         ${escapeHTML(
                             pedido.cliente_nome ||
                             "Cliente"
                         )}
+
                     </div>
 
                     <div class="customer-phone">
+
                         ${escapeHTML(
                             pedido.telefone ||
                             "Telefone não informado"
                         )}
+
                     </div>
 
                     <span class="delivery-tag">
+
                         ${escapeHTML(
                             pedido.tipo_entrega ||
                             "Entrega"
                         )}
+
                     </span>
 
                 </div>
@@ -1624,7 +2298,9 @@ function criarCard(pedido){
                 class="order-actions"
                 onclick="event.stopPropagation()">
 
-                ${botoesPedido(pedido)}
+                ${botoesPedido(
+                    pedido
+                )}
 
             </div>
 
@@ -1642,23 +2318,37 @@ function criarCard(pedido){
 function botoesPedido(pedido){
 
     const status =
-        normalizarStatus(pedido.status);
+        normalizarStatus(
+            pedido.status
+        );
 
 
-    if(status === "novo"){
+    if(
+        status === "novo"
+    ){
 
         return `
 
             <button
                 class="action accept"
-                onclick="alterarStatus(${pedido.id},'aceito')">
+                onclick="alterarStatus(
+                    ${pedido.id},
+                    'aceito'
+                )">
+
                 Aceitar
+
             </button>
 
             <button
                 class="action reject"
-                onclick="alterarStatus(${pedido.id},'cancelado')">
+                onclick="alterarStatus(
+                    ${pedido.id},
+                    'cancelado'
+                )">
+
                 Recusar
+
             </button>
 
         `;
@@ -1666,20 +2356,32 @@ function botoesPedido(pedido){
     }
 
 
-    if(status === "aceito"){
+    if(
+        status === "aceito"
+    ){
 
         return `
 
             <button
                 class="action prepare"
-                onclick="alterarStatus(${pedido.id},'preparando')">
+                onclick="alterarStatus(
+                    ${pedido.id},
+                    'preparando'
+                )">
+
                 Iniciar preparo
+
             </button>
 
             <button
                 class="action reject"
-                onclick="alterarStatus(${pedido.id},'cancelado')">
+                onclick="alterarStatus(
+                    ${pedido.id},
+                    'cancelado'
+                )">
+
                 Cancelar
+
             </button>
 
         `;
@@ -1687,14 +2389,21 @@ function botoesPedido(pedido){
     }
 
 
-    if(status === "preparando"){
+    if(
+        status === "preparando"
+    ){
 
         return `
 
             <button
                 class="action ready"
-                onclick="alterarStatus(${pedido.id},'pronto')">
+                onclick="alterarStatus(
+                    ${pedido.id},
+                    'pronto'
+                )">
+
                 Marcar pronto
+
             </button>
 
         `;
@@ -1702,18 +2411,26 @@ function botoesPedido(pedido){
     }
 
 
-    if(status === "pronto"){
+    if(
+        status === "pronto"
+    ){
 
         if(
-            pedido.tipo_entrega === "Retirada"
+            pedido.tipo_entrega ===
+            "Retirada"
         ){
 
             return `
 
                 <button
                     class="action complete"
-                    onclick="alterarStatus(${pedido.id},'entregue')">
+                    onclick="alterarStatus(
+                        ${pedido.id},
+                        'entregue'
+                    )">
+
                     Pedido retirado
+
                 </button>
 
             `;
@@ -1725,8 +2442,13 @@ function botoesPedido(pedido){
 
             <button
                 class="action delivery"
-                onclick="alterarStatus(${pedido.id},'saiu_entrega')">
+                onclick="alterarStatus(
+                    ${pedido.id},
+                    'saiu_entrega'
+                )">
+
                 Saiu para entrega
+
             </button>
 
         `;
@@ -1734,14 +2456,21 @@ function botoesPedido(pedido){
     }
 
 
-    if(status === "saiu_entrega"){
+    if(
+        status === "saiu_entrega"
+    ){
 
         return `
 
             <button
                 class="action complete"
-                onclick="alterarStatus(${pedido.id},'entregue')">
+                onclick="alterarStatus(
+                    ${pedido.id},
+                    'entregue'
+                )">
+
                 Marcar entregue
+
             </button>
 
         `;
@@ -1758,11 +2487,16 @@ function botoesPedido(pedido){
    ALTERAR STATUS
 ===================================================== */
 
-async function alterarStatus(id,status){
+async function alterarStatus(
+    id,
+    status
+){
 
     const pedido =
         pedidos.find(
-            p => Number(p.id) === Number(id)
+            p =>
+                Number(p.id) ===
+                Number(id)
         );
 
 
@@ -1773,10 +2507,12 @@ async function alterarStatus(id,status){
 
     const confirmacao =
         status === "cancelado"
-        ? confirm(
+        ?
+        confirm(
             "Tem certeza que deseja recusar este pedido?"
-          )
-        : true;
+        )
+        :
+        true;
 
 
     if(!confirmacao){
@@ -1786,31 +2522,34 @@ async function alterarStatus(id,status){
 
     try{
 
-        const resposta = await fetch(
-            `${SUPABASE_URL}/rest/v1/pedidos?id=eq.${id}`,
-            {
-                method:"PATCH",
+        const resposta =
+            await fetch(
+                `${SUPABASE_URL}/rest/v1/pedidos?id=eq.${id}`,
+                {
+                    method:"PATCH",
 
-                headers:{
-                    "Content-Type":
-                        "application/json",
+                    headers:{
+                        "Content-Type":
+                            "application/json",
 
-                    "apikey":
-                        SUPABASE_KEY,
+                        "apikey":
+                            SUPABASE_KEY,
 
-                    "Authorization":
-                        `Bearer ${SUPABASE_KEY}`,
+                        "Authorization":
+                            `Bearer ${SUPABASE_KEY}`,
 
-                    "Prefer":
-                        "return=minimal"
-                },
+                        "Prefer":
+                            "return=minimal"
+                    },
 
-                body:JSON.stringify({
-                    status:status
-                })
+                    body:
+                        JSON.stringify({
+                            status:
+                                status
+                        })
 
-            }
-        );
+                }
+            );
 
 
         if(!resposta.ok){
@@ -1818,19 +2557,28 @@ async function alterarStatus(id,status){
             const erro =
                 await resposta.text();
 
-            console.error(erro);
+
+            console.error(
+                erro
+            );
+
 
             mostrarToast(
                 "Não foi possível atualizar o pedido."
             );
 
+
             return;
+
         }
 
 
-        pedido.status = status;
+        pedido.status =
+            status;
+
 
         renderPedidos();
+
 
         mostrarToast(
             "Pedido atualizado."
@@ -1839,7 +2587,10 @@ async function alterarStatus(id,status){
 
     }catch(erro){
 
-        console.error(erro);
+        console.error(
+            erro
+        );
+
 
         mostrarToast(
             "Erro de conexão."
@@ -1858,7 +2609,9 @@ function abrirDetalhes(id){
 
     const pedido =
         pedidos.find(
-            p => Number(p.id) === Number(id)
+            p =>
+                Number(p.id) ===
+                Number(id)
         );
 
 
@@ -1870,85 +2623,150 @@ function abrirDetalhes(id){
     const numero =
         pedido.numero_pedido ||
         "#" +
-        String(pedido.id)
-            .padStart(4,"0");
+        String(
+            pedido.id
+        ).padStart(
+            4,
+            "0"
+        );
 
 
-    document.getElementById("modalTitle")
-        .textContent =
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
         `Pedido ${numero}`;
 
 
     let itens = [];
 
+
     try{
 
-        if(Array.isArray(pedido.itens)){
-            itens = pedido.itens;
-        }else if(typeof pedido.itens === "string"){
-            itens = JSON.parse(pedido.itens);
+        if(
+            Array.isArray(
+                pedido.itens
+            )
+        ){
+
+            itens =
+                pedido.itens;
+
+        }else if(
+            typeof pedido.itens ===
+            "string"
+        ){
+
+            itens =
+                JSON.parse(
+                    pedido.itens
+                );
+
         }
 
     }catch(e){}
 
 
     const itensHTML =
-        itens.map(item=>`
+        itens.map(
+            item=>`
 
             <div class="detail-item">
 
                 <span>
+
                     ${escapeHTML(
-                        item.quantidade || 1
+                        item.quantidade ||
+                        1
                     )}x
+
                     ${escapeHTML(
-                        item.nome || "Produto"
+                        item.nome ||
+                        "Produto"
                     )}
+
                 </span>
 
                 <strong>
+
                     ${dinheiro(
-                        Number(item.preco || 0) *
-                        Number(item.quantidade || 1)
+                        Number(
+                            item.preco ||
+                            0
+                        ) *
+                        Number(
+                            item.quantidade ||
+                            1
+                        )
                     )}
+
                 </strong>
 
             </div>
 
-        `).join("");
+        `
+        ).join("");
 
 
     const endereco =
-        pedido.tipo_entrega === "Entrega"
+        pedido.tipo_entrega ===
+        "Entrega"
         ?
         `
-        ${escapeHTML(pedido.endereco)}
-        ${pedido.numero
-            ? ", " +
-              escapeHTML(pedido.numero)
-            : ""}
+        ${escapeHTML(
+            pedido.endereco
+        )}
 
-        ${pedido.bairro
-            ? "<br>Bairro: " +
-              escapeHTML(pedido.bairro)
-            : ""}
+        ${
+            pedido.numero
+            ?
+            ", " +
+            escapeHTML(
+                pedido.numero
+            )
+            :
+            ""
+        }
 
-        ${pedido.complemento
-            ? "<br>Complemento: " +
-              escapeHTML(pedido.complemento)
-            : ""}
+        ${
+            pedido.bairro
+            ?
+            "<br>Bairro: " +
+            escapeHTML(
+                pedido.bairro
+            )
+            :
+            ""
+        }
 
-        ${pedido.referencia
-            ? "<br>Referência: " +
-              escapeHTML(pedido.referencia)
-            : ""}
+        ${
+            pedido.complemento
+            ?
+            "<br>Complemento: " +
+            escapeHTML(
+                pedido.complemento
+            )
+            :
+            ""
+        }
+
+        ${
+            pedido.referencia
+            ?
+            "<br>Referência: " +
+            escapeHTML(
+                pedido.referencia
+            )
+            :
+            ""
+        }
         `
         :
         "Cliente irá retirar na loja.";
 
 
-    document.getElementById("modalContent")
-        .innerHTML = `
+    document.getElementById(
+        "modalContent"
+    ).innerHTML = `
 
         <div class="detail-section">
 
@@ -1957,9 +2775,11 @@ function abrirDetalhes(id){
             <div class="detail-box">
 
                 <strong>
+
                     ${escapeHTML(
                         pedido.cliente_nome
                     )}
+
                 </strong>
 
                 <br>
@@ -1981,10 +2801,12 @@ function abrirDetalhes(id){
             <div class="detail-box">
 
                 <strong>
+
                     ${escapeHTML(
                         pedido.tipo_entrega ||
                         "Entrega"
                     )}
+
                 </strong>
 
                 <br>
@@ -2016,11 +2838,14 @@ function abrirDetalhes(id){
             <div class="detail-box">
 
                 Forma:
+
                 <strong>
+
                     ${escapeHTML(
                         pedido.pagamento ||
                         "Não informado"
                     )}
+
                 </strong>
 
                 ${
@@ -2067,10 +2892,16 @@ function abrirDetalhes(id){
 
         <div class="modal-total">
 
-            <span>Total</span>
+            <span>
+                Total
+            </span>
 
             <span>
-                ${dinheiro(pedido.total)}
+
+                ${dinheiro(
+                    pedido.total
+                )}
+
             </span>
 
         </div>
@@ -2078,16 +2909,22 @@ function abrirDetalhes(id){
     `;
 
 
-    document.getElementById("detailModal")
-        .classList.add("active");
+    document.getElementById(
+        "detailModal"
+    ).classList.add(
+        "active"
+    );
 
 }
 
 
 function fecharDetalhes(){
 
-    document.getElementById("detailModal")
-        .classList.remove("active");
+    document.getElementById(
+        "detailModal"
+    ).classList.remove(
+        "active"
+    );
 
 }
 
@@ -2096,64 +2933,76 @@ function fecharDetalhes(){
    REALTIME
 ===================================================== */
 
-/*
-  Usa o endpoint de realtime do Supabase
-  para manter o painel sincronizado.
-*/
-
 function iniciarRealtime(){
 
     try{
 
         const wsUrl =
             SUPABASE_URL
-                .replace("https://","wss://")
+                .replace(
+                    "https://",
+                    "wss://"
+                )
             +
             "/realtime/v1/websocket?apikey="
             +
-            encodeURIComponent(SUPABASE_KEY)
+            encodeURIComponent(
+                SUPABASE_KEY
+            )
             +
             "&vsn=1.0.0";
 
 
         const socket =
-            new WebSocket(wsUrl);
-
-
-        socket.onopen = function(){
-
-            document
-                .querySelector(".status-dot")
-                .style.background =
-                "#36c76f";
-
-
-            socket.send(
-                JSON.stringify({
-                    topic:
-                        "realtime:pedidos",
-                    event:"phx_join",
-                    payload:{
-                        config:{
-                            broadcast:{
-                                self:false
-                            },
-                            presence:{
-                            },
-                            postgres_changes:[
-                                {
-                                    event:"*",
-                                    schema:"public",
-                                    table:"pedidos"
-                                }
-                            ]
-                        }
-                    },
-                    ref:"1"
-                })
+            new WebSocket(
+                wsUrl
             );
 
-        };
+
+        socket.onopen =
+            function(){
+
+                document
+                    .querySelector(
+                        ".status-dot"
+                    )
+                    .style.background =
+                    "#36c76f";
+
+
+                socket.send(
+                    JSON.stringify({
+
+                        topic:
+                            "realtime:pedidos",
+
+                        event:
+                            "phx_join",
+
+                        payload:{
+                            config:{
+                                broadcast:{
+                                    self:false
+                                },
+
+                                presence:{},
+
+                                postgres_changes:[
+                                    {
+                                        event:"*",
+                                        schema:"public",
+                                        table:"pedidos"
+                                    }
+                                ]
+                            }
+                        },
+
+                        ref:"1"
+
+                    })
+                );
+
+            };
 
 
         socket.onmessage =
@@ -2178,32 +3027,52 @@ function iniciarRealtime(){
 
                 }catch(e){
 
-                    console.error(e);
+                    console.error(
+                        e
+                    );
 
                 }
 
             };
 
 
-        socket.onclose = function(){
+        socket.onerror =
+            function(){
 
-            document
-                .querySelector(".status-dot")
-                .style.background =
-                "#e05252";
+                document
+                    .querySelector(
+                        ".status-dot"
+                    )
+                    .style.background =
+                    "#e05252";
+
+            };
 
 
-            setTimeout(
-                iniciarRealtime,
-                5000
-            );
+        socket.onclose =
+            function(){
 
-        };
+                document
+                    .querySelector(
+                        ".status-dot"
+                    )
+                    .style.background =
+                    "#e05252";
+
+
+                setTimeout(
+                    iniciarRealtime,
+                    5000
+                );
+
+            };
 
 
     }catch(e){
 
-        console.error(e);
+        console.error(
+            e
+        );
 
     }
 
@@ -2221,4 +3090,4 @@ iniciarRealtime();
 </script>
 
 </body>
-  </html>
+</html>
