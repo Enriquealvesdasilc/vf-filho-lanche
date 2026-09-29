@@ -1,1734 +1,1865 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VF FILHOS LANCHES</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
-:root{
-  --preto:#050505;
-  --preto2:#0d0d0d;
-  --preto3:#151515;
-  --dourado:#d4af37;
-  --dourado2:#f0cf63;
-  --texto:#f1d879;
-  --borda:#4b3b10;
-}
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-body{
-  background:var(--preto);
-  color:var(--texto);
-  font-family:Arial,Helvetica,sans-serif;
-}
-
-button,input,textarea,select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:#050505;
-  border-bottom:1px solid var(--borda);
-  padding:14px 18px;
-}
-
-.header-inner{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
-
-.menu-btn,
-.cart-btn{
-  width:48px;
-  height:48px;
-  border:1px solid var(--dourado);
-  background:#0b0b0b;
-  color:var(--dourado);
-  border-radius:12px;
-  font-size:22px;
-}
-
-.logo{
-  width:55px;
-  height:55px;
-  object-fit:contain;
-  border-radius:12px;
-  border:1px solid var(--dourado);
-  background:#050505;
-}
-
-.store-info{
-  flex:1;
-}
-
-.store-info h1{
-  font-size:19px;
-  color:var(--dourado2);
-  margin-bottom:4px;
-}
-
-.store-info p{
-  color:var(--texto);
-  opacity:.75;
-  font-size:13px;
-}
-
-.cart-btn{
-  position:relative;
-}
-
-.cart-count{
-  position:absolute;
-  right:-6px;
-  top:-7px;
-  background:var(--dourado);
-  color:#050505;
-  min-width:21px;
-  height:21px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:25px 16px 100px;
-}
-
-.hero{
-  background:
-    linear-gradient(135deg,#050505,#121212);
-  border:1px solid var(--borda);
-  border-radius:22px;
-  padding:30px;
-  margin-bottom:22px;
-}
-
-.hero h2{
-  color:var(--dourado2);
-  font-size:30px;
-  margin-bottom:10px;
-}
-
-.hero p{
-  color:var(--texto);
-  opacity:.78;
-  font-size:16px;
-  line-height:1.6;
-}
-
-.search{
-  width:100%;
-  padding:17px 20px;
-  background:#0d0d0d;
-  color:var(--texto);
-  border:1px solid var(--borda);
-  border-radius:14px;
-  outline:none;
-  margin-bottom:18px;
-}
-
-.search:focus{
-  border-color:var(--dourado);
-}
-
-.search::placeholder{
-  color:#927d35;
-}
-
-.categories{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  padding-bottom:8px;
-  margin-bottom:28px;
-  scrollbar-width:none;
-}
-
-.categories::-webkit-scrollbar{
-  display:none;
-}
-
-.category{
-  flex:0 0 auto;
-  border:1px solid var(--borda);
-  background:#0b0b0b;
-  color:var(--dourado2);
-  padding:13px 17px;
-  border-radius:30px;
-  font-weight:bold;
-  transition:.2s;
-}
-
-.category.active{
-  background:var(--dourado);
-  color:#050505;
-  border-color:var(--dourado);
-}
-
-.category:hover{
-  border-color:var(--dourado);
-}
-
-.category-title{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:18px;
-}
-
-.category-title h2{
-  color:var(--dourado2);
-  font-size:25px;
-}
-
-.category-title span{
-  height:1px;
-  background:var(--dourado);
-  opacity:.45;
-  flex:1;
-}
-
-.products{
-  display:grid;
-  gap:14px;
-}
-
-.product{
-  background:#0c0c0c;
-  border:1px solid var(--borda);
-  border-radius:18px;
-  padding:20px;
-  display:flex;
-  align-items:center;
-  gap:20px;
-  transition:.2s;
-}
-
-.product:hover{
-  border-color:var(--dourado);
-  transform:translateY(-1px);
-}
-
-.product-info{
-  flex:1;
-}
-
-.product-name{
-  color:var(--dourado2);
-  font-size:19px;
-  font-weight:bold;
-  margin-bottom:7px;
-}
-
-.product-desc{
-  color:var(--texto);
-  opacity:.65;
-  line-height:1.5;
-  font-size:14px;
-}
-
-.product-bottom{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  margin-top:14px;
-}
-
-.price{
-  color:var(--dourado2);
-  font-size:18px;
-  font-weight:bold;
-}
-
-.add{
-  border:1px solid var(--dourado);
-  background:var(--dourado);
-  color:#050505;
-  border-radius:11px;
-  padding:11px 18px;
-  font-weight:bold;
-}
-
-.add:hover{
-  background:var(--dourado2);
-}
-
-.empty{
-  border:1px solid var(--borda);
-  border-radius:18px;
-  padding:30px;
-  text-align:center;
-  color:var(--texto);
-}
-
-.cart-panel{
-  position:fixed;
-  inset:0;
-  z-index:300;
-  display:none;
-  background:rgba(0,0,0,.78);
-}
-
-.cart-panel.show{
-  display:block;
-}
-
-.cart-box{
-  position:absolute;
-  right:0;
-  top:0;
-  width:min(460px,100%);
-  height:100%;
-  background:#070707;
-  border-left:1px solid var(--dourado);
-  display:flex;
-  flex-direction:column;
-}
-
-.cart-header{
-  padding:20px;
-  border-bottom:1px solid var(--borda);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.cart-header h2{
-  color:var(--dourado2);
-}
-
-.close{
-  background:none;
-  border:0;
-  color:var(--dourado);
-  font-size:25px;
-}
-
-.cart-items{
-  flex:1;
-  overflow:auto;
-  padding:18px;
-}
-
-.cart-item{
-  padding:15px 0;
-  border-bottom:1px solid var(--borda);
-}
-
-.cart-item-top{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.cart-item-name{
-  color:var(--dourado2);
-  font-weight:bold;
-}
-
-.cart-item-price{
-  color:var(--texto);
-}
-
-.quantity{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-top:10px;
-}
-
-.quantity button{
-  width:30px;
-  height:30px;
-  border-radius:8px;
-  border:1px solid var(--dourado);
-  background:#0b0b0b;
-  color:var(--dourado);
-}
-
-.cart-footer{
-  padding:20px;
-  border-top:1px solid var(--borda);
-}
-
-.total{
-  display:flex;
-  justify-content:space-between;
-  font-size:21px;
-  font-weight:bold;
-  color:var(--dourado2);
-  margin-bottom:15px;
-}
-
-.checkout-btn{
-  width:100%;
-  padding:15px;
-  border:0;
-  border-radius:12px;
-  background:var(--dourado);
-  color:#050505;
-  font-weight:bold;
-}
-
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:400;
-  display:none;
-  background:rgba(0,0,0,.85);
-  overflow:auto;
-  padding:20px;
-}
-
-.modal.show{
-  display:block;
-}
-
-.modal-box{
-  width:min(600px,100%);
-  margin:30px auto;
-  background:#080808;
-  border:1px solid var(--dourado);
-  border-radius:20px;
-  padding:24px;
-}
-
-.modal-box h2{
-  color:var(--dourado2);
-  margin-bottom:20px;
-}
-
-.field{
-  margin-bottom:14px;
-}
-
-.field label{
-  display:block;
-  color:var(--dourado);
-  font-size:13px;
-  margin-bottom:6px;
-}
-
-.field input,
-.field textarea,
-.field select{
-  width:100%;
-  padding:13px;
-  border:1px solid var(--borda);
-  border-radius:10px;
-  background:#111;
-  color:var(--texto);
-  outline:none;
-}
-
-.field textarea{
-  min-height:80px;
-  resize:vertical;
-}
-
-.delivery-type{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-bottom:16px;
-}
-
-.delivery-type button{
-  padding:13px;
-  background:#0c0c0c;
-  color:var(--dourado);
-  border:1px solid var(--borda);
-  border-radius:10px;
-}
-
-.delivery-type button.active{
-  background:var(--dourado);
-  color:#050505;
-  border-color:var(--dourado);
-}
-
-.form-actions{
-  display:flex;
-  gap:10px;
-  margin-top:20px;
-}
-
-.form-actions button{
-  flex:1;
-  padding:14px;
-  border-radius:10px;
-}
-
-.cancel{
-  background:#0b0b0b;
-  border:1px solid var(--borda);
-  color:var(--dourado);
-}
-
-.confirm{
-  background:var(--dourado);
-  border:1px solid var(--dourado);
-  color:#050505;
-  font-weight:bold;
-}
-
-.toast{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:var(--dourado);
-  color:#050505;
-  padding:13px 18px;
-  border-radius:10px;
-  font-weight:bold;
-  display:none;
-  z-index:999;
-}
-
-.toast.show{
-  display:block;
-}
-
-.order-success{
-  text-align:center;
-}
-
-.order-number{
-  font-size:36px;
-  color:var(--dourado2);
-  font-weight:bold;
-  margin:20px 0;
-}
-
-@media(max-width:600px){
-  .header{
-    padding:10px;
-  }
-
-  .logo{
-    width:48px;
-    height:48px;
-  }
-
-  .store-info h1{
-    font-size:16px;
-  }
-
-  .store-info p{
-    font-size:11px;
-  }
-
-  .hero{
-    padding:23px;
-  }
-
-  .hero h2{
-    font-size:25px;
-  }
-
-  .product{
-    padding:17px;
-  }
-
-  .product-bottom{
-    align-items:flex-end;
-  }
-
-  .add{
-    padding:10px 13px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VF FILHOS LANCHES</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: #fff;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 72px;
+      background: #050505;
+      border-bottom: 1px solid #c9a227;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+    }
+
+    .menu-btn {
+      width: 46px;
+      height: 46px;
+      border: 1px solid #c9a227;
+      border-radius: 10px;
+      background: #0d0d0d;
+      color: #d4af37;
+      font-size: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-btn:hover {
+      background: #171717;
+    }
+
+    .logo-topo {
+      height: 54px;
+      max-width: 180px;
+      object-fit: contain;
+    }
+
+    .cart-button {
+      min-width: 46px;
+      height: 46px;
+      padding: 0 12px;
+      border: 1px solid #c9a227;
+      border-radius: 10px;
+      background: #0d0d0d;
+      color: #d4af37;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* ================= MENU LATERAL ================= */
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.72);
+      z-index: 1998;
+      display: none;
+    }
+
+    .menu-overlay.active {
+      display: block;
+    }
+
+    .side-menu {
+      position: fixed;
+      left: -320px;
+      top: 0;
+      width: 300px;
+      max-width: 85%;
+      height: 100vh;
+      background: #080808;
+      border-right: 1px solid #c9a227;
+      z-index: 1999;
+      transition: left .25s ease;
+      overflow-y: auto;
+    }
+
+    .side-menu.active {
+      left: 0;
+    }
+
+    .side-header {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px;
+      border-bottom: 1px solid #2b2b2b;
+    }
+
+    .side-logo {
+      width: 145px;
+      max-height: 70px;
+      object-fit: contain;
+    }
+
+    .close-menu {
+      border: 1px solid #c9a227;
+      background: transparent;
+      color: #d4af37;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .menu-title {
+      color: #d4af37;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 20px 18px 10px;
+      letter-spacing: 1px;
+    }
+
+    .menu-option {
+      width: 100%;
+      background: transparent;
+      color: #fff;
+      border: 0;
+      border-bottom: 1px solid #191919;
+      text-align: left;
+      padding: 17px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .menu-option:hover {
+      background: #151515;
+      color: #d4af37;
+    }
+
+    /* ================= CONTEÚDO ================= */
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px 15px 100px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #111, #050505);
+      border: 1px solid #282828;
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      color: #d4af37;
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: #bbb;
+      font-size: 14px;
+    }
+
+    /* ================= BUSCA ================= */
+
+    .search-box {
+      margin: 15px 0 18px;
+    }
+
+    .search-box input {
+      width: 100%;
+      height: 48px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background: #101010;
+      color: #fff;
+      padding: 0 15px;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: #d4af37;
+    }
+
+    /* ================= CATEGORIAS ================= */
+
+    .categories {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 5px 0 15px;
+      scrollbar-width: none;
+    }
+
+    .categories::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-btn {
+      flex: 0 0 auto;
+      border: 1px solid #4a4a4a;
+      background: #111;
+      color: #ddd;
+      padding: 12px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .category-btn.active {
+      background: #d4af37;
+      color: #000;
+      border-color: #d4af37;
+      font-weight: bold;
+    }
+
+    /* ================= FRANGO BLOQUEADO ================= */
+
+    .frango-aviso {
+      display: none;
+      background: #111;
+      border: 1px solid #8c741c;
+      color: #d4af37;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin: 10px 0 20px;
+    }
+
+    .frango-aviso strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .frango-aviso span {
+      color: #bbb;
+      font-size: 14px;
+    }
+
+    /* ================= PRODUTOS ================= */
+
+    .section-title {
+      color: #d4af37;
+      font-size: 21px;
+      margin: 10px 0 15px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .product {
+      background: #0e0e0e;
+      border: 1px solid #242424;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      min-height: 190px;
+    }
+
+    .product:hover {
+      border-color: #8f7620;
+    }
+
+    .product h3 {
+      color: #fff;
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .product p {
+      color: #999;
+      font-size: 13px;
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .price {
+      color: #d4af37;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .add-btn {
+      border: 0;
+      background: #d4af37;
+      color: #000;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 10px 13px;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background: #e3c353;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 35px;
+      color: #999;
+    }
+
+    /* ================= CARRINHO ================= */
+
+    .cart-panel {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 460px;
+      background: #080808;
+      border: 1px solid #c9a227;
+      border-bottom: 0;
+      border-radius: 18px 18px 0 0;
+      z-index: 1500;
+      padding: 18px;
+      transform: translateY(110%);
+      transition: transform .25s ease;
+      max-height: 82vh;
+      overflow-y: auto;
+    }
+
+    .cart-panel.active {
+      transform: translateY(0);
+    }
+
+    .cart-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .cart-title h2 {
+      color: #d4af37;
+      font-size: 20px;
+    }
+
+    .close-cart {
+      background: transparent;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 7px;
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+    }
+
+    .cart-item {
+      border-bottom: 1px solid #222;
+      padding: 12px 0;
+    }
+
+    .cart-item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .cart-item-name {
+      font-weight: bold;
+    }
+
+    .cart-item-price {
+      color: #d4af37;
+      font-weight: bold;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 8px;
+    }
+
+    .quantity button {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      border: 1px solid #555;
+      background: #171717;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      padding: 18px 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .cart-total span:last-child {
+      color: #d4af37;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      height: 50px;
+      background: #d4af37;
+      border: 0;
+      border-radius: 10px;
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* ================= MODAL CHECKOUT ================= */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.82);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 600px;
+      max-height: 92vh;
+      overflow-y: auto;
+      background: #090909;
+      border: 1px solid #c9a227;
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .modal-box h2 {
+      color: #d4af37;
+      margin-bottom: 18px;
+    }
+
+    .field {
+      margin-bottom: 13px;
+    }
+
+    .field label {
+      display: block;
+      color: #bbb;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: #111;
+      border: 1px solid #333;
+      color: #fff;
+      border-radius: 8px;
+      padding: 12px;
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: #d4af37;
+    }
+
+    .delivery-type {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .delivery-type button {
+      padding: 13px;
+      border: 1px solid #444;
+      background: #111;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .delivery-type button.active {
+      background: #d4af37;
+      color: #000;
+      border-color: #d4af37;
+      font-weight: bold;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .modal-actions button {
+      flex: 1;
+      height: 48px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .cancel-btn {
+      background: #171717;
+      color: #fff;
+      border: 1px solid #444;
+    }
+
+    .confirm-btn {
+      background: #d4af37;
+      color: #000;
+      border: 0;
+    }
+
+    /* ================= SUCESSO ================= */
+
+    .success {
+      text-align: center;
+      padding: 20px 5px;
+    }
+
+    .success h2 {
+      color: #d4af37;
+      font-size: 26px;
+    }
+
+    .order-number {
+      font-size: 32px;
+      font-weight: bold;
+      margin: 18px 0;
+      color: #fff;
+    }
+
+    /* ================= TOAST ================= */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 25px;
+      transform: translate(-50%, 120px);
+      background: #d4af37;
+      color: #000;
+      padding: 13px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      z-index: 5000;
+      transition: .25s;
+    }
+
+    .toast.show {
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 600px) {
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .logo-topo {
+        max-width: 145px;
+      }
+
+      header {
+        padding: 0 12px;
+      }
+
+      .hero h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="header">
-  <div class="header-inner">
+  <!-- ================= MENU LATERAL ================= -->
 
-    <button class="menu-btn" onclick="scrollToMenu()">☰</button>
+  <div class="menu-overlay" id="menuOverlay" onclick="fecharMenu()"></div>
 
-    <img class="logo" src="logo-vf.jpeg" alt="VF FILHOS LANCHES">
+  <aside class="side-menu" id="sideMenu">
 
-    <div class="store-info">
-      <h1>VF FILHOS LANCHES</h1>
-      <p>Estrada Luiz Mário da Rocha Lima, 1459</p>
+    <div class="side-header">
+      <img src="logo-vf.jpeg" class="side-logo" alt="VF FILHOS LANCHES">
+
+      <button class="close-menu" onclick="fecharMenu()">×</button>
     </div>
 
-    <button class="cart-btn" onclick="openCart()">
-      🛒
-      <span class="cart-count" id="cartCount">0</span>
+    <div class="menu-title">Menu</div>
+
+    <button class="menu-option" onclick="irCategoria('hamburgueres')">
+      🍔 Hambúrgueres
     </button>
 
-  </div>
-</header>
+    <button class="menu-option" onclick="irCategoria('combos')">
+      🍟 Combos
+    </button>
 
-<main class="container">
+    <button class="menu-option" onclick="irCategoria('promocoes')">
+      🔥 Promoções
+    </button>
 
-  <section class="hero">
-    <h2>Seu lanche do seu jeito</h2>
-    <p>
-      Escolha seus produtos, monte seu pedido
-      e finalize diretamente pelo nosso site.
-    </p>
-  </section>
+    <button class="menu-option" onclick="irCategoria('bebidas')">
+      🥤 Bebidas
+    </button>
 
-  <input
-    id="search"
-    class="search"
-    type="search"
-    placeholder="Buscar no cardápio..."
-    oninput="renderProducts()"
-  >
+    <button class="menu-option" onclick="irCategoria('adicionais')">
+      ➕ Adicionais
+    </button>
 
-  <nav class="categories" id="categories"></nav>
+    <button class="menu-option" onclick="irCategoria('porcoes')">
+      🍟 Porções
+    </button>
 
-  <section>
-    <div class="category-title">
-      <h2 id="categoryTitle"></h2>
-      <span></span>
+    <button class="menu-option" onclick="irCategoria('frango')">
+      🍗 Frango Assado
+    </button>
+
+    <div class="menu-title">Pedido</div>
+
+    <button class="menu-option" onclick="abrirCarrinho(); fecharMenu();">
+      Meu carrinho
+    </button>
+
+    <button class="menu-option" onclick="abrirCheckout(); fecharMenu();">
+      Finalizar pedido
+    </button>
+
+  </aside>
+
+  <!-- ================= HEADER ================= -->
+
+  <header>
+
+    <button class="menu-btn" onclick="abrirMenu()" aria-label="Abrir menu">
+      ☰
+    </button>
+
+    <img
+      src="logo-vf.jpeg"
+      class="logo-topo"
+      alt="VF FILHOS LANCHES"
+    >
+
+    <button class="cart-button" onclick="abrirCarrinho()" id="cartButton">
+      0
+    </button>
+
+  </header>
+
+  <!-- ================= PRINCIPAL ================= -->
+
+  <main>
+
+    <section class="hero">
+      <h1>VF FILHOS LANCHES</h1>
+      <p>Faça seu pedido de forma rápida e fácil.</p>
+    </section>
+
+    <div class="search-box">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Buscar no cardápio..."
+        oninput="renderProdutos()"
+      >
     </div>
+
+    <!-- CATEGORIAS -->
+
+    <div class="categories">
+
+      <button class="category-btn active" data-category="hamburgueres"
+        onclick="selecionarCategoria('hamburgueres')">
+        🍔 Hambúrgueres
+      </button>
+
+      <button class="category-btn" data-category="combos"
+        onclick="selecionarCategoria('combos')">
+        🍟 Combos
+      </button>
+
+      <button class="category-btn" data-category="promocoes"
+        onclick="selecionarCategoria('promocoes')">
+        🔥 Promoções
+      </button>
+
+      <button class="category-btn" data-category="bebidas"
+        onclick="selecionarCategoria('bebidas')">
+        🥤 Bebidas
+      </button>
+
+      <button class="category-btn" data-category="adicionais"
+        onclick="selecionarCategoria('adicionais')">
+        ➕ Adicionais
+      </button>
+
+      <button class="category-btn" data-category="porcoes"
+        onclick="selecionarCategoria('porcoes')">
+        🍟 Porções
+      </button>
+
+      <button class="category-btn" data-category="frango"
+        onclick="selecionarCategoria('frango')">
+        🍗 Frango Assado
+      </button>
+
+    </div>
+
+    <div class="frango-aviso" id="frangoAviso">
+      <strong>🍗 Frango Assado indisponível hoje</strong>
+      <span>
+        O Frango Assado funciona somente aos sábados e domingos.
+      </span>
+    </div>
+
+    <h2 class="section-title" id="categoryTitle">
+      Hambúrgueres
+    </h2>
 
     <div class="products" id="products"></div>
+
+  </main>
+
+  <!-- ================= CARRINHO ================= -->
+
+  <section class="cart-panel" id="cartPanel">
+
+    <div class="cart-title">
+      <h2>Meu carrinho</h2>
+
+      <button class="close-cart" onclick="fecharCarrinho()">
+        ×
+      </button>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">R$ 0,00</span>
+    </div>
+
+    <button class="checkout-btn" onclick="abrirCheckout()">
+      Continuar para entrega
+    </button>
+
   </section>
 
-</main>
+  <!-- ================= CHECKOUT ================= -->
 
-<!-- CARRINHO -->
+  <div class="modal" id="checkoutModal">
 
-<div class="cart-panel" id="cartPanel">
-  <div class="cart-box">
+    <div class="modal-box">
 
-    <div class="cart-header">
-      <h2>Seu pedido</h2>
-      <button class="close" onclick="closeCart()">×</button>
-    </div>
+      <h2>Finalizar pedido</h2>
 
-    <div class="cart-items" id="cartItems"></div>
+      <div class="delivery-type">
 
-    <div class="cart-footer">
-      <div class="total">
-        <span>Total</span>
-        <span id="cartTotal">R$ 0,00</span>
-      </div>
+        <button
+          id="btnEntrega"
+          class="active"
+          onclick="selecionarEntrega('Entrega')">
+          Entrega
+        </button>
 
-      <button class="checkout-btn" onclick="openCheckout()">
-        Continuar pedido
-      </button>
-    </div>
+        <button
+          id="btnRetirada"
+          onclick="selecionarEntrega('Retirada')">
+          Retirada
+        </button>
 
-  </div>
-</div>
-
-<!-- CHECKOUT -->
-
-<div class="modal" id="checkoutModal">
-
-  <div class="modal-box">
-
-    <h2>Finalizar pedido</h2>
-
-    <div class="delivery-type">
-      <button id="deliveryBtn" class="active" onclick="setDelivery('Entrega')">
-        Entrega
-      </button>
-
-      <button id="pickupBtn" onclick="setDelivery('Retirada')">
-        Retirada
-      </button>
-    </div>
-
-    <div class="field">
-      <label>Nome</label>
-      <input id="clienteNome" type="text" placeholder="Seu nome">
-    </div>
-
-    <div class="field">
-      <label>Telefone</label>
-      <input id="telefone" type="tel" placeholder="Seu telefone">
-    </div>
-
-    <div id="addressFields">
-
-      <div class="field">
-        <label>Endereço</label>
-        <input id="endereco" type="text" placeholder="Rua / Avenida">
       </div>
 
       <div class="field">
-        <label>Número</label>
-        <input id="numero" type="text" placeholder="Número">
+        <label>Nome</label>
+        <input id="clienteNome" type="text" placeholder="Seu nome">
       </div>
 
       <div class="field">
-        <label>Complemento</label>
-        <input id="complemento" type="text" placeholder="Apartamento, casa, etc.">
+        <label>Telefone</label>
+        <input id="telefone" type="tel" placeholder="Seu telefone">
+      </div>
+
+      <div id="enderecoFields">
+
+        <div class="field">
+          <label>Endereço</label>
+          <input id="endereco" type="text" placeholder="Rua / Avenida">
+        </div>
+
+        <div class="field">
+          <label>Número</label>
+          <input id="numero" type="text" placeholder="Número">
+        </div>
+
+        <div class="field">
+          <label>Complemento</label>
+          <input id="complemento" type="text" placeholder="Apartamento, casa etc.">
+        </div>
+
+        <div class="field">
+          <label>Bairro</label>
+          <input id="bairro" type="text" placeholder="Seu bairro">
+        </div>
+
+        <div class="field">
+          <label>Referência</label>
+          <input id="referencia" type="text" placeholder="Ponto de referência">
+        </div>
+
       </div>
 
       <div class="field">
-        <label>Bairro</label>
-        <input id="bairro" type="text" placeholder="Seu bairro">
+        <label>Forma de pagamento</label>
+
+        <select id="pagamento">
+          <option value="">Selecione</option>
+          <option value="Pix">Pix</option>
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Cartão de Crédito">Cartão de Crédito</option>
+          <option value="Cartão de Débito">Cartão de Débito</option>
+        </select>
+      </div>
+
+      <div class="field" id="trocoField" style="display:none;">
+        <label>Troco para quanto?</label>
+        <input id="troco" type="text" placeholder="Ex.: R$ 50,00">
       </div>
 
       <div class="field">
-        <label>Referência</label>
-        <input id="referencia" type="text" placeholder="Perto de...">
+        <label>Observações</label>
+
+        <textarea
+          id="observacoes"
+          placeholder="Alguma observação sobre o pedido?"></textarea>
       </div>
 
-    </div>
+      <div class="modal-actions">
 
-    <div class="field">
-      <label>Forma de pagamento</label>
+        <button
+          class="cancel-btn"
+          onclick="fecharCheckout()">
+          Voltar
+        </button>
 
-      <select id="pagamento">
-        <option value="">Selecione</option>
-        <option value="Pix">Pix</option>
-        <option value="Dinheiro">Dinheiro</option>
-        <option value="Cartão de crédito">Cartão de crédito</option>
-        <option value="Cartão de débito">Cartão de débito</option>
-      </select>
+        <button
+          class="confirm-btn"
+          onclick="enviarPedido()">
+          Confirmar pedido
+        </button>
 
-    </div>
+      </div>
 
-    <div class="field">
-      <label>Troco para</label>
-      <input id="troco" type="text" placeholder="Ex.: R$ 50,00">
-    </div>
-
-    <div class="field">
-      <label>Observações</label>
-      <textarea id="observacoes" placeholder="Alguma observação para o pedido?"></textarea>
-    </div>
-
-    <div class="form-actions">
-      <button class="cancel" onclick="closeCheckout()">Voltar</button>
-      <button class="confirm" onclick="sendOrder()">Confirmar pedido</button>
     </div>
 
   </div>
 
-</div>
+  <!-- ================= SUCESSO ================= -->
 
-<!-- SUCESSO -->
+  <div class="modal" id="successModal">
 
-<div class="modal" id="successModal">
+    <div class="modal-box success">
 
-  <div class="modal-box order-success">
+      <h2>Pedido recebido!</h2>
 
-    <h2>Pedido recebido</h2>
+      <p style="margin-top:10px;color:#bbb;">
+        Seu pedido foi enviado para a loja.
+      </p>
 
-    <p>Seu pedido foi enviado para a loja.</p>
-
-    <div class="order-number" id="orderNumber">#0000</div>
-
-    <p>Acompanhe o andamento pelo site.</p>
-
-    <div class="form-actions">
-      <button class="confirm" onclick="closeSuccess()">
-        Continuar
-      </button>
-    </div>
-
-  </div>
-
-</div>
-
-<div class="toast" id="toast"></div>
-
-<script>
-/* ================================
-   SUPABASE
-================================ */
-
-const SUPABASE_URL =
-  "https://zjfgmokdcwzwpoancpgr.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_XSySYoAnL4D2xydCg98Lrg_JWB4ulQL";
-
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
-
-
-/* ================================
-   CARDÁPIO
-================================ */
-
-const products = [
-
-  /* HAMBÚRGUERES */
-
-  {
-    id:"cheesburger",
-    category:"hamburgueres",
-    name:"Cheesburger",
-    description:"Pão macio, carne bovina suculenta, presunto e queijo prato derretido, acompanhado de barbecue, maionese, mostarda e ketchup.",
-    price:11.99
-  },
-
-  {
-    id:"x-tudo",
-    category:"hamburgueres",
-    name:"X-Tudo",
-    description:"Hambúrguer completo com ingredientes selecionados.",
-    price:13.99
-  },
-
-  {
-    id:"x-duplo",
-    category:"hamburgueres",
-    name:"X-Duplo",
-    description:"Dois hambúrgueres e combinação especial de ingredientes.",
-    price:16.99
-  },
-
-  {
-    id:"x-batata",
-    category:"hamburgueres",
-    name:"X-Batata",
-    description:"Hambúrguer especial acompanhado de batata.",
-    price:15.99
-  },
-
-  {
-    id:"x-picanha",
-    category:"hamburgueres",
-    name:"X-Picanha",
-    description:"Hambúrguer especial com carne de picanha.",
-    price:19.99
-  },
-
-  {
-    id:"duplo-cheddar",
-    category:"hamburgueres",
-    name:"Duplo Cheddar",
-    description:"Dois hambúrgueres com cheddar cremoso.",
-    price:18.99
-  },
-
-  {
-    id:"x-bacon",
-    category:"hamburgueres",
-    name:"X-Bacon",
-    description:"Hambúrguer com bacon e queijo.",
-    price:18.99
-  },
-
-  {
-    id:"x-mineiro",
-    category:"hamburgueres",
-    name:"X-Mineiro",
-    description:"Hambúrguer especial da casa.",
-    price:19.99
-  },
-
-  {
-    id:"x-3-queijos",
-    category:"hamburgueres",
-    name:"X-3 Queijos",
-    description:"Hambúrguer preparado com três queijos.",
-    price:20.99
-  },
-
-  {
-    id:"x-onion",
-    category:"hamburgueres",
-    name:"X-Onion",
-    description:"Hambúrguer especial com cebola.",
-    price:18.99
-  },
-
-
-  /* COMBOS */
-
-  {
-    id:"combo-individual",
-    category:"combos",
-    name:"Combo Individual",
-    description:"Combo individual completo.",
-    price:29.99
-  },
-
-  {
-    id:"combo-duplo",
-    category:"combos",
-    name:"Combo Duplo",
-    description:"Combo para duas pessoas.",
-    price:38.99
-  },
-
-  {
-    id:"combo-familia",
-    category:"combos",
-    name:"Combo Família",
-    description:"Combo completo para compartilhar.",
-    price:64.99
-  },
-
-
-  /* PROMOÇÕES */
-
-  {
-    id:"promo-x-tudo",
-    category:"promocoes",
-    name:"X-Tudo + Guaravita + Batata P",
-    description:"Oferta especial da casa.",
-    price:19.99
-  },
-
-  {
-    id:"promo-cheddar",
-    category:"promocoes",
-    name:"Duplo Cheddar + Coca-Cola Lata",
-    description:"Oferta especial da casa.",
-    price:18.99
-  },
-
-
-  /* BEBIDAS */
-
-  {
-    id:"coca",
-    category:"bebidas",
-    name:"Coca-Cola lata 350 ml",
-    description:"Refrigerante lata 350 ml.",
-    price:10
-  },
-
-  {
-    id:"guaravita",
-    category:"bebidas",
-    name:"Guaravita Natural 290 ml",
-    description:"Bebida Guaravita.",
-    price:6
-  },
-
-  {
-    id:"agua",
-    category:"bebidas",
-    name:"Água Mineral 500 ml",
-    description:"Água mineral.",
-    price:5
-  },
-
-
-  /* ADICIONAIS */
-
-  {
-    id:"maionese",
-    category:"adicionais",
-    name:"Maionese",
-    description:"Adicional.",
-    price:3
-  },
-
-  {
-    id:"barbecue",
-    category:"adicionais",
-    name:"Barbecue",
-    description:"Adicional.",
-    price:3
-  },
-
-  {
-    id:"ketchup",
-    category:"adicionais",
-    name:"Ketchup",
-    description:"Adicional.",
-    price:3
-  },
-
-  {
-    id:"mostarda",
-    category:"adicionais",
-    name:"Mostarda",
-    description:"Adicional.",
-    price:3
-  },
-
-  {
-    id:"molho-verde",
-    category:"adicionais",
-    name:"Molho Verde",
-    description:"Adicional.",
-    price:4
-  },
-
-  {
-    id:"cheddar",
-    category:"adicionais",
-    name:"Cheddar",
-    description:"Adicional.",
-    price:5
-  },
-
-  {
-    id:"ovo",
-    category:"adicionais",
-    name:"Ovo",
-    description:"Adicional.",
-    price:5
-  },
-
-
-  /* PORÇÕES */
-
-  {
-    id:"batata-p",
-    category:"porcoes",
-    name:"Batata Frita P",
-    description:"Porção pequena.",
-    price:15
-  },
-
-  {
-    id:"batata-m",
-    category:"porcoes",
-    name:"Batata Frita M",
-    description:"Porção média.",
-    price:21.99
-  },
-
-  {
-    id:"batata-g",
-    category:"porcoes",
-    name:"Batata Frita G",
-    description:"Porção grande.",
-    price:30
-  },
-
-
-  /* FRANGO ASSADO */
-
-  {
-    id:"frango-assado",
-    category:"frango",
-    name:"Frango Assado Completo",
-    description:"Frango assado completo.",
-    price:45
-  }
-
-];
-
-
-/* ================================
-   CATEGORIAS
-================================ */
-
-const categories = [
-
-  {
-    id:"hamburgueres",
-    name:"Hambúrgueres",
-    icon:"🍔"
-  },
-
-  {
-    id:"combos",
-    name:"Combos",
-    icon:"🍟"
-  },
-
-  {
-    id:"promocoes",
-    name:"Promoções",
-    icon:"🔥"
-  },
-
-  {
-    id:"bebidas",
-    name:"Bebidas",
-    icon:"🥤"
-  },
-
-  {
-    id:"adicionais",
-    name:"Adicionais",
-    icon:"➕"
-  },
-
-  {
-    id:"porcoes",
-    name:"Porções",
-    icon:"🍟"
-  },
-
-  {
-    id:"frango",
-    name:"Frango Assado",
-    icon:"🍗"
-  }
-
-];
-
-
-/* ================================
-   ESTADO
-================================ */
-
-let activeCategory = "hamburgueres";
-
-let cart =
-  JSON.parse(
-    localStorage.getItem("vf_cart") || "[]"
-  );
-
-let deliveryType = "Entrega";
-
-
-/* ================================
-   FORMATAÇÃO
-================================ */
-
-function money(value){
-
-  return value.toLocaleString(
-    "pt-BR",
-    {
-      style:"currency",
-      currency:"BRL"
-    }
-  );
-
-}
-
-
-/* ================================
-   CATEGORIAS
-================================ */
-
-function renderCategories(){
-
-  const container =
-    document.getElementById("categories");
-
-  container.innerHTML =
-    categories.map(category => `
+      <div class="order-number" id="orderNumber">
+        #0000
+      </div>
 
       <button
-        class="category ${
-          activeCategory === category.id
-          ? "active"
-          : ""
-        }"
-        onclick="selectCategory('${category.id}')"
-      >
-
-        ${category.icon}
-        ${category.name}
-
+        class="checkout-btn"
+        onclick="fecharSucesso()">
+        Voltar para o cardápio
       </button>
 
-    `).join("");
+    </div>
 
-}
+  </div>
 
+  <div class="toast" id="toast"></div>
 
-function selectCategory(category){
+  <script>
 
-  activeCategory = category;
+    /* =====================================================
+       SUPABASE
+    ===================================================== */
 
-  document.getElementById("search").value = "";
+    const SUPABASE_URL =
+      "https://zjfgmokdcwzwpoancpgr.supabase.co";
 
-  renderCategories();
-  renderProducts();
+    const SUPABASE_KEY =
+      "sb_publishable_XSySYoAnL4D2xydCg98Lrg_JWB4ulQL";
 
-  window.scrollTo({
-    top:300,
-    behavior:"smooth"
-  });
+    /* =====================================================
+       PRODUTOS
+    ===================================================== */
 
-}
+    const produtos = [
 
+      /* HAMBÚRGUERES */
 
-/* ================================
-   PRODUTOS
-================================ */
+      {
+        id: "hamb-1",
+        categoria: "hamburgueres",
+        nome: "Cheesburger",
+        descricao: "Hambúrguer artesanal com queijo e ingredientes selecionados.",
+        preco: 11.99
+      },
 
-function renderProducts(){
+      {
+        id: "hamb-2",
+        categoria: "hamburgueres",
+        nome: "X-Tudo",
+        descricao: "Hambúrguer completo com queijo, presunto, ovo, bacon e salada.",
+        preco: 13.99
+      },
 
-  const container =
-    document.getElementById("products");
+      {
+        id: "hamb-3",
+        categoria: "hamburgueres",
+        nome: "X-Duplo",
+        descricao: "Dois hambúrgueres, queijo e complementos.",
+        preco: 16.99
+      },
 
-  const title =
-    document.getElementById("categoryTitle");
+      {
+        id: "hamb-4",
+        categoria: "hamburgueres",
+        nome: "X-Batata",
+        descricao: "Hambúrguer especial acompanhado de batata.",
+        preco: 15.99
+      },
 
-  const category =
-    categories.find(
-      c => c.id === activeCategory
+      {
+        id: "hamb-5",
+        categoria: "hamburgueres",
+        nome: "X-Picanha",
+        descricao: "Hambúrguer especial de picanha com queijo e complementos.",
+        preco: 19.99
+      },
+
+      {
+        id: "hamb-6",
+        categoria: "hamburgueres",
+        nome: "Duplo Cheddar",
+        descricao: "Dois hambúrgueres com bastante cheddar.",
+        preco: 18.99
+      },
+
+      {
+        id: "hamb-7",
+        categoria: "hamburgueres",
+        nome: "X-Bacon",
+        descricao: "Hambúrguer com queijo e bacon crocante.",
+        preco: 18.99
+      },
+
+      {
+        id: "hamb-8",
+        categoria: "hamburgueres",
+        nome: "X-Mineiro",
+        descricao: "Hambúrguer especial com ingredientes selecionados.",
+        preco: 19.99
+      },
+
+      {
+        id: "hamb-9",
+        categoria: "hamburgueres",
+        nome: "X-3 Queijos",
+        descricao: "Hambúrguer especial com três tipos de queijo.",
+        preco: 20.99
+      },
+
+      {
+        id: "hamb-10",
+        categoria: "hamburgueres",
+        nome: "X-Onion",
+        descricao: "Hambúrguer especial com cebola crocante.",
+        preco: 18.99
+      },
+
+      /* COMBOS */
+
+      {
+        id: "combo-1",
+        categoria: "combos",
+        nome: "Combo Individual",
+        descricao: "Lanche + acompanhamento + bebida.",
+        preco: 29.99
+      },
+
+      {
+        id: "combo-2",
+        categoria: "combos",
+        nome: "Combo Duplo",
+        descricao: "Dois lanches + acompanhamentos + bebidas.",
+        preco: 38.99
+      },
+
+      {
+        id: "combo-3",
+        categoria: "combos",
+        nome: "Combo Família",
+        descricao: "Combo especial para compartilhar.",
+        preco: 64.99
+      },
+
+      /* PROMOÇÕES */
+
+      {
+        id: "promo-1",
+        categoria: "promocoes",
+        nome: "X-Tudo + Guaravita + Batata P",
+        descricao: "Promoção especial.",
+        preco: 19.99
+      },
+
+      {
+        id: "promo-2",
+        categoria: "promocoes",
+        nome: "Duplo Cheddar + Coca-Cola Lata",
+        descricao: "Promoção especial.",
+        preco: 18.99
+      },
+
+      /* BEBIDAS */
+
+      {
+        id: "beb-1",
+        categoria: "bebidas",
+        nome: "Coca-Cola Lata 350 ml",
+        descricao: "Refrigerante gelado.",
+        preco: 10
+      },
+
+      {
+        id: "beb-2",
+        categoria: "bebidas",
+        nome: "Guaravita Natural 290 ml",
+        descricao: "Bebida gelada.",
+        preco: 6
+      },
+
+      {
+        id: "beb-3",
+        categoria: "bebidas",
+        nome: "Água Mineral 500 ml",
+        descricao: "Água mineral.",
+        preco: 5
+      },
+
+      /* ADICIONAIS */
+
+      {
+        id: "adic-1",
+        categoria: "adicionais",
+        nome: "Maionese",
+        descricao: "Porção de maionese.",
+        preco: 3
+      },
+
+      {
+        id: "adic-2",
+        categoria: "adicionais",
+        nome: "Barbecue",
+        descricao: "Molho barbecue.",
+        preco: 3
+      },
+
+      {
+        id: "adic-3",
+        categoria: "adicionais",
+        nome: "Ketchup",
+        descricao: "Sachê de ketchup.",
+        preco: 3
+      },
+
+      {
+        id: "adic-4",
+        categoria: "adicionais",
+        nome: "Mostarda",
+        descricao: "Sachê de mostarda.",
+        preco: 3
+      },
+
+      {
+        id: "adic-5",
+        categoria: "adicionais",
+        nome: "Molho Verde",
+        descricao: "Molho verde especial.",
+        preco: 4
+      },
+
+      {
+        id: "adic-6",
+        categoria: "adicionais",
+        nome: "Cheddar",
+        descricao: "Porção de cheddar.",
+        preco: 5
+      },
+
+      {
+        id: "adic-7",
+        categoria: "adicionais",
+        nome: "Ovo",
+        descricao: "Ovo adicional.",
+        preco: 5
+      },
+
+      /* PORÇÕES */
+
+      {
+        id: "porcao-1",
+        categoria: "porcoes",
+        nome: "Batata Frita P",
+        descricao: "Porção pequena de batata frita.",
+        preco: 15
+      },
+
+      {
+        id: "porcao-2",
+        categoria: "porcoes",
+        nome: "Batata Frita M",
+        descricao: "Porção média de batata frita.",
+        preco: 21.99
+      },
+
+      {
+        id: "porcao-3",
+        categoria: "porcoes",
+        nome: "Batata Frita G",
+        descricao: "Porção grande de batata frita.",
+        preco: 30
+      },
+
+      /* FRANGO */
+
+      {
+        id: "frango-1",
+        categoria: "frango",
+        nome: "Frango Assado Completo",
+        descricao: "Frango assado completo.",
+        preco: 45
+      }
+
+    ];
+
+    /* =====================================================
+       ESTADO
+    ===================================================== */
+
+    let categoriaAtual = "hamburgueres";
+
+    let tipoEntrega = "Entrega";
+
+    let carrinho = JSON.parse(
+      localStorage.getItem("vf_cart") || "[]"
     );
 
-  title.textContent =
-    category.icon + " " + category.name;
+    /* =====================================================
+       UTILIDADES
+    ===================================================== */
 
-  const search =
-    document
-      .getElementById("search")
-      .value
-      .toLowerCase()
-      .trim();
+    function dinheiro(valor) {
+      return Number(valor).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
 
-  let filtered =
-    products.filter(
-      product =>
-        product.category === activeCategory
-    );
+    function mostrarToast(texto) {
+      const toast = document.getElementById("toast");
 
-  if(search){
+      toast.textContent = texto;
+      toast.classList.add("show");
 
-    filtered =
-      filtered.filter(product =>
-        (
-          product.name +
-          " " +
-          product.description
-        )
-        .toLowerCase()
-        .includes(search)
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    function salvarCarrinho() {
+      localStorage.setItem(
+        "vf_cart",
+        JSON.stringify(carrinho)
       );
 
-  }
+      atualizarCarrinho();
+    }
 
-  if(!filtered.length){
+    /* =====================================================
+       MENU HAMBÚRGUER
+    ===================================================== */
 
-    container.innerHTML = `
-      <div class="empty">
-        Nenhum produto encontrado nesta categoria.
-      </div>
-    `;
+    function abrirMenu() {
+      document
+        .getElementById("sideMenu")
+        .classList.add("active");
 
-    return;
-  }
+      document
+        .getElementById("menuOverlay")
+        .classList.add("active");
+    }
 
-  container.innerHTML =
-    filtered.map(product => `
+    function fecharMenu() {
+      document
+        .getElementById("sideMenu")
+        .classList.remove("active");
 
-      <article class="product">
+      document
+        .getElementById("menuOverlay")
+        .classList.remove("active");
+    }
 
-        <div class="product-info">
+    /* =====================================================
+       FRANGO - SOMENTE SÁBADO E DOMINGO
+    ===================================================== */
 
-          <div class="product-name">
-            ${product.name}
-          </div>
+    function frangoDisponivel() {
 
-          <div class="product-desc">
-            ${product.description}
-          </div>
+      const hoje = new Date().getDay();
+
+      /*
+        0 = domingo
+        6 = sábado
+      */
+
+      return hoje === 0 || hoje === 6;
+    }
+
+    /* =====================================================
+       CATEGORIAS
+    ===================================================== */
+
+    function selecionarCategoria(categoria) {
+
+      categoriaAtual = categoria;
+
+      document
+        .querySelectorAll(".category-btn")
+        .forEach(btn => {
+
+          btn.classList.toggle(
+            "active",
+            btn.dataset.category === categoria
+          );
+
+        });
+
+      const nomes = {
+        hamburgueres: "Hambúrgueres",
+        combos: "Combos",
+        promocoes: "Promoções",
+        bebidas: "Bebidas",
+        adicionais: "Adicionais",
+        porcoes: "Porções",
+        frango: "Frango Assado"
+      };
+
+      document.getElementById("categoryTitle").textContent =
+        nomes[categoria];
+
+      renderProdutos();
+    }
+
+    function irCategoria(categoria) {
+
+      fecharMenu();
+
+      selecionarCategoria(categoria);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    /* =====================================================
+       RENDER PRODUTOS
+    ===================================================== */
+
+    function renderProdutos() {
+
+      const container =
+        document.getElementById("products");
+
+      const aviso =
+        document.getElementById("frangoAviso");
+
+      const busca =
+        document
+          .getElementById("searchInput")
+          .value
+          .trim()
+          .toLowerCase();
+
+      /* FRANGO BLOQUEADO */
+
+      if (
+        categoriaAtual === "frango" &&
+        !frangoDisponivel()
+      ) {
+
+        aviso.style.display = "block";
+        container.innerHTML = "";
+
+        return;
+      }
+
+      aviso.style.display = "none";
+
+      let lista = produtos.filter(
+        produto =>
+          produto.categoria === categoriaAtual
+      );
+
+      if (busca) {
+
+        lista = lista.filter(produto =>
+          produto.nome
+            .toLowerCase()
+            .includes(busca) ||
+          produto.descricao
+            .toLowerCase()
+            .includes(busca)
+        );
+
+      }
+
+      if (!lista.length) {
+
+        container.innerHTML =
+          `<div class="empty">
+             Nenhum produto encontrado.
+           </div>`;
+
+        return;
+      }
+
+      container.innerHTML = lista.map(produto => `
+
+        <article class="product">
+
+          <h3>${produto.nome}</h3>
+
+          <p>${produto.descricao}</p>
 
           <div class="product-bottom">
 
             <span class="price">
-              ${money(product.price)}
+              ${dinheiro(produto.preco)}
             </span>
 
             <button
-              class="add"
-              onclick="addToCart('${product.id}')"
-            >
+              class="add-btn"
+              onclick="adicionarCarrinho('${produto.id}')">
               Adicionar
             </button>
 
           </div>
 
-        </div>
+        </article>
 
-      </article>
+      `).join("");
+    }
 
-    `).join("");
+    /* =====================================================
+       CARRINHO
+    ===================================================== */
 
-}
+    function adicionarCarrinho(id) {
 
+      const produto =
+        produtos.find(p => p.id === id);
 
-/* ================================
-   CARRINHO
-================================ */
+      if (!produto) return;
 
-function saveCart(){
+      /* Proteção extra do frango */
 
-  localStorage.setItem(
-    "vf_cart",
-    JSON.stringify(cart)
-  );
+      if (
+        produto.categoria === "frango" &&
+        !frangoDisponivel()
+      ) {
 
-}
+        mostrarToast(
+          "Frango Assado disponível somente sábado e domingo."
+        );
 
+        return;
+      }
 
-function addToCart(id){
+      const existente =
+        carrinho.find(item => item.id === id);
 
-  const product =
-    products.find(p => p.id === id);
+      if (existente) {
 
-  if(!product) return;
+        existente.quantidade++;
 
-  const existing =
-    cart.find(item => item.id === id);
+      } else {
 
-  if(existing){
+        carrinho.push({
+          id: produto.id,
+          nome: produto.nome,
+          preco: produto.preco,
+          quantidade: 1
+        });
 
-    existing.quantity++;
+      }
 
-  }else{
+      salvarCarrinho();
 
-    cart.push({
-      id:product.id,
-      name:product.name,
-      price:product.price,
-      quantity:1
-    });
+      mostrarToast("Produto adicionado ao carrinho.");
+    }
 
-  }
+    function alterarQuantidade(id, quantidade) {
 
-  saveCart();
-  updateCart();
+      const item =
+        carrinho.find(i => i.id === id);
 
-  showToast("Produto adicionado");
+      if (!item) return;
 
-}
+      item.quantidade += quantidade;
 
+      if (item.quantidade <= 0) {
 
-function increase(id){
+        carrinho =
+          carrinho.filter(i => i.id !== id);
 
-  const item =
-    cart.find(p => p.id === id);
+      }
 
-  if(item){
-    item.quantity++;
-  }
+      salvarCarrinho();
+    }
 
-  saveCart();
-  updateCart();
+    function totalCarrinho() {
 
-}
+      return carrinho.reduce(
+        (total, item) =>
+          total + item.preco * item.quantidade,
+        0
+      );
+    }
 
+    function atualizarCarrinho() {
 
-function decrease(id){
+      const quantidade =
+        carrinho.reduce(
+          (total, item) =>
+            total + item.quantidade,
+          0
+        );
 
-  const item =
-    cart.find(p => p.id === id);
+      document.getElementById("cartButton")
+        .textContent = quantidade;
 
-  if(!item) return;
+      const container =
+        document.getElementById("cartItems");
 
-  item.quantity--;
+      if (!carrinho.length) {
 
-  if(item.quantity <= 0){
+        container.innerHTML =
+          `<div class="empty">
+             Seu carrinho está vazio.
+           </div>`;
 
-    cart =
-      cart.filter(p => p.id !== id);
+      } else {
 
-  }
+        container.innerHTML =
+          carrinho.map(item => `
 
-  saveCart();
-  updateCart();
+            <div class="cart-item">
 
-}
+              <div class="cart-item-top">
 
+                <span class="cart-item-name">
+                  ${item.nome}
+                </span>
 
-function getCartTotal(){
+                <span class="cart-item-price">
+                  ${dinheiro(item.preco * item.quantidade)}
+                </span>
 
-  return cart.reduce(
-    (total,item) =>
-      total + item.price * item.quantity,
-    0
-  );
+              </div>
 
-}
+              <div class="quantity">
 
+                <button
+                  onclick="alterarQuantidade('${item.id}', -1)">
+                  −
+                </button>
 
-function updateCart(){
+                <strong>
+                  ${item.quantidade}
+                </strong>
 
-  const count =
-    cart.reduce(
-      (total,item) =>
-        total + item.quantity,
-      0
-    );
+                <button
+                  onclick="alterarQuantidade('${item.id}', 1)">
+                  +
+                </button>
 
-  document.getElementById(
-    "cartCount"
-  ).textContent = count;
+              </div>
 
-  document.getElementById(
-    "cartTotal"
-  ).textContent =
-    money(getCartTotal());
+            </div>
 
-  const container =
-    document.getElementById("cartItems");
+          `).join("");
+      }
 
-  if(!cart.length){
+      document.getElementById("cartTotal")
+        .textContent = dinheiro(totalCarrinho());
+    }
 
-    container.innerHTML = `
-      <div class="empty">
-        Seu carrinho está vazio.
-      </div>
-    `;
+    function abrirCarrinho() {
 
-    return;
-  }
+      document
+        .getElementById("cartPanel")
+        .classList.add("active");
 
-  container.innerHTML =
-    cart.map(item => `
+      atualizarCarrinho();
+    }
 
-      <div class="cart-item">
+    function fecharCarrinho() {
 
-        <div class="cart-item-top">
+      document
+        .getElementById("cartPanel")
+        .classList.remove("active");
+    }
 
-          <span class="cart-item-name">
-            ${item.name}
-          </span>
+    /* =====================================================
+       CHECKOUT
+    ===================================================== */
 
-          <span class="cart-item-price">
-            ${money(item.price * item.quantity)}
-          </span>
+    function selecionarEntrega(tipo) {
 
-        </div>
+      tipoEntrega = tipo;
 
-        <div class="quantity">
+      document
+        .getElementById("btnEntrega")
+        .classList.toggle(
+          "active",
+          tipo === "Entrega"
+        );
 
-          <button
-            onclick="decrease('${item.id}')"
-          >
-            −
-          </button>
+      document
+        .getElementById("btnRetirada")
+        .classList.toggle(
+          "active",
+          tipo === "Retirada"
+        );
 
-          <span>
-            ${item.quantity}
-          </span>
+      document
+        .getElementById("enderecoFields")
+        .style.display =
+          tipo === "Entrega"
+            ? "block"
+            : "none";
+    }
 
-          <button
-            onclick="increase('${item.id}')"
-          >
-            +
-          </button>
+    function abrirCheckout() {
 
-        </div>
+      if (!carrinho.length) {
 
-      </div>
+        mostrarToast(
+          "Adicione produtos ao carrinho primeiro."
+        );
 
-    `).join("");
+        return;
+      }
 
-}
+      fecharCarrinho();
 
+      document
+        .getElementById("checkoutModal")
+        .classList.add("active");
+    }
 
-function openCart(){
+    function fecharCheckout() {
 
-  document
-    .getElementById("cartPanel")
-    .classList.add("show");
-
-}
-
-
-function closeCart(){
-
-  document
-    .getElementById("cartPanel")
-    .classList.remove("show");
-
-}
-
-
-/* ================================
-   CHECKOUT
-================================ */
-
-function openCheckout(){
-
-  if(!cart.length){
-
-    showToast("Seu carrinho está vazio.");
-
-    return;
-  }
-
-  closeCart();
-
-  document
-    .getElementById("checkoutModal")
-    .classList.add("show");
-
-}
-
-
-function closeCheckout(){
-
-  document
-    .getElementById("checkoutModal")
-    .classList.remove("show");
-
-}
-
-
-function setDelivery(type){
-
-  deliveryType = type;
-
-  document
-    .getElementById("deliveryBtn")
-    .classList.toggle(
-      "active",
-      type === "Entrega"
-    );
-
-  document
-    .getElementById("pickupBtn")
-    .classList.toggle(
-      "active",
-      type === "Retirada"
-    );
-
-  document
-    .getElementById("addressFields")
-    .style.display =
-      type === "Entrega"
-      ? "block"
-      : "none";
-
-}
-
-
-/* ================================
-   ENVIAR PEDIDO
-================================ */
-
-async function sendOrder(){
-
-  if(!cart.length){
-
-    showToast("Seu carrinho está vazio.");
-
-    return;
-  }
-
-  const nome =
-    document.getElementById("clienteNome")
-      .value.trim();
-
-  const telefone =
-    document.getElementById("telefone")
-      .value.trim();
-
-  const pagamento =
-    document.getElementById("pagamento")
-      .value;
-
-  if(!nome){
-
-    showToast("Informe seu nome.");
-
-    return;
-  }
-
-  if(!telefone){
-
-    showToast("Informe seu telefone.");
-
-    return;
-  }
-
-  if(!pagamento){
-
-    showToast("Escolha a forma de pagamento.");
-
-    return;
-  }
-
-  if(
-    deliveryType === "Entrega" &&
-    (
-      !document.getElementById("endereco").value.trim() ||
-      !document.getElementById("numero").value.trim() ||
-      !document.getElementById("bairro").value.trim()
-    )
-  ){
-
-    showToast(
-      "Preencha endereço, número e bairro."
-    );
-
-    return;
-  }
-
-  const pedido = {
-
-    cliente_nome: nome,
-
-    telefone: telefone,
-
-    tipo_entrega: deliveryType,
-
-    endereco:
-      document.getElementById("endereco").value.trim(),
-
-    numero:
-      document.getElementById("numero").value.trim(),
-
-    complemento:
-      document.getElementById("complemento").value.trim(),
-
-    bairro:
-      document.getElementById("bairro").value.trim(),
-
-    referencia:
-      document.getElementById("referencia").value.trim(),
-
-    pagamento: pagamento,
-
-    troco:
-      document.getElementById("troco").value.trim(),
-
-    itens: cart,
-
-    subtotal: getCartTotal(),
-
-    taxa_entrega: 0,
-
-    total: getCartTotal(),
-
-    observacoes:
-      document.getElementById("observacoes").value.trim(),
-
-    status:"novo"
-
-  };
-
-  try{
-
-    const { data, error } =
-      await supabaseClient
-        .from("pedidos")
-        .insert([pedido])
-        .select()
-        .single();
-
-    if(error) throw error;
-
-    localStorage.setItem(
-      "vf_order_id",
-      data.id
-    );
-
-    localStorage.removeItem("vf_cart");
-
-    cart = [];
-
-    updateCart();
-
-    closeCheckout();
-
-    document.getElementById(
-      "orderNumber"
-    ).textContent =
-      data.numero_pedido ||
-      "#" + String(data.id).padStart(4,"0");
+      document
+        .getElementById("checkoutModal")
+        .classList.remove("active");
+    }
 
     document
-      .getElementById("successModal")
-      .classList.add("show");
+      .getElementById("pagamento")
+      .addEventListener("change", function() {
 
-  }catch(error){
+        document
+          .getElementById("trocoField")
+          .style.display =
+            this.value === "Dinheiro"
+              ? "block"
+              : "none";
 
-    console.error(error);
+      });
 
-    showToast(
-      "Não foi possível enviar o pedido."
-    );
+    /* =====================================================
+       ENVIAR PEDIDO SUPABASE
+    ===================================================== */
 
-  }
+    async function enviarPedido() {
 
-}
+      if (!carrinho.length) {
 
+        mostrarToast("Carrinho vazio.");
 
-/* ================================
-   SUCESSO
-================================ */
+        return;
+      }
 
-function closeSuccess(){
+      const nome =
+        document
+          .getElementById("clienteNome")
+          .value
+          .trim();
 
-  document
-    .getElementById("successModal")
-    .classList.remove("show");
+      const telefone =
+        document
+          .getElementById("telefone")
+          .value
+          .trim();
 
-}
+      const pagamento =
+        document
+          .getElementById("pagamento")
+          .value;
 
+      if (!nome) {
 
-/* ================================
-   TOAST
-================================ */
+        mostrarToast("Digite seu nome.");
 
-function showToast(message){
+        return;
+      }
 
-  const toast =
-    document.getElementById("toast");
+      if (!pagamento) {
 
-  toast.textContent = message;
+        mostrarToast("Selecione o pagamento.");
 
-  toast.classList.add("show");
+        return;
+      }
 
-  setTimeout(
-    () => toast.classList.remove("show"),
-    2500
-  );
+      if (
+        tipoEntrega === "Entrega" &&
+        !document.getElementById("endereco").value.trim()
+      ) {
 
-}
+        mostrarToast("Digite o endereço.");
 
+        return;
+      }
 
-/* ================================
-   MENU
-================================ */
+      const pedido = {
 
-function scrollToMenu(){
+        cliente_nome: nome,
 
-  document
-    .getElementById("categories")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
+        telefone: telefone,
 
-}
+        tipo_entrega: tipoEntrega,
 
+        endereco:
+          tipoEntrega === "Entrega"
+            ? document.getElementById("endereco").value.trim()
+            : "",
 
-/* ================================
-   INICIALIZAÇÃO
-================================ */
+        numero:
+          tipoEntrega === "Entrega"
+            ? document.getElementById("numero").value.trim()
+            : "",
 
-renderCategories();
+        complemento:
+          tipoEntrega === "Entrega"
+            ? document.getElementById("complemento").value.trim()
+            : "",
 
-renderProducts();
+        bairro:
+          tipoEntrega === "Entrega"
+            ? document.getElementById("bairro").value.trim()
+            : "",
 
-updateCart();
+        referencia:
+          tipoEntrega === "Entrega"
+            ? document.getElementById("referencia").value.trim()
+            : "",
 
-setDelivery("Entrega");
+        pagamento: pagamento,
 
-</script>
+        troco:
+          pagamento === "Dinheiro"
+            ? document.getElementById("troco").value.trim()
+            : "",
+
+        itens: carrinho,
+
+        subtotal: totalCarrinho(),
+
+        taxa_entrega: 0,
+
+        total: totalCarrinho(),
+
+        observacoes:
+          document
+            .getElementById("observacoes")
+            .value
+            .trim(),
+
+        status: "novo"
+
+      };
+
+      try {
+
+        const resposta = await fetch(
+          `${SUPABASE_URL}/rest/v1/pedidos`,
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": SUPABASE_KEY,
+              "Authorization":
+                `Bearer ${SUPABASE_KEY}`,
+              "Prefer":
+                "return=representation"
+            },
+
+            body: JSON.stringify(pedido)
+          }
+        );
+
+        if (!resposta.ok) {
+
+          const erro =
+            await resposta.text();
+
+          console.error(erro);
+
+          mostrarToast(
+            "Não foi possível enviar o pedido."
+          );
+
+          return;
+        }
+
+        const dados =
+          await resposta.json();
+
+        const pedidoCriado =
+          Array.isArray(dados)
+            ? dados[0]
+            : dados;
+
+        const numero =
+          pedidoCriado?.numero_pedido ||
+          (
+            "#" +
+            String(
+              pedidoCriado?.id || "0000"
+            ).padStart(4, "0")
+          );
+
+        document.getElementById("orderNumber")
+          .textContent = numero;
+
+        carrinho = [];
+
+        salvarCarrinho();
+
+        fecharCheckout();
+
+        document
+          .getElementById("successModal")
+          .classList.add("active");
+
+      } catch (erro) {
+
+        console.error(erro);
+
+        mostrarToast(
+          "Erro de conexão. Tente novamente."
+        );
+
+      }
+
+    }
+
+    function fecharSucesso() {
+
+      document
+        .getElementById("successModal")
+        .classList.remove("active");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    /* =====================================================
+       INICIALIZAÇÃO
+    ===================================================== */
+
+    selecionarEntrega("Entrega");
+
+    renderProdutos();
+
+    atualizarCarrinho();
+
+  </script>
 
 </body>
 </html>
