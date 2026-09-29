@@ -3,61 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b0b0b">
-
-<meta
-  name="description"
-  content="VF FILHOS LANCHES - Hambúrgueres, combos, promoções, bebidas, porções e frango assado."
->
-
 <title>VF FILHOS LANCHES</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 :root{
-  --preto:#090909;
-  --preto2:#111111;
-  --preto3:#1a1a1a;
-
+  --preto:#050505;
+  --preto2:#0d0d0d;
+  --preto3:#151515;
   --dourado:#d4af37;
-  --dourado2:#f1cf5b;
-  --dourado3:#b58d18;
-
-  --branco:#ffffff;
-  --cinza:#b7b7b7;
-  --cinza2:#777777;
-
-  --fundo:#f4f4f4;
-  --linha:#e4e4e4;
-
-  --verde:#16803c;
-  --vermelho:#c62828;
-
-  --sombra:0 8px 28px rgba(0,0,0,.10);
-  --raio:18px;
+  --dourado2:#f0cf63;
+  --texto:#f1d879;
+  --borda:#4b3b10;
 }
 
 *{
   box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
+  margin:0;
+  padding:0;
 }
 
 body{
-  margin:0;
-  background:var(--fundo);
-  color:#171717;
+  background:var(--preto);
+  color:var(--texto);
   font-family:Arial,Helvetica,sans-serif;
 }
 
-button,
-input,
-select,
-textarea{
+button,input,textarea,select{
   font:inherit;
 }
 
@@ -65,1629 +38,732 @@ button{
   cursor:pointer;
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-/* =========================
-   HEADER
-========================= */
-
 .header{
   position:sticky;
   top:0;
-  z-index:50;
-  background:var(--preto);
-  border-bottom:1px solid #292929;
-  box-shadow:0 3px 15px rgba(0,0,0,.18);
+  z-index:100;
+  background:#050505;
+  border-bottom:1px solid var(--borda);
+  padding:14px 18px;
 }
 
-.top{
-  max-width:1180px;
+.header-inner{
+  max-width:1100px;
   margin:auto;
-  padding:12px 18px;
   display:flex;
   align-items:center;
-  gap:13px;
-}
-
-.logo{
-  width:52px;
-  height:52px;
-  border-radius:14px;
-  overflow:hidden;
-  background:#fff;
-  flex-shrink:0;
-}
-
-.logo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.brand{
-  flex:1;
-  min-width:0;
-}
-
-.brand h1{
-  color:#fff;
-  font-size:19px;
-  margin:0;
-  font-weight:900;
-}
-
-.brand p{
-  color:#bdbdbd;
-  margin:4px 0 0;
-  font-size:11px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  gap:16px;
 }
 
 .menu-btn,
 .cart-btn{
-  border:1px solid #333;
-  background:#171717;
-  color:#fff;
-  border-radius:13px;
-  width:46px;
-  height:46px;
-  font-size:21px;
+  width:48px;
+  height:48px;
+  border:1px solid var(--dourado);
+  background:#0b0b0b;
+  color:var(--dourado);
+  border-radius:12px;
+  font-size:22px;
+}
+
+.logo{
+  width:55px;
+  height:55px;
+  object-fit:contain;
+  border-radius:12px;
+  border:1px solid var(--dourado);
+  background:#050505;
+}
+
+.store-info{
+  flex:1;
+}
+
+.store-info h1{
+  font-size:19px;
+  color:var(--dourado2);
+  margin-bottom:4px;
+}
+
+.store-info p{
+  color:var(--texto);
+  opacity:.75;
+  font-size:13px;
 }
 
 .cart-btn{
   position:relative;
 }
 
-.badge{
+.cart-count{
   position:absolute;
-  right:-5px;
-  top:-6px;
-
+  right:-6px;
+  top:-7px;
   background:var(--dourado);
-  color:#111;
-
-  border-radius:99px;
-  font-size:11px;
+  color:#050505;
   min-width:21px;
   height:21px;
-  padding:3px;
-
-  font-weight:900;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:bold;
 }
 
-/* =========================
-   HERO
-========================= */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:25px 16px 100px;
+}
 
 .hero{
-  max-width:1180px;
-  margin:auto;
-  padding:20px 18px 8px;
-}
-
-.hero-box{
   background:
-    radial-gradient(circle at 85% 30%,rgba(212,175,55,.20),transparent 28%),
-    linear-gradient(135deg,#080808,#202020);
-
-  color:#fff;
-
-  border-radius:24px;
-
-  padding:25px;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  gap:20px;
-
-  box-shadow:var(--sombra);
-
-  border:1px solid #292929;
+    linear-gradient(135deg,#050505,#121212);
+  border:1px solid var(--borda);
+  border-radius:22px;
+  padding:30px;
+  margin-bottom:22px;
 }
 
 .hero h2{
-  font-size:28px;
-  margin:0 0 8px;
+  color:var(--dourado2);
+  font-size:30px;
+  margin-bottom:10px;
 }
 
 .hero p{
-  margin:0;
-  color:#ccc;
-  line-height:1.5;
+  color:var(--texto);
+  opacity:.78;
+  font-size:16px;
+  line-height:1.6;
 }
-
-.hero strong{
-  color:var(--dourado2);
-}
-
-.hero-logo{
-  width:100px;
-  height:100px;
-  border-radius:22px;
-  object-fit:cover;
-  background:#fff;
-  border:2px solid var(--dourado);
-}
-
-/* =========================
-   BUSCA
-========================= */
 
 .search{
-  max-width:1180px;
-  margin:15px auto;
-  padding:0 18px;
-}
-
-.search-box{
-  position:relative;
-}
-
-.search input{
   width:100%;
-  padding:15px 18px 15px 45px;
-
-  border:1px solid var(--linha);
-  border-radius:15px;
-
-  background:#fff;
-
+  padding:17px 20px;
+  background:#0d0d0d;
+  color:var(--texto);
+  border:1px solid var(--borda);
+  border-radius:14px;
   outline:none;
+  margin-bottom:18px;
 }
 
-.search-icon{
-  position:absolute;
-  left:16px;
-  top:50%;
-  transform:translateY(-50%);
-  color:#777;
+.search:focus{
+  border-color:var(--dourado);
 }
 
-/* =========================
-   CATEGORIAS
-========================= */
+.search::placeholder{
+  color:#927d35;
+}
 
 .categories{
-  max-width:1180px;
-  margin:auto;
-
-  padding:8px 18px 13px;
-
   display:flex;
-  gap:9px;
-
-  overflow:auto;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:8px;
+  margin-bottom:28px;
+  scrollbar-width:none;
 }
 
-.categories button{
-  white-space:nowrap;
-
-  border:1px solid #d5d5d5;
-
-  background:#fff;
-
-  color:#333;
-
-  padding:10px 15px;
-
-  border-radius:99px;
-
-  font-weight:700;
+.categories::-webkit-scrollbar{
+  display:none;
 }
 
-.categories button.active{
-  background:var(--preto);
+.category{
+  flex:0 0 auto;
+  border:1px solid var(--borda);
+  background:#0b0b0b;
   color:var(--dourado2);
-  border-color:var(--preto);
+  padding:13px 17px;
+  border-radius:30px;
+  font-weight:bold;
+  transition:.2s;
 }
 
-/* =========================
-   CARDÁPIO
-========================= */
-
-main{
-  max-width:1180px;
-  margin:auto;
-  padding:0 18px 110px;
+.category.active{
+  background:var(--dourado);
+  color:#050505;
+  border-color:var(--dourado);
 }
 
-.section{
-  scroll-margin-top:120px;
-  margin:22px 0 30px;
+.category:hover{
+  border-color:var(--dourado);
 }
 
-.section-title{
+.category-title{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-
-  margin-bottom:14px;
+  gap:12px;
+  margin-bottom:18px;
 }
 
-.section h2{
-  font-size:22px;
-  margin:0;
+.category-title h2{
+  color:var(--dourado2);
+  font-size:25px;
 }
 
-.section-line{
-  height:2px;
+.category-title span{
+  height:1px;
+  background:var(--dourado);
+  opacity:.45;
   flex:1;
-  background:linear-gradient(
-    90deg,
-    var(--dourado),
-    transparent
-  );
-
-  margin-left:15px;
 }
 
-/* =========================
-   PRODUTOS
-========================= */
-
-.grid{
+.products{
   display:grid;
-
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
-
   gap:14px;
 }
 
 .product{
-  background:#fff;
-
-  border-radius:var(--raio);
-
-  padding:16px;
-
-  box-shadow:0 3px 14px rgba(0,0,0,.055);
-
+  background:#0c0c0c;
+  border:1px solid var(--borda);
+  border-radius:18px;
+  padding:20px;
   display:flex;
-  flex-direction:column;
-
-  min-height:235px;
-
-  border:1px solid #eeeeee;
+  align-items:center;
+  gap:20px;
+  transition:.2s;
 }
 
-.product-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
+.product:hover{
+  border-color:var(--dourado);
+  transform:translateY(-1px);
 }
 
-.product-icon{
-  width:54px;
-  height:54px;
-
-  border-radius:15px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #151515,
-      #292929
-    );
-
-  display:grid;
-  place-items:center;
-
-  font-size:28px;
-}
-
-.product h3{
-  margin:12px 0 6px;
-
-  font-size:17px;
-}
-
-.desc{
-  color:#6b7280;
-
-  font-size:13px;
-
-  line-height:1.45;
-
+.product-info{
   flex:1;
 }
 
-.bottom{
+.product-name{
+  color:var(--dourado2);
+  font-size:19px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.product-desc{
+  color:var(--texto);
+  opacity:.65;
+  line-height:1.5;
+  font-size:14px;
+}
+
+.product-bottom{
   display:flex;
-
-  align-items:center;
-
   justify-content:space-between;
-
-  gap:8px;
-
+  align-items:center;
+  gap:15px;
   margin-top:14px;
 }
 
 .price{
+  color:var(--dourado2);
   font-size:18px;
-
-  font-weight:900;
-
-  color:#111;
+  font-weight:bold;
 }
 
 .add{
-  background:var(--preto);
-
-  color:var(--dourado2);
-
   border:1px solid var(--dourado);
-
-  border-radius:12px;
-
-  padding:10px 14px;
-
-  font-weight:900;
+  background:var(--dourado);
+  color:#050505;
+  border-radius:11px;
+  padding:11px 18px;
+  font-weight:bold;
 }
 
 .add:hover{
-  background:var(--dourado);
-
-  color:#111;
+  background:var(--dourado2);
 }
 
-/* =========================
-   MENU LATERAL
-========================= */
-
-.overlay{
-  display:none;
-
-  position:fixed;
-
-  inset:0;
-
-  background:rgba(0,0,0,.58);
-
-  z-index:90;
+.empty{
+  border:1px solid var(--borda);
+  border-radius:18px;
+  padding:30px;
+  text-align:center;
+  color:var(--texto);
 }
-
-.overlay.open{
-  display:block;
-}
-
-.drawer{
-  position:fixed;
-
-  z-index:100;
-
-  left:0;
-  top:0;
-  bottom:0;
-
-  width:min(360px,88vw);
-
-  background:#fff;
-
-  padding:22px;
-
-  box-shadow:8px 0 30px rgba(0,0,0,.25);
-
-  transform:translateX(-105%);
-
-  transition:.25s;
-}
-
-.drawer.open{
-  transform:translateX(0);
-}
-
-.drawer-head{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-}
-
-.drawer h2{
-  margin:0;
-}
-
-.close{
-  border:0;
-
-  background:#eee;
-
-  border-radius:10px;
-
-  padding:9px 12px;
-}
-
-.drawer nav{
-  display:grid;
-
-  gap:8px;
-
-  margin-top:22px;
-}
-
-.drawer nav a{
-  padding:14px;
-
-  border-radius:12px;
-
-  background:#f5f5f5;
-
-  font-weight:700;
-}
-
-.drawer nav a:hover{
-  background:#e9e9e9;
-}
-
-/* =========================
-   CARRINHO
-========================= */
 
 .cart-panel{
   position:fixed;
+  inset:0;
+  z-index:300;
+  display:none;
+  background:rgba(0,0,0,.78);
+}
 
-  z-index:110;
+.cart-panel.show{
+  display:block;
+}
 
+.cart-box{
+  position:absolute;
   right:0;
   top:0;
-  bottom:0;
-
-  width:min(450px,96vw);
-
-  background:#fff;
-
-  box-shadow:-8px 0 30px rgba(0,0,0,.22);
-
-  display:none;
-
+  width:min(460px,100%);
+  height:100%;
+  background:#070707;
+  border-left:1px solid var(--dourado);
+  display:flex;
   flex-direction:column;
 }
 
-.cart-panel.open{
+.cart-header{
+  padding:20px;
+  border-bottom:1px solid var(--borda);
   display:flex;
-}
-
-.cart-head{
-  padding:18px;
-
-  border-bottom:1px solid var(--linha);
-
-  display:flex;
-
   justify-content:space-between;
-
   align-items:center;
 }
 
-.cart-head strong{
-  font-size:20px;
+.cart-header h2{
+  color:var(--dourado2);
+}
+
+.close{
+  background:none;
+  border:0;
+  color:var(--dourado);
+  font-size:25px;
 }
 
 .cart-items{
-  padding:15px;
-
-  overflow:auto;
-
   flex:1;
+  overflow:auto;
+  padding:18px;
 }
 
 .cart-item{
-  padding:14px 0;
-
-  border-bottom:1px solid var(--linha);
+  padding:15px 0;
+  border-bottom:1px solid var(--borda);
 }
 
-.cart-line{
+.cart-item-top{
   display:flex;
-
   justify-content:space-between;
-
   gap:10px;
 }
 
-.cart-line strong:first-child{
-  max-width:65%;
+.cart-item-name{
+  color:var(--dourado2);
+  font-weight:bold;
 }
 
-.qty{
+.cart-item-price{
+  color:var(--texto);
+}
+
+.quantity{
   display:flex;
-
   align-items:center;
-
-  gap:9px;
-
+  gap:10px;
   margin-top:10px;
 }
 
-.qty button{
-  border:0;
-
-  background:#eee;
-
+.quantity button{
+  width:30px;
+  height:30px;
   border-radius:8px;
-
-  width:32px;
-  height:32px;
-
-  font-weight:900;
+  border:1px solid var(--dourado);
+  background:#0b0b0b;
+  color:var(--dourado);
 }
 
 .cart-footer{
-  padding:16px;
-
-  border-top:1px solid var(--linha);
+  padding:20px;
+  border-top:1px solid var(--borda);
 }
 
 .total{
   display:flex;
-
   justify-content:space-between;
-
-  font-size:20px;
-
-  font-weight:900;
-
-  margin-bottom:12px;
-}
-
-.primary{
-  width:100%;
-
-  border:0;
-
-  background:var(--preto);
-
+  font-size:21px;
+  font-weight:bold;
   color:var(--dourado2);
-
-  border:1px solid var(--dourado);
-
-  border-radius:13px;
-
-  padding:14px;
-
-  font-weight:900;
+  margin-bottom:15px;
 }
 
-.primary:hover{
-  background:var(--dourado);
-
-  color:#111;
-}
-
-.secondary{
+.checkout-btn{
   width:100%;
-
-  border:1px solid var(--linha);
-
-  background:#fff;
-
-  border-radius:13px;
-
-  padding:12px;
-
-  margin-top:8px;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:var(--dourado);
+  color:#050505;
+  font-weight:bold;
 }
-
-/* =========================
-   MODAL
-========================= */
 
 .modal{
   position:fixed;
-
   inset:0;
-
-  background:rgba(0,0,0,.65);
-
-  z-index:120;
-
+  z-index:400;
   display:none;
-
-  align-items:flex-end;
-
-  justify-content:center;
-}
-
-.modal.open{
-  display:flex;
-}
-
-.modal-box{
-  background:#fff;
-
-  width:min(720px,100%);
-
-  max-height:92vh;
-
+  background:rgba(0,0,0,.85);
   overflow:auto;
-
-  border-radius:22px 22px 0 0;
-
   padding:20px;
 }
 
-.modal-head{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
+.modal.show{
+  display:block;
 }
 
-.modal-head h2{
-  margin:0;
+.modal-box{
+  width:min(600px,100%);
+  margin:30px auto;
+  background:#080808;
+  border:1px solid var(--dourado);
+  border-radius:20px;
+  padding:24px;
 }
 
-/* =========================
-   FORMULÁRIO
-========================= */
-
-.form-grid{
-  display:grid;
-
-  grid-template-columns:1fr 1fr;
-
-  gap:12px;
+.modal-box h2{
+  color:var(--dourado2);
+  margin-bottom:20px;
 }
 
 .field{
-  margin:10px 0;
+  margin-bottom:14px;
 }
 
-.field.full{
-  grid-column:1/-1;
-}
-
-label{
-  font-size:13px;
-
-  font-weight:700;
-
+.field label{
   display:block;
-
-  margin-bottom:5px;
+  color:var(--dourado);
+  font-size:13px;
+  margin-bottom:6px;
 }
 
-input,
-select,
-textarea{
+.field input,
+.field textarea,
+.field select{
   width:100%;
-
-  border:1px solid #d9dde3;
-
-  border-radius:11px;
-
-  padding:12px;
-
-  background:#fff;
-
+  padding:13px;
+  border:1px solid var(--borda);
+  border-radius:10px;
+  background:#111;
+  color:var(--texto);
   outline:none;
 }
 
-input:focus,
-select:focus,
-textarea:focus{
-  border-color:var(--dourado);
-}
-
-textarea{
-  min-height:90px;
-
+.field textarea{
+  min-height:80px;
   resize:vertical;
 }
 
-.radio-row{
+.delivery-type{
   display:grid;
-
   grid-template-columns:1fr 1fr;
-
-  gap:8px;
+  gap:10px;
+  margin-bottom:16px;
 }
 
-.radio{
-  border:1px solid var(--linha);
-
-  padding:12px;
-
-  border-radius:11px;
-}
-
-.radio input{
-  width:auto;
-
-  margin-right:6px;
-}
-
-.notice{
+.delivery-type button{
   padding:13px;
-
-  border-radius:12px;
-
-  background:#fff8df;
-
-  border:1px solid #ecd47a;
-
-  color:#5f4b00;
-
-  font-size:13px;
-
-  line-height:1.45;
-
-  margin:12px 0;
+  background:#0c0c0c;
+  color:var(--dourado);
+  border:1px solid var(--borda);
+  border-radius:10px;
 }
 
-.order-box{
-  background:#f7f7f7;
-
-  border-radius:14px;
-
-  padding:14px;
-
-  margin:12px 0;
+.delivery-type button.active{
+  background:var(--dourado);
+  color:#050505;
+  border-color:var(--dourado);
 }
 
-/* =========================
-   PEDIDO CONFIRMADO
-========================= */
-
-.success-box{
-  text-align:center;
-
-  padding:10px 0 20px;
-}
-
-.success-icon{
-  width:70px;
-  height:70px;
-
-  margin:auto;
-
-  border-radius:50%;
-
-  display:grid;
-
-  place-items:center;
-
-  background:#e8f7ed;
-
-  color:var(--verde);
-
-  font-size:35px;
-}
-
-.order-number{
-  font-size:28px;
-
-  font-weight:900;
-
-  margin:12px 0 4px;
-}
-
-.status{
+.form-actions{
   display:flex;
-
-  gap:8px;
-
-  overflow:auto;
-
-  margin-top:15px;
+  gap:10px;
+  margin-top:20px;
 }
 
-.step{
-  min-width:120px;
-
-  padding:10px;
-
-  border-radius:11px;
-
-  background:#eee;
-
-  text-align:center;
-
-  font-size:12px;
+.form-actions button{
+  flex:1;
+  padding:14px;
+  border-radius:10px;
 }
 
-.step.active{
-  background:#fff4c2;
-
-  color:#6c5500;
-
-  font-weight:800;
-
-  border:1px solid #e0c34b;
+.cancel{
+  background:#0b0b0b;
+  border:1px solid var(--borda);
+  color:var(--dourado);
 }
 
-/* =========================
-   TOAST
-========================= */
+.confirm{
+  background:var(--dourado);
+  border:1px solid var(--dourado);
+  color:#050505;
+  font-weight:bold;
+}
 
 .toast{
   position:fixed;
-
-  z-index:200;
-
   bottom:20px;
-
   left:50%;
-
   transform:translateX(-50%);
-
-  background:#111;
-
-  color:#fff;
-
-  padding:12px 18px;
-
-  border-radius:99px;
-
+  background:var(--dourado);
+  color:#050505;
+  padding:13px 18px;
+  border-radius:10px;
+  font-weight:bold;
   display:none;
-
-  box-shadow:var(--sombra);
-
-  text-align:center;
-
-  max-width:90%;
+  z-index:999;
 }
 
 .toast.show{
   display:block;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
-.footer{
-  background:#090909;
-
-  color:#ccc;
-
-  padding:30px 18px;
+.order-success{
+  text-align:center;
 }
 
-.footer-inner{
-  max-width:1180px;
-
-  margin:auto;
-}
-
-.footer h3{
+.order-number{
+  font-size:36px;
   color:var(--dourado2);
+  font-weight:bold;
+  margin:20px 0;
 }
 
-.footer p{
-  font-size:13px;
-
-  line-height:1.5;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:680px){
-
-  .grid{
-    grid-template-columns:1fr;
+@media(max-width:600px){
+  .header{
+    padding:10px;
   }
 
-  .hero-box{
-    padding:20px;
+  .logo{
+    width:48px;
+    height:48px;
+  }
+
+  .store-info h1{
+    font-size:16px;
+  }
+
+  .store-info p{
+    font-size:11px;
+  }
+
+  .hero{
+    padding:23px;
   }
 
   .hero h2{
-    font-size:23px;
+    font-size:25px;
   }
 
-  .hero-logo{
-    width:75px;
-    height:75px;
+  .product{
+    padding:17px;
   }
 
-  .form-grid{
-    grid-template-columns:1fr;
+  .product-bottom{
+    align-items:flex-end;
   }
 
-  .field.full{
-    grid-column:auto;
-  }
-
-  .radio-row{
-    grid-template-columns:1fr;
-  }
-
-  .brand h1{
-    font-size:17px;
-  }
-
-  .brand p{
-    font-size:10px;
+  .add{
+    padding:10px 13px;
   }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header class="header">
+  <div class="header-inner">
 
-  <div class="top">
+    <button class="menu-btn" onclick="scrollToMenu()">☰</button>
 
-    <button
-      class="menu-btn"
-      onclick="openMenu()"
-      aria-label="Abrir menu"
-    >
-      ☰
-    </button>
+    <img class="logo" src="logo-vf.jpeg" alt="VF FILHOS LANCHES">
 
-    <div class="logo">
-      <img
-        src="logo.jpeg"
-        alt="VF FILHOS LANCHES"
-      >
-    </div>
-
-    <div class="brand">
-
+    <div class="store-info">
       <h1>VF FILHOS LANCHES</h1>
-
-      <p>
-        📍 Estrada Luiz Mário da Rocha Lima, 1459
-        · 🕐 10:00 às 00:00
-      </p>
-
+      <p>Estrada Luiz Mário da Rocha Lima, 1459</p>
     </div>
 
-    <button
-      class="cart-btn"
-      onclick="openCart()"
-      aria-label="Abrir carrinho"
-    >
+    <button class="cart-btn" onclick="openCart()">
       🛒
-
-      <span
-        class="badge"
-        id="cartBadge"
-      >
-        0
-      </span>
-
+      <span class="cart-count" id="cartCount">0</span>
     </button>
 
   </div>
-
 </header>
 
+<main class="container">
 
-<div
-  class="overlay"
-  id="overlay"
-  onclick="closeAll()"
-></div>
+  <section class="hero">
+    <h2>Seu lanche do seu jeito</h2>
+    <p>
+      Escolha seus produtos, monte seu pedido
+      e finalize diretamente pelo nosso site.
+    </p>
+  </section>
 
+  <input
+    id="search"
+    class="search"
+    type="search"
+    placeholder="Buscar no cardápio..."
+    oninput="renderProducts()"
+  >
 
-<!-- =========================
-     MENU
-========================= -->
+  <nav class="categories" id="categories"></nav>
 
-<aside
-  class="drawer"
-  id="drawer"
->
-
-  <div class="drawer-head">
-
-    <h2>Menu</h2>
-
-    <button
-      class="close"
-      onclick="closeMenu()"
-    >
-      ✕
-    </button>
-
-  </div>
-
-  <nav>
-
-    <a
-      href="#inicio"
-      onclick="closeMenu()"
-    >
-      🏠 Início
-    </a>
-
-    <a
-      href="#cardapio"
-      onclick="closeMenu()"
-    >
-      🍔 Cardápio
-    </a>
-
-    <a
-      href="#"
-      onclick="openCart();closeMenu();return false"
-    >
-      🛒 Meu pedido
-    </a>
-
-    <a
-      href="#"
-      onclick="showLastOrder();closeMenu();return false"
-    >
-      📦 Acompanhar pedido
-    </a>
-
-    <a
-      href="#entrega"
-      onclick="closeMenu()"
-    >
-      🛵 Entrega e retirada
-    </a>
-
-    <a
-      href="#horarios"
-      onclick="closeMenu()"
-    >
-      🕐 Horário
-    </a>
-
-    <a
-      href="#sobre"
-      onclick="closeMenu()"
-    >
-      ℹ️ Sobre a loja
-    </a>
-
-  </nav>
-
-</aside>
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section
-  class="hero"
-  id="inicio"
->
-
-  <div class="hero-box">
-
-    <div>
-
-      <h2>
-        Seu lanche do seu jeito 🍔
-      </h2>
-
-      <p>
-        Escolha seus produtos,
-        monte seu pedido e finalize
-        diretamente pelo nosso site.
-      </p>
-
+  <section>
+    <div class="category-title">
+      <h2 id="categoryTitle"></h2>
+      <span></span>
     </div>
 
-    <img
-      class="hero-logo"
-      src="logo.jpeg"
-      alt="VF FILHOS LANCHES"
-    >
+    <div class="products" id="products"></div>
+  </section>
+
+</main>
+
+<!-- CARRINHO -->
+
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-box">
+
+    <div class="cart-header">
+      <h2>Seu pedido</h2>
+      <button class="close" onclick="closeCart()">×</button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
+      <div class="total">
+        <span>Total</span>
+        <span id="cartTotal">R$ 0,00</span>
+      </div>
+
+      <button class="checkout-btn" onclick="openCheckout()">
+        Continuar pedido
+      </button>
+    </div>
 
   </div>
-
-</section>
-
-
-<!-- =========================
-     BUSCA
-========================= -->
-
-<div class="search">
-
-  <div class="search-box">
-
-    <span class="search-icon">
-      🔎
-    </span>
-
-    <input
-      id="search"
-      type="search"
-      placeholder="Buscar no cardápio..."
-      oninput="renderProducts()"
-    >
-
-  </div>
-
 </div>
 
+<!-- CHECKOUT -->
 
-<!-- =========================
-     CATEGORIAS
-========================= -->
-
-<div
-  class="categories"
-  id="categories"
-></div>
-
-
-<!-- =========================
-     CARDÁPIO
-========================= -->
-
-<main id="cardapio"></main>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer
-  class="footer"
-  id="sobre"
->
-
-  <div class="footer-inner">
-
-    <h3>
-      VF FILHOS LANCHES 🍔
-    </h3>
-
-    <p>
-      Estrada Luiz Mário da Rocha Lima, 1459
-    </p>
-
-    <p id="entrega">
-      🛵 Pedidos para entrega ou retirada na loja.
-    </p>
-
-    <p id="horarios">
-      🕐 Funcionamento:
-      todos os dias,
-      das 10:00 às 00:00.
-    </p>
-
-    <p>
-      📱 Atendimento pelo site.
-    </p>
-
-  </div>
-
-</footer>
-
-
-<!-- =========================
-     CARRINHO
-========================= -->
-
-<aside
-  class="cart-panel"
-  id="cartPanel"
->
-
-  <div class="cart-head">
-
-    <strong>
-      Meu pedido
-    </strong>
-
-    <button
-      class="close"
-      onclick="closeCart()"
-    >
-      ✕
-    </button>
-
-  </div>
-
-
-  <div
-    class="cart-items"
-    id="cartItems"
-  ></div>
-
-
-  <div class="cart-footer">
-
-    <div class="total">
-
-      <span>
-        Total
-      </span>
-
-      <span id="cartTotal">
-        R$ 0,00
-      </span>
-
-    </div>
-
-    <button
-      class="primary"
-      onclick="openCheckout()"
-    >
-      Finalizar pedido
-    </button>
-
-    <button
-      class="secondary"
-      onclick="clearCart()"
-    >
-      Limpar pedido
-    </button>
-
-  </div>
-
-</aside>
-
-
-<!-- =========================
-     CHECKOUT
-========================= -->
-
-<div
-  class="modal"
-  id="checkoutModal"
->
+<div class="modal" id="checkoutModal">
 
   <div class="modal-box">
 
-    <div class="modal-head">
+    <h2>Finalizar pedido</h2>
 
-      <h2>
-        Finalizar pedido
-      </h2>
-
-      <button
-        class="close"
-        onclick="closeCheckout()"
-      >
-        ✕
+    <div class="delivery-type">
+      <button id="deliveryBtn" class="active" onclick="setDelivery('Entrega')">
+        Entrega
       </button>
+
+      <button id="pickupBtn" onclick="setDelivery('Retirada')">
+        Retirada
+      </button>
+    </div>
+
+    <div class="field">
+      <label>Nome</label>
+      <input id="clienteNome" type="text" placeholder="Seu nome">
+    </div>
+
+    <div class="field">
+      <label>Telefone</label>
+      <input id="telefone" type="tel" placeholder="Seu telefone">
+    </div>
+
+    <div id="addressFields">
+
+      <div class="field">
+        <label>Endereço</label>
+        <input id="endereco" type="text" placeholder="Rua / Avenida">
+      </div>
+
+      <div class="field">
+        <label>Número</label>
+        <input id="numero" type="text" placeholder="Número">
+      </div>
+
+      <div class="field">
+        <label>Complemento</label>
+        <input id="complemento" type="text" placeholder="Apartamento, casa, etc.">
+      </div>
+
+      <div class="field">
+        <label>Bairro</label>
+        <input id="bairro" type="text" placeholder="Seu bairro">
+      </div>
+
+      <div class="field">
+        <label>Referência</label>
+        <input id="referencia" type="text" placeholder="Perto de...">
+      </div>
 
     </div>
 
+    <div class="field">
+      <label>Forma de pagamento</label>
 
-    <div class="notice">
-
-      Seu pedido será enviado diretamente
-      para o sistema da loja.
-      Depois você poderá acompanhar
-      o andamento pelo site.
+      <select id="pagamento">
+        <option value="">Selecione</option>
+        <option value="Pix">Pix</option>
+        <option value="Dinheiro">Dinheiro</option>
+        <option value="Cartão de crédito">Cartão de crédito</option>
+        <option value="Cartão de débito">Cartão de débito</option>
+      </select>
 
     </div>
 
-
-    <form
-      id="checkoutForm"
-      onsubmit="finalizarPedido(event)"
-    >
-
-      <div class="form-grid">
-
-
-        <div class="field">
-
-          <label>
-            Nome completo *
-          </label>
-
-          <input
-            id="name"
-            required
-            autocomplete="name"
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Celular / WhatsApp *
-          </label>
-
-          <input
-            id="phone"
-            required
-            type="tel"
-            autocomplete="tel"
-            placeholder="(21) 99999-9999"
-          >
-
-        </div>
-
-
-        <div class="field full">
-
-          <label>
-            Tipo de pedido *
-          </label>
-
-          <div class="radio-row">
-
-            <label class="radio">
-
-              <input
-                type="radio"
-                name="delivery"
-                value="Entrega"
-                checked
-                onchange="toggleAddress()"
-              >
-
-              🛵 Entrega
-
-            </label>
-
-
-            <label class="radio">
-
-              <input
-                type="radio"
-                name="delivery"
-                value="Retirada"
-                onchange="toggleAddress()"
-              >
-
-              🏪 Retirada
-
-            </label>
-
-          </div>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Rua / endereço *
-          </label>
-
-          <input
-            id="address"
-            required
-            autocomplete="street-address"
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Número *
-          </label>
-
-          <input
-            id="number"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Complemento
-          </label>
-
-          <input
-            id="complement"
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Bairro *
-          </label>
-
-          <input
-            id="neighborhood"
-            required
-          >
-
-        </div>
-
-
-        <div class="field full">
-
-          <label>
-            Ponto de referência
-          </label>
-
-          <input
-            id="reference"
-            placeholder="Ex.: perto de..."
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Forma de pagamento *
-          </label>
-
-          <select
-            id="payment"
-            required
-            onchange="toggleChange()"
-          >
-
-            <option value="">
-              Selecione
-            </option>
-
-            <option>
-              Pix
-            </option>
-
-            <option>
-              Cartão de crédito
-            </option>
-
-            <option>
-              Cartão de débito
-            </option>
-
-            <option>
-              Dinheiro
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div
-          class="field"
-          id="changeField"
-          style="display:none"
-        >
-
-          <label>
-            Troco para quanto?
-          </label>
-
-          <input
-            id="change"
-            placeholder="Ex.: R$ 50,00"
-          >
-
-        </div>
-
-
-        <div class="field full">
-
-          <label>
-            Observações
-          </label>
-
-          <textarea
-            id="notes"
-            placeholder="Ex.: retirar cebola, tocar interfone, etc."
-          ></textarea>
-
-        </div>
-
-      </div>
-
-
-      <div class="order-box">
-
-        <strong>
-          Resumo do pedido
-        </strong>
-
-        <div
-          id="checkoutSummary"
-          style="margin-top:10px"
-        ></div>
-
-        <hr>
-
-        <div class="total">
-
-          <span>
-            Total
-          </span>
-
-          <span id="checkoutTotal">
-            R$ 0,00
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <button
-        class="primary"
-        type="submit"
-        id="finishButton"
-      >
-        Confirmar pedido
-      </button>
-
-    </form>
+    <div class="field">
+      <label>Troco para</label>
+      <input id="troco" type="text" placeholder="Ex.: R$ 50,00">
+    </div>
+
+    <div class="field">
+      <label>Observações</label>
+      <textarea id="observacoes" placeholder="Alguma observação para o pedido?"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button class="cancel" onclick="closeCheckout()">Voltar</button>
+      <button class="confirm" onclick="sendOrder()">Confirmar pedido</button>
+    </div>
 
   </div>
 
 </div>
 
+<!-- SUCESSO -->
 
-<!-- =========================
-     PEDIDO
-========================= -->
+<div class="modal" id="successModal">
 
-<div
-  class="modal"
-  id="orderModal"
->
+  <div class="modal-box order-success">
 
-  <div class="modal-box">
+    <h2>Pedido recebido</h2>
 
-    <div class="modal-head">
+    <p>Seu pedido foi enviado para a loja.</p>
 
-      <h2>
-        Acompanhar pedido
-      </h2>
+    <div class="order-number" id="orderNumber">#0000</div>
 
-      <button
-        class="close"
-        onclick="closeOrder()"
-      >
-        ✕
+    <p>Acompanhe o andamento pelo site.</p>
+
+    <div class="form-actions">
+      <button class="confirm" onclick="closeSuccess()">
+        Continuar
       </button>
-
     </div>
-
-
-    <div id="orderContent"></div>
 
   </div>
 
 </div>
 
-
-<div
-  class="toast"
-  id="toast"
-></div>
-
+<div class="toast" id="toast"></div>
 
 <script>
-
-/* =====================================================
+/* ================================
    SUPABASE
-===================================================== */
+================================ */
 
 const SUPABASE_URL =
   "https://zjfgmokdcwzwpoancpgr.supabase.co";
@@ -1702,321 +778,339 @@ const supabaseClient =
   );
 
 
-/* =====================================================
-   CATEGORIAS
-===================================================== */
-
-const categories = [
-
-  ["hamburgueres","🍔 Hambúrgueres"],
-
-  ["combos","🍟 Combos"],
-
-  ["promocoes","🔥 Promoções"],
-
-  ["bebidas","🥤 Bebidas"],
-
-  ["adicionais","➕ Adicionais"],
-
-  ["porcoes","🍟 Porções"],
-
-  ["frango","🍗 Frango Assado"]
-
-];
-
-
-/* =====================================================
-   CARDÁPIO ORIGINAL
-===================================================== */
+/* ================================
+   CARDÁPIO
+================================ */
 
 const products = [
 
-{
- id:1,
- cat:"hamburgueres",
- name:"Cheesburger",
- price:11.99,
- emoji:"🍔",
- desc:"Pão macio, carne bovina suculenta, presunto e queijo prato derretido, acompanhado de barbecue, maionese, mostarda e ketchup."
-},
+  /* HAMBÚRGUERES */
 
-{
- id:2,
- cat:"hamburgueres",
- name:"X-Tudo",
- price:13.99,
- emoji:"🍔",
- desc:"Pão macio, carne bovina, queijo, presunto, ovo, salada fresquinha, muita batata palha, ketchup, maionese, mostarda e barbecue."
-},
+  {
+    id:"cheesburger",
+    category:"hamburgueres",
+    name:"Cheesburger",
+    description:"Pão macio, carne bovina suculenta, presunto e queijo prato derretido, acompanhado de barbecue, maionese, mostarda e ketchup.",
+    price:11.99
+  },
 
-{
- id:3,
- cat:"hamburgueres",
- name:"X-Duplo",
- price:16.99,
- emoji:"🍔",
- desc:"Pão fresquinho, duas carnes bovinas, ovo, queijo prato, presunto, salada crocante, batata palha, ketchup, maionese, barbecue e mostarda."
-},
+  {
+    id:"x-tudo",
+    category:"hamburgueres",
+    name:"X-Tudo",
+    description:"Hambúrguer completo com ingredientes selecionados.",
+    price:13.99
+  },
 
-{
- id:4,
- cat:"hamburgueres",
- name:"X-Batata",
- price:15.99,
- emoji:"🍔",
- desc:"Pão fresquinho, carne bovina, presunto, cheddar cremoso, bacon crocante, ovo e salada, finalizado com fritas crocantes."
-},
+  {
+    id:"x-duplo",
+    category:"hamburgueres",
+    name:"X-Duplo",
+    description:"Dois hambúrgueres e combinação especial de ingredientes.",
+    price:16.99
+  },
 
-{
- id:5,
- cat:"hamburgueres",
- name:"X-Picanha",
- price:19.99,
- emoji:"🥩",
- desc:"Pão macio, carne de picanha suculenta, presunto, queijo, ovo, bacon crocante, batata palha, alface, ketchup, maionese e barbecue."
-},
+  {
+    id:"x-batata",
+    category:"hamburgueres",
+    name:"X-Batata",
+    description:"Hambúrguer especial acompanhado de batata.",
+    price:15.99
+  },
 
-{
- id:6,
- cat:"hamburgueres",
- name:"Duplo Cheddar",
- price:18.99,
- emoji:"🍔",
- desc:"Pão macio, duas carnes bovinas suculentas, cheddar derretido, cebola caramelizada e molho barbecue."
-},
+  {
+    id:"x-picanha",
+    category:"hamburgueres",
+    name:"X-Picanha",
+    description:"Hambúrguer especial com carne de picanha.",
+    price:19.99
+  },
 
-{
- id:7,
- cat:"hamburgueres",
- name:"X-Bacon",
- price:18.99,
- emoji:"🥓",
- desc:"Pão macio, carne bovina, ovo, presunto, queijo prato, salada, batata palha, bacon crocante, ketchup, mostarda, maionese e barbecue."
-},
+  {
+    id:"duplo-cheddar",
+    category:"hamburgueres",
+    name:"Duplo Cheddar",
+    description:"Dois hambúrgueres com cheddar cremoso.",
+    price:18.99
+  },
 
-{
- id:8,
- cat:"hamburgueres",
- name:"X-Mineiro",
- price:19.99,
- emoji:"🧀",
- desc:"Pão macio, carne bovina, carne sabor picanha, presunto douradinho, queijo minas derretido, batata palha, salada, ketchup, barbecue e maionese."
-},
+  {
+    id:"x-bacon",
+    category:"hamburgueres",
+    name:"X-Bacon",
+    description:"Hambúrguer com bacon e queijo.",
+    price:18.99
+  },
 
-{
- id:9,
- cat:"hamburgueres",
- name:"X-3 Queijos",
- price:20.99,
- emoji:"🧀",
- desc:"Pão macio, carne bovina, carne sabor picanha, queijo prato, cheddar e queijo minas, presunto, bacon, batata palha, salada, ketchup, barbecue e maionese."
-},
+  {
+    id:"x-mineiro",
+    category:"hamburgueres",
+    name:"X-Mineiro",
+    description:"Hambúrguer especial da casa.",
+    price:19.99
+  },
 
-{
- id:10,
- cat:"hamburgueres",
- name:"X-Onion",
- price:18.99,
- emoji:"🧅",
- desc:"Pão macio e fresquinho, hambúrguer de picanha, cheddar derretido, dois anéis de cebola fritos e crocantes, barbecue, ketchup e maionese."
-},
+  {
+    id:"x-3-queijos",
+    category:"hamburgueres",
+    name:"X-3 Queijos",
+    description:"Hambúrguer preparado com três queijos.",
+    price:20.99
+  },
 
-{
- id:11,
- cat:"combos",
- name:"Combo Individual",
- price:29.99,
- emoji:"🍟",
- desc:"X-Tudo completo + batata frita douradinha com calabresa, ketchup e maionese + 4 anéis de cebola + 4 nuggets."
-},
+  {
+    id:"x-onion",
+    category:"hamburgueres",
+    name:"X-Onion",
+    description:"Hambúrguer especial com cebola.",
+    price:18.99
+  },
 
-{
- id:12,
- cat:"combos",
- name:"Combo Duplo",
- price:38.99,
- emoji:"🍟",
- desc:"2 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 5 anéis de cebola + 5 nuggets."
-},
 
-{
- id:13,
- cat:"combos",
- name:"Combo Família",
- price:64.99,
- emoji:"🍔",
- desc:"4 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 6 anéis de cebola + 6 nuggets."
-},
+  /* COMBOS */
 
-{
- id:14,
- cat:"promocoes",
- name:"X-Tudo + Guaravita + Batata P",
- price:19.99,
- emoji:"🔥",
- desc:"X-Tudo completo + batata P douradinha e crocante + Guaravita."
-},
+  {
+    id:"combo-individual",
+    category:"combos",
+    name:"Combo Individual",
+    description:"Combo individual completo.",
+    price:29.99
+  },
 
-{
- id:15,
- cat:"promocoes",
- name:"Duplo Cheddar + Coca-Cola Lata",
- price:18.99,
- emoji:"🥤",
- desc:"Duplo Cheddar com duas carnes, cheddar, cebola caramelizada e barbecue + Coca-Cola lata."
-},
+  {
+    id:"combo-duplo",
+    category:"combos",
+    name:"Combo Duplo",
+    description:"Combo para duas pessoas.",
+    price:38.99
+  },
 
-{
- id:16,
- cat:"bebidas",
- name:"Coca-Cola lata 350 ml",
- price:10.00,
- emoji:"🥤",
- desc:"Coca-Cola lata 350 ml."
-},
+  {
+    id:"combo-familia",
+    category:"combos",
+    name:"Combo Família",
+    description:"Combo completo para compartilhar.",
+    price:64.99
+  },
 
-{
- id:17,
- cat:"bebidas",
- name:"Guaravita Natural 290 ml",
- price:6.00,
- emoji:"🧃",
- desc:"Guaravita Natural 290 ml."
-},
 
-{
- id:18,
- cat:"bebidas",
- name:"Água Mineral 500 ml",
- price:5.00,
- emoji:"💧",
- desc:"Água mineral 500 ml."
-},
+  /* PROMOÇÕES */
 
-{
- id:19,
- cat:"adicionais",
- name:"Maionese",
- price:3.00,
- emoji:"🥫",
- desc:"Adicional de maionese."
-},
+  {
+    id:"promo-x-tudo",
+    category:"promocoes",
+    name:"X-Tudo + Guaravita + Batata P",
+    description:"Oferta especial da casa.",
+    price:19.99
+  },
 
-{
- id:20,
- cat:"adicionais",
- name:"Barbecue",
- price:3.00,
- emoji:"🥫",
- desc:"Adicional de molho barbecue."
-},
+  {
+    id:"promo-cheddar",
+    category:"promocoes",
+    name:"Duplo Cheddar + Coca-Cola Lata",
+    description:"Oferta especial da casa.",
+    price:18.99
+  },
 
-{
- id:21,
- cat:"adicionais",
- name:"Ketchup",
- price:3.00,
- emoji:"🥫",
- desc:"Adicional de ketchup."
-},
 
-{
- id:22,
- cat:"adicionais",
- name:"Mostarda",
- price:3.00,
- emoji:"🥫",
- desc:"Adicional de mostarda."
-},
+  /* BEBIDAS */
 
-{
- id:23,
- cat:"adicionais",
- name:"Molho Verde",
- price:4.00,
- emoji:"🥫",
- desc:"Adicional de molho verde."
-},
+  {
+    id:"coca",
+    category:"bebidas",
+    name:"Coca-Cola lata 350 ml",
+    description:"Refrigerante lata 350 ml.",
+    price:10
+  },
 
-{
- id:24,
- cat:"adicionais",
- name:"Cheddar",
- price:5.00,
- emoji:"🧀",
- desc:"Adicional de cheddar."
-},
+  {
+    id:"guaravita",
+    category:"bebidas",
+    name:"Guaravita Natural 290 ml",
+    description:"Bebida Guaravita.",
+    price:6
+  },
 
-{
- id:25,
- cat:"adicionais",
- name:"Ovo",
- price:5.00,
- emoji:"🥚",
- desc:"Adicional de ovo."
-},
+  {
+    id:"agua",
+    category:"bebidas",
+    name:"Água Mineral 500 ml",
+    description:"Água mineral.",
+    price:5
+  },
 
-{
- id:26,
- cat:"porcoes",
- name:"Batata Frita P",
- price:15.00,
- emoji:"🍟",
- desc:"Porção de batata frita tamanho P."
-},
 
-{
- id:27,
- cat:"porcoes",
- name:"Batata Frita M",
- price:21.99,
- emoji:"🍟",
- desc:"Porção de batata frita tamanho M."
-},
+  /* ADICIONAIS */
 
-{
- id:28,
- cat:"porcoes",
- name:"Batata Frita G",
- price:30.00,
- emoji:"🍟",
- desc:"Porção de batata frita tamanho G."
-},
+  {
+    id:"maionese",
+    category:"adicionais",
+    name:"Maionese",
+    description:"Adicional.",
+    price:3
+  },
 
-{
- id:29,
- cat:"frango",
- name:"Frango Assado Completo",
- price:45.00,
- emoji:"🍗",
- desc:"Frango assado douradinho e suculento, acompanhado de linguiça de churrasco, batatas, calabresas e farofa crocante."
-}
+  {
+    id:"barbecue",
+    category:"adicionais",
+    name:"Barbecue",
+    description:"Adicional.",
+    price:3
+  },
+
+  {
+    id:"ketchup",
+    category:"adicionais",
+    name:"Ketchup",
+    description:"Adicional.",
+    price:3
+  },
+
+  {
+    id:"mostarda",
+    category:"adicionais",
+    name:"Mostarda",
+    description:"Adicional.",
+    price:3
+  },
+
+  {
+    id:"molho-verde",
+    category:"adicionais",
+    name:"Molho Verde",
+    description:"Adicional.",
+    price:4
+  },
+
+  {
+    id:"cheddar",
+    category:"adicionais",
+    name:"Cheddar",
+    description:"Adicional.",
+    price:5
+  },
+
+  {
+    id:"ovo",
+    category:"adicionais",
+    name:"Ovo",
+    description:"Adicional.",
+    price:5
+  },
+
+
+  /* PORÇÕES */
+
+  {
+    id:"batata-p",
+    category:"porcoes",
+    name:"Batata Frita P",
+    description:"Porção pequena.",
+    price:15
+  },
+
+  {
+    id:"batata-m",
+    category:"porcoes",
+    name:"Batata Frita M",
+    description:"Porção média.",
+    price:21.99
+  },
+
+  {
+    id:"batata-g",
+    category:"porcoes",
+    name:"Batata Frita G",
+    description:"Porção grande.",
+    price:30
+  },
+
+
+  /* FRANGO ASSADO */
+
+  {
+    id:"frango-assado",
+    category:"frango",
+    name:"Frango Assado Completo",
+    description:"Frango assado completo.",
+    price:45
+  }
 
 ];
 
 
-/* =====================================================
+/* ================================
+   CATEGORIAS
+================================ */
+
+const categories = [
+
+  {
+    id:"hamburgueres",
+    name:"Hambúrgueres",
+    icon:"🍔"
+  },
+
+  {
+    id:"combos",
+    name:"Combos",
+    icon:"🍟"
+  },
+
+  {
+    id:"promocoes",
+    name:"Promoções",
+    icon:"🔥"
+  },
+
+  {
+    id:"bebidas",
+    name:"Bebidas",
+    icon:"🥤"
+  },
+
+  {
+    id:"adicionais",
+    name:"Adicionais",
+    icon:"➕"
+  },
+
+  {
+    id:"porcoes",
+    name:"Porções",
+    icon:"🍟"
+  },
+
+  {
+    id:"frango",
+    name:"Frango Assado",
+    icon:"🍗"
+  }
+
+];
+
+
+/* ================================
    ESTADO
-===================================================== */
+================================ */
+
+let activeCategory = "hamburgueres";
 
 let cart =
   JSON.parse(
     localStorage.getItem("vf_cart") || "[]"
   );
 
-let currentOrderId =
-  localStorage.getItem("vf_order_id") || null;
-
-let currentOrder = null;
+let deliveryType = "Entrega";
 
 
-/* =====================================================
-   FUNÇÕES BÁSICAS
-===================================================== */
+/* ================================
+   FORMATAÇÃO
+================================ */
 
 function money(value){
 
-  return Number(value || 0).toLocaleString(
+  return value.toLocaleString(
     "pt-BR",
     {
       style:"currency",
@@ -2026,6 +1120,156 @@ function money(value){
 
 }
 
+
+/* ================================
+   CATEGORIAS
+================================ */
+
+function renderCategories(){
+
+  const container =
+    document.getElementById("categories");
+
+  container.innerHTML =
+    categories.map(category => `
+
+      <button
+        class="category ${
+          activeCategory === category.id
+          ? "active"
+          : ""
+        }"
+        onclick="selectCategory('${category.id}')"
+      >
+
+        ${category.icon}
+        ${category.name}
+
+      </button>
+
+    `).join("");
+
+}
+
+
+function selectCategory(category){
+
+  activeCategory = category;
+
+  document.getElementById("search").value = "";
+
+  renderCategories();
+  renderProducts();
+
+  window.scrollTo({
+    top:300,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* ================================
+   PRODUTOS
+================================ */
+
+function renderProducts(){
+
+  const container =
+    document.getElementById("products");
+
+  const title =
+    document.getElementById("categoryTitle");
+
+  const category =
+    categories.find(
+      c => c.id === activeCategory
+    );
+
+  title.textContent =
+    category.icon + " " + category.name;
+
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+  let filtered =
+    products.filter(
+      product =>
+        product.category === activeCategory
+    );
+
+  if(search){
+
+    filtered =
+      filtered.filter(product =>
+        (
+          product.name +
+          " " +
+          product.description
+        )
+        .toLowerCase()
+        .includes(search)
+      );
+
+  }
+
+  if(!filtered.length){
+
+    container.innerHTML = `
+      <div class="empty">
+        Nenhum produto encontrado nesta categoria.
+      </div>
+    `;
+
+    return;
+  }
+
+  container.innerHTML =
+    filtered.map(product => `
+
+      <article class="product">
+
+        <div class="product-info">
+
+          <div class="product-name">
+            ${product.name}
+          </div>
+
+          <div class="product-desc">
+            ${product.description}
+          </div>
+
+          <div class="product-bottom">
+
+            <span class="price">
+              ${money(product.price)}
+            </span>
+
+            <button
+              class="add"
+              onclick="addToCart('${product.id}')"
+            >
+              Adicionar
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    `).join("");
+
+}
+
+
+/* ================================
+   CARRINHO
+================================ */
 
 function saveCart(){
 
@@ -2037,281 +1281,150 @@ function saveCart(){
 }
 
 
-function cartCount(){
-
-  return cart.reduce(
-    (total,item) =>
-      total + Number(item.qty || 0),
-    0
-  );
-
-}
-
-
-function total(){
-
-  return cart.reduce(
-    (total,item) =>
-      total +
-      Number(item.price || 0) *
-      Number(item.qty || 0),
-    0
-  );
-
-}
-
-
-function toast(message){
-
-  const element =
-    document.getElementById("toast");
-
-  element.textContent =
-    message;
-
-  element.classList.add("show");
-
-  setTimeout(
-    () =>
-      element.classList.remove("show"),
-    2500
-  );
-
-}
-
-
-/* =====================================================
-   MENU
-===================================================== */
-
-function openMenu(){
-
-  document
-    .getElementById("drawer")
-    .classList.add("open");
-
-  document
-    .getElementById("overlay")
-    .classList.add("open");
-
-}
-
-
-function closeMenu(){
-
-  document
-    .getElementById("drawer")
-    .classList.remove("open");
-
-  document
-    .getElementById("overlay")
-    .classList.remove("open");
-
-}
-
-
-function closeAll(){
-
-  closeMenu();
-
-  closeCart();
-
-}
-
-
-/* =====================================================
-   CARRINHO
-===================================================== */
-
-function openCart(){
-
-  closeMenu();
-
-  renderCart();
-
-  document
-    .getElementById("cartPanel")
-    .classList.add("open");
-
-}
-
-
-function closeCart(){
-
-  document
-    .getElementById("cartPanel")
-    .classList.remove("open");
-
-}
-
-
-function add(id){
+function addToCart(id){
 
   const product =
-    products.find(
-      product =>
-        product.id === id
-    );
+    products.find(p => p.id === id);
 
-  if(!product){
-    return;
-  }
+  if(!product) return;
 
   const existing =
-    cart.find(
-      item =>
-        item.id === id
-    );
+    cart.find(item => item.id === id);
 
   if(existing){
 
-    existing.qty++;
+    existing.quantity++;
 
   }else{
 
     cart.push({
-      ...product,
-      qty:1
+      id:product.id,
+      name:product.name,
+      price:product.price,
+      quantity:1
     });
 
   }
 
   saveCart();
+  updateCart();
 
-  renderCart();
-
-  toast(
-    product.name +
-    " adicionado ao pedido!"
-  );
+  showToast("Produto adicionado");
 
 }
 
 
-function change(id,amount){
+function increase(id){
 
   const item =
-    cart.find(
-      item =>
-        item.id === id
-    );
+    cart.find(p => p.id === id);
 
-  if(!item){
-    return;
-  }
-
-  item.qty += amount;
-
-  if(item.qty <= 0){
-
-    cart =
-      cart.filter(
-        item =>
-          item.id !== id
-      );
-
+  if(item){
+    item.quantity++;
   }
 
   saveCart();
-
-  renderCart();
+  updateCart();
 
 }
 
 
-function clearCart(){
+function decrease(id){
 
-  cart = [];
+  const item =
+    cart.find(p => p.id === id);
+
+  if(!item) return;
+
+  item.quantity--;
+
+  if(item.quantity <= 0){
+
+    cart =
+      cart.filter(p => p.id !== id);
+
+  }
 
   saveCart();
+  updateCart();
 
-  renderCart();
+}
 
-  toast(
-    "Pedido limpo."
+
+function getCartTotal(){
+
+  return cart.reduce(
+    (total,item) =>
+      total + item.price * item.quantity,
+    0
   );
 
 }
 
 
-function renderCart(){
+function updateCart(){
 
-  document
-    .getElementById("cartBadge")
-    .textContent =
-      cartCount();
+  const count =
+    cart.reduce(
+      (total,item) =>
+        total + item.quantity,
+      0
+    );
 
-  document
-    .getElementById("cartTotal")
-    .textContent =
-      money(total());
+  document.getElementById(
+    "cartCount"
+  ).textContent = count;
 
+  document.getElementById(
+    "cartTotal"
+  ).textContent =
+    money(getCartTotal());
 
   const container =
     document.getElementById("cartItems");
 
-
   if(!cart.length){
 
     container.innerHTML = `
-
       <div class="empty">
-
-        Seu pedido está vazio.
-
-        <br><br>
-
-        Escolha algo delicioso
-        no cardápio. 🍔
-
+        Seu carrinho está vazio.
       </div>
-
     `;
 
     return;
   }
-
 
   container.innerHTML =
     cart.map(item => `
 
       <div class="cart-item">
 
-        <div class="cart-line">
+        <div class="cart-item-top">
 
-          <strong>
-            ${escapeHTML(item.name)}
-          </strong>
+          <span class="cart-item-name">
+            ${item.name}
+          </span>
 
-          <strong>
-            ${money(
-              item.price * item.qty
-            )}
-          </strong>
+          <span class="cart-item-price">
+            ${money(item.price * item.quantity)}
+          </span>
 
         </div>
 
-        <div class="desc">
-
-          ${money(item.price)}
-          cada
-
-        </div>
-
-        <div class="qty">
+        <div class="quantity">
 
           <button
-            onclick="change(${item.id},-1)"
+            onclick="decrease('${item.id}')"
           >
             −
           </button>
 
-          <strong>
-            ${item.qty}
-          </strong>
+          <span>
+            ${item.quantity}
+          </span>
 
           <button
-            onclick="change(${item.id},1)"
+            onclick="increase('${item.id}')"
           >
             +
           </button>
@@ -2325,257 +1438,42 @@ function renderCart(){
 }
 
 
-/* =====================================================
-   CATEGORIAS
-===================================================== */
-
-function renderCategories(){
+function openCart(){
 
   document
-    .getElementById("categories")
-    .innerHTML =
-
-    categories
-      .map(
-        (category,index) => `
-
-          <button
-            class="${
-              index === 0
-                ? "active"
-                : ""
-            }"
-
-            onclick="
-              document
-              .getElementById('${category[0]}')
-              .scrollIntoView({
-                behavior:'smooth'
-              });
-
-              setActive(this);
-            "
-          >
-
-            ${category[1]}
-
-          </button>
-
-        `
-      )
-      .join("");
+    .getElementById("cartPanel")
+    .classList.add("show");
 
 }
 
 
-function setActive(element){
+function closeCart(){
 
   document
-    .querySelectorAll(
-      ".categories button"
-    )
-    .forEach(
-      button =>
-        button.classList.remove(
-          "active"
-        )
-    );
-
-  element.classList.add(
-    "active"
-  );
+    .getElementById("cartPanel")
+    .classList.remove("show");
 
 }
 
 
-/* =====================================================
-   PRODUTOS
-===================================================== */
-
-function renderProducts(){
-
-  const query =
-    document
-      .getElementById("search")
-      .value
-      .toLowerCase()
-      .trim();
-
-
-  const main =
-    document.getElementById(
-      "cardapio"
-    );
-
-
-  main.innerHTML =
-
-    categories
-      .map(
-        ([category,label]) => {
-
-          const list =
-            products.filter(
-              product =>
-
-                product.cat ===
-                category
-
-                &&
-
-                (
-                  product.name
-                    .toLowerCase()
-                    .includes(query)
-
-                  ||
-
-                  product.desc
-                    .toLowerCase()
-                    .includes(query)
-                )
-            );
-
-
-          if(!list.length){
-            return "";
-          }
-
-
-          return `
-
-            <section
-              class="section"
-              id="${category}"
-            >
-
-              <div class="section-title">
-
-                <h2>
-                  ${label}
-                </h2>
-
-                <div
-                  class="section-line"
-                ></div>
-
-              </div>
-
-
-              <div class="grid">
-
-                ${
-
-                  list.map(
-                    product => `
-
-                      <article
-                        class="product"
-                      >
-
-                        <div
-                          class="product-top"
-                        >
-
-                          <div
-                            class="product-icon"
-                          >
-                            ${product.emoji}
-                          </div>
-
-                        </div>
-
-
-                        <h3>
-                          ${escapeHTML(
-                            product.name
-                          )}
-                        </h3>
-
-
-                        <div class="desc">
-
-                          ${escapeHTML(
-                            product.desc
-                          )}
-
-                        </div>
-
-
-                        <div class="bottom">
-
-                          <span class="price">
-
-                            ${money(
-                              product.price
-                            )}
-
-                          </span>
-
-
-                          <button
-                            class="add"
-                            onclick="add(${product.id})"
-                          >
-                            Adicionar
-                          </button>
-
-                        </div>
-
-                      </article>
-
-                    `
-                  ).join("")
-
-                }
-
-              </div>
-
-            </section>
-
-          `;
-
-        }
-      )
-      .join("")
-
-    ||
-
-    `
-
-      <div class="empty">
-
-        Nenhum produto encontrado.
-
-      </div>
-
-    `;
-
-}
-
-
-/* =====================================================
+/* ================================
    CHECKOUT
-===================================================== */
+================================ */
 
 function openCheckout(){
 
   if(!cart.length){
 
-    toast(
-      "Adicione produtos ao pedido primeiro."
-    );
+    showToast("Seu carrinho está vazio.");
 
     return;
   }
 
   closeCart();
 
-  renderCheckoutSummary();
-
   document
     .getElementById("checkoutModal")
-    .classList.add("open");
+    .classList.add("show");
 
 }
 
@@ -2584,1078 +1482,253 @@ function closeCheckout(){
 
   document
     .getElementById("checkoutModal")
-    .classList.remove("open");
+    .classList.remove("show");
 
 }
 
 
-function renderCheckoutSummary(){
+function setDelivery(type){
+
+  deliveryType = type;
 
   document
-    .getElementById(
-      "checkoutSummary"
-    )
-    .innerHTML =
-
-      cart.map(
-        item => `
-
-          <div
-            style="
-              display:flex;
-              justify-content:space-between;
-              gap:10px;
-              margin:7px 0;
-            "
-          >
-
-            <span>
-              ${item.qty}x
-              ${escapeHTML(item.name)}
-            </span>
-
-            <strong>
-              ${money(
-                item.price *
-                item.qty
-              )}
-            </strong>
-
-          </div>
-
-        `
-      ).join("");
-
+    .getElementById("deliveryBtn")
+    .classList.toggle(
+      "active",
+      type === "Entrega"
+    );
 
   document
-    .getElementById(
-      "checkoutTotal"
-    )
-    .textContent =
-      money(total());
-
-}
-
-
-function toggleChange(){
-
-  const payment =
-    document.getElementById(
-      "payment"
-    ).value;
-
+    .getElementById("pickupBtn")
+    .classList.toggle(
+      "active",
+      type === "Retirada"
+    );
 
   document
-    .getElementById(
-      "changeField"
-    )
+    .getElementById("addressFields")
     .style.display =
-
-      payment === "Dinheiro"
-        ? "block"
-        : "none";
-
-}
-
-
-function toggleAddress(){
-
-  const delivery =
-    document.querySelector(
-      'input[name="delivery"]:checked'
-    ).value === "Entrega";
-
-
-  [
-    "address",
-    "number",
-    "neighborhood"
-  ].forEach(
-    id => {
-
-      const field =
-        document.getElementById(id);
-
-      field.required =
-        delivery;
-
-      field.disabled =
-        !delivery;
-
-    }
-  );
+      type === "Entrega"
+      ? "block"
+      : "none";
 
 }
 
 
-/* =====================================================
-   FINALIZAR PEDIDO
-===================================================== */
+/* ================================
+   ENVIAR PEDIDO
+================================ */
 
-async function finalizarPedido(event){
-
-  event.preventDefault();
-
+async function sendOrder(){
 
   if(!cart.length){
 
-    toast(
-      "Seu pedido está vazio."
+    showToast("Seu carrinho está vazio.");
+
+    return;
+  }
+
+  const nome =
+    document.getElementById("clienteNome")
+      .value.trim();
+
+  const telefone =
+    document.getElementById("telefone")
+      .value.trim();
+
+  const pagamento =
+    document.getElementById("pagamento")
+      .value;
+
+  if(!nome){
+
+    showToast("Informe seu nome.");
+
+    return;
+  }
+
+  if(!telefone){
+
+    showToast("Informe seu telefone.");
+
+    return;
+  }
+
+  if(!pagamento){
+
+    showToast("Escolha a forma de pagamento.");
+
+    return;
+  }
+
+  if(
+    deliveryType === "Entrega" &&
+    (
+      !document.getElementById("endereco").value.trim() ||
+      !document.getElementById("numero").value.trim() ||
+      !document.getElementById("bairro").value.trim()
+    )
+  ){
+
+    showToast(
+      "Preencha endereço, número e bairro."
     );
 
     return;
   }
 
+  const pedido = {
 
-  const button =
-    document.getElementById(
-      "finishButton"
-    );
+    cliente_nome: nome,
 
+    telefone: telefone,
 
-  button.disabled = true;
+    tipo_entrega: deliveryType,
 
-  button.textContent =
-    "Enviando pedido...";
+    endereco:
+      document.getElementById("endereco").value.trim(),
 
+    numero:
+      document.getElementById("numero").value.trim(),
+
+    complemento:
+      document.getElementById("complemento").value.trim(),
+
+    bairro:
+      document.getElementById("bairro").value.trim(),
+
+    referencia:
+      document.getElementById("referencia").value.trim(),
+
+    pagamento: pagamento,
+
+    troco:
+      document.getElementById("troco").value.trim(),
+
+    itens: cart,
+
+    subtotal: getCartTotal(),
+
+    taxa_entrega: 0,
+
+    total: getCartTotal(),
+
+    observacoes:
+      document.getElementById("observacoes").value.trim(),
+
+    status:"novo"
+
+  };
 
   try{
 
-
-    const delivery =
-      document.querySelector(
-        'input[name="delivery"]:checked'
-      ).value;
-
-
-    const name =
-      document
-        .getElementById("name")
-        .value
-        .trim();
-
-
-    const phone =
-      document
-        .getElementById("phone")
-        .value
-        .trim();
-
-
-    const address =
-      document
-        .getElementById("address")
-        .value
-        .trim();
-
-
-    const number =
-      document
-        .getElementById("number")
-        .value
-        .trim();
-
-
-    const complement =
-      document
-        .getElementById("complement")
-        .value
-        .trim();
-
-
-    const neighborhood =
-      document
-        .getElementById("neighborhood")
-        .value
-        .trim();
-
-
-    const reference =
-      document
-        .getElementById("reference")
-        .value
-        .trim();
-
-
-    const payment =
-      document
-        .getElementById("payment")
-        .value;
-
-
-    const change =
-      document
-        .getElementById("change")
-        .value
-        .trim();
-
-
-    const notes =
-      document
-        .getElementById("notes")
-        .value
-        .trim();
-
-
-    const subtotal =
-      total();
-
-
-    const taxaEntrega =
-      0;
-
-
-    const valorTotal =
-      subtotal +
-      taxaEntrega;
-
-
-    const itens =
-      cart.map(
-        item => ({
-
-          nome:
-            item.name,
-
-          quantidade:
-            Number(item.qty),
-
-          preco:
-            Number(item.price),
-
-          subtotal:
-            Number(
-              item.price *
-              item.qty
-            )
-
-        })
-      );
-
-
-    const pedido = {
-
-      cliente_nome:
-        name,
-
-      telefone:
-        phone,
-
-      tipo_entrega:
-        delivery,
-
-      endereco:
-        delivery === "Entrega"
-          ? address
-          : "",
-
-      numero:
-        delivery === "Entrega"
-          ? number
-          : "",
-
-      complemento:
-        delivery === "Entrega"
-          ? complement
-          : "",
-
-      bairro:
-        delivery === "Entrega"
-          ? neighborhood
-          : "",
-
-      referencia:
-        delivery === "Entrega"
-          ? reference
-          : "",
-
-      pagamento:
-        payment,
-
-      troco:
-        payment === "Dinheiro"
-          ? change
-          : "",
-
-      itens:
-        itens,
-
-      subtotal:
-        subtotal,
-
-      taxa_entrega:
-        taxaEntrega,
-
-      total:
-        valorTotal,
-
-      observacoes:
-        notes,
-
-      status:
-        "novo"
-
-    };
-
-
-    const {
-
-      data,
-      error
-
-    } = await supabaseClient
-
-      .from("pedidos")
-
-      .insert(pedido)
-
-      .select()
-
-      .single();
-
-
-    if(error){
-
-      console.error(
-        "Erro Supabase:",
-        error
-      );
-
-      throw error;
-
-    }
-
-
-    currentOrder =
-      data;
-
-
-    currentOrderId =
-      String(data.id);
-
+    const { data, error } =
+      await supabaseClient
+        .from("pedidos")
+        .insert([pedido])
+        .select()
+        .single();
+
+    if(error) throw error;
 
     localStorage.setItem(
       "vf_order_id",
-      currentOrderId
+      data.id
     );
 
-
-    localStorage.setItem(
-      "vf_last_order",
-      JSON.stringify(data)
-    );
-
+    localStorage.removeItem("vf_cart");
 
     cart = [];
 
-    saveCart();
+    updateCart();
 
-    renderCart();
+    closeCheckout();
 
-
-    document
-      .getElementById(
-        "checkoutModal"
-      )
-      .classList.remove(
-        "open"
-      );
-
+    document.getElementById(
+      "orderNumber"
+    ).textContent =
+      data.numero_pedido ||
+      "#" + String(data.id).padStart(4,"0");
 
     document
-      .getElementById(
-        "orderContent"
-      )
-      .innerHTML =
-        orderHTML(data);
-
-
-    document
-      .getElementById(
-        "orderModal"
-      )
-      .classList.add(
-        "open"
-      );
-
-
-    iniciarAcompanhamento(
-      data.id
-    );
-
-
-    toast(
-      "Pedido enviado com sucesso!"
-    );
-
+      .getElementById("successModal")
+      .classList.add("show");
 
   }catch(error){
 
     console.error(error);
 
-    alert(
-      "Não foi possível enviar o pedido.\n\n" +
-      "Verifique sua conexão e tente novamente."
+    showToast(
+      "Não foi possível enviar o pedido."
     );
 
   }
 
+}
 
-  button.disabled = false;
 
-  button.textContent =
-    "Confirmar pedido";
+/* ================================
+   SUCESSO
+================================ */
+
+function closeSuccess(){
+
+  document
+    .getElementById("successModal")
+    .classList.remove("show");
 
 }
 
 
-/* =====================================================
-   EXIBIR PEDIDO
-===================================================== */
+/* ================================
+   TOAST
+================================ */
 
-function orderHTML(pedido){
+function showToast(message){
 
-  if(!pedido){
+  const toast =
+    document.getElementById("toast");
 
-    return `
+  toast.textContent = message;
 
-      <div class="empty">
+  toast.classList.add("show");
 
-        Nenhum pedido encontrado.
-
-      </div>
-
-    `;
-
-  }
-
-
-  const status =
-    pedido.status ||
-    "novo";
-
-
-  const statusInfo =
-    getStatusInfo(status);
-
-
-  return `
-
-    <div class="success-box">
-
-      <div class="success-icon">
-        ✓
-      </div>
-
-      <div class="order-number">
-
-        Pedido
-        ${pedido.numero_pedido
-          || "#" + pedido.id}
-
-      </div>
-
-      <div>
-
-        Pedido recebido pela loja.
-
-      </div>
-
-    </div>
-
-
-    <div class="order-box">
-
-      <strong>
-        Status do pedido
-      </strong>
-
-      <div
-        style="
-          margin-top:8px;
-          font-size:18px;
-          font-weight:900;
-        "
-      >
-
-        ${statusInfo.label}
-
-      </div>
-
-    </div>
-
-
-    <div class="status">
-
-      <div
-        class="step ${
-          isStatusAtLeast(status,"novo")
-            ? "active"
-            : ""
-        }"
-      >
-        ✓ Recebido
-      </div>
-
-
-      <div
-        class="step ${
-          isStatusAtLeast(status,"preparo")
-            ? "active"
-            : ""
-        }"
-      >
-        👨‍🍳 Preparando
-      </div>
-
-
-      <div
-        class="step ${
-          isStatusAtLeast(status,"pronto")
-            ? "active"
-            : ""
-        }"
-      >
-        🍔 Pronto
-      </div>
-
-
-      <div
-        class="step ${
-          isStatusAtLeast(status,"saiu_entrega")
-            ? "active"
-            : ""
-        }"
-      >
-        🛵 A caminho
-      </div>
-
-
-      <div
-        class="step ${
-          status === "entregue"
-            ? "active"
-            : ""
-        }"
-      >
-        ✓ Entregue
-      </div>
-
-    </div>
-
-
-    <div class="order-box">
-
-      <strong>
-        Resumo
-      </strong>
-
-      <div
-        style="margin-top:10px"
-      >
-
-        ${
-          Array.isArray(pedido.itens)
-
-            ?
-
-            pedido.itens.map(
-              item => `
-
-                <div
-                  style="
-                    display:flex;
-                    justify-content:space-between;
-                    margin:7px 0;
-                    gap:10px;
-                  "
-                >
-
-                  <span>
-
-                    ${item.quantidade}x
-                    ${escapeHTML(
-                      item.nome
-                    )}
-
-                  </span>
-
-                  <strong>
-
-                    ${money(
-                      item.subtotal
-                    )}
-
-                  </strong>
-
-                </div>
-
-              `
-            ).join("")
-
-            :
-
-            ""
-
-        }
-
-      </div>
-
-      <hr>
-
-      <div class="total">
-
-        <span>
-          Total
-        </span>
-
-        <span>
-          ${money(
-            pedido.total
-          )}
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <div class="order-box">
-
-      <strong>
-        Dados da entrega
-      </strong>
-
-      <p>
-        👤 ${escapeHTML(
-          pedido.cliente_nome || ""
-        )}
-      </p>
-
-      <p>
-        📱 ${escapeHTML(
-          pedido.telefone || ""
-        )}
-      </p>
-
-      <p>
-        📦 ${escapeHTML(
-          pedido.tipo_entrega || ""
-        )}
-      </p>
-
-      ${
-        pedido.tipo_entrega === "Entrega"
-
-        ?
-
-        `
-          <p>
-            📍
-            ${escapeHTML(
-              pedido.endereco || ""
-            )},
-            ${escapeHTML(
-              pedido.numero || ""
-            )}
-            ${
-              pedido.complemento
-                ? ", " +
-                  escapeHTML(
-                    pedido.complemento
-                  )
-                : ""
-            }
-            -
-            ${escapeHTML(
-              pedido.bairro || ""
-            )}
-          </p>
-        `
-
-        :
-
-        ""
-      }
-
-      <p>
-        💳 ${escapeHTML(
-          pedido.pagamento || ""
-        )}
-      </p>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   STATUS
-===================================================== */
-
-function getStatusInfo(status){
-
-  const statuses = {
-
-    novo:{
-      label:"Pedido recebido"
-    },
-
-    aceito:{
-      label:"Pedido aceito"
-    },
-
-    preparo:{
-      label:"Em preparo"
-    },
-
-    em_preparo:{
-      label:"Em preparo"
-    },
-
-    pronto:{
-      label:"Pedido pronto"
-    },
-
-    saiu_entrega:{
-      label:"Saiu para entrega"
-    },
-
-    saiu_para_entrega:{
-      label:"Saiu para entrega"
-    },
-
-    entregue:{
-      label:"Pedido entregue"
-    },
-
-    cancelado:{
-      label:"Pedido cancelado"
-    }
-
-  };
-
-
-  return (
-    statuses[status]
-    ||
-    statuses.novo
+  setTimeout(
+    () => toast.classList.remove("show"),
+    2500
   );
 
 }
 
 
-function statusLevel(status){
+/* ================================
+   MENU
+================================ */
 
-  const levels = {
-
-    novo:1,
-
-    aceito:2,
-
-    preparo:3,
-
-    em_preparo:3,
-
-    pronto:4,
-
-    saiu_entrega:5,
-
-    saiu_para_entrega:5,
-
-    entregue:6,
-
-    cancelado:99
-
-  };
-
-  return levels[status] || 1;
-
-}
-
-
-function isStatusAtLeast(
-  current,
-  target
-){
-
-  return (
-    statusLevel(current)
-    >=
-    statusLevel(target)
-  );
-
-}
-
-
-/* =====================================================
-   ACOMPANHAMENTO EM TEMPO REAL
-===================================================== */
-
-function iniciarAcompanhamento(
-  orderId
-){
-
-  if(!orderId){
-    return;
-  }
-
-
-  supabaseClient
-
-    .channel(
-      "pedido-" + orderId
-    )
-
-    .on(
-
-      "postgres_changes",
-
-      {
-        event:"UPDATE",
-
-        schema:"public",
-
-        table:"pedidos",
-
-        filter:
-          "id=eq." + orderId
-
-      },
-
-      payload => {
-
-        currentOrder =
-          payload.new;
-
-
-        localStorage.setItem(
-          "vf_last_order",
-          JSON.stringify(
-            payload.new
-          )
-        );
-
-
-        document
-          .getElementById(
-            "orderContent"
-          )
-          .innerHTML =
-            orderHTML(
-              payload.new
-            );
-
-      }
-
-    )
-
-    .subscribe();
-
-}
-
-
-/* =====================================================
-   RECUPERAR ÚLTIMO PEDIDO
-===================================================== */
-
-async function showLastOrder(){
+function scrollToMenu(){
 
   document
-    .getElementById(
-      "orderModal"
-    )
-    .classList.add(
-      "open"
-    );
-
-
-  document
-    .getElementById(
-      "orderContent"
-    )
-    .innerHTML = `
-
-      <div class="empty">
-
-        Carregando pedido...
-
-      </div>
-
-    `;
-
-
-  const saved =
-    localStorage.getItem(
-      "vf_order_id"
-    );
-
-
-  if(!saved){
-
-    const old =
-      JSON.parse(
-        localStorage.getItem(
-          "vf_last_order"
-        ) || "null"
-      );
-
-
-    document
-      .getElementById(
-        "orderContent"
-      )
-      .innerHTML =
-        orderHTML(old);
-
-    return;
-
-  }
-
-
-  try{
-
-    const {
-      data,
-      error
-    } = await supabaseClient
-
-      .from("pedidos")
-
-      .select("*")
-
-      .eq("id",saved)
-
-      .single();
-
-
-    if(error){
-      throw error;
-    }
-
-
-    currentOrder =
-      data;
-
-
-    document
-      .getElementById(
-        "orderContent"
-      )
-      .innerHTML =
-        orderHTML(data);
-
-
-    iniciarAcompanhamento(
-      data.id
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    const old =
-      JSON.parse(
-        localStorage.getItem(
-          "vf_last_order"
-        ) || "null"
-      );
-
-
-    document
-      .getElementById(
-        "orderContent"
-      )
-      .innerHTML =
-        orderHTML(old);
-
-  }
+    .getElementById("categories")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
 
 }
 
 
-function closeOrder(){
-
-  document
-    .getElementById(
-      "orderModal"
-    )
-    .classList.remove(
-      "open"
-    );
-
-}
-
-
-/* =====================================================
-   SEGURANÇA BÁSICA PARA TEXTO
-===================================================== */
-
-function escapeHTML(value){
-
-  return String(
-    value ?? ""
-  )
-
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-
-  .replace(
-    /</g,
-    "&lt;"
-  )
-
-  .replace(
-    />/g,
-    "&gt;"
-  )
-
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-
-  .replace(
-    /'/g,
-    "&#039;"
-  );
-
-}
-
-
-/* =====================================================
+/* ================================
    INICIALIZAÇÃO
-===================================================== */
+================================ */
 
 renderCategories();
 
 renderProducts();
 
-renderCart();
+updateCart();
 
-toggleAddress();
-
-
-/* =====================================================
-   SE JÁ EXISTIR PEDIDO SALVO,
-   COMEÇA A ESCUTAR ALTERAÇÕES
-===================================================== */
-
-if(currentOrderId){
-
-  iniciarAcompanhamento(
-    currentOrderId
-  );
-
-}
+setDelivery("Entrega");
 
 </script>
 
 </body>
-  </html>
+</html>
