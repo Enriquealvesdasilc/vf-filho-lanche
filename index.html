@@ -1,50 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="VF Filhos Lanches - Hambúrgueres, fritas, combos, promoções, bebidas, adicionais e frango assado.">
 
-<meta name="theme-color"
-      content="#111111">
-
-<meta name="description"
-      content="VF FILHOS LANCHES - Hambúrgueres, combos, promoções, bebidas, porções e frango assado.">
-
-<title>VF FILHOS LANCHES</title>
-
+<title>VF Filhos Lanches</title>
 
 <style>
-
-/* =====================================================
-   CONFIGURAÇÕES
-===================================================== */
-
 :root{
-  --bg:#f5f5f5;
-  --card:#ffffff;
-  --text:#171717;
-  --muted:#6b7280;
-
+  --bg:#080808;
+  --bg2:#111111;
+  --card:#151515;
+  --card2:#1b1b1b;
   --gold:#d4af37;
-  --gold-dark:#b8941f;
-
-  --dark:#111111;
-  --line:#e5e7eb;
-
-  --success:#16803c;
-
-  --shadow:0 8px 28px rgba(0,0,0,.08);
-
+  --gold2:#f0c94b;
+  --gold-dark:#9d7d19;
+  --text:#ffffff;
+  --muted:#b8b8b8;
+  --line:#2d2d2d;
+  --green:#25d366;
+  --shadow:0 10px 30px rgba(0,0,0,.45);
   --radius:18px;
 }
-
-
-/* =====================================================
-   RESET
-===================================================== */
 
 *{
   box-sizing:border-box;
@@ -56,15 +36,9 @@ html{
 
 body{
   margin:0;
-
   background:var(--bg);
-
   color:var(--text);
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 button,
@@ -83,273 +57,205 @@ a{
   color:inherit;
 }
 
-
-/* =====================================================
+/* =========================
    CABEÇALHO
-===================================================== */
+========================= */
 
 .header{
-
   position:sticky;
-
   top:0;
-
   z-index:50;
-
-  background:#ffffff;
-
-  border-bottom:
-    1px solid var(--line);
+  background:#090909;
+  border-bottom:1px solid var(--line);
+  box-shadow:0 4px 20px rgba(0,0,0,.35);
 }
-
 
 .top{
-
   max-width:1180px;
-
   margin:auto;
-
   padding:12px 18px;
-
   display:flex;
-
   align-items:center;
-
-  gap:12px;
+  gap:13px;
 }
 
-
-/* LOGO */
-
 .logo-img{
-
-  width:52px;
-
-  height:52px;
-
+  width:55px;
+  height:55px;
   border-radius:14px;
-
   object-fit:cover;
-
-  border:
-    1px solid var(--gold);
-
+  border:2px solid var(--gold);
+  background:#000;
   flex-shrink:0;
 }
 
-
-/* NOME */
-
 .brand{
-
   flex:1;
-
   min-width:0;
 }
 
 .brand h1{
-
   font-size:20px;
-
   margin:0;
-
+  color:var(--gold);
   white-space:nowrap;
-
   overflow:hidden;
-
   text-overflow:ellipsis;
 }
 
 .brand p{
-
   margin:4px 0 0;
-
   color:var(--muted);
-
-  font-size:12px;
+  font-size:11px;
 }
-
-
-/* BOTÃO MENU */
 
 .menu-btn,
 .cart-btn{
-
-  border:0;
-
-  background:#f3f4f6;
-
+  border:1px solid var(--line);
+  background:#151515;
+  color:var(--gold);
   border-radius:13px;
-
-  width:46px;
-
-  height:46px;
-
-  font-size:21px;
-
+  width:47px;
+  height:47px;
+  display:grid;
+  place-items:center;
   flex-shrink:0;
 }
 
-.menu-btn:hover,
-.cart-btn:hover{
-
-  background:#e9e9e9;
+.menu-btn{
+  font-size:24px;
 }
 
-
-/* CARRINHO */
-
 .cart-btn{
-
   position:relative;
 }
 
-.badge{
-
-  position:absolute;
-
-  right:-4px;
-
-  top:-5px;
-
-  background:var(--gold);
-
-  color:#111;
-
-  border-radius:99px;
-
-  font-size:11px;
-
-  min-width:20px;
-
-  height:20px;
-
-  padding:3px;
-
-  font-weight:bold;
+.cart-icon{
+  width:25px;
+  height:25px;
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 
+.badge{
+  position:absolute;
+  right:-5px;
+  top:-6px;
+  background:var(--gold);
+  color:#000;
+  border-radius:99px;
+  font-size:11px;
+  min-width:20px;
+  height:20px;
+  padding:3px 5px;
+  font-weight:900;
+}
 
-/* =====================================================
+/* =========================
    HERO
-===================================================== */
+========================= */
 
 .hero{
-
   max-width:1180px;
-
   margin:0 auto;
-
   padding:22px 18px 8px;
 }
 
-
 .hero-box{
-
   background:
-    linear-gradient(
-      135deg,
-      #111111,
-      #292929
-    );
-
-  color:#ffffff;
-
+    linear-gradient(135deg,rgba(212,175,55,.12),rgba(0,0,0,.4)),
+    #111;
+  color:#fff;
+  border:1px solid rgba(212,175,55,.35);
   border-radius:24px;
-
-  padding:25px;
-
+  padding:27px;
   display:flex;
-
   justify-content:space-between;
-
   gap:20px;
-
   align-items:center;
-
   box-shadow:var(--shadow);
 }
 
-
 .hero h2{
-
   font-size:28px;
-
   margin:0 0 8px;
-}
-
-
-.hero p{
-
-  margin:0;
-
-  color:#dddddd;
-
-  line-height:1.45;
-}
-
-
-.hero strong{
-
   color:var(--gold);
 }
 
+.hero p{
+  margin:0;
+  color:#ddd;
+  line-height:1.5;
+}
 
-/* =====================================================
+.hero strong{
+  color:var(--gold);
+}
+
+.hero-symbol{
+  width:80px;
+  height:80px;
+  border-radius:20px;
+  border:1px solid var(--gold-dark);
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+  flex-shrink:0;
+}
+
+.hero-symbol svg{
+  width:46px;
+  height:46px;
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* =========================
    BUSCA
-===================================================== */
+========================= */
 
 .search{
-
   max-width:1180px;
-
   margin:15px auto;
-
   padding:0 18px;
 }
 
-
 .search input{
-
   width:100%;
-
   padding:15px 18px;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   border-radius:15px;
-
-  background:#ffffff;
-
+  background:#111;
+  color:#fff;
   outline:none;
 }
 
-
 .search input:focus{
-
   border-color:var(--gold);
+  box-shadow:0 0 0 2px rgba(212,175,55,.12);
 }
 
+.search input::placeholder{
+  color:#888;
+}
 
-/* =====================================================
+/* =========================
    CATEGORIAS
-===================================================== */
+========================= */
 
 .categories{
-
   max-width:1180px;
-
   margin:auto;
-
   padding:8px 18px 12px;
-
   display:flex;
-
   gap:9px;
-
   overflow:auto;
-
   scrollbar-width:none;
 }
 
@@ -357,1015 +263,643 @@ a{
   display:none;
 }
 
-
 .categories button{
-
   white-space:nowrap;
-
-  border:
-    1px solid var(--line);
-
-  background:#ffffff;
-
+  border:1px solid var(--line);
+  background:#121212;
+  color:#ddd;
   padding:10px 15px;
-
   border-radius:99px;
 }
 
-
 .categories button.active{
-
   background:var(--gold);
-
-  color:#111111;
-
+  color:#000;
   border-color:var(--gold);
-
-  font-weight:bold;
-}
-
-
-/* =====================================================
-   CARDÁPIO
-===================================================== */
-
-main{
-
-  max-width:1180px;
-
-  margin:auto;
-
-  padding:
-    0
-    18px
-    100px;
-}
-
-
-.section{
-
-  scroll-margin-top:115px;
-
-  margin:
-    20px
-    0
-    28px;
-}
-
-
-.section h2{
-
-  font-size:22px;
-
-  margin:
-    0
-    0
-    14px;
-}
-
-
-.grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(
-      2,
-      minmax(0,1fr)
-    );
-
-  gap:14px;
-}
-
-
-.product{
-
-  background:var(--card);
-
-  border-radius:var(--radius);
-
-  padding:16px;
-
-  box-shadow:
-    0 3px 14px
-    rgba(0,0,0,.05);
-
-  display:flex;
-
-  flex-direction:column;
-
-  min-height:210px;
-
-  transition:.2s;
-}
-
-
-.product:hover{
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 8px 25px
-    rgba(0,0,0,.10);
-}
-
-
-.product h3{
-
-  margin:
-    0
-    0
-    8px;
-
-  font-size:18px;
-}
-
-
-.desc{
-
-  color:var(--muted);
-
-  font-size:13px;
-
-  line-height:1.5;
-
-  flex:1;
-}
-
-
-.bottom{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:8px;
-
-  margin-top:15px;
-}
-
-
-.price{
-
-  font-size:18px;
-
   font-weight:900;
 }
 
+/* =========================
+   PRODUTOS
+========================= */
 
-.add{
-
-  background:var(--gold);
-
-  color:#111111;
-
-  border:0;
-
-  border-radius:12px;
-
-  padding:
-    10px
-    14px;
-
-  font-weight:800;
+main{
+  max-width:1180px;
+  margin:auto;
+  padding:0 18px 100px;
 }
 
-
-.add:hover{
-
-  background:var(--gold-dark);
+.section{
+  scroll-margin-top:115px;
+  margin:20px 0 30px;
 }
 
-
-/* =====================================================
-   MENU LATERAL
-===================================================== */
-
-.drawer,
-.overlay{
-
-  display:none;
-}
-
-
-.drawer.open,
-.overlay.open{
-
-  display:block;
-}
-
-
-.overlay{
-
-  position:fixed;
-
-  inset:0;
-
-  background:
-    rgba(0,0,0,.48);
-
-  z-index:90;
-}
-
-
-.drawer{
-
-  position:fixed;
-
-  z-index:100;
-
-  left:0;
-
-  top:0;
-
-  bottom:0;
-
-  width:
-    min(
-      350px,
-      88vw
-    );
-
-  background:#ffffff;
-
-  padding:22px;
-
-  box-shadow:
-    8px 0 30px
-    rgba(0,0,0,.18);
-
-  overflow-y:auto;
-}
-
-
-.drawer-head{
-
+.section h2{
+  font-size:22px;
+  margin:0 0 14px;
+  color:var(--gold);
   display:flex;
-
-  justify-content:space-between;
-
   align-items:center;
-}
-
-
-.drawer h2{
-
-  margin:0;
-}
-
-
-.close{
-
-  border:0;
-
-  background:#f3f4f6;
-
-  border-radius:10px;
-
-  padding:9px 12px;
-}
-
-
-.drawer nav{
-
-  display:grid;
-
-  gap:8px;
-
-  margin-top:22px;
-}
-
-
-.drawer nav a{
-
-  padding:14px;
-
-  border-radius:12px;
-
-  background:#f7f7f7;
-
-  font-weight:600;
-}
-
-
-.drawer nav a:hover{
-
-  background:#eeeeee;
-}
-
-
-/* BOTÕES SOCIAIS */
-
-.menu-whatsapp{
-
-  background:#16803c !important;
-
-  color:#ffffff !important;
-
-  text-align:center;
-}
-
-
-.menu-instagram{
-
-  background:#111111 !important;
-
-  color:#ffffff !important;
-
-  text-align:center;
-}
-
-
-/* =====================================================
-   CARRINHO
-===================================================== */
-
-.cart-panel{
-
-  position:fixed;
-
-  z-index:110;
-
-  right:0;
-
-  top:0;
-
-  bottom:0;
-
-  width:
-    min(
-      450px,
-      96vw
-    );
-
-  background:#ffffff;
-
-  box-shadow:
-    -8px 0 30px
-    rgba(0,0,0,.20);
-
-  display:none;
-
-  flex-direction:column;
-}
-
-
-.cart-panel.open{
-
-  display:flex;
-}
-
-
-.cart-head{
-
-  padding:18px;
-
-  border-bottom:
-    1px solid var(--line);
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-}
-
-
-.cart-items{
-
-  padding:15px;
-
-  overflow:auto;
-
-  flex:1;
-}
-
-
-.cart-item{
-
-  padding:
-    14px
-    0;
-
-  border-bottom:
-    1px solid var(--line);
-}
-
-
-.cart-line{
-
-  display:flex;
-
-  justify-content:space-between;
-
   gap:10px;
 }
 
-
-.cart-name{
-
-  font-size:14px;
+.section h2:after{
+  content:"";
+  height:1px;
+  background:linear-gradient(90deg,var(--gold-dark),transparent);
+  flex:1;
 }
 
-
-.cart-price{
-
-  font-weight:bold;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
 }
 
+.product{
+  background:linear-gradient(145deg,#171717,#101010);
+  border:1px solid #282828;
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow:0 5px 20px rgba(0,0,0,.25);
+  display:flex;
+  flex-direction:column;
+  min-height:215px;
+  transition:.2s;
+}
+
+.product:hover{
+  border-color:rgba(212,175,55,.55);
+  transform:translateY(-2px);
+}
+
+.product .product-icon{
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  border:1px solid #333;
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+  margin-bottom:4px;
+}
+
+.product-icon svg{
+  width:27px;
+  height:27px;
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.product h3{
+  margin:8px 0 7px;
+  font-size:17px;
+  color:#fff;
+}
+
+.desc{
+  color:#aaa;
+  font-size:13px;
+  line-height:1.45;
+  flex:1;
+}
+
+.bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:14px;
+}
+
+.price{
+  font-size:18px;
+  font-weight:900;
+  color:var(--gold);
+}
+
+.add{
+  background:var(--gold);
+  color:#000;
+  border:0;
+  border-radius:12px;
+  padding:10px 14px;
+  font-weight:900;
+}
+
+.add:hover{
+  background:var(--gold2);
+}
+
+/* =========================
+   MENU LATERAL
+========================= */
+
+.drawer,
+.overlay{
+  display:none;
+}
+
+.drawer.open,
+.overlay.open{
+  display:block;
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  z-index:90;
+}
+
+.drawer{
+  position:fixed;
+  z-index:100;
+  left:0;
+  top:0;
+  bottom:0;
+  width:min(350px,88vw);
+  background:#101010;
+  padding:22px;
+  box-shadow:8px 0 30px rgba(0,0,0,.5);
+  border-right:1px solid var(--gold-dark);
+}
+
+.drawer-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.drawer h2{
+  margin:0;
+  color:var(--gold);
+}
+
+.close{
+  border:1px solid var(--line);
+  background:#181818;
+  color:#fff;
+  border-radius:10px;
+  padding:9px 12px;
+}
+
+.drawer nav{
+  display:grid;
+  gap:8px;
+  margin-top:22px;
+}
+
+.drawer nav a{
+  padding:13px;
+  border-radius:12px;
+  background:#171717;
+  border:1px solid #252525;
+}
+
+.drawer nav a:hover{
+  border-color:var(--gold-dark);
+  color:var(--gold);
+}
+
+/* =========================
+   CARRINHO
+========================= */
+
+.cart-panel{
+  position:fixed;
+  z-index:110;
+  right:0;
+  top:0;
+  bottom:0;
+  width:min(450px,96vw);
+  background:#0d0d0d;
+  box-shadow:-8px 0 30px rgba(0,0,0,.55);
+  display:none;
+  flex-direction:column;
+  border-left:1px solid var(--gold-dark);
+}
+
+.cart-panel.open{
+  display:flex;
+}
+
+.cart-head{
+  padding:18px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.cart-title{
+  color:var(--gold);
+  font-size:20px;
+  font-weight:900;
+}
+
+.cart-items{
+  padding:15px;
+  overflow:auto;
+  flex:1;
+}
+
+.cart-item{
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.cart-line{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.cart-line strong:first-child{
+  color:#fff;
+}
+
+.cart-line strong:last-child{
+  color:var(--gold);
+}
 
 .cart-description{
-
-  color:var(--muted);
-
+  color:#888;
   font-size:12px;
-
+  line-height:1.4;
   margin-top:5px;
 }
 
-
 .qty{
-
   display:flex;
-
   align-items:center;
-
-  gap:9px;
-
+  gap:8px;
   margin-top:10px;
 }
 
-
 .qty button{
-
-  border:0;
-
-  background:#eeeeee;
-
+  border:1px solid #333;
+  background:#191919;
+  color:var(--gold);
   border-radius:8px;
-
-  width:34px;
-
-  height:34px;
-
-  font-size:20px;
-
-  font-weight:bold;
+  width:30px;
+  height:30px;
 }
-
-
-.qty strong{
-
-  min-width:25px;
-
-  text-align:center;
-}
-
 
 .remove-item{
-
-  margin-left:auto;
-
   border:0;
-
-  background:none;
-
-  color:#c62828;
-
+  background:transparent;
+  color:#888;
   font-size:12px;
+  margin-left:8px;
 }
 
+.remove-item:hover{
+  color:#ff5555;
+}
 
 .cart-footer{
-
   padding:15px;
-
-  border-top:
-    1px solid var(--line);
+  border-top:1px solid var(--line);
+  background:#101010;
 }
 
-
 .total{
-
   display:flex;
-
   justify-content:space-between;
-
   font-size:19px;
-
   font-weight:900;
-
   margin-bottom:12px;
 }
 
+.total span:last-child{
+  color:var(--gold);
+}
 
 .primary{
-
   width:100%;
-
   border:0;
-
   background:var(--gold);
-
-  color:#111111;
-
+  color:#000;
   border-radius:13px;
-
   padding:14px;
-
   font-weight:900;
 }
 
-
 .primary:hover{
-
-  background:var(--gold-dark);
+  background:var(--gold2);
 }
 
-
 .secondary{
-
   width:100%;
-
-  border:
-    1px solid var(--line);
-
-  background:#ffffff;
-
+  border:1px solid var(--line);
+  background:#151515;
+  color:#fff;
   border-radius:13px;
-
   padding:12px;
-
   margin-top:8px;
 }
 
-
-/* =====================================================
-   MODAIS
-===================================================== */
+/* =========================
+   MODAL CHECKOUT
+========================= */
 
 .modal{
-
   position:fixed;
-
   inset:0;
-
-  background:
-    rgba(0,0,0,.58);
-
+  background:rgba(0,0,0,.78);
   z-index:120;
-
   display:none;
-
   align-items:flex-end;
-
   justify-content:center;
 }
 
-
 .modal.open{
-
   display:flex;
 }
 
-
 .modal-box{
-
-  background:#ffffff;
-
-  width:
-    min(
-      720px,
-      100%
-    );
-
+  background:#111;
+  width:min(720px,100%);
   max-height:92vh;
-
   overflow:auto;
-
-  border-radius:
-    22px
-    22px
-    0
-    0;
-
+  border:1px solid var(--gold-dark);
+  border-radius:22px 22px 0 0;
   padding:20px;
 }
 
-
 .modal-head{
-
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
 }
 
-
-/* =====================================================
-   FORMULÁRIO
-===================================================== */
+.modal-head h2{
+  color:var(--gold);
+  margin:0;
+}
 
 .form-grid{
-
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:12px;
 }
 
-
 .field{
-
   margin:10px 0;
 }
 
-
 .field.full{
-
   grid-column:1/-1;
 }
 
-
 label{
-
   font-size:13px;
-
   font-weight:700;
-
   display:block;
-
   margin-bottom:5px;
+  color:#ddd;
 }
-
 
 input,
 select,
 textarea{
-
   width:100%;
-
-  border:
-    1px solid #d9dde3;
-
+  border:1px solid #333;
   border-radius:11px;
-
   padding:12px;
-
-  background:#ffffff;
-
+  background:#181818;
+  color:#fff;
   outline:none;
 }
-
 
 input:focus,
 select:focus,
 textarea:focus{
-
   border-color:var(--gold);
 }
 
+input::placeholder,
+textarea::placeholder{
+  color:#777;
+}
+
+select option{
+  background:#181818;
+  color:#fff;
+}
 
 textarea{
-
   min-height:90px;
-
   resize:vertical;
 }
 
-
 .radio-row{
-
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:8px;
 }
 
-
 .radio{
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   padding:11px;
-
   border-radius:11px;
+  background:#171717;
 }
 
-
 .radio input{
-
   width:auto;
-
   margin-right:6px;
 }
 
-
 .notice{
-
   padding:12px;
-
   border-radius:12px;
-
-  background:#fff8df;
-
-  color:#6b5100;
-
+  background:rgba(212,175,55,.09);
+  border:1px solid rgba(212,175,55,.25);
+  color:#ddd;
   font-size:13px;
-
   line-height:1.4;
-
   margin:12px 0;
 }
-
 
 .order-box{
-
-  background:#f7f7f7;
-
+  background:#171717;
+  border:1px solid #292929;
   border-radius:14px;
-
   padding:14px;
-
   margin:12px 0;
 }
 
-
-.order-box hr{
-
-  border:0;
-
-  border-top:
-    1px solid #dddddd;
-
-  margin:12px 0;
-}
-
-
-.checkout-item{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  gap:10px;
-
-  padding:7px 0;
-
-  font-size:13px;
-}
-
-
-/* =====================================================
-   ACOMPANHAMENTO
-===================================================== */
-
-.status{
-
-  display:flex;
-
-  gap:8px;
-
-  overflow:auto;
-}
-
-
-.step{
-
-  min-width:120px;
-
-  padding:10px;
-
-  border-radius:11px;
-
-  background:#eeeeee;
-
-  text-align:center;
-
-  font-size:12px;
-}
-
-
-.step.active{
-
-  background:#dcfce7;
-
-  color:#166534;
-
-  font-weight:800;
-}
-
-
-/* =====================================================
-   VAZIO
-===================================================== */
-
-.empty{
-
-  text-align:center;
-
-  padding:35px;
-
-  color:var(--muted);
-}
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-.toast{
-
-  position:fixed;
-
-  z-index:200;
-
-  bottom:20px;
-
-  left:50%;
-
-  transform:
-    translateX(-50%);
-
-  background:#111111;
-
-  color:#ffffff;
-
-  padding:
-    12px
-    18px;
-
-  border-radius:99px;
-
-  display:none;
-
-  box-shadow:var(--shadow);
-}
-
-
-.toast.show{
-
-  display:block;
-}
-
-
-/* =====================================================
-   RODAPÉ
-===================================================== */
-
-.footer{
-
-  background:#111111;
-
-  color:#dddddd;
-
-  padding:30px 18px;
-}
-
-
-.footer-inner{
-
-  max-width:1180px;
-
-  margin:auto;
-}
-
-
-.footer h3{
-
+.order-box strong{
   color:var(--gold);
 }
 
+.status{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+}
+
+.step{
+  min-width:120px;
+  padding:10px;
+  border-radius:11px;
+  background:#1d1d1d;
+  text-align:center;
+  font-size:12px;
+}
+
+.step.active{
+  background:rgba(212,175,55,.18);
+  color:var(--gold);
+  font-weight:800;
+}
+
+.empty{
+  text-align:center;
+  padding:35px;
+  color:#888;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+  z-index:200;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--gold);
+  color:#000;
+  padding:12px 18px;
+  border-radius:99px;
+  display:none;
+  box-shadow:var(--shadow);
+  font-weight:800;
+}
+
+.toast.show{
+  display:block;
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+
+.footer{
+  background:#050505;
+  color:#aaa;
+  padding:30px 18px;
+  border-top:1px solid var(--line);
+}
+
+.footer-inner{
+  max-width:1180px;
+  margin:auto;
+}
+
+.footer h3{
+  color:var(--gold);
+}
 
 .footer p{
-
   font-size:13px;
-
   line-height:1.5;
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
+/* =========================
+   RESPONSIVO
+========================= */
 
 @media(max-width:680px){
 
-  .grid{
+  .top{
+    padding:10px 12px;
+    gap:8px;
+  }
 
+  .logo-img{
+    width:48px;
+    height:48px;
+  }
+
+  .brand h1{
+    font-size:16px;
+  }
+
+  .brand p{
+    font-size:9px;
+  }
+
+  .grid{
     grid-template-columns:1fr;
   }
 
-
   .hero-box{
-
     padding:20px;
   }
 
-
   .hero h2{
-
     font-size:23px;
   }
 
+  .hero-symbol{
+    width:62px;
+    height:62px;
+  }
 
   .form-grid{
-
     grid-template-columns:1fr;
   }
 
-
   .field.full{
-
     grid-column:auto;
   }
 
-
-  .top{
-
-    padding:
-      10px
-      12px;
+  .radio-row{
+    grid-template-columns:1fr;
   }
 
-
-  .brand h1{
-
-    font-size:17px;
+  .cart-panel{
+    width:100%;
   }
-
-
-  .brand p{
-
-    display:none;
-  }
-
-
-  .logo-img{
-
-    width:46px;
-
-    height:46px;
-  }
-
-
-  .menu-btn,
-  .cart-btn{
-
-    width:44px;
-
-    height:44px;
-  }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
+<!-- =========================
      CABEÇALHO
-===================================================== -->
+========================= -->
 
 <header class="header">
 
   <div class="top">
 
-
     <button
       class="menu-btn"
       onclick="openMenu()"
       aria-label="Abrir menu">
-
       ☰
-
     </button>
-
 
     <img
       src="logo-vf.jpeg"
       class="logo-img"
-      alt="VF FILHOS LANCHES">
-
+      alt="VF Filhos Lanches"
+      onerror="this.style.display='none';"
+    >
 
     <div class="brand">
 
-      <h1>
-        VF FILHOS LANCHES
-      </h1>
+      <h1>VF FILHOS LANCHES</h1>
 
       <p>
         Estrada Luiz Mário da Rocha Lima, 1459 ·
@@ -1374,36 +908,35 @@ textarea{
 
     </div>
 
-
+    <!-- CARRINHO -->
     <button
       class="cart-btn"
       onclick="openCart()"
       aria-label="Abrir carrinho">
 
-      <span>
-        Carrinho
-      </span>
+      <svg
+        class="cart-icon"
+        viewBox="0 0 24 24">
+
+        <circle cx="9" cy="20" r="1"></circle>
+        <circle cx="19" cy="20" r="1"></circle>
+
+        <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+
+      </svg>
 
       <span
         class="badge"
         id="cartBadge">
-
         0
-
       </span>
 
     </button>
-
 
   </div>
 
 </header>
 
-
-
-<!-- =====================================================
-     FUNDO DO MENU
-===================================================== -->
 
 <div
   class="overlay"
@@ -1412,145 +945,98 @@ textarea{
 </div>
 
 
-
-<!-- =====================================================
-     MENU LATERAL
-===================================================== -->
+<!-- =========================
+     MENU
+========================= -->
 
 <aside
   class="drawer"
   id="drawer">
 
-
   <div class="drawer-head">
 
-    <h2>
-      Menu
-    </h2>
-
+    <h2>Menu</h2>
 
     <button
       class="close"
       onclick="closeMenu()">
-
-      Fechar
-
+      ✕
     </button>
 
   </div>
 
-
-
   <nav>
-
 
     <a
       href="#inicio"
       onclick="closeMenu()">
-
       Início
-
     </a>
-
 
     <a
       href="#cardapio"
       onclick="closeMenu()">
-
       Cardápio
-
     </a>
-
 
     <a
       href="#"
-      onclick="openCart();return false;">
-
+      onclick="openCart();closeMenu();return false;">
       Meu pedido
-
     </a>
-
 
     <a
       href="#"
-      onclick="showLastOrder();return false;">
-
+      onclick="showLastOrder();closeMenu();return false;">
       Meu último pedido
-
     </a>
 
-
-    <!-- WHATSAPP -->
-
     <a
-      class="menu-whatsapp"
       href="https://wa.me/5521983950843"
       target="_blank"
       rel="noopener">
-
-      WHATSAPP
-
+      WhatsApp
     </a>
 
-
-    <!-- INSTAGRAM -->
-
     <a
-      class="menu-instagram"
       href="https://www.instagram.com/vf_filhoslanches/"
       target="_blank"
       rel="noopener">
-
-      INSTAGRAM
-
+      Instagram
     </a>
-
 
     <a
       href="#sobre"
       onclick="closeMenu()">
-
       Sobre a loja
-
     </a>
-
 
     <a
       href="#entrega"
       onclick="closeMenu()">
-
       Entrega e retirada
-
     </a>
-
 
     <a
       href="#horarios"
       onclick="closeMenu()">
-
       Horário de funcionamento
-
     </a>
 
-
   </nav>
-
 
 </aside>
 
 
-
-<!-- =====================================================
+<!-- =========================
      HERO
-===================================================== -->
+========================= -->
 
 <section
   class="hero"
   id="inicio">
 
-
   <div class="hero-box">
-
 
     <div>
 
@@ -1558,35 +1044,39 @@ textarea{
         Seu lanche do seu jeito
       </h2>
 
-
       <p>
-
-        Escolha seus produtos,
-        monte seu pedido e finalize
-        diretamente pelo
-
-        <strong>
-          WhatsApp
-        </strong>.
-
+        Escolha seus produtos, adicione ao carrinho
+        e finalize seu pedido diretamente pelo
+        <strong>WhatsApp</strong>.
       </p>
 
     </div>
 
+    <div class="hero-symbol">
+
+      <svg viewBox="0 0 24 24">
+
+        <path d="M5 17h14"></path>
+        <path d="M7 17a5 5 0 0 1 10 0"></path>
+        <path d="M4 17h16"></path>
+
+        <circle cx="7" cy="20" r="1"></circle>
+        <circle cx="17" cy="20" r="1"></circle>
+
+      </svg>
+
+    </div>
 
   </div>
-
 
 </section>
 
 
-
-<!-- =====================================================
+<!-- =========================
      BUSCA
-===================================================== -->
+========================= -->
 
 <div class="search">
-
 
   <input
     id="search"
@@ -1594,14 +1084,12 @@ textarea{
     placeholder="Buscar no cardápio..."
     oninput="renderProducts()">
 
-
 </div>
 
 
-
-<!-- =====================================================
+<!-- =========================
      CATEGORIAS
-===================================================== -->
+========================= -->
 
 <div
   class="categories"
@@ -1609,97 +1097,72 @@ textarea{
 </div>
 
 
+<!-- =========================
+     PRODUTOS
+========================= -->
 
-<!-- =====================================================
-     CARDÁPIO
-===================================================== -->
-
-<main
-  id="cardapio">
-</main>
+<main id="cardapio"></main>
 
 
-
-<!-- =====================================================
+<!-- =========================
      RODAPÉ
-===================================================== -->
+========================= -->
 
 <footer
   class="footer"
   id="sobre">
 
-
   <div class="footer-inner">
-
 
     <h3>
       VF FILHOS LANCHES
     </h3>
 
-
     <p>
       Estrada Luiz Mário da Rocha Lima, 1459
     </p>
 
-
     <p id="entrega">
       Pedidos para entrega ou retirada na loja.
+      A disponibilidade e eventual taxa de entrega
+      são confirmadas pelo WhatsApp.
     </p>
-
 
     <p id="horarios">
-      Horário de funcionamento:
-      10:00 às 00:00.
+      Funcionamento: todos os dias,
+      das 10:00 às 00:00.
     </p>
-
 
     <p>
-      WhatsApp:
-      (21) 98395-0843
+      WhatsApp: (21) 98395-0843
     </p>
-
-
-    <p>
-      Instagram:
-      @vf_filhoslanches
-    </p>
-
 
   </div>
-
 
 </footer>
 
 
-
-<!-- =====================================================
+<!-- =========================
      CARRINHO
-===================================================== -->
+========================= -->
 
 <aside
   class="cart-panel"
   id="cartPanel">
 
-
   <div class="cart-head">
 
-
-    <strong>
+    <div class="cart-title">
       Meu pedido
-    </strong>
-
+    </div>
 
     <button
       class="close"
       onclick="closeCart()">
-
-      Fechar
-
+      ✕
     </button>
 
-
   </div>
-
 
 
   <div
@@ -1708,9 +1171,7 @@ textarea{
   </div>
 
 
-
   <div class="cart-footer">
-
 
     <div class="total">
 
@@ -1718,92 +1179,66 @@ textarea{
         Total
       </span>
 
-
-      <span
-        id="cartTotal">
-
+      <span id="cartTotal">
         R$ 0,00
-
       </span>
 
     </div>
 
-
-
     <button
       class="primary"
       onclick="openCheckout()">
-
-      Finalizar pelo WhatsApp
-
+      Finalizar pedido
     </button>
-
-
 
     <button
       class="secondary"
       onclick="clearCart()">
-
       Limpar pedido
-
     </button>
 
-
   </div>
-
 
 </aside>
 
 
-
-<!-- =====================================================
+<!-- =========================
      CHECKOUT
-===================================================== -->
+========================= -->
 
 <div
   class="modal"
   id="checkoutModal">
 
-
   <div class="modal-box">
 
-
     <div class="modal-head">
-
 
       <h2>
         Finalizar pedido
       </h2>
 
-
       <button
         class="close"
         onclick="closeCheckout()">
-
-        Fechar
-
+        ✕
       </button>
 
-
     </div>
-
 
 
     <div class="notice">
 
       Confira seus dados antes de enviar.
-      Ao clicar em enviar, seu pedido será
-      montado e aberto diretamente no
-      WhatsApp da VF FILHOS LANCHES.
+      O pedido será enviado para o WhatsApp da
+      VF Filhos Lanches.
 
     </div>
-
 
 
     <form
       id="checkoutForm"
       onsubmit="sendWhatsApp(event)">
-
 
       <div class="form-grid">
 
@@ -1814,7 +1249,6 @@ textarea{
             Nome completo *
           </label>
 
-
           <input
             id="name"
             required
@@ -1823,13 +1257,11 @@ textarea{
         </div>
 
 
-
         <div class="field">
 
           <label>
             Celular / WhatsApp *
           </label>
-
 
           <input
             id="phone"
@@ -1841,17 +1273,13 @@ textarea{
         </div>
 
 
-
         <div class="field full">
-
 
           <label>
             Tipo de pedido *
           </label>
 
-
           <div class="radio-row">
-
 
             <label class="radio">
 
@@ -1867,7 +1295,6 @@ textarea{
             </label>
 
 
-
             <label class="radio">
 
               <input
@@ -1880,12 +1307,9 @@ textarea{
 
             </label>
 
-
           </div>
 
-
         </div>
-
 
 
         <div class="field">
@@ -1893,7 +1317,6 @@ textarea{
           <label>
             Rua / endereço *
           </label>
-
 
           <input
             id="address"
@@ -1903,13 +1326,11 @@ textarea{
         </div>
 
 
-
         <div class="field">
 
           <label>
             Número *
           </label>
-
 
           <input
             id="number"
@@ -1918,19 +1339,16 @@ textarea{
         </div>
 
 
-
         <div class="field">
 
           <label>
             Complemento
           </label>
 
-
           <input
             id="complement">
 
         </div>
-
 
 
         <div class="field">
@@ -1939,13 +1357,11 @@ textarea{
             Bairro *
           </label>
 
-
           <input
             id="neighborhood"
             required>
 
         </div>
-
 
 
         <div class="field full">
@@ -1954,13 +1370,11 @@ textarea{
             Ponto de referência
           </label>
 
-
           <input
             id="reference"
             placeholder="Ex.: perto de...">
 
         </div>
-
 
 
         <div class="field">
@@ -1969,43 +1383,34 @@ textarea{
             Forma de pagamento *
           </label>
 
-
           <select
             id="payment"
             required
             onchange="toggleChange()">
 
-
             <option value="">
               Selecione
             </option>
-
 
             <option>
               Pix
             </option>
 
-
             <option>
               Cartão de crédito
             </option>
-
 
             <option>
               Cartão de débito
             </option>
 
-
             <option>
               Dinheiro
             </option>
 
-
           </select>
 
-
         </div>
-
 
 
         <div
@@ -2013,19 +1418,15 @@ textarea{
           id="changeField"
           style="display:none">
 
-
           <label>
             Troco para quanto?
           </label>
-
 
           <input
             id="change"
             placeholder="Ex.: R$ 50,00">
 
-
         </div>
-
 
 
         <div class="field full">
@@ -2034,12 +1435,10 @@ textarea{
             Observações
           </label>
 
-
           <textarea
             id="notes"
-            placeholder="Ex.: sem tomate, retirar cebola, tocar interfone...">
+            placeholder="Ex.: retirar cebola, tocar interfone, etc.">
           </textarea>
-
 
         </div>
 
@@ -2047,24 +1446,20 @@ textarea{
       </div>
 
 
-
       <!-- RESUMO -->
 
       <div class="order-box">
-
 
         <strong>
           Resumo do pedido
         </strong>
 
-
         <div
-          id="checkoutSummary">
+          id="checkoutSummary"
+          style="margin-top:10px;line-height:1.7">
         </div>
 
-
-        <hr>
-
+        <hr style="border-color:#292929">
 
         <div class="total">
 
@@ -2072,20 +1467,13 @@ textarea{
             Total
           </span>
 
-
-          <span
-            id="checkoutTotal">
-
+          <span id="checkoutTotal">
             R$ 0,00
-
           </span>
-
 
         </div>
 
-
       </div>
-
 
 
       <button
@@ -2096,73 +1484,53 @@ textarea{
 
       </button>
 
-
     </form>
 
-
   </div>
-
 
 </div>
 
 
-
-<!-- =====================================================
+<!-- =========================
      ÚLTIMO PEDIDO
-===================================================== -->
+========================= -->
 
 <div
   class="modal"
   id="orderModal">
 
-
   <div class="modal-box">
-
 
     <div class="modal-head">
 
-
       <h2>
-        Meu pedido
+        Pedido
       </h2>
-
 
       <button
         class="close"
         onclick="closeOrder()">
-
-        Fechar
-
+        ✕
       </button>
 
-
     </div>
-
 
     <div
       id="orderContent">
     </div>
 
-
     <button
       class="primary"
       onclick="openWhatsAppAgain()">
 
-      Abrir WhatsApp da loja
+      Abrir WhatsApp
 
     </button>
 
-
   </div>
-
 
 </div>
 
-
-
-<!-- =====================================================
-     TOAST
-===================================================== -->
 
 <div
   class="toast"
@@ -2170,86 +1538,46 @@ textarea{
 </div>
 
 
-
 <script>
 
-
-/* =====================================================
+/* =========================
    CONFIGURAÇÕES
-===================================================== */
+========================= */
 
-
-/*
-   WHATSAPP DA LOJA
-*/
-
-const WHATSAPP =
-"5521983950843";
-
-
-/*
-   INSTAGRAM DA LOJA
-
-   Link colocado por você:
-   https://www.instagram.com/vf_filhoslanches/
-*/
+const WHATSAPP = "5521983950843";
 
 const INSTAGRAM =
-"https://www.instagram.com/vf_filhoslanches/";
+  "https://www.instagram.com/vf_filhoslanches/";
 
 
-
-/* =====================================================
+/* =========================
    CATEGORIAS
-===================================================== */
+========================= */
 
 const categories = [
 
-  [
-    "hamburgueres",
-    "🍔 Hambúrgueres"
-  ],
+  ["hamburgueres","Hambúrgueres"],
 
-  [
-    "combos",
-    "🍟 Combos"
-  ],
+  ["fritas","Fritas"],
 
-  [
-    "promocoes",
-    "🔥 Promoções"
-  ],
+  ["combos","Combos"],
 
-  [
-    "bebidas",
-    "🥤 Bebidas"
-  ],
+  ["promocoes","Promoções"],
 
-  [
-    "adicionais",
-    "➕ Adicionais"
-  ],
+  ["bebidas","Bebidas"],
 
-  [
-    "porcoes",
-    "🍟 Porções"
-  ],
+  ["adicionais","Adicionais"],
 
-  [
-    "frango",
-    "🍗 Frango Assado"
-  ]
+  ["frango","Frango Assado"]
 
 ];
 
 
-
-/* =====================================================
+/* =========================
    PRODUTOS
-===================================================== */
+========================= */
 
 const products = [
-
 
   {
     id:1,
@@ -2259,7 +1587,6 @@ const products = [
     desc:"Pão macio, carne bovina suculenta, presunto e queijo prato derretido, acompanhado de barbecue, maionese, mostarda e ketchup."
   },
 
-
   {
     id:2,
     cat:"hamburgueres",
@@ -2267,7 +1594,6 @@ const products = [
     price:13.99,
     desc:"Pão macio, carne bovina, queijo, presunto, ovo, salada fresquinha, muita batata palha, ketchup, maionese, mostarda e barbecue."
   },
-
 
   {
     id:3,
@@ -2277,7 +1603,6 @@ const products = [
     desc:"Pão fresquinho, duas carnes bovinas, ovo, queijo prato, presunto, salada crocante, batata palha, ketchup, maionese, barbecue e mostarda."
   },
 
-
   {
     id:4,
     cat:"hamburgueres",
@@ -2285,7 +1610,6 @@ const products = [
     price:15.99,
     desc:"Pão fresquinho, carne bovina, presunto, cheddar cremoso, bacon crocante, ovo e salada, finalizado com fritas crocantes."
   },
-
 
   {
     id:5,
@@ -2295,7 +1619,6 @@ const products = [
     desc:"Pão macio, carne de picanha suculenta, presunto, queijo, ovo, bacon crocante, batata palha, alface, ketchup, maionese e barbecue."
   },
 
-
   {
     id:6,
     cat:"hamburgueres",
@@ -2303,7 +1626,6 @@ const products = [
     price:18.99,
     desc:"Pão macio, duas carnes bovinas suculentas, cheddar derretido, cebola caramelizada e molho barbecue."
   },
-
 
   {
     id:7,
@@ -2313,7 +1635,6 @@ const products = [
     desc:"Pão macio, carne bovina, ovo, presunto, queijo prato, salada, batata palha, bacon crocante, ketchup, mostarda, maionese e barbecue."
   },
 
-
   {
     id:8,
     cat:"hamburgueres",
@@ -2322,7 +1643,6 @@ const products = [
     desc:"Pão macio, carne bovina, carne sabor picanha, presunto douradinho, queijo minas derretido, batata palha, salada, ketchup, barbecue e maionese."
   },
 
-
   {
     id:9,
     cat:"hamburgueres",
@@ -2330,7 +1650,6 @@ const products = [
     price:20.99,
     desc:"Pão macio, carne bovina, carne sabor picanha, queijo prato, cheddar e queijo minas, presunto, bacon, batata palha, salada, ketchup, barbecue e maionese."
   },
-
 
   {
     id:10,
@@ -2341,10 +1660,34 @@ const products = [
   },
 
 
-  /* ===================================================
-     COMBOS
-  =================================================== */
+  /* FRITAS */
 
+  {
+    id:26,
+    cat:"fritas",
+    name:"Batata Frita P",
+    price:15,
+    desc:"Porção de batata frita tamanho P."
+  },
+
+  {
+    id:27,
+    cat:"fritas",
+    name:"Batata Frita M",
+    price:21.99,
+    desc:"Porção de batata frita tamanho M."
+  },
+
+  {
+    id:28,
+    cat:"fritas",
+    name:"Batata Frita G",
+    price:30,
+    desc:"Porção de batata frita tamanho G."
+  },
+
+
+  /* COMBOS */
 
   {
     id:11,
@@ -2354,7 +1697,6 @@ const products = [
     desc:"X-Tudo completo + batata frita douradinha com calabresa, ketchup e maionese + 4 anéis de cebola + 4 nuggets."
   },
 
-
   {
     id:12,
     cat:"combos",
@@ -2362,7 +1704,6 @@ const products = [
     price:38.99,
     desc:"2 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 5 anéis de cebola + 5 nuggets."
   },
-
 
   {
     id:13,
@@ -2373,10 +1714,7 @@ const products = [
   },
 
 
-  /* ===================================================
-     PROMOÇÕES
-  =================================================== */
-
+  /* PROMOÇÕES */
 
   {
     id:14,
@@ -2385,7 +1723,6 @@ const products = [
     price:19.99,
     desc:"X-Tudo completo + batata P douradinha e crocante + Guaravita."
   },
-
 
   {
     id:15,
@@ -2396,183 +1733,126 @@ const products = [
   },
 
 
-  /* ===================================================
-     BEBIDAS
-  =================================================== */
-
+  /* BEBIDAS */
 
   {
     id:16,
     cat:"bebidas",
     name:"Coca-Cola lata 350 ml",
-    price:10.00,
+    price:10,
     desc:"Coca-Cola lata 350 ml."
   },
-
 
   {
     id:17,
     cat:"bebidas",
     name:"Guaravita Natural 290 ml",
-    price:6.00,
+    price:6,
     desc:"Guaravita Natural 290 ml."
   },
-
 
   {
     id:18,
     cat:"bebidas",
     name:"Água Mineral 500 ml",
-    price:5.00,
+    price:5,
     desc:"Água mineral 500 ml."
   },
 
 
-  /* ===================================================
-     ADICIONAIS
-  =================================================== */
-
+  /* ADICIONAIS */
 
   {
     id:19,
     cat:"adicionais",
     name:"Maionese",
-    price:3.00,
+    price:3,
     desc:"Adicional de maionese."
   },
-
 
   {
     id:20,
     cat:"adicionais",
     name:"Barbecue",
-    price:3.00,
+    price:3,
     desc:"Adicional de molho barbecue."
   },
-
 
   {
     id:21,
     cat:"adicionais",
     name:"Ketchup",
-    price:3.00,
+    price:3,
     desc:"Adicional de ketchup."
   },
-
 
   {
     id:22,
     cat:"adicionais",
     name:"Mostarda",
-    price:3.00,
+    price:3,
     desc:"Adicional de mostarda."
   },
-
 
   {
     id:23,
     cat:"adicionais",
     name:"Molho Verde",
-    price:4.00,
+    price:4,
     desc:"Adicional de molho verde."
   },
-
 
   {
     id:24,
     cat:"adicionais",
     name:"Cheddar",
-    price:5.00,
+    price:5,
     desc:"Adicional de cheddar."
   },
-
 
   {
     id:25,
     cat:"adicionais",
     name:"Ovo",
-    price:5.00,
+    price:5,
     desc:"Adicional de ovo."
   },
 
 
-  /* ===================================================
-     PORÇÕES
-  =================================================== */
-
-
-  {
-    id:26,
-    cat:"porcoes",
-    name:"Batata Frita P",
-    price:15.00,
-    desc:"Porção de batata frita tamanho P."
-  },
-
-
-  {
-    id:27,
-    cat:"porcoes",
-    name:"Batata Frita M",
-    price:21.99,
-    desc:"Porção de batata frita tamanho M."
-  },
-
-
-  {
-    id:28,
-    cat:"porcoes",
-    name:"Batata Frita G",
-    price:30.00,
-    desc:"Porção de batata frita tamanho G."
-  },
-
-
-  /* ===================================================
-     FRANGO
-  =================================================== */
-
+  /* FRANGO */
 
   {
     id:29,
     cat:"frango",
     name:"Frango Assado Completo",
-    price:45.00,
+    price:45,
     desc:"Frango assado douradinho e suculento, acompanhado de linguiça de churrasco, batatas, calabresas e farofa crocante."
   }
 
 ];
 
 
-
-/* =====================================================
+/* =========================
    CARRINHO
-===================================================== */
+========================= */
 
 let cart =
-JSON.parse(
-  localStorage.getItem(
-    "vf_cart"
-  ) || "[]"
-);
-
+  JSON.parse(
+    localStorage.getItem("vf_cart") || "[]"
+  );
 
 let lastOrder =
-JSON.parse(
-  localStorage.getItem(
-    "vf_last_order"
-  ) || "null"
-);
+  JSON.parse(
+    localStorage.getItem("vf_last_order") || "null"
+  );
 
 
+/* =========================
+   FUNÇÕES
+========================= */
 
-/* =====================================================
-   DINHEIRO
-===================================================== */
-
-function money(value){
-
-  return value.toLocaleString(
+const money = value =>
+  value.toLocaleString(
     "pt-BR",
     {
       style:"currency",
@@ -2580,13 +1860,6 @@ function money(value){
     }
   );
 
-}
-
-
-
-/* =====================================================
-   SALVAR CARRINHO
-===================================================== */
 
 function save(){
 
@@ -2598,132 +1871,79 @@ function save(){
 }
 
 
-
-/* =====================================================
-   QUANTIDADE DO CARRINHO
-===================================================== */
-
 function cartCount(){
 
   return cart.reduce(
-    (total,item) =>
-      total + item.qty,
+    (sum,item) =>
+      sum + item.qty,
     0
   );
 
 }
 
-
-
-/* =====================================================
-   TOTAL
-===================================================== */
 
 function total(){
 
   return cart.reduce(
-    (total,item) =>
-      total +
-      (
-        item.price *
-        item.qty
-      ),
+    (sum,item) =>
+      sum + item.price * item.qty,
     0
   );
 
 }
 
 
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-function toast(text){
+function toast(message){
 
   const element =
-    document.getElementById(
-      "toast"
-    );
+    document.getElementById("toast");
 
+  element.textContent = message;
 
-  element.textContent =
-    text;
-
-
-  element.classList.add(
-    "show"
-  );
-
+  element.classList.add("show");
 
   setTimeout(
-    () => {
-
-      element.classList.remove(
-        "show"
-      );
-
-    },
+    () =>
+      element.classList.remove("show"),
     2200
   );
 
 }
 
 
-
-/* =====================================================
+/* =========================
    MENU
-===================================================== */
+========================= */
 
 function openMenu(){
 
   document
-    .getElementById(
-      "drawer"
-    )
-    .classList.add(
-      "open"
-    );
-
+    .getElementById("drawer")
+    .classList.add("open");
 
   document
-    .getElementById(
-      "overlay"
-    )
-    .classList.add(
-      "open"
-    );
+    .getElementById("overlay")
+    .classList.add("open");
 
 }
-
 
 
 function closeMenu(){
 
   document
-    .getElementById(
-      "drawer"
-    )
-    .classList.remove(
-      "open"
-    );
-
+    .getElementById("drawer")
+    .classList.remove("open");
 
   document
-    .getElementById(
-      "overlay"
-    )
-    .classList.remove(
-      "open"
-    );
+    .getElementById("overlay")
+    .classList.remove("open");
 
 }
 
 
-
-/* =====================================================
+/* =========================
    CARRINHO
-===================================================== */
+========================= */
 
 function openCart(){
 
@@ -2731,31 +1951,20 @@ function openCart(){
 
   renderCart();
 
-
   document
-    .getElementById(
-      "cartPanel"
-    )
-    .classList.add(
-      "open"
-    );
+    .getElementById("cartPanel")
+    .classList.add("open");
 
 }
-
 
 
 function closeCart(){
 
   document
-    .getElementById(
-      "cartPanel"
-    )
-    .classList.remove(
-      "open"
-    );
+    .getElementById("cartPanel")
+    .classList.remove("open");
 
 }
-
 
 
 function closeAll(){
@@ -2767,61 +1976,25 @@ function closeAll(){
 }
 
 
-
-/* =====================================================
+/* =========================
    ADICIONAR PRODUTO
-===================================================== */
+========================= */
 
 function add(id){
 
   const product =
     products.find(
-      item =>
-        item.id === id
+      item => item.id === id
     );
 
-
   if(!product){
-
     return;
-
-  }
-
-
-  /*
-   * FRANGO:
-   * somente sábado e domingo.
-   */
-
-  if(
-    product.cat ===
-    "frango"
-  ){
-
-    const day =
-      new Date().getDay();
-
-
-    if(
-      day !== 0 &&
-      day !== 6
-    ){
-
-      toast(
-        "Frango assado disponível somente sábado e domingo."
-      );
-
-      return;
-
-    }
-
   }
 
 
   const existing =
     cart.find(
-      item =>
-        item.id === id
+      item => item.id === id
     );
 
 
@@ -2829,15 +2002,11 @@ function add(id){
 
     existing.qty++;
 
-  }
-  else{
+  }else{
 
     cart.push({
-
       ...product,
-
       qty:1
-
     });
 
   }
@@ -2847,51 +2016,46 @@ function add(id){
 
   renderCart();
 
+  /*
+     AQUI É O QUE VOCÊ PEDIU:
+     clicou em adicionar,
+     vai direto para o carrinho.
+  */
+
+  openCart();
 
   toast(
     product.name +
-    " adicionado!"
+    " adicionado ao pedido!"
   );
 
 }
 
 
-
-/* =====================================================
+/* =========================
    ALTERAR QUANTIDADE
-===================================================== */
+========================= */
 
-function change(
-  id,
-  amount
-){
+function change(id, amount){
 
   const item =
     cart.find(
-      item =>
-        item.id === id
+      product => product.id === id
     );
 
-
   if(!item){
-
     return;
-
   }
 
 
-  item.qty +=
-    amount;
+  item.qty += amount;
 
 
-  if(
-    item.qty <= 0
-  ){
+  if(item.qty <= 0){
 
     cart =
       cart.filter(
-        item =>
-          item.id !== id
+        product => product.id !== id
       );
 
   }
@@ -2904,119 +2068,87 @@ function change(
 }
 
 
-
-/* =====================================================
-   REMOVER
-===================================================== */
+/* =========================
+   REMOVER ITEM
+========================= */
 
 function removeItem(id){
 
   cart =
     cart.filter(
-      item =>
-        item.id !== id
+      item => item.id !== id
     );
-
 
   save();
 
   renderCart();
 
-
-  toast(
-    "Item removido."
-  );
-
 }
 
 
-
-/* =====================================================
+/* =========================
    LIMPAR
-===================================================== */
+========================= */
 
 function clearCart(){
 
-  if(
-    !cart.length
-  ){
-
+  if(!cart.length){
     return;
-
   }
 
 
   cart = [];
 
-
   save();
 
   renderCart();
 
-
   toast(
-    "Pedido limpo."
+    "Pedido limpo"
   );
 
 }
 
 
-
-/* =====================================================
+/* =========================
    CATEGORIAS
-===================================================== */
+========================= */
 
 function renderCategories(){
 
-  document
-    .getElementById(
+  const container =
+    document.getElementById(
       "categories"
-    )
-    .innerHTML =
+    );
 
 
-    categories
-      .map(
-        (
-          category,
-          index
-        ) => `
+  container.innerHTML =
+    categories.map(
+      (category,index) => `
 
-          <button
-            class="${
-              index === 0
-                ? "active"
-                : ""
-            }"
+        <button
+          class="${index === 0 ? "active" : ""}"
+          onclick="
+            document
+              .getElementById('${category[0]}')
+              .scrollIntoView({
+                behavior:'smooth'
+              });
 
-            onclick="
-              document
-                .getElementById(
-                  '${category[0]}'
-                )
-                .scrollIntoView({
-                  behavior:'smooth'
-                });
+            setActive(this);
+          ">
 
-              setActive(this);
-            "
-          >
+          ${category[1]}
 
-            ${category[1]}
+        </button>
 
-          </button>
-
-        `
-      )
-      .join("");
+      `
+    ).join("");
 
 }
 
 
-
-function setActive(
-  element
-){
+function setActive(element){
 
   document
     .querySelectorAll(
@@ -3029,26 +2161,120 @@ function setActive(
         )
     );
 
-
-  element.classList.add(
-    "active"
-  );
+  element.classList.add("active");
 
 }
 
 
+/* =========================
+   ÍCONE DO PRODUTO
+========================= */
 
-/* =====================================================
-   RENDERIZAR PRODUTOS
-===================================================== */
+function productIcon(category){
+
+  if(category === "hamburgueres"){
+
+    return `
+      <svg viewBox="0 0 24 24">
+        <path d="M4 11h16"></path>
+        <path d="M5 8c.7-3 3.5-5 7-5s6.3 2 7 5"></path>
+        <path d="M4 14h16"></path>
+        <path d="M5 17c.8 2 2.5 3 7 3s6.2-1 7-3"></path>
+      </svg>
+    `;
+
+  }
+
+
+  if(category === "fritas"){
+
+    return `
+      <svg viewBox="0 0 24 24">
+        <path d="M7 4v6"></path>
+        <path d="M10 3v7"></path>
+        <path d="M13 4v6"></path>
+        <path d="M16 3v7"></path>
+        <path d="M5 10h14l-2 10H7L5 10z"></path>
+      </svg>
+    `;
+
+  }
+
+
+  if(category === "combos"){
+
+    return `
+      <svg viewBox="0 0 24 24">
+        <path d="M4 7h16"></path>
+        <path d="M5 7l1 13h12l1-13"></path>
+        <path d="M8 4h8"></path>
+      </svg>
+    `;
+
+  }
+
+
+  if(category === "promocoes"){
+
+    return `
+      <svg viewBox="0 0 24 24">
+        <path d="M20 12v8H4v-8"></path>
+        <path d="M2 8h20v4H2z"></path>
+        <path d="M12 8v12"></path>
+        <path d="M12 8H7a2.5 2.5 0 1 1 0-5c3 0 5 5 5 5z"></path>
+        <path d="M12 8h5a2.5 2.5 0 1 0 0-5c-3 0-5 5-5 5z"></path>
+      </svg>
+    `;
+
+  }
+
+
+  if(category === "bebidas"){
+
+    return `
+      <svg viewBox="0 0 24 24">
+        <path d="M7 3h10l-1 18H8L7 3z"></path>
+        <path d="M7 7h10"></path>
+      </svg>
+    `;
+
+  }
+
+
+  if(category === "adicionais"){
+
+    return `
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8"></circle>
+        <path d="M12 8v8"></path>
+        <path d="M8 12h8"></path>
+      </svg>
+    `;
+
+  }
+
+
+  return `
+    <svg viewBox="0 0 24 24">
+      <path d="M5 8c2-2 12-2 14 0"></path>
+      <path d="M4 11h16"></path>
+      <path d="M5 14h14"></path>
+      <path d="M6 17h12"></path>
+    </svg>
+  `;
+
+}
+
+
+/* =========================
+   PRODUTOS
+========================= */
 
 function renderProducts(){
 
   const query =
     document
-      .getElementById(
-        "search"
-      )
+      .getElementById("search")
       .value
       .toLowerCase()
       .trim();
@@ -3061,48 +2287,37 @@ function renderProducts(){
 
 
   main.innerHTML =
-
-
     categories
       .map(
-        (
-          [category,label]
-        ) => {
-
+        ([category,label]) => {
 
           const list =
             products.filter(
-              product =>
+              product => {
 
-                product.cat ===
-                category &&
+                const matchesCategory =
+                  product.cat === category;
 
-                (
-
+                const matchesSearch =
                   product.name
                     .toLowerCase()
-                    .includes(
-                      query
-                    )
-
+                    .includes(query)
                   ||
-
                   product.desc
                     .toLowerCase()
-                    .includes(
-                      query
-                    )
+                    .includes(query);
 
-                )
+                return (
+                  matchesCategory &&
+                  matchesSearch
+                );
+
+              }
             );
 
 
-          if(
-            !list.length
-          ){
-
+          if(!list.length){
             return "";
-
           }
 
 
@@ -3112,17 +2327,11 @@ function renderProducts(){
               class="section"
               id="${category}">
 
-
               <h2>
-
                 ${label}
-
               </h2>
 
-
-              <div
-                class="grid">
-
+              <div class="grid">
 
                 ${
 
@@ -3130,29 +2339,30 @@ function renderProducts(){
                     .map(
                       product => `
 
-
                         <article
                           class="product">
 
-
-                          <h3>
-
-                            ${product.name}
-
-                          </h3>
-
-
                           <div
-                            class="desc">
+                            class="product-icon">
 
-                            ${product.desc}
+                            ${productIcon(
+                              product.cat
+                            )}
 
                           </div>
 
 
-                          <div
-                            class="bottom">
+                          <h3>
+                            ${product.name}
+                          </h3>
 
+
+                          <div class="desc">
+                            ${product.desc}
+                          </div>
+
+
+                          <div class="bottom">
 
                             <span
                               class="price">
@@ -3167,21 +2377,16 @@ function renderProducts(){
                             <button
                               class="add"
                               onclick="
-                                add(
-                                  ${product.id}
-                                )
+                                add(${product.id})
                               ">
 
                               Adicionar
 
                             </button>
 
-
                           </div>
 
-
                         </article>
-
 
                       `
                     )
@@ -3189,9 +2394,7 @@ function renderProducts(){
 
                 }
 
-
               </div>
-
 
             </section>
 
@@ -3199,27 +2402,25 @@ function renderProducts(){
 
         }
       )
-      .join("")
+      .join("");
 
-    ||
 
-    `
+  if(!main.innerHTML){
 
+    main.innerHTML = `
       <div class="empty">
-
         Nenhum produto encontrado.
-
       </div>
-
     `;
+
+  }
 
 }
 
 
-
-/* =====================================================
-   RENDERIZAR CARRINHO
-===================================================== */
+/* =========================
+   RENDER CARRINHO
+========================= */
 
 function renderCart(){
 
@@ -3236,9 +2437,7 @@ function renderCart(){
       "cartTotal"
     )
     .textContent =
-      money(
-        total()
-      );
+      money(total());
 
 
   const container =
@@ -3247,9 +2446,7 @@ function renderCart(){
     );
 
 
-  if(
-    !cart.length
-  ){
+  if(!cart.length){
 
     container.innerHTML = `
 
@@ -3259,13 +2456,11 @@ function renderCart(){
 
         <br><br>
 
-        Escolha os produtos
-        no cardápio.
+        Escolha algo no cardápio.
 
       </div>
 
     `;
-
 
     return;
 
@@ -3273,57 +2468,36 @@ function renderCart(){
 
 
   container.innerHTML =
-
-
     cart
       .map(
         item => `
 
-          <div
-            class="cart-item">
+          <div class="cart-item">
 
+            <div class="cart-line">
 
-            <div
-              class="cart-line">
-
-
-              <strong
-                class="cart-name">
-
+              <strong>
                 ${item.name}
-
               </strong>
 
-
-              <strong
-                class="cart-price">
-
+              <strong>
                 ${money(
                   item.price *
                   item.qty
                 )}
-
               </strong>
 
+            </div>
+
+
+            <div class="cart-description">
+
+              ${item.desc}
 
             </div>
 
 
-            <div
-              class="cart-description">
-
-              ${money(
-                item.price
-              )}
-
-              cada
-
-            </div>
-
-
-            <div
-              class="qty">
-
+            <div class="qty">
 
               <button
                 onclick="
@@ -3339,9 +2513,7 @@ function renderCart(){
 
 
               <strong>
-
                 ${item.qty}
-
               </strong>
 
 
@@ -3370,9 +2542,7 @@ function renderCart(){
 
               </button>
 
-
             </div>
-
 
           </div>
 
@@ -3383,16 +2553,13 @@ function renderCart(){
 }
 
 
-
-/* =====================================================
+/* =========================
    CHECKOUT
-===================================================== */
+========================= */
 
 function openCheckout(){
 
-  if(
-    !cart.length
-  ){
+  if(!cart.length){
 
     toast(
       "Adicione produtos ao pedido primeiro."
@@ -3405,20 +2572,15 @@ function openCheckout(){
 
   closeCart();
 
+  renderCheckoutSummary();
 
   document
     .getElementById(
       "checkoutModal"
     )
-    .classList.add(
-      "open"
-    );
-
-
-  renderCheckoutSummary();
+    .classList.add("open");
 
 }
-
 
 
 function closeCheckout(){
@@ -3427,17 +2589,10 @@ function closeCheckout(){
     .getElementById(
       "checkoutModal"
     )
-    .classList.remove(
-      "open"
-    );
+    .classList.remove("open");
 
 }
 
-
-
-/* =====================================================
-   RESUMO DO CHECKOUT
-===================================================== */
 
 function renderCheckoutSummary(){
 
@@ -3447,30 +2602,23 @@ function renderCheckoutSummary(){
     )
     .innerHTML =
 
-
     cart
       .map(
         item => `
 
           <div
-            class="checkout-item">
+            style="
+              margin-bottom:7px;
+              color:#ddd;
+            ">
 
-            <span>
-
-              ${item.qty}x
-              ${item.name}
-
-            </span>
-
-
-            <strong>
-
-              ${money(
-                item.price *
-                item.qty
-              )}
-
-            </strong>
+            ${item.qty}x
+            ${item.name}
+            —
+            ${money(
+              item.price *
+              item.qty
+            )}
 
           </div>
 
@@ -3484,165 +2632,16 @@ function renderCheckoutSummary(){
       "checkoutTotal"
     )
     .textContent =
-      money(
-        total()
-      );
+      money(total());
 
 }
 
 
-
-/* =====================================================
+/* =========================
    PAGAMENTO
-===================================================== */
+========================= */
 
 function toggleChange(){
-
-  const payment =
-    document.getElementById(
-      "payment"
-    );
-
-
-  document
-    .getElementById(
-      "changeField"
-    )
-    .style.display =
-
-
-      payment.value ===
-      "Dinheiro"
-
-        ? "block"
-
-        : "none";
-
-}
-
-
-
-/* =====================================================
-   ENTREGA / RETIRADA
-===================================================== */
-
-function toggleAddress(){
-
-  const delivery =
-    document.querySelector(
-      'input[name="delivery"]:checked'
-    ).value ===
-    "Entrega";
-
-
-  const address =
-    document.getElementById(
-      "address"
-    );
-
-
-  const number =
-    document.getElementById(
-      "number"
-    );
-
-
-  const neighborhood =
-    document.getElementById(
-      "neighborhood"
-    );
-
-
-  address.required =
-    delivery;
-
-
-  number.required =
-    delivery;
-
-
-  neighborhood.required =
-    delivery;
-
-
-  address.disabled =
-    !delivery;
-
-
-  number.disabled =
-    !delivery;
-
-
-  neighborhood.disabled =
-    !delivery;
-
-
-  if(
-    !delivery
-  ){
-
-    address.value =
-      "";
-
-    number.value =
-      "";
-
-    neighborhood.value =
-      "";
-
-  }
-
-}
-
-
-
-/* =====================================================
-   ENVIAR PARA WHATSAPP
-===================================================== */
-
-function sendWhatsApp(
-  event
-){
-
-  event.preventDefault();
-
-
-  if(
-    !cart.length
-  ){
-
-    toast(
-      "Seu carrinho está vazio."
-    );
-
-    return;
-
-  }
-
-
-  const delivery =
-    document.querySelector(
-      'input[name="delivery"]:checked'
-    ).value;
-
-
-  const name =
-    document
-      .getElementById(
-        "name"
-      )
-      .value
-      .trim();
-
-
-  const phone =
-    document
-      .getElementById(
-        "phone"
-      )
-      .value
-      .trim();
-
 
   const payment =
     document
@@ -3652,233 +2651,308 @@ function sendWhatsApp(
       .value;
 
 
+  document
+    .getElementById(
+      "changeField"
+    )
+    .style.display =
+      payment === "Dinheiro"
+        ? "block"
+        : "none";
+
+}
+
+
+/* =========================
+   ENTREGA
+========================= */
+
+function toggleAddress(){
+
+  const type =
+    document
+      .querySelector(
+        'input[name="delivery"]:checked'
+      )
+      .value;
+
+
+  const delivery =
+    type === "Entrega";
+
+
+  [
+    "address",
+    "number",
+    "neighborhood"
+  ]
+  .forEach(
+    id => {
+
+      const element =
+        document.getElementById(id);
+
+      element.required =
+        delivery;
+
+      element.disabled =
+        !delivery;
+
+    }
+  );
+
+}
+
+
+/* =========================
+   ENVIAR WHATSAPP
+========================= */
+
+function sendWhatsApp(event){
+
+  event.preventDefault();
+
+
+  if(!cart.length){
+
+    toast(
+      "Seu pedido está vazio."
+    );
+
+    return;
+
+  }
+
+
+  const delivery =
+    document
+      .querySelector(
+        'input[name="delivery"]:checked'
+      )
+      .value;
+
+
+  const name =
+    document
+      .getElementById("name")
+      .value
+      .trim();
+
+
+  const phone =
+    document
+      .getElementById("phone")
+      .value
+      .trim();
+
+
+  const payment =
+    document
+      .getElementById("payment")
+      .value;
+
+
   const address =
     document
-      .getElementById(
-        "address"
-      )
+      .getElementById("address")
       .value
       .trim();
 
 
   const number =
     document
-      .getElementById(
-        "number"
-      )
+      .getElementById("number")
       .value
       .trim();
 
 
   const complement =
     document
-      .getElementById(
-        "complement"
-      )
+      .getElementById("complement")
       .value
       .trim();
 
 
   const neighborhood =
     document
-      .getElementById(
-        "neighborhood"
-      )
+      .getElementById("neighborhood")
       .value
       .trim();
 
 
   const reference =
     document
-      .getElementById(
-        "reference"
-      )
-      .value
-      .trim();
-
-
-  const notes =
-    document
-      .getElementById(
-        "notes"
-      )
+      .getElementById("reference")
       .value
       .trim();
 
 
   const change =
     document
-      .getElementById(
-        "change"
-      )
+      .getElementById("change")
       .value
       .trim();
 
 
+  const notes =
+    document
+      .getElementById("notes")
+      .value
+      .trim();
 
-  /* NÚMERO DO PEDIDO */
 
   const orderNumber =
     Math.floor(
       100000 +
-      Math.random() *
-      900000
+      Math.random() * 900000
     );
 
 
-
-  /* MENSAGEM */
-
   let message =
+    "*NOVO PEDIDO - VF FILHOS LANCHES*\n\n";
 
-`*VF FILHOS LANCHES*
 
-*NOVO PEDIDO*
+  message +=
+    "*Pedido:* #" +
+    orderNumber +
+    "\n";
 
-*Pedido:* #${orderNumber}
 
-*Cliente:* ${name}
+  message +=
+    "*Cliente:* " +
+    name +
+    "\n";
 
-*Telefone:* ${phone}
 
-*Tipo:* ${delivery}
+  message +=
+    "*Celular:* " +
+    phone +
+    "\n";
 
-*ITENS:*
-`;
 
+  message +=
+    "*Tipo:* " +
+    delivery +
+    "\n\n";
+
+
+  message +=
+    "*ITENS DO PEDIDO*\n";
 
 
   cart.forEach(
     item => {
 
       message +=
+        "• " +
+        item.qty +
+        "x " +
+        item.name +
+        " — " +
+        money(
+          item.price *
+          item.qty
+        ) +
+        "\n";
 
-`\n${item.qty}x ${item.name} — ${money(
-  item.price *
-  item.qty
-)}`;
+      message +=
+        "  " +
+        item.desc +
+        "\n";
 
     }
   );
 
 
-
   message +=
-
-`\n\n*TOTAL: ${money(
-  total()
-)}*`;
+    "\n";
 
 
-
-  /* ENDEREÇO */
-
-  if(
-    delivery ===
-    "Entrega"
-  ){
+  if(delivery === "Entrega"){
 
     message +=
+      "*ENDEREÇO*\n";
 
-`\n\n*ENDEREÇO*
+    message +=
+      address +
+      ", " +
+      number;
 
-${address}, ${number}`;
-
-
-    if(
-      complement
-    ){
+    if(complement){
 
       message +=
-
-`\nComplemento: ${complement}`;
+        ", " +
+        complement;
 
     }
 
+    message +=
+      "\nBairro: " +
+      neighborhood +
+      "\n";
+
 
     message +=
-
-`\nBairro: ${neighborhood}`;
-
-
-    if(
-      reference
-    ){
-
-      message +=
-
-`\nReferência: ${reference}`;
-
-    }
+      "Referência: " +
+      (
+        reference ||
+        "Não informado"
+      ) +
+      "\n\n";
 
   }
 
 
-
-  /* PAGAMENTO */
-
   message +=
+    "*PAGAMENTO:* " +
+    payment +
+    "\n";
 
-`\n\n*PAGAMENTO:* ${payment}`;
 
+  if(payment === "Dinheiro"){
 
-  if(
-    payment ===
-    "Dinheiro"
-  ){
-
-    if(
-      change
-    ){
-
-      message +=
-
-`\n*Troco para:* ${change}`;
-
-    }
+    message +=
+      "*Troco para:* " +
+      (
+        change ||
+        "Não informado"
+      ) +
+      "\n";
 
   }
 
 
+  message +=
+    "*OBSERVAÇÕES:* " +
+    (
+      notes ||
+      "Nenhuma"
+    ) +
+    "\n\n";
 
-  /* OBSERVAÇÕES */
 
   message +=
+    "*TOTAL: " +
+    money(total()) +
+    "*";
 
-`\n\n*OBSERVAÇÕES:*
-
-${
-  notes ||
-  "Nenhuma"
-}`;
-
-
-
-  /* SALVAR ÚLTIMO PEDIDO */
 
   lastOrder = {
 
-    number:
-      orderNumber,
+    number:orderNumber,
 
-    name:
-      name,
+    name:name,
 
-    phone:
-      phone,
+    phone:phone,
 
-    delivery:
-      delivery,
+    delivery:delivery,
 
-    payment:
-      payment,
+    payment:payment,
 
-    total:
-      total(),
+    total:total(),
 
     date:
-      new Date()
-        .toISOString(),
+      new Date().toISOString(),
 
     status:
       "Pedido enviado para atendimento"
@@ -3888,63 +2962,56 @@ ${
 
   localStorage.setItem(
     "vf_last_order",
-    JSON.stringify(
-      lastOrder
-    )
+    JSON.stringify(lastOrder)
   );
 
 
-
-  /* LINK WHATSAPP */
-
   const whatsappURL =
-
     "https://wa.me/" +
-
     WHATSAPP +
-
     "?text=" +
-
-    encodeURIComponent(
-      message
-    );
-
+    encodeURIComponent(message);
 
 
   closeCheckout();
 
 
+  document
+    .getElementById(
+      "orderContent"
+    )
+    .innerHTML =
+      orderHTML();
 
-  /*
-   * Abre o WhatsApp.
-   */
 
-  window.location.href =
-    whatsappURL;
+  document
+    .getElementById(
+      "orderModal"
+    )
+    .classList.add("open");
+
+
+  window.open(
+    whatsappURL,
+    "_blank"
+  );
 
 }
 
 
-
-/* =====================================================
+/* =========================
    ÚLTIMO PEDIDO
-===================================================== */
+========================= */
 
 function orderHTML(){
 
-  if(
-    !lastOrder
-  ){
+  if(!lastOrder){
 
     return `
-
       <div class="empty">
-
-        Você ainda não fez nenhum pedido
+        Nenhum pedido salvo
         neste aparelho.
-
       </div>
-
     `;
 
   }
@@ -3952,68 +3019,44 @@ function orderHTML(){
 
   return `
 
-    <div
-      class="order-box">
-
+    <div class="order-box">
 
       <strong>
-
         Pedido #${lastOrder.number}
-
       </strong>
 
-
       <p>
-
         ${lastOrder.status}
-
       </p>
 
-
       <p>
-
         Cliente:
         ${lastOrder.name}
-
       </p>
 
-
       <p>
-
         Tipo:
         ${lastOrder.delivery}
-
       </p>
-
 
       <p>
-
         Pagamento:
         ${lastOrder.payment}
-
       </p>
 
-
-      <div
-        class="total">
-
+      <div class="total">
 
         <span>
           Total
         </span>
 
-
         <span>
-
           ${money(
             lastOrder.total
           )}
-
         </span>
 
-
       </div>
-
 
     </div>
 
@@ -4023,48 +3066,38 @@ function orderHTML(){
     </h3>
 
 
-    <div
-      class="status">
+    <div class="status">
 
-
-      <div
-        class="step active">
-
-        Pedido enviado
-
+      <div class="step active">
+        Enviado
       </div>
 
-
-      <div
-        class="step">
-
+      <div class="step">
         Em confirmação
-
       </div>
 
-
-      <div
-        class="step">
-
+      <div class="step">
         Em preparo
-
       </div>
 
-
-      <div
-        class="step">
-
-        Pronto / saiu
-
+      <div class="step">
+        Pronto
       </div>
-
 
     </div>
+
+
+    <p class="desc"
+       style="margin-top:15px">
+
+      O pedido foi enviado para o
+      WhatsApp da loja.
+
+    </p>
 
   `;
 
 }
-
 
 
 function showLastOrder(){
@@ -4081,12 +3114,9 @@ function showLastOrder(){
     .getElementById(
       "orderModal"
     )
-    .classList.add(
-      "open"
-    );
+    .classList.add("open");
 
 }
-
 
 
 function closeOrder(){
@@ -4095,12 +3125,9 @@ function closeOrder(){
     .getElementById(
       "orderModal"
     )
-    .classList.remove(
-      "open"
-    );
+    .classList.remove("open");
 
 }
-
 
 
 function openWhatsAppAgain(){
@@ -4114,29 +3141,9 @@ function openWhatsAppAgain(){
 }
 
 
-
-/* =====================================================
-   LINK DO INSTAGRAM
-===================================================== */
-
-document
-  .querySelectorAll(
-    ".menu-instagram"
-  )
-  .forEach(
-    link => {
-
-      link.href =
-        INSTAGRAM;
-
-    }
-  );
-
-
-
-/* =====================================================
-   INICIALIZAÇÃO
-===================================================== */
+/* =========================
+   INICIAR SITE
+========================= */
 
 renderCategories();
 
@@ -4146,9 +3153,7 @@ renderCart();
 
 toggleAddress();
 
-
 </script>
 
 </body>
-
-  </html>
+      </html>
