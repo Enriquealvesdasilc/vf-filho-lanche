@@ -1,0 +1,2671 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="VF Filho Lanche - Hambúrgueres, combos, promoções, bebidas, porções e frango assado.">
+<title>VF Filho Lanche</title>
+
+<style>
+:root{
+  --bg:#f5f5f5;
+  --card:#fff;
+  --text:#171717;
+  --muted:#6b7280;
+  --primary:#e30613;
+  --primary2:#b8040e;
+  --dark:#111;
+  --line:#e5e7eb;
+  --success:#16803c;
+  --shadow:0 8px 28px rgba(0,0,0,.08);
+  --radius:18px;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif
+}
+
+button,input,select,textarea{
+  font:inherit
+}
+
+button{
+  cursor:pointer
+}
+
+a{
+  text-decoration:none;
+  color:inherit
+}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:#fff;
+  border-bottom:1px solid var(--line)
+}
+
+.top{
+  max-width:1180px;
+  margin:auto;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  gap:14px
+}
+
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:var(--primary);
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:25px;
+  font-weight:900
+}
+
+.brand{
+  flex:1
+}
+
+.brand h1{
+  font-size:20px;
+  margin:0
+}
+
+.brand p{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:12px
+}
+
+.menu-btn,
+.cart-btn{
+  border:0;
+  background:#f3f4f6;
+  border-radius:13px;
+  width:46px;
+  height:46px;
+  font-size:22px
+}
+
+.cart-btn{
+  position:relative
+}
+
+.badge{
+  position:absolute;
+  right:-3px;
+  top:-5px;
+  background:var(--primary);
+  color:#fff;
+  border-radius:99px;
+  font-size:11px;
+  min-width:20px;
+  height:20px;
+  padding:3px
+}
+
+.hero{
+  max-width:1180px;
+  margin:0 auto;
+  padding:22px 18px 8px
+}
+
+.hero-box{
+  background:linear-gradient(135deg,#111,#292929);
+  color:#fff;
+  border-radius:24px;
+  padding:25px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:center;
+  box-shadow:var(--shadow)
+}
+
+.hero h2{
+  font-size:28px;
+  margin:0 0 8px
+}
+
+.hero p{
+  margin:0;
+  color:#ddd;
+  line-height:1.45
+}
+
+.hero strong{
+  color:#fff
+}
+
+.hero-emoji{
+  font-size:64px
+}
+
+.search{
+  max-width:1180px;
+  margin:15px auto;
+  padding:0 18px
+}
+
+.search input{
+  width:100%;
+  padding:15px 18px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#fff;
+  outline:none
+}
+
+.categories{
+  max-width:1180px;
+  margin:auto;
+  padding:8px 18px 12px;
+  display:flex;
+  gap:9px;
+  overflow:auto
+}
+
+.categories button{
+  white-space:nowrap;
+  border:1px solid var(--line);
+  background:#fff;
+  padding:10px 15px;
+  border-radius:99px
+}
+
+.categories button.active{
+  background:var(--primary);
+  color:#fff;
+  border-color:var(--primary)
+}
+
+main{
+  max-width:1180px;
+  margin:auto;
+  padding:0 18px 100px
+}
+
+.section{
+  scroll-margin-top:115px;
+  margin:20px 0 28px
+}
+
+.section h2{
+  font-size:22px;
+  margin:0 0 14px
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px
+}
+
+.product{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow:0 3px 14px rgba(0,0,0,.05);
+  display:flex;
+  flex-direction:column;
+  min-height:220px
+}
+
+.product .emoji{
+  font-size:38px
+}
+
+.product h3{
+  margin:9px 0 6px;
+  font-size:17px
+}
+
+.desc{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.4;
+  flex:1
+}
+
+.bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:12px
+}
+
+.price{
+  font-size:18px;
+  font-weight:900
+}
+
+.add{
+  background:var(--primary);
+  color:#fff;
+  border:0;
+  border-radius:12px;
+  padding:10px 13px;
+  font-weight:800
+}
+
+.add:hover{
+  background:var(--primary2)
+}
+
+.drawer,
+.overlay{
+  display:none
+}
+
+.drawer.open,
+.overlay.open{
+  display:block
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.48);
+  z-index:90
+}
+
+.drawer{
+  position:fixed;
+  z-index:100;
+  left:0;
+  top:0;
+  bottom:0;
+  width:min(350px,88vw);
+  background:#fff;
+  padding:22px;
+  box-shadow:8px 0 30px rgba(0,0,0,.18)
+}
+
+.drawer-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+
+.drawer h2{
+  margin:0
+}
+
+.close{
+  border:0;
+  background:#f3f4f6;
+  border-radius:10px;
+  padding:9px 12px
+}
+
+.drawer nav{
+  display:grid;
+  gap:8px;
+  margin-top:22px
+}
+
+.drawer nav a{
+  padding:13px;
+  border-radius:12px;
+  background:#f7f7f7
+}
+
+.drawer nav a:hover{
+  background:#eee
+}
+
+.cart-panel{
+  position:fixed;
+  z-index:110;
+  right:0;
+  top:0;
+  bottom:0;
+  width:min(450px,96vw);
+  background:#fff;
+  box-shadow:-8px 0 30px rgba(0,0,0,.2);
+  display:none;
+  flex-direction:column
+}
+
+.cart-panel.open{
+  display:flex
+}
+
+.cart-head{
+  padding:18px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between
+}
+
+.cart-items{
+  padding:15px;
+  overflow:auto;
+  flex:1
+}
+
+.cart-item{
+  padding:13px 0;
+  border-bottom:1px solid var(--line)
+}
+
+.cart-line{
+  display:flex;
+  justify-content:space-between;
+  gap:10px
+}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px
+}
+
+.qty button{
+  border:0;
+  background:#eee;
+  border-radius:8px;
+  width:30px;
+  height:30px
+}
+
+.cart-footer{
+  padding:15px;
+  border-top:1px solid var(--line)
+}
+
+.total{
+  display:flex;
+  justify-content:space-between;
+  font-size:19px;
+  font-weight:900;
+  margin-bottom:12px
+}
+
+.primary{
+  width:100%;
+  border:0;
+  background:var(--primary);
+  color:#fff;
+  border-radius:13px;
+  padding:14px;
+  font-weight:900
+}
+
+.secondary{
+  width:100%;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:13px;
+  padding:12px;
+  margin-top:8px
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.58);
+  z-index:120;
+  display:none;
+  align-items:flex-end;
+  justify-content:center
+}
+
+.modal.open{
+  display:flex
+}
+
+.modal-box{
+  background:#fff;
+  width:min(720px,100%);
+  max-height:92vh;
+  overflow:auto;
+  border-radius:22px 22px 0 0;
+  padding:20px
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px
+}
+
+.field{
+  margin:10px 0
+}
+
+.field.full{
+  grid-column:1/-1
+}
+
+label{
+  font-size:13px;
+  font-weight:700;
+  display:block;
+  margin-bottom:5px
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  border:1px solid #d9dde3;
+  border-radius:11px;
+  padding:12px;
+  background:#fff;
+  outline:none
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical
+}
+
+.radio-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px
+}
+
+.radio{
+  border:1px solid var(--line);
+  padding:11px;
+  border-radius:11px
+}
+
+.radio input{
+  width:auto;
+  margin-right:6px
+}
+
+.notice{
+  padding:12px;
+  border-radius:12px;
+  background:#fff7ed;
+  color:#7c2d12;
+  font-size:13px;
+  line-height:1.4;
+  margin:12px 0
+}
+
+.order-box{
+  background:#f7f7f7;
+  border-radius:14px;
+  padding:14px;
+  margin:12px 0
+}
+
+.status{
+  display:flex;
+  gap:8px;
+  overflow:auto
+}
+
+.step{
+  min-width:120px;
+  padding:10px;
+  border-radius:11px;
+  background:#eee;
+  text-align:center;
+  font-size:12px
+}
+
+.step.active{
+  background:#dcfce7;
+  color:#166534;
+  font-weight:800
+}
+
+.empty{
+  text-align:center;
+  padding:35px;
+  color:var(--muted)
+}
+
+.toast{
+  position:fixed;
+  z-index:200;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#111;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:99px;
+  display:none;
+  box-shadow:var(--shadow)
+}
+
+.toast.show{
+  display:block
+}
+
+.footer{
+  background:#111;
+  color:#ddd;
+  padding:30px 18px
+}
+
+.footer-inner{
+  max-width:1180px;
+  margin:auto
+}
+
+.footer h3{
+  color:#fff
+}
+
+.footer p{
+  font-size:13px;
+  line-height:1.5
+}
+
+@media(max-width:680px){
+  .grid{
+    grid-template-columns:1fr
+  }
+
+  .hero-box{
+    padding:20px
+  }
+
+  .hero h2{
+    font-size:23px
+  }
+
+  .hero-emoji{
+    font-size:48px
+  }
+
+  .form-grid{
+    grid-template-columns:1fr
+  }
+
+  .field.full{
+    grid-column:auto
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="top">
+
+    <button class="menu-btn"
+      onclick="openMenu()"
+      aria-label="Abrir menu">
+      ☰
+    </button>
+
+    <div class="logo">🍔</div>
+
+    <div class="brand">
+      <h1>VF Filho Lanche</h1>
+      <p>
+        📍 Estrada Luiz Mário da Rocha Lima, 1459 ·
+        🕐 10:00 às 00:00
+      </p>
+    </div>
+
+    <button class="cart-btn"
+      onclick="openCart()"
+      aria-label="Abrir carrinho">
+      🛒
+      <span class="badge" id="cartBadge">0</span>
+    </button>
+
+  </div>
+</header>
+
+<div class="overlay"
+     id="overlay"
+     onclick="closeAll()">
+</div>
+
+<aside class="drawer" id="drawer">
+
+  <div class="drawer-head">
+    <h2>Menu</h2>
+    <button class="close"
+            onclick="closeMenu()">
+      ✕
+    </button>
+  </div>
+
+  <nav>
+
+    <a href="#inicio"
+       onclick="closeMenu()">
+      🏠 Início
+    </a>
+
+    <a href="#cardapio"
+       onclick="closeMenu()">
+      🍔 Cardápio
+    </a>
+
+    <a href="#"
+       onclick="openCart();closeMenu()">
+      🛒 Meu pedido
+    </a>
+
+    <a href="#"
+       onclick="showLastOrder();closeMenu()">
+      📦 Acompanhar pedido
+    </a>
+
+    <a href="https://wa.me/5521983950843"
+       target="_blank"
+       rel="noopener">
+      📱 WhatsApp
+    </a>
+
+    <a href="https://instagram.com/"
+       target="_blank"
+       rel="noopener">
+      📸 Instagram
+    </a>
+
+    <a href="#sobre"
+       onclick="closeMenu()">
+      ℹ️ Sobre a loja
+    </a>
+
+    <a href="#entrega"
+       onclick="closeMenu()">
+      📍 Entrega e retirada
+    </a>
+
+    <a href="#horarios"
+       onclick="closeMenu()">
+      🕐 Horário de funcionamento
+    </a>
+
+  </nav>
+
+</aside>
+
+<section class="hero" id="inicio">
+
+  <div class="hero-box">
+
+    <div>
+      <h2>
+        Seu lanche do seu jeito 🍔
+      </h2>
+
+      <p>
+        Escolha seus produtos, monte seu pedido
+        e finalize diretamente pelo
+        <strong>WhatsApp</strong>.
+      </p>
+    </div>
+
+    <div class="hero-emoji">
+      🍟
+    </div>
+
+  </div>
+
+</section>
+
+<div class="search">
+
+  <input
+    id="search"
+    type="search"
+    placeholder="🔎 Buscar no cardápio..."
+    oninput="renderProducts()">
+
+</div>
+
+<div class="categories"
+     id="categories">
+</div>
+
+<main id="cardapio"></main>
+
+<footer class="footer" id="sobre">
+
+  <div class="footer-inner">
+
+    <h3>
+      VF Filho Lanche 🍔
+    </h3>
+
+    <p>
+      Estrada Luiz Mário da Rocha Lima, 1459
+    </p>
+
+    <p id="entrega">
+      🛵 Pedidos para entrega ou retirada na loja.
+      A disponibilidade e eventual taxa de entrega
+      são confirmadas no atendimento pelo WhatsApp.
+    </p>
+
+    <p id="horarios">
+      🕐 Funcionamento:
+      todos os dias, das 10:00 às 00:00.
+    </p>
+
+    <p>
+      📱 WhatsApp: (21) 98395-0843
+    </p>
+
+  </div>
+
+</footer>
+
+<aside class="cart-panel"
+       id="cartPanel">
+
+  <div class="cart-head">
+
+    <strong>
+      Meu pedido
+    </strong>
+
+    <button class="close"
+            onclick="closeCart()">
+      ✕
+    </button>
+
+  </div>
+
+  <div class="cart-items"
+       id="cartItems">
+  </div>
+
+  <div class="cart-footer">
+
+    <div class="total">
+      <span>Total</span>
+      <span id="cartTotal">
+        R$ 0,00
+      </span>
+    </div>
+
+    <button class="primary"
+            onclick="openCheckout()">
+      Finalizar pelo WhatsApp
+    </button>
+
+    <button class="secondary"
+            onclick="clearCart()">
+      Limpar pedido
+    </button>
+
+  </div>
+
+</aside>
+
+<div class="modal"
+     id="checkoutModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>
+        Finalizar pedido
+      </h2>
+
+      <button class="close"
+              onclick="closeCheckout()">
+        ✕
+      </button>
+
+    </div>
+
+    <div class="notice">
+      Confira seus dados antes de enviar.
+      O pedido será registrado no sistema e
+      também aberto no WhatsApp da loja.
+    </div>
+
+    <form id="checkoutForm"
+          onsubmit="sendWhatsApp(event)">
+
+      <div class="form-grid">
+
+        <div class="field">
+
+          <label>
+            Nome completo *
+          </label>
+
+          <input
+            id="name"
+            required
+            autocomplete="name">
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            Celular / WhatsApp *
+          </label>
+
+          <input
+            id="phone"
+            required
+            type="tel"
+            autocomplete="tel"
+            placeholder="(21) 99999-9999">
+
+        </div>
+
+        <div class="field full">
+
+          <label>
+            Tipo de pedido *
+          </label>
+
+          <div class="radio-row">
+
+            <label class="radio">
+
+              <input
+                type="radio"
+                name="delivery"
+                value="Entrega"
+                checked
+                onchange="toggleAddress()">
+
+              🛵 Entrega
+
+            </label>
+
+            <label class="radio">
+
+              <input
+                type="radio"
+                name="delivery"
+                value="Retirada"
+                onchange="toggleAddress()">
+
+              🏪 Retirada
+
+            </label>
+
+          </div>
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            Rua / endereço *
+          </label>
+
+          <input
+            id="address"
+            required
+            autocomplete="street-address">
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            Número *
+          </label>
+
+          <input id="number"
+                 required>
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            Complemento
+          </label>
+
+          <input id="complement">
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            Bairro *
+          </label>
+
+          <input
+            id="neighborhood"
+            required>
+
+        </div>
+
+        <div class="field full">
+
+          <label>
+            Ponto de referência
+          </label>
+
+          <input
+            id="reference"
+            placeholder="Ex.: perto de...">
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            Forma de pagamento *
+          </label>
+
+          <select
+            id="payment"
+            required
+            onchange="toggleChange()">
+
+            <option value="">
+              Selecione
+            </option>
+
+            <option>
+              Pix
+            </option>
+
+            <option>
+              Cartão de crédito
+            </option>
+
+            <option>
+              Cartão de débito
+            </option>
+
+            <option>
+              Dinheiro
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="field"
+             id="changeField"
+             style="display:none">
+
+          <label>
+            Troco para quanto?
+          </label>
+
+          <input
+            id="change"
+            placeholder="Ex.: R$ 50,00">
+
+        </div>
+
+        <div class="field full">
+
+          <label>
+            Observações
+          </label>
+
+          <textarea
+            id="notes"
+            placeholder="Ex.: retirar cebola, tocar interfone, etc.">
+          </textarea>
+
+        </div>
+
+      </div>
+
+      <div class="order-box">
+
+        <strong>
+          Resumo
+        </strong>
+
+        <div id="checkoutSummary"></div>
+
+        <hr>
+
+        <div class="total">
+
+          <span>
+            Total
+          </span>
+
+          <span id="checkoutTotal">
+            R$ 0,00
+          </span>
+
+        </div>
+
+      </div>
+
+      <button
+        class="primary"
+        type="submit">
+
+        📲 Enviar pedido pelo WhatsApp
+
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<div class="modal"
+     id="orderModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>
+        Pedido
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeOrder()">
+
+        ✕
+
+      </button>
+
+    </div>
+
+    <div id="orderContent"></div>
+
+    <button
+      class="primary"
+      onclick="openWhatsAppAgain()">
+
+      📲 Abrir WhatsApp
+
+    </button>
+
+  </div>
+
+</div>
+
+<div class="toast"
+     id="toast">
+</div>
+
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* =====================================================
+   SUPABASE
+   ===================================================== */
+
+const SUPABASE_URL =
+  "https://zjfgmokdcwzwpoancpgr.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_XSySYoAnL4D2xydCg98Lrg_JWB4ulQL";
+
+const supabase =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+/* =====================================================
+   CONFIGURAÇÕES
+   ===================================================== */
+
+const WHATSAPP =
+  "5521983950843";
+
+const INSTAGRAM =
+  "https://instagram.com/";
+
+
+/* =====================================================
+   CATEGORIAS
+   ===================================================== */
+
+const categories = [
+
+  ["hamburgueres","🍔 Hambúrgueres"],
+
+  ["combos","🍟 Combos"],
+
+  ["promocoes","🔥 Promoções"],
+
+  ["bebidas","🥤 Bebidas"],
+
+  ["adicionais","➕ Adicionais"],
+
+  ["porcoes","🍟 Porções"],
+
+  ["frango","🍗 Frango Assado"]
+
+];
+
+
+/* =====================================================
+   PRODUTOS
+   ===================================================== */
+
+const products = [
+
+{
+  id:1,
+  cat:"hamburgueres",
+  name:"Cheesburger",
+  price:11.99,
+  emoji:"🍔",
+  desc:"Pão macio, carne bovina suculenta, presunto e queijo prato derretido, acompanhado de barbecue, maionese, mostarda e ketchup."
+},
+
+{
+  id:2,
+  cat:"hamburgueres",
+  name:"X-Tudo",
+  price:13.99,
+  emoji:"🍔",
+  desc:"Pão macio, carne bovina, queijo, presunto, ovo, salada fresquinha, muita batata palha, ketchup, maionese, mostarda e barbecue."
+},
+
+{
+  id:3,
+  cat:"hamburgueres",
+  name:"X-Duplo",
+  price:16.99,
+  emoji:"🍔",
+  desc:"Pão fresquinho, duas carnes bovinas, ovo, queijo prato, presunto, salada crocante, batata palha, ketchup, maionese, barbecue e mostarda."
+},
+
+{
+  id:4,
+  cat:"hamburgueres",
+  name:"X-Batata",
+  price:15.99,
+  emoji:"🍔",
+  desc:"Pão fresquinho, carne bovina, presunto, cheddar cremoso, bacon crocante, ovo e salada, finalizado com fritas crocantes."
+},
+
+{
+  id:5,
+  cat:"hamburgueres",
+  name:"X-Picanha",
+  price:19.99,
+  emoji:"🥩",
+  desc:"Pão macio, carne de picanha suculenta, presunto, queijo, ovo, bacon crocante, batata palha, alface, ketchup, maionese e barbecue."
+},
+
+{
+  id:6,
+  cat:"hamburgueres",
+  name:"Duplo Cheddar",
+  price:18.99,
+  emoji:"🍔",
+  desc:"Pão macio, duas carnes bovinas suculentas, cheddar derretido, cebola caramelizada e molho barbecue."
+},
+
+{
+  id:7,
+  cat:"hamburgueres",
+  name:"X-Bacon",
+  price:18.99,
+  emoji:"🥓",
+  desc:"Pão macio, carne bovina, ovo, presunto, queijo prato, salada, batata palha, bacon crocante, ketchup, mostarda, maionese e barbecue."
+},
+
+{
+  id:8,
+  cat:"hamburgueres",
+  name:"X-Mineiro",
+  price:19.99,
+  emoji:"🧀",
+  desc:"Pão macio, carne bovina, carne sabor picanha, presunto douradinho, queijo minas derretido, batata palha, salada, ketchup, barbecue e maionese."
+},
+
+{
+  id:9,
+  cat:"hamburgueres",
+  name:"X-3 Queijos",
+  price:20.99,
+  emoji:"🧀",
+  desc:"Pão macio, carne bovina, carne sabor picanha, queijo prato, cheddar e queijo minas, presunto, bacon, batata palha, salada, ketchup, barbecue e maionese."
+},
+
+{
+  id:10,
+  cat:"hamburgueres",
+  name:"X-Onion",
+  price:18.99,
+  emoji:"🧅",
+  desc:"Pão macio e fresquinho, hambúrguer de picanha, cheddar derretido, dois anéis de cebola fritos e crocantes, barbecue, ketchup e maionese."
+},
+
+{
+  id:11,
+  cat:"combos",
+  name:"Combo Individual",
+  price:29.99,
+  emoji:"🍟",
+  desc:"X-Tudo completo + batata frita douradinha com calabresa, ketchup e maionese + 4 anéis de cebola + 4 nuggets."
+},
+
+{
+  id:12,
+  cat:"combos",
+  name:"Combo Duplo",
+  price:38.99,
+  emoji:"🍟",
+  desc:"2 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 5 anéis de cebola + 5 nuggets."
+},
+
+{
+  id:13,
+  cat:"combos",
+  name:"Combo Família",
+  price:64.99,
+  emoji:"🍔",
+  desc:"4 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 6 anéis de cebola + 6 nuggets."
+},
+
+{
+  id:14,
+  cat:"promocoes",
+  name:"X-Tudo + Guaravita + Batata P",
+  price:19.99,
+  emoji:"🔥",
+  desc:"X-Tudo completo + batata P douradinha e crocante + Guaravita."
+},
+
+{
+  id:15,
+  cat:"promocoes",
+  name:"Duplo Cheddar + Coca-Cola Lata",
+  price:18.99,
+  emoji:"🥤",
+  desc:"Duplo Cheddar com duas carnes, cheddar, cebola caramelizada e barbecue + Coca-Cola lata."
+},
+
+{
+  id:16,
+  cat:"bebidas",
+  name:"Coca-Cola lata 350 ml",
+  price:10.00,
+  emoji:"🥤",
+  desc:"Coca-Cola lata 350 ml."
+},
+
+{
+  id:17,
+  cat:"bebidas",
+  name:"Guaravita Natural 290 ml",
+  price:6.00,
+  emoji:"🧃",
+  desc:"Guaravita Natural 290 ml."
+},
+
+{
+  id:18,
+  cat:"bebidas",
+  name:"Água Mineral 500 ml",
+  price:5.00,
+  emoji:"💧",
+  desc:"Água mineral 500 ml."
+},
+
+{
+  id:19,
+  cat:"adicionais",
+  name:"Maionese",
+  price:3.00,
+  emoji:"🥫",
+  desc:"Adicional de maionese."
+},
+
+{
+  id:20,
+  cat:"adicionais",
+  name:"Barbecue",
+  price:3.00,
+  emoji:"🥫",
+  desc:"Adicional de molho barbecue."
+},
+
+{
+  id:21,
+  cat:"adicionais",
+  name:"Ketchup",
+  price:3.00,
+  emoji:"🥫",
+  desc:"Adicional de ketchup."
+},
+
+{
+  id:22,
+  cat:"adicionais",
+  name:"Mostarda",
+  price:3.00,
+  emoji:"🥫",
+  desc:"Adicional de mostarda."
+},
+
+{
+  id:23,
+  cat:"adicionais",
+  name:"Molho Verde",
+  price:4.00,
+  emoji:"🥫",
+  desc:"Adicional de molho verde."
+},
+
+{
+  id:24,
+  cat:"adicionais",
+  name:"Cheddar",
+  price:5.00,
+  emoji:"🧀",
+  desc:"Adicional de cheddar."
+},
+
+{
+  id:25,
+  cat:"adicionais",
+  name:"Ovo",
+  price:5.00,
+  emoji:"🥚",
+  desc:"Adicional de ovo."
+},
+
+{
+  id:26,
+  cat:"porcoes",
+  name:"Batata Frita P",
+  price:15.00,
+  emoji:"🍟",
+  desc:"Porção de batata frita tamanho P."
+},
+
+{
+  id:27,
+  cat:"porcoes",
+  name:"Batata Frita M",
+  price:21.99,
+  emoji:"🍟",
+  desc:"Porção de batata frita tamanho M."
+},
+
+{
+  id:28,
+  cat:"porcoes",
+  name:"Batata Frita G",
+  price:30.00,
+  emoji:"🍟",
+  desc:"Porção de batata frita tamanho G."
+},
+
+{
+  id:29,
+  cat:"frango",
+  name:"Frango Assado Completo",
+  price:45.00,
+  emoji:"🍗",
+  desc:"Frango assado douradinho e suculento, acompanhado de linguiça de churrasco, batatas, calabresas e farofa crocante."
+}
+
+];
+
+
+/* =====================================================
+   CARRINHO
+   ===================================================== */
+
+let cart =
+  JSON.parse(
+    localStorage.getItem("vf_cart") || "[]"
+  );
+
+let lastOrder =
+  JSON.parse(
+    localStorage.getItem("vf_last_order") || "null"
+  );
+
+
+/* =====================================================
+   FUNÇÕES BÁSICAS
+   ===================================================== */
+
+const money = value =>
+  Number(value).toLocaleString(
+    "pt-BR",
+    {
+      style:"currency",
+      currency:"BRL"
+    }
+  );
+
+
+function save(){
+
+  localStorage.setItem(
+    "vf_cart",
+    JSON.stringify(cart)
+  );
+
+}
+
+
+function cartCount(){
+
+  return cart.reduce(
+    (sum,item) => sum + item.qty,
+    0
+  );
+
+}
+
+
+function total(){
+
+  return cart.reduce(
+    (sum,item) =>
+      sum + item.price * item.qty,
+    0
+  );
+
+}
+
+
+function toast(text){
+
+  const element =
+    document.getElementById("toast");
+
+  element.textContent = text;
+
+  element.classList.add("show");
+
+  setTimeout(
+    () =>
+      element.classList.remove("show"),
+    2200
+  );
+
+}
+
+
+/* =====================================================
+   MENU
+   ===================================================== */
+
+function openMenu(){
+
+  document
+    .getElementById("drawer")
+    .classList.add("open");
+
+  document
+    .getElementById("overlay")
+    .classList.add("open");
+
+}
+
+
+function closeMenu(){
+
+  document
+    .getElementById("drawer")
+    .classList.remove("open");
+
+  document
+    .getElementById("overlay")
+    .classList.remove("open");
+
+}
+
+
+/* =====================================================
+   CARRINHO
+   ===================================================== */
+
+function openCart(){
+
+  closeMenu();
+
+  renderCart();
+
+  document
+    .getElementById("cartPanel")
+    .classList.add("open");
+
+}
+
+
+function closeCart(){
+
+  document
+    .getElementById("cartPanel")
+    .classList.remove("open");
+
+}
+
+
+function closeAll(){
+
+  closeMenu();
+
+  closeCart();
+
+}
+
+
+function add(id){
+
+  const product =
+    products.find(
+      item => item.id === id
+    );
+
+  if(!product) return;
+
+  let item =
+    cart.find(
+      item => item.id === id
+    );
+
+  if(item){
+
+    item.qty++;
+
+  }else{
+
+    cart.push({
+      ...product,
+      qty:1
+    });
+
+  }
+
+  save();
+
+  renderCart();
+
+  toast(
+    product.name +
+    " adicionado!"
+  );
+
+}
+
+
+function change(id, amount){
+
+  const item =
+    cart.find(
+      item => item.id === id
+    );
+
+  if(!item) return;
+
+  item.qty += amount;
+
+  if(item.qty <= 0){
+
+    cart =
+      cart.filter(
+        item => item.id !== id
+      );
+
+  }
+
+  save();
+
+  renderCart();
+
+}
+
+
+function clearCart(){
+
+  cart = [];
+
+  save();
+
+  renderCart();
+
+  toast(
+    "Pedido limpo"
+  );
+
+}
+
+
+/* =====================================================
+   CATEGORIAS
+   ===================================================== */
+
+function renderCategories(){
+
+  document.getElementById(
+    "categories"
+  ).innerHTML =
+
+    categories.map(
+      (category,index) => `
+
+        <button
+          class="${index === 0 ? "active" : ""}"
+          onclick="
+            document
+              .getElementById('${category[0]}')
+              .scrollIntoView({
+                behavior:'smooth'
+              });
+            setActive(this)
+          ">
+
+          ${category[1]}
+
+        </button>
+
+      `
+    ).join("");
+
+}
+
+
+function setActive(element){
+
+  document
+    .querySelectorAll(
+      ".categories button"
+    )
+    .forEach(
+      button =>
+        button.classList.remove("active")
+    );
+
+  element.classList.add("active");
+
+}
+
+
+/* =====================================================
+   PRODUTOS
+   ===================================================== */
+
+function renderProducts(){
+
+  const query =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const main =
+    document.getElementById(
+      "cardapio"
+    );
+
+  main.innerHTML =
+
+    categories.map(
+      ([category,label]) => {
+
+        const list =
+          products.filter(
+            product =>
+              product.cat === category &&
+              (
+                product.name
+                  .toLowerCase()
+                  .includes(query) ||
+
+                product.desc
+                  .toLowerCase()
+                  .includes(query)
+              )
+          );
+
+        if(!list.length)
+          return "";
+
+        return `
+
+          <section
+            class="section"
+            id="${category}">
+
+            <h2>
+              ${label}
+            </h2>
+
+            <div class="grid">
+
+              ${list.map(
+                product => `
+
+                <article class="product">
+
+                  <div class="emoji">
+                    ${product.emoji}
+                  </div>
+
+                  <h3>
+                    ${product.name}
+                  </h3>
+
+                  <div class="desc">
+                    ${product.desc}
+                  </div>
+
+                  <div class="bottom">
+
+                    <span class="price">
+                      ${money(product.price)}
+                    </span>
+
+                    <button
+                      class="add"
+                      onclick="add(${product.id})">
+
+                      Adicionar
+
+                    </button>
+
+                  </div>
+
+                </article>
+
+              `
+              ).join("")}
+
+            </div>
+
+          </section>
+
+        `;
+
+      }
+    ).join("")
+
+    ||
+
+    `
+      <div class="empty">
+        Nenhum produto encontrado.
+      </div>
+    `;
+
+}
+
+
+/* =====================================================
+   RENDER CARRINHO
+   ===================================================== */
+
+function renderCart(){
+
+  document.getElementById(
+    "cartBadge"
+  ).textContent =
+    cartCount();
+
+  document.getElementById(
+    "cartTotal"
+  ).textContent =
+    money(total());
+
+  const element =
+    document.getElementById(
+      "cartItems"
+    );
+
+  if(!cart.length){
+
+    element.innerHTML = `
+
+      <div class="empty">
+
+        Seu pedido está vazio.
+
+        <br>
+
+        Escolha algo delicioso
+        no cardápio. 🍔
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  element.innerHTML =
+
+    cart.map(
+      item => `
+
+        <div class="cart-item">
+
+          <div class="cart-line">
+
+            <strong>
+              ${item.name}
+            </strong>
+
+            <strong>
+              ${money(
+                item.price * item.qty
+              )}
+            </strong>
+
+          </div>
+
+          <div class="desc">
+            ${money(item.price)}
+            cada
+          </div>
+
+          <div class="qty">
+
+            <button
+              onclick="change(${item.id},-1)">
+              −
+            </button>
+
+            <strong>
+              ${item.qty}
+            </strong>
+
+            <button
+              onclick="change(${item.id},1)">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+      `
+    ).join("");
+
+}
+
+
+/* =====================================================
+   CHECKOUT
+   ===================================================== */
+
+function openCheckout(){
+
+  if(!cart.length){
+
+    toast(
+      "Adicione produtos ao pedido primeiro."
+    );
+
+    return;
+
+  }
+
+  closeCart();
+
+  document
+    .getElementById(
+      "checkoutModal"
+    )
+    .classList.add("open");
+
+  renderCheckoutSummary();
+
+}
+
+
+function closeCheckout(){
+
+  document
+    .getElementById(
+      "checkoutModal"
+    )
+    .classList.remove("open");
+
+}
+
+
+function renderCheckoutSummary(){
+
+  document.getElementById(
+    "checkoutSummary"
+  ).innerHTML =
+
+    cart.map(
+      item => `
+
+        <div>
+
+          ${item.qty}x
+          ${item.name}
+          —
+          ${money(
+            item.price * item.qty
+          )}
+
+        </div>
+
+      `
+    ).join("");
+
+  document.getElementById(
+    "checkoutTotal"
+  ).textContent =
+    money(total());
+
+}
+
+
+function toggleChange(){
+
+  document.getElementById(
+    "changeField"
+  ).style.display =
+
+    document.getElementById(
+      "payment"
+    ).value === "Dinheiro"
+
+      ? "block"
+      : "none";
+
+}
+
+
+function toggleAddress(){
+
+  const delivery =
+    document.querySelector(
+      'input[name="delivery"]:checked'
+    ).value === "Entrega";
+
+  [
+    "address",
+    "number",
+    "neighborhood"
+  ].forEach(
+    id => {
+
+      document.getElementById(
+        id
+      ).required = delivery;
+
+    }
+  );
+
+  document.getElementById(
+    "address"
+  ).disabled = !delivery;
+
+  document.getElementById(
+    "number"
+  ).disabled = !delivery;
+
+  document.getElementById(
+    "neighborhood"
+  ).disabled = !delivery;
+
+}
+
+
+/* =====================================================
+   ENVIAR PEDIDO
+   ===================================================== */
+
+async function sendWhatsApp(event){
+
+  event.preventDefault();
+
+  if(!cart.length){
+
+    alert(
+      "Seu carrinho está vazio."
+    );
+
+    return;
+
+  }
+
+
+  const delivery =
+    document.querySelector(
+      'input[name="delivery"]:checked'
+    ).value;
+
+
+  const name =
+    document
+      .getElementById("name")
+      .value
+      .trim();
+
+
+  const phone =
+    document
+      .getElementById("phone")
+      .value
+      .trim();
+
+
+  const payment =
+    document.getElementById(
+      "payment"
+    ).value;
+
+
+  const totalPedido =
+    Number(
+      total().toFixed(2)
+    );
+
+
+  const itensPedido =
+    cart.map(
+      item => ({
+
+        id:item.id,
+
+        nome:item.name,
+
+        quantidade:item.qty,
+
+        preco:Number(
+          item.price
+        ),
+
+        subtotal:Number(
+          (
+            item.price *
+            item.qty
+          ).toFixed(2)
+        )
+
+      })
+    );
+
+
+  let endereco = null;
+
+  let numero = null;
+
+  let complemento = null;
+
+  let bairro = null;
+
+  let referencia = null;
+
+
+  if(delivery === "Entrega"){
+
+    endereco =
+      document
+        .getElementById(
+          "address"
+        )
+        .value
+        .trim();
+
+    numero =
+      document
+        .getElementById(
+          "number"
+        )
+        .value
+        .trim();
+
+    complemento =
+      document
+        .getElementById(
+          "complement"
+        )
+        .value
+        .trim();
+
+    bairro =
+      document
+        .getElementById(
+          "neighborhood"
+        )
+        .value
+        .trim();
+
+    referencia =
+      document
+        .getElementById(
+          "reference"
+        )
+        .value
+        .trim();
+
+  }
+
+
+  const troco =
+    payment === "Dinheiro"
+
+      ? document
+          .getElementById(
+            "change"
+          )
+          .value
+          .trim()
+
+      : null;
+
+
+  const observacoes =
+    document
+      .getElementById(
+        "notes"
+      )
+      .value
+      .trim();
+
+
+  /*
+    Abre uma janela imediatamente
+    para evitar bloqueio do navegador.
+  */
+
+  const whatsappWindow =
+    window.open(
+      "",
+      "_blank"
+    );
+
+
+  try{
+
+    /*
+      SALVA O PEDIDO NO SUPABASE
+    */
+
+    const {
+      data:pedido,
+      error
+    } = await supabase
+
+      .from("pedidos")
+
+      .insert({
+
+        cliente_nome:name,
+
+        telefone:phone,
+
+        tipo_entrega:delivery,
+
+        endereco:endereco,
+
+        numero:numero,
+
+        complemento:complemento,
+
+        bairro:bairro,
+
+        referencia:referencia,
+
+        pagamento:payment,
+
+        troco:troco,
+
+        itens:itensPedido,
+
+        total:totalPedido,
+
+        observacoes:observacoes,
+
+        status:"novo"
+
+      })
+
+      .select()
+
+      .single();
+
+
+    if(error){
+
+      console.error(
+        "Erro ao salvar pedido:",
+        error
+      );
+
+      if(whatsappWindow)
+        whatsappWindow.close();
+
+      alert(
+        "Não foi possível registrar o pedido agora. Verifique sua internet e tente novamente."
+      );
+
+      return;
+
+    }
+
+
+    /*
+      NÚMERO GERADO PELO BANCO
+    */
+
+    const orderNumber =
+      pedido.numero_pedido ||
+      (
+        "#" +
+        String(
+          pedido.id
+        ).padStart(
+          4,
+          "0"
+        )
+      );
+
+
+    /*
+      MONTA OS ITENS
+    */
+
+    const lines =
+      cart.map(
+        item =>
+          `• ${item.qty}x ${item.name} — ${money(
+            item.price * item.qty
+          )}`
+      ).join("\n");
+
+
+    /*
+      MENSAGEM DO WHATSAPP
+    */
+
+    let msg =
+      `*NOVO PEDIDO - VF FILHO LANCHE*\n\n`;
+
+
+    msg +=
+      `*Pedido:* ${orderNumber}\n`;
+
+
+    msg +=
+      `*Cliente:* ${name}\n`;
+
+
+    msg +=
+      `*Celular:* ${phone}\n`;
+
+
+    msg +=
+      `*Tipo:* ${delivery}\n\n`;
+
+
+    msg +=
+      `*ITENS*\n`;
+
+
+    msg +=
+      `${lines}\n\n`;
+
+
+    if(delivery === "Entrega"){
+
+      const addressText =
+
+        `${endereco}, ${numero}` +
+
+        (
+          complemento
+            ? `, ${complemento}`
+            : ""
+        ) +
+
+        ` - ${bairro}`;
+
+
+      msg +=
+        `*Endereço:* ${addressText}\n`;
+
+
+      msg +=
+        `*Referência:* ${
+          referencia ||
+          "Não informado"
+        }\n`;
+
+    }
+
+
+    msg +=
+      `*Pagamento:* ${payment}\n`;
+
+
+    if(payment === "Dinheiro"){
+
+      msg +=
+        `*Troco:* ${
+          troco ||
+          "Não informado"
+        }\n`;
+
+    }
+
+
+    msg +=
+      `*Observações:* ${
+        observacoes ||
+        "Nenhuma"
+      }\n\n`;
+
+
+    msg +=
+      `*TOTAL: ${money(
+        totalPedido
+      )}*`;
+
+
+    /*
+      SALVA LOCALMENTE
+    */
+
+    lastOrder = {
+
+      id:pedido.id,
+
+      number:orderNumber,
+
+      name:name,
+
+      phone:phone,
+
+      delivery:delivery,
+
+      payment:payment,
+
+      total:totalPedido,
+
+      date:new Date().toISOString(),
+
+      status:"Pedido recebido"
+
+    };
+
+
+    localStorage.setItem(
+      "vf_last_order",
+      JSON.stringify(
+        lastOrder
+      )
+    );
+
+
+    /*
+      URL DO WHATSAPP
+    */
+
+    const whatsappURL =
+      `https://wa.me/${WHATSAPP}?text=${
+        encodeURIComponent(msg)
+      }`;
+
+
+    /*
+      MANDA A JANELA PARA O WHATSAPP
+    */
+
+    if(whatsappWindow){
+
+      whatsappWindow.location.href =
+        whatsappURL;
+
+    }else{
+
+      window.location.href =
+        whatsappURL;
+
+    }
+
+
+    /*
+      LIMPA CARRINHO
+    */
+
+    cart = [];
+
+    save();
+
+    renderCart();
+
+
+    /*
+      FECHA CHECKOUT
+    */
+
+    closeCheckout();
+
+
+    /*
+      MOSTRA PEDIDO
+    */
+
+    document.getElementById(
+      "orderContent"
+    ).innerHTML =
+      orderHTML();
+
+
+    document.getElementById(
+      "orderModal"
+    ).classList.add("open");
+
+
+  }catch(error){
+
+    console.error(
+      "Erro inesperado:",
+      error
+    );
+
+    if(whatsappWindow)
+      whatsappWindow.close();
+
+    alert(
+      "Ocorreu um erro ao enviar o pedido. Tente novamente."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   PEDIDO SALVO
+   ===================================================== */
+
+function orderHTML(){
+
+  if(!lastOrder){
+
+    return `
+
+      <div class="empty">
+
+        Nenhum pedido salvo
+        neste aparelho.
+
+      </div>
+
+    `;
+
+  }
+
+
+  return `
+
+    <div class="order-box">
+
+      <strong>
+        Pedido ${lastOrder.number}
+      </strong>
+
+      <p>
+        ${lastOrder.status}
+      </p>
+
+      <p>
+        Cliente:
+        ${lastOrder.name}
+      </p>
+
+      <p>
+        Tipo:
+        ${lastOrder.delivery}
+      </p>
+
+      <p>
+        Pagamento:
+        ${lastOrder.payment}
+      </p>
+
+      <div class="total">
+
+        <span>
+          Total
+        </span>
+
+        <span>
+          ${money(
+            lastOrder.total
+          )}
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <h3>
+      Acompanhamento
+    </h3>
+
+
+    <div class="status">
+
+      <div class="step active">
+        ✓ Recebido
+      </div>
+
+      <div class="step">
+        Aceito
+      </div>
+
+      <div class="step">
+        Em preparo
+      </div>
+
+      <div class="step">
+        Pronto
+      </div>
+
+      <div class="step">
+        Saiu para entrega
+      </div>
+
+    </div>
+
+
+    <p class="desc">
+
+      Seu pedido foi registrado.
+      A loja receberá o pedido pelo sistema
+      e também pelo WhatsApp.
+
+    </p>
+
+  `;
+
+}
+
+
+function showLastOrder(){
+
+  document.getElementById(
+    "orderContent"
+  ).innerHTML =
+    orderHTML();
+
+  document.getElementById(
+    "orderModal"
+  ).classList.add("open");
+
+}
+
+
+function closeOrder(){
+
+  document.getElementById(
+    "orderModal"
+  ).classList.remove("open");
+
+}
+
+
+function openWhatsAppAgain(){
+
+  window.open(
+    `https://wa.me/${WHATSAPP}`,
+    "_blank"
+  );
+
+}
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+   ===================================================== */
+
+renderCategories();
+
+renderProducts();
+
+renderCart();
+
+toggleAddress();
+
+</script>
+
+</body>
+</html>
