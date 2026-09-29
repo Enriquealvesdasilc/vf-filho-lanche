@@ -1,0 +1,2159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Painel | VF Filhos Lanches</title>
+
+<style>
+:root{
+  --preto:#080808;
+  --preto2:#111;
+  --card:#171717;
+  --borda:#292929;
+  --dourado:#d4af37;
+  --dourado2:#f1d36a;
+  --branco:#fff;
+  --cinza:#aaa;
+  --verde:#25d366;
+  --azul:#2196f3;
+  --laranja:#ff9800;
+  --vermelho:#e53935;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:var(--preto);
+  color:white;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#050505;
+  border-bottom:1px solid var(--borda);
+  padding:14px;
+}
+
+.topo{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.logo strong{
+  color:var(--dourado);
+  font-size:23px;
+}
+
+.logo small{
+  display:block;
+  color:#999;
+  margin-top:3px;
+}
+
+.acoes-topo{
+  display:flex;
+  gap:8px;
+}
+
+.btn-topo{
+  background:#151515;
+  border:1px solid #444;
+  color:white;
+  border-radius:9px;
+  padding:10px 12px;
+}
+
+.btn-topo:hover{
+  border-color:var(--dourado);
+}
+
+.btn-som.ativo{
+  border-color:var(--dourado);
+  color:var(--dourado);
+}
+
+/* CONTEÚDO */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px 15px 60px;
+}
+
+.painel-titulo{
+  margin-bottom:20px;
+}
+
+.painel-titulo h1{
+  color:var(--dourado);
+  margin-bottom:5px;
+}
+
+.painel-titulo p{
+  color:#999;
+}
+
+/* ESTATÍSTICAS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.stat{
+  background:var(--card);
+  border:1px solid var(--borda);
+  border-radius:13px;
+  padding:16px;
+}
+
+.stat span{
+  display:block;
+  color:#999;
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.stat strong{
+  color:var(--dourado2);
+  font-size:25px;
+}
+
+/* FILTROS */
+
+.filtros{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+
+.filtros input{
+  flex:1;
+  min-width:220px;
+  background:#151515;
+  border:1px solid #444;
+  color:white;
+  border-radius:10px;
+  padding:12px;
+  outline:none;
+}
+
+.filtros input:focus{
+  border-color:var(--dourado);
+}
+
+.filtro-btn{
+  background:#151515;
+  border:1px solid #444;
+  color:#ddd;
+  padding:10px 13px;
+  border-radius:9px;
+}
+
+.filtro-btn.ativo{
+  background:var(--dourado);
+  color:#000;
+  border-color:var(--dourado);
+  font-weight:bold;
+}
+
+/* PEDIDOS */
+
+.pedidos{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+  gap:15px;
+}
+
+.pedido{
+  background:var(--card);
+  border:1px solid var(--borda);
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.pedido.novo{
+  border-color:var(--dourado);
+  box-shadow:0 0 18px rgba(212,175,55,.18);
+}
+
+.pedido-cabecalho{
+  background:#111;
+  padding:14px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  border-bottom:1px solid var(--borda);
+}
+
+.numero{
+  color:var(--dourado2);
+  font-weight:bold;
+  font-size:18px;
+}
+
+.data{
+  color:#888;
+  font-size:12px;
+  margin-top:4px;
+}
+
+.status{
+  padding:6px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.status-novo{
+  background:#4d3d00;
+  color:#ffd84d;
+}
+
+.status-aceito{
+  background:#103c1d;
+  color:#57e477;
+}
+
+.status-preparo{
+  background:#12385b;
+  color:#69b7ff;
+}
+
+.status-entrega{
+  background:#49310c;
+  color:#ffbd4d;
+}
+
+.status-finalizado{
+  background:#173b32;
+  color:#5ee8c0;
+}
+
+.status-cancelado{
+  background:#481414;
+  color:#ff6969;
+}
+
+.pedido-corpo{
+  padding:15px;
+}
+
+.cliente{
+  margin-bottom:13px;
+}
+
+.cliente strong{
+  display:block;
+  font-size:17px;
+}
+
+.cliente span{
+  display:block;
+  color:#aaa;
+  font-size:13px;
+  margin-top:4px;
+}
+
+.entrega{
+  background:#111;
+  border:1px solid #292929;
+  border-radius:9px;
+  padding:10px;
+  margin-bottom:12px;
+  color:#ccc;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.itens{
+  margin-bottom:12px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:7px 0;
+  border-bottom:1px solid #252525;
+  font-size:14px;
+}
+
+.item:last-child{
+  border-bottom:0;
+}
+
+.item strong{
+  color:#ddd;
+}
+
+.item span{
+  color:var(--dourado2);
+  white-space:nowrap;
+}
+
+.observacao{
+  background:#211d0b;
+  border:1px solid #5c4d19;
+  border-radius:9px;
+  padding:10px;
+  color:#ddd;
+  font-size:13px;
+  margin-bottom:12px;
+}
+
+.total-pedido{
+  border-top:1px solid #333;
+  padding-top:12px;
+  display:flex;
+  justify-content:space-between;
+  font-size:19px;
+}
+
+.total-pedido strong{
+  color:var(--dourado2);
+}
+
+/* AÇÕES */
+
+.acoes-pedido{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  padding:0 15px 15px;
+}
+
+.btn-status{
+  border:0;
+  border-radius:9px;
+  padding:10px;
+  font-weight:bold;
+  color:white;
+}
+
+.btn-aceitar{
+  background:var(--verde);
+  color:#000;
+}
+
+.btn-preparo{
+  background:var(--azul);
+}
+
+.btn-entrega{
+  background:var(--laranja);
+  color:#000;
+}
+
+.btn-finalizar{
+  background:#00897b;
+}
+
+.btn-cancelar{
+  background:var(--vermelho);
+}
+
+.btn-imprimir{
+  background:#333;
+}
+
+.btn-status:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+/* VAZIO */
+
+.vazio{
+  text-align:center;
+  color:#777;
+  padding:50px 15px;
+  grid-column:1/-1;
+}
+
+/* AVISO NOVO PEDIDO */
+
+.novo-aviso{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:5000;
+  background:#111;
+  border:2px solid var(--dourado);
+  border-radius:13px;
+  padding:15px;
+  width:min(360px,calc(100% - 40px));
+  box-shadow:0 10px 35px rgba(0,0,0,.5);
+  transform:translateY(150%);
+  transition:.3s;
+}
+
+.novo-aviso.mostrar{
+  transform:translateY(0);
+}
+
+.novo-aviso strong{
+  color:var(--dourado);
+  font-size:18px;
+}
+
+.novo-aviso p{
+  color:#bbb;
+  margin:7px 0 12px;
+}
+
+.btn-ver-pedido{
+  width:100%;
+  background:var(--dourado);
+  color:#000;
+  border:0;
+  padding:10px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:20px;
+  transform:translate(-50%,120px);
+  background:#222;
+  border:1px solid var(--dourado);
+  color:white;
+  padding:12px 18px;
+  border-radius:9px;
+  z-index:6000;
+  transition:.3s;
+}
+
+.toast.mostrar{
+  transform:translate(-50%,0);
+}
+
+/* RESPONSIVO */
+
+@media(max-width:800px){
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:600px){
+
+  .topo{
+    align-items:flex-start;
+  }
+
+  .logo strong{
+    font-size:18px;
+  }
+
+  .logo small{
+    font-size:11px;
+  }
+
+  .acoes-topo{
+    flex-direction:column;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .pedidos{
+    grid-template-columns:1fr;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="topo">
+
+    <div class="logo">
+
+      <strong>
+        VF Filhos Lanches
+      </strong>
+
+      <small>
+        Painel de pedidos
+      </small>
+
+    </div>
+
+    <div class="acoes-topo">
+
+      <button
+        class="btn-topo btn-som"
+        id="btnSom"
+        onclick="ativarSom()"
+      >
+        🔔 Ativar som
+      </button>
+
+      <button
+        class="btn-topo"
+        onclick="carregarPedidos()"
+      >
+        🔄 Atualizar
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main class="container">
+
+  <div class="painel-titulo">
+
+    <h1>
+      📋 Pedidos
+    </h1>
+
+    <p>
+      Gerencie os pedidos da VF Filhos Lanches em tempo real.
+    </p>
+
+  </div>
+
+
+  <section class="stats">
+
+    <div class="stat">
+
+      <span>
+        Pedidos hoje
+      </span>
+
+      <strong id="statPedidos">
+        0
+      </strong>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span>
+        Novos
+      </span>
+
+      <strong id="statNovos">
+        0
+      </strong>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span>
+        Em preparo
+      </span>
+
+      <strong id="statPreparo">
+        0
+      </strong>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span>
+        Vendas hoje
+      </span>
+
+      <strong id="statVendas">
+        R$ 0,00
+      </strong>
+
+    </div>
+
+  </section>
+
+
+  <section class="filtros">
+
+    <input
+      id="busca"
+      type="search"
+      placeholder="🔎 Buscar pedido ou cliente..."
+      oninput="renderPedidos()"
+    >
+
+
+    <button
+      class="filtro-btn ativo"
+      data-filtro="todos"
+      onclick="mudarFiltro('todos')"
+    >
+      Todos
+    </button>
+
+
+    <button
+      class="filtro-btn"
+      data-filtro="novo"
+      onclick="mudarFiltro('novo')"
+    >
+      Novos
+    </button>
+
+
+    <button
+      class="filtro-btn"
+      data-filtro="preparo"
+      onclick="mudarFiltro('preparo')"
+    >
+      Em preparo
+    </button>
+
+
+    <button
+      class="filtro-btn"
+      data-filtro="entrega"
+      onclick="mudarFiltro('entrega')"
+    >
+      Saiu
+    </button>
+
+  </section>
+
+
+  <section
+    class="pedidos"
+    id="pedidos"
+  >
+
+    <div class="vazio">
+      Carregando pedidos...
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- AVISO -->
+
+<div
+  class="novo-aviso"
+  id="novoAviso"
+>
+
+  <strong>
+    🔔 NOVO PEDIDO!
+  </strong>
+
+  <p id="textoAviso">
+    Um novo pedido chegou.
+  </p>
+
+  <button
+    class="btn-ver-pedido"
+    onclick="fecharAviso()"
+  >
+    Ver pedido
+  </button>
+
+</div>
+
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+/* ==========================================
+   SUPABASE
+========================================== */
+
+const SUPABASE_URL =
+"https://zjfgmokdcwzwpoancpgr.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_XSySYoAnL4D2xydCg98Lrg_JWB4ulQL";
+
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+
+/* ==========================================
+   ESTADO
+========================================== */
+
+let pedidos = [];
+
+let filtroAtual =
+"todos";
+
+let somAtivo =
+false;
+
+let ultimoPedidoId =
+null;
+
+
+/* ==========================================
+   FORMATAÇÃO
+========================================== */
+
+function dinheiro(valor){
+
+  return Number(valor || 0)
+    .toLocaleString(
+      "pt-BR",
+      {
+        style:"currency",
+        currency:"BRL"
+      }
+    );
+
+}
+
+
+function dataFormatada(data){
+
+  if(!data) return "";
+
+  return new Date(data)
+    .toLocaleString(
+      "pt-BR",
+      {
+        dateStyle:"short",
+        timeStyle:"short"
+      }
+    );
+
+}
+
+
+/* ==========================================
+   SOM
+========================================== */
+
+let audioContext = null;
+
+
+function criarAudio(){
+
+  const AudioContext =
+    window.AudioContext ||
+    window.webkitAudioContext;
+
+  if(!AudioContext){
+
+    return false;
+
+  }
+
+  if(!audioContext){
+
+    audioContext =
+      new AudioContext();
+
+  }
+
+  if(
+    audioContext.state ===
+    "suspended"
+  ){
+
+    audioContext.resume();
+
+  }
+
+  return true;
+
+}
+
+
+function ativarSom(){
+
+  if(
+    !criarAudio()
+  ){
+
+    mostrarToast(
+      "Seu navegador não suporta áudio."
+    );
+
+    return;
+
+  }
+
+
+  somAtivo = true;
+
+
+  tocarSomNovoPedido();
+
+
+  const btn =
+    document.getElementById(
+      "btnSom"
+    );
+
+  btn.classList.add(
+    "ativo"
+  );
+
+  btn.textContent =
+    "🔔 Som ativado";
+
+
+  mostrarToast(
+    "Som de novos pedidos ativado!"
+  );
+
+}
+
+
+function tocarSomNovoPedido(){
+
+  if(
+    !criarAudio()
+  ){
+
+    return;
+
+  }
+
+
+  const agora =
+    audioContext.currentTime;
+
+
+  function toque(
+    frequencia,
+    inicio
+  ){
+
+    const osc =
+      audioContext.createOscillator();
+
+    const ganho =
+      audioContext.createGain();
+
+
+    osc.type =
+      "sine";
+
+    osc.frequency.setValueAtTime(
+      frequencia,
+      agora + inicio
+    );
+
+
+    ganho.gain.setValueAtTime(
+      0.001,
+      agora + inicio
+    );
+
+    ganho.gain.exponentialRampToValueAtTime(
+      0.35,
+      agora + inicio + 0.03
+    );
+
+    ganho.gain.exponentialRampToValueAtTime(
+      0.001,
+      agora + inicio + 0.35
+    );
+
+
+    osc.connect(
+      ganho
+    );
+
+    ganho.connect(
+      audioContext.destination
+    );
+
+
+    osc.start(
+      agora + inicio
+    );
+
+    osc.stop(
+      agora + inicio + 0.4
+    );
+
+  }
+
+
+  toque(660,0);
+
+  toque(880,.18);
+
+  toque(1046,.36);
+
+}
+
+
+/* ==========================================
+   CARREGAR PEDIDOS
+========================================== */
+
+async function carregarPedidos(){
+
+  const { data, error } =
+    await supabaseClient
+      .from("pedidos")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(error){
+
+    console.error(
+      error
+    );
+
+    mostrarToast(
+      "Erro ao carregar pedidos."
+    );
+
+    return;
+
+  }
+
+
+  pedidos =
+    data || [];
+
+
+  renderPedidos();
+
+  atualizarEstatisticas();
+
+}
+
+
+/* ==========================================
+   RENDER
+========================================== */
+
+function renderPedidos(){
+
+  const area =
+    document.getElementById(
+      "pedidos"
+    );
+
+
+  const busca =
+    document.getElementById(
+      "busca"
+    ).value
+    .toLowerCase()
+    .trim();
+
+
+  let lista =
+    pedidos.filter(
+      pedido => {
+
+        let passaFiltro =
+          filtroAtual ===
+          "todos";
+
+
+        if(
+          filtroAtual ===
+          "novo"
+        ){
+
+          passaFiltro =
+            pedido.status ===
+            "novo";
+
+        }
+
+
+        if(
+          filtroAtual ===
+          "preparo"
+        ){
+
+          passaFiltro =
+            pedido.status ===
+            "em_preparo";
+
+        }
+
+
+        if(
+          filtroAtual ===
+          "entrega"
+        ){
+
+          passaFiltro =
+            pedido.status ===
+            "saiu_para_entrega";
+
+        }
+
+
+        if(!passaFiltro){
+
+          return false;
+
+        }
+
+
+        if(!busca){
+
+          return true;
+
+        }
+
+
+        const texto =
+          `${pedido.numero_pedido || ""}
+           ${pedido.cliente_nome || ""}
+           ${pedido.cliente_telefone || ""}`
+          .toLowerCase();
+
+
+        return texto.includes(
+          busca
+        );
+
+      }
+    );
+
+
+  area.innerHTML = "";
+
+
+  if(!lista.length){
+
+    area.innerHTML =
+      `<div class="vazio">
+        Nenhum pedido encontrado.
+      </div>`;
+
+    return;
+
+  }
+
+
+  lista.forEach(
+    pedido => {
+
+      area.appendChild(
+        criarCardPedido(
+          pedido
+        )
+      );
+
+    }
+  );
+
+}
+
+
+/* ==========================================
+   CARD
+========================================== */
+
+function criarCardPedido(
+  pedido
+){
+
+  const card =
+    document.createElement(
+      "article"
+    );
+
+
+  card.className =
+    "pedido " +
+    (
+      pedido.status === "novo"
+        ? "novo"
+        : ""
+    );
+
+
+  const statusInfo =
+    obterStatus(
+      pedido.status
+    );
+
+
+  let itensHTML =
+    "";
+
+
+  const itens =
+    Array.isArray(
+      pedido.itens
+    )
+      ? pedido.itens
+      : [];
+
+
+  itens.forEach(
+    item => {
+
+      itensHTML += `
+
+        <div class="item">
+
+          <strong>
+            ${item.quantidade}x
+            ${item.nome}
+          </strong>
+
+          <span>
+            ${
+              dinheiro(
+                Number(item.preco || 0) *
+                Number(item.quantidade || 0)
+              )
+            }
+          </span>
+
+        </div>
+
+      `;
+
+    }
+  );
+
+
+  let entregaHTML = "";
+
+
+  if(
+    pedido.tipo_recebimento ===
+    "Entrega"
+  ){
+
+    entregaHTML = `
+
+      <div class="entrega">
+
+        🚚 <strong>Entrega</strong>
+
+        <br>
+
+        📍 ${
+          pedido.endereco ||
+          "Endereço não informado"
+        }
+
+      </div>
+
+    `;
+
+  }else{
+
+    entregaHTML = `
+
+      <div class="entrega">
+
+        🏪 <strong>Retirada no local</strong>
+
+      </div>
+
+    `;
+
+  }
+
+
+  let observacaoHTML = "";
+
+
+  if(pedido.observacao){
+
+    observacaoHTML = `
+
+      <div class="observacao">
+
+        📝 <strong>Observação:</strong>
+
+        <br>
+
+        ${pedido.observacao}
+
+      </div>
+
+    `;
+
+  }
+
+
+  card.innerHTML = `
+
+    <div class="pedido-cabecalho">
+
+      <div>
+
+        <div class="numero">
+          Pedido #${
+            pedido.numero_pedido ||
+            "------"
+          }
+        </div>
+
+        <div class="data">
+          ${dataFormatada(
+            pedido.created_at
+          )}
+        </div>
+
+      </div>
+
+
+      <span
+        class="status ${statusInfo.classe}"
+      >
+        ${statusInfo.nome}
+      </span>
+
+    </div>
+
+
+    <div class="pedido-corpo">
+
+      <div class="cliente">
+
+        <strong>
+          ${pedido.cliente_nome || "Cliente"}
+        </strong>
+
+        <span>
+          📱 ${
+            pedido.cliente_telefone ||
+            "Telefone não informado"
+          }
+        </span>
+
+      </div>
+
+
+      ${entregaHTML}
+
+
+      <div class="itens">
+
+        ${itensHTML}
+
+      </div>
+
+
+      ${observacaoHTML}
+
+
+      <div class="total-pedido">
+
+        <span>
+          Total
+        </span>
+
+        <strong>
+          ${dinheiro(
+            pedido.total
+          )}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="acoes-pedido">
+
+      ${botoesStatus(pedido)}
+
+      <button
+        class="btn-status btn-imprimir"
+        onclick="
+          imprimirPedido(
+            '${pedido.id}'
+          )
+        "
+      >
+        🖨️ Imprimir
+      </button>
+
+    </div>
+
+  `;
+
+
+  return card;
+
+}
+
+
+/* ==========================================
+   STATUS
+========================================== */
+
+function obterStatus(
+  status
+){
+
+  const mapa = {
+
+    novo:{
+      nome:"NOVO",
+      classe:"status-novo"
+    },
+
+    aceito:{
+      nome:"ACEITO",
+      classe:"status-aceito"
+    },
+
+    em_preparo:{
+      nome:"EM PREPARO",
+      classe:"status-preparo"
+    },
+
+    saiu_para_entrega:{
+      nome:"SAIU PARA ENTREGA",
+      classe:"status-entrega"
+    },
+
+    finalizado:{
+      nome:"FINALIZADO",
+      classe:"status-finalizado"
+    },
+
+    cancelado:{
+      nome:"CANCELADO",
+      classe:"status-cancelado"
+    }
+
+  };
+
+
+  return (
+    mapa[status] ||
+    {
+      nome:
+        status ||
+        "DESCONHECIDO",
+      classe:
+        "status-novo"
+    }
+  );
+
+}
+
+
+/* ==========================================
+   BOTÕES
+========================================== */
+
+function botoesStatus(
+  pedido
+){
+
+  if(
+    pedido.status ===
+    "cancelado"
+  ){
+
+    return `
+      <button
+        class="btn-status btn-cancelar"
+        disabled
+      >
+        ❌ Cancelado
+      </button>
+    `;
+
+  }
+
+
+  if(
+    pedido.status ===
+    "finalizado"
+  ){
+
+    return `
+      <button
+        class="btn-status btn-finalizar"
+        disabled
+      >
+        ✅ Finalizado
+      </button>
+    `;
+
+  }
+
+
+  if(
+    pedido.status ===
+    "novo"
+  ){
+
+    return `
+
+      <button
+        class="btn-status btn-aceitar"
+        onclick="
+          alterarStatus(
+            '${pedido.id}',
+            'aceito'
+          )
+        "
+      >
+        ✅ Aceitar
+      </button>
+
+
+      <button
+        class="btn-status btn-cancelar"
+        onclick="
+          alterarStatus(
+            '${pedido.id}',
+            'cancelado'
+          )
+        "
+      >
+        ❌ Cancelar
+      </button>
+
+    `;
+
+  }
+
+
+  if(
+    pedido.status ===
+    "aceito"
+  ){
+
+    return `
+
+      <button
+        class="btn-status btn-preparo"
+        onclick="
+          alterarStatus(
+            '${pedido.id}',
+            'em_preparo'
+          )
+        "
+      >
+        👨‍🍳 Em preparo
+      </button>
+
+
+      <button
+        class="btn-status btn-cancelar"
+        onclick="
+          alterarStatus(
+            '${pedido.id}',
+            'cancelado'
+          )
+        "
+      >
+        ❌ Cancelar
+      </button>
+
+    `;
+
+  }
+
+
+  if(
+    pedido.status ===
+    "em_preparo"
+  ){
+
+    return `
+
+      <button
+        class="btn-status btn-entrega"
+        onclick="
+          alterarStatus(
+            '${pedido.id}',
+            'saiu_para_entrega'
+          )
+        "
+      >
+        🛵 Saiu para entrega
+      </button>
+
+
+      <button
+        class="btn-status btn-cancelar"
+        onclick="
+          alterarStatus(
+            '${pedido.id}',
+            'cancelado'
+          )
+        "
+      >
+        ❌ Cancelar
+      </button>
+
+    `;
+
+  }
+
+
+  if(
+    pedido.status ===
+    "saiu_para_entrega"
+  ){
+
+    return `
+
+      <button
+        class="btn-status btn-finalizar"
+        onclick="
+          alterarStatus(
+            '${pedido.id}',
+            'finalizado'
+          )
+        "
+      >
+        ✅ Finalizar
+      </button>
+
+
+      <button
+        class="btn-status btn-cancelar"
+        onclick="
+          alterarStatus(
+            '${pedido.id}',
+            'cancelado'
+          )
+        "
+      >
+        ❌ Cancelar
+      </button>
+
+    `;
+
+  }
+
+
+  return "";
+
+}
+
+
+/* ==========================================
+   ALTERAR STATUS
+========================================== */
+
+async function alterarStatus(
+  id,
+  novoStatus
+){
+
+  const { error } =
+    await supabaseClient
+      .from("pedidos")
+      .update({
+        status:
+          novoStatus
+      })
+      .eq(
+        "id",
+        id
+      );
+
+
+  if(error){
+
+    console.error(
+      error
+    );
+
+    mostrarToast(
+      "Erro ao atualizar pedido."
+    );
+
+    return;
+
+  }
+
+
+  mostrarToast(
+    "Pedido atualizado!"
+  );
+
+
+  await carregarPedidos();
+
+}
+
+
+/* ==========================================
+   REALTIME
+========================================== */
+
+function iniciarRealtime(){
+
+  supabaseClient
+    .channel(
+      "pedidos-vf-filhos"
+    )
+    .on(
+      "postgres_changes",
+      {
+        event:"INSERT",
+        schema:"public",
+        table:"pedidos"
+      },
+      payload => {
+
+        console.log(
+          "Novo pedido:",
+          payload.new
+        );
+
+
+        const novoPedido =
+          payload.new;
+
+
+        pedidos.unshift(
+          novoPedido
+        );
+
+
+        renderPedidos();
+
+        atualizarEstatisticas();
+
+
+        /*
+          SOMENTE TOCA SOM
+          SE O SOM JÁ TIVER SIDO
+          LIBERADO PELO USUÁRIO.
+        */
+
+        if(somAtivo){
+
+          tocarSomNovoPedido();
+
+        }
+
+
+        mostrarNovoAviso(
+          novoPedido
+        );
+
+      }
+    )
+    .subscribe(
+      status => {
+
+        console.log(
+          "Realtime:",
+          status
+        );
+
+      }
+    );
+
+}
+
+
+/* ==========================================
+   AVISO
+========================================== */
+
+function mostrarNovoAviso(
+  pedido
+){
+
+  const aviso =
+    document.getElementById(
+      "novoAviso"
+    );
+
+  const texto =
+    document.getElementById(
+      "textoAviso"
+    );
+
+
+  texto.textContent =
+    `Pedido #${
+      pedido.numero_pedido ||
+      ""
+    } de ${
+      pedido.cliente_nome ||
+      "cliente"
+    } chegou.`;
+
+
+  aviso.classList.add(
+    "mostrar"
+  );
+
+
+  setTimeout(
+    () => {
+
+      aviso.classList.remove(
+        "mostrar"
+      );
+
+    },
+    8000
+  );
+
+}
+
+
+function fecharAviso(){
+
+  document.getElementById(
+    "novoAviso"
+  ).classList.remove(
+    "mostrar"
+  );
+
+}
+
+
+/* ==========================================
+   FILTROS
+========================================== */
+
+function mudarFiltro(
+  filtro
+){
+
+  filtroAtual =
+    filtro;
+
+
+  document
+    .querySelectorAll(
+      ".filtro-btn"
+    )
+    .forEach(
+      btn => {
+
+        btn.classList.toggle(
+          "ativo",
+          btn.dataset.filtro ===
+          filtro
+        );
+
+      }
+    );
+
+
+  renderPedidos();
+
+}
+
+
+/* ==========================================
+   ESTATÍSTICAS
+========================================== */
+
+function atualizarEstatisticas(){
+
+  const hoje =
+    new Date();
+
+
+  const inicioHoje =
+    new Date(
+      hoje.getFullYear(),
+      hoje.getMonth(),
+      hoje.getDate()
+    );
+
+
+  const pedidosHoje =
+    pedidos.filter(
+      pedido =>
+        new Date(
+          pedido.created_at
+        ) >= inicioHoje
+    );
+
+
+  const novos =
+    pedidosHoje.filter(
+      p =>
+        p.status ===
+        "novo"
+    );
+
+
+  const preparo =
+    pedidosHoje.filter(
+      p =>
+        p.status ===
+        "em_preparo"
+    );
+
+
+  const vendas =
+    pedidosHoje
+      .filter(
+        p =>
+          p.status !==
+          "cancelado"
+      )
+      .reduce(
+        (
+          total,
+          p
+        ) =>
+          total +
+          Number(
+            p.total || 0
+          ),
+        0
+      );
+
+
+  document.getElementById(
+    "statPedidos"
+  ).textContent =
+    pedidosHoje.length;
+
+
+  document.getElementById(
+    "statNovos"
+  ).textContent =
+    novos.length;
+
+
+  document.getElementById(
+    "statPreparo"
+  ).textContent =
+    preparo.length;
+
+
+  document.getElementById(
+    "statVendas"
+  ).textContent =
+    dinheiro(vendas);
+
+}
+
+
+/* ==========================================
+   IMPRESSÃO
+========================================== */
+
+function imprimirPedido(
+  id
+){
+
+  const pedido =
+    pedidos.find(
+      p =>
+        String(p.id) ===
+        String(id)
+    );
+
+
+  if(!pedido){
+
+    mostrarToast(
+      "Pedido não encontrado."
+    );
+
+    return;
+
+  }
+
+
+  const itens =
+    Array.isArray(
+      pedido.itens
+    )
+      ? pedido.itens
+      : [];
+
+
+  let itensHTML =
+    "";
+
+
+  itens.forEach(
+    item => {
+
+      itensHTML += `
+
+        <tr>
+
+          <td>
+            ${item.quantidade}x
+          </td>
+
+          <td>
+            ${item.nome}
+          </td>
+
+          <td>
+            ${
+              dinheiro(
+                Number(item.preco) *
+                Number(item.quantidade)
+              )
+            }
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
+
+
+  const janela =
+    window.open(
+      "",
+      "_blank"
+    );
+
+
+  janela.document.write(`
+
+    <!DOCTYPE html>
+
+    <html>
+
+    <head>
+
+      <meta charset="UTF-8">
+
+      <title>
+        Pedido #${pedido.numero_pedido}
+      </title>
+
+      <style>
+
+        body{
+          font-family:Arial;
+          padding:20px;
+          color:#000;
+        }
+
+        h1{
+          text-align:center;
+        }
+
+        hr{
+          border:0;
+          border-top:1px solid #000;
+        }
+
+        table{
+          width:100%;
+          border-collapse:collapse;
+        }
+
+        td{
+          padding:7px 2px;
+          border-bottom:1px solid #ddd;
+        }
+
+        .total{
+          font-size:20px;
+          font-weight:bold;
+          margin-top:15px;
+          text-align:right;
+        }
+
+      </style>
+
+    </head>
+
+    <body>
+
+      <h1>
+        VF Filhos Lanches
+      </h1>
+
+      <h3>
+        Pedido #${pedido.numero_pedido}
+      </h3>
+
+      <p>
+        <strong>Cliente:</strong>
+        ${pedido.cliente_nome}
+      </p>
+
+      <p>
+        <strong>Telefone:</strong>
+        ${pedido.cliente_telefone}
+      </p>
+
+      <p>
+        <strong>Recebimento:</strong>
+        ${pedido.tipo_recebimento}
+      </p>
+
+      ${
+        pedido.endereco
+          ? `
+            <p>
+              <strong>Endereço:</strong>
+              ${pedido.endereco}
+            </p>
+          `
+          : ""
+      }
+
+      <hr>
+
+      <table>
+
+        ${itensHTML}
+
+      </table>
+
+      ${
+        pedido.observacao
+          ? `
+            <p>
+              <strong>Observação:</strong>
+              ${pedido.observacao}
+            </p>
+          `
+          : ""
+      }
+
+      <div class="total">
+        Total:
+        ${dinheiro(pedido.total)}
+      </div>
+
+      <script>
+
+        window.onload =
+          function(){
+            window.print();
+          };
+
+      <\/script>
+
+    </body>
+
+    </html>
+
+  `);
+
+
+  janela.document.close();
+
+}
+
+
+/* ==========================================
+   TOAST
+========================================== */
+
+function mostrarToast(
+  texto
+){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    texto;
+
+
+  toast.classList.add(
+    "mostrar"
+  );
+
+
+  setTimeout(
+    () => {
+
+      toast.classList.remove(
+        "mostrar"
+      );
+
+    },
+    2500
+  );
+
+}
+
+
+/* ==========================================
+   INICIAR
+========================================== */
+
+carregarPedidos();
+
+iniciarRealtime();
+
+</script>
+
+</body>
+</html>
