@@ -120,6 +120,51 @@ a{
     margin-top:4px;
 }
 
+
+/* =========================
+   STATUS DA LOJA
+========================= */
+
+.store-status{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:6px;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+    border:1px solid;
+}
+
+.store-status.open{
+    color:#63dd88;
+    background:#102016;
+    border-color:#285b38;
+}
+
+.store-status.closed{
+    color:#ff7770;
+    background:#241313;
+    border-color:#63302c;
+}
+
+.status-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    display:inline-block;
+}
+
+.store-status.open .status-dot{
+    background:#25d366;
+}
+
+.store-status.closed .status-dot{
+    background:#e74c3c;
+}
+
+
 .cart-btn{
     position:relative;
 }
@@ -413,6 +458,7 @@ main{
     flex-direction:column;
     min-height:225px;
     transition:.2s;
+    overflow:hidden;
 }
 
 .product:hover{
@@ -425,12 +471,12 @@ main{
    FOTOS DOS PRODUTOS
 ========================= */
 
-.product-img{
+.product-image{
     width:100%;
     height:180px;
     object-fit:cover;
-    border-radius:11px;
-    margin-bottom:12px;
+    border-radius:12px;
+    margin-bottom:13px;
     border:1px solid #292929;
     background:#101010;
 }
@@ -938,6 +984,11 @@ main{
         font-size:9px;
     }
 
+    .store-status{
+        font-size:10px;
+        padding:4px 8px;
+    }
+
     .hero-box{
         padding:20px;
     }
@@ -968,6 +1019,10 @@ main{
 
     .product{
         min-height:210px;
+    }
+
+    .product-image{
+        height:190px;
     }
 
 }
@@ -1010,6 +1065,18 @@ main{
                 📍 Estrada Luiz Mário da Rocha Lima, 1459
                 · 🕐 10:00 às 00:00
             </p>
+
+            <div
+                id="storeStatus"
+                class="store-status closed">
+
+                <span class="status-dot"></span>
+
+                <span id="storeStatusText">
+                    🔴 LOJA FECHADA
+                </span>
+
+            </div>
 
         </div>
 
@@ -1383,8 +1450,6 @@ main{
             <div class="form-grid">
 
 
-                <!-- NOME -->
-
                 <div class="field">
 
                     <label>
@@ -1398,8 +1463,6 @@ main{
 
                 </div>
 
-
-                <!-- TELEFONE -->
 
                 <div class="field">
 
@@ -1417,8 +1480,6 @@ main{
 
                 </div>
 
-
-                <!-- TIPO -->
 
                 <div class="field full">
 
@@ -1459,8 +1520,6 @@ main{
                 </div>
 
 
-                <!-- ENDEREÇO -->
-
                 <div class="field">
 
                     <label>
@@ -1475,8 +1534,6 @@ main{
                 </div>
 
 
-                <!-- NÚMERO -->
-
                 <div class="field">
 
                     <label>
@@ -1490,8 +1547,6 @@ main{
                 </div>
 
 
-                <!-- COMPLEMENTO -->
-
                 <div class="field">
 
                     <label>
@@ -1503,8 +1558,6 @@ main{
 
                 </div>
 
-
-                <!-- BAIRRO -->
 
                 <div class="field">
 
@@ -1519,8 +1572,6 @@ main{
                 </div>
 
 
-                <!-- REFERÊNCIA -->
-
                 <div class="field full">
 
                     <label>
@@ -1533,8 +1584,6 @@ main{
 
                 </div>
 
-
-                <!-- PAGAMENTO -->
 
                 <div class="field">
 
@@ -1572,8 +1621,6 @@ main{
                 </div>
 
 
-                <!-- TROCO -->
-
                 <div
                     class="field"
                     id="changeField"
@@ -1590,8 +1637,6 @@ main{
                 </div>
 
 
-                <!-- OBSERVAÇÃO -->
-
                 <div class="field full">
 
                     <label>
@@ -1606,8 +1651,6 @@ main{
 
             </div>
 
-
-            <!-- RESUMO -->
 
             <div class="order-box">
 
@@ -1784,7 +1827,6 @@ const products = [
         cat:"hamburgueres",
         name:"X-Tudo",
         price:13.99,
-        image:"x-tudo.jpeg",
         desc:"Pão macio, carne bovina, queijo, presunto, ovo, salada fresquinha, muita batata palha, ketchup, maionese, mostarda e barbecue."
     },
 
@@ -1793,7 +1835,6 @@ const products = [
         cat:"hamburgueres",
         name:"X-Duplo",
         price:16.99,
-        image:"x-duplo.jpeg",
         desc:"Pão fresquinho, duas carnes bovinas, ovo, queijo prato, presunto, salada crocante, batata palha, ketchup, maionese, barbecue e mostarda."
     },
 
@@ -1802,7 +1843,6 @@ const products = [
         cat:"hamburgueres",
         name:"X-Batata",
         price:15.99,
-        image:"x-batata.jpeg",
         desc:"Pão fresquinho, carne bovina, presunto, cheddar cremoso, bacon crocante, ovo e salada, finalizado com fritas crocantes."
     },
 
@@ -1811,7 +1851,6 @@ const products = [
         cat:"hamburgueres",
         name:"X-Picanha",
         price:19.99,
-        image:"x-picanha.jpeg",
         desc:"Pão macio, carne de picanha suculenta, presunto, queijo, ovo, bacon crocante, batata palha, alface, ketchup, maionese e barbecue."
     },
 
@@ -1820,7 +1859,6 @@ const products = [
         cat:"hamburgueres",
         name:"Duplo Cheddar",
         price:18.99,
-        image:"Duplo Cheddar.jpeg",
         desc:"Pão macio, duas carnes bovinas suculentas, cheddar derretido, cebola caramelizada e molho barbecue."
     },
 
@@ -1829,7 +1867,6 @@ const products = [
         cat:"hamburgueres",
         name:"X-Bacon",
         price:18.99,
-        image:"X-bacon.jpeg",
         desc:"Pão macio, carne bovina, ovo, presunto, queijo prato, salada, batata palha, bacon crocante, ketchup, mostarda, maionese e barbecue."
     },
 
@@ -1838,7 +1875,6 @@ const products = [
         cat:"hamburgueres",
         name:"X-Mineiro",
         price:19.99,
-        image:"X-Mineiro.jpeg",
         desc:"Pão macio, carne bovina, carne sabor picanha, presunto douradinho, queijo minas derretido, batata palha, salada, ketchup, barbecue e maionese."
     },
 
@@ -1847,7 +1883,6 @@ const products = [
         cat:"hamburgueres",
         name:"X-3 Queijos",
         price:20.99,
-        image:"X-3queijos.jpeg",
         desc:"Pão macio, carne bovina, carne sabor picanha, queijo prato, cheddar e queijo minas, presunto, bacon, batata palha, salada, ketchup, barbecue e maionese."
     },
 
@@ -1856,7 +1891,6 @@ const products = [
         cat:"hamburgueres",
         name:"X-Onion",
         price:18.99,
-        image:"X-onions.jpeg",
         desc:"Pão macio e fresquinho, hambúrguer de picanha, cheddar derretido, dois anéis de cebola fritos e crocantes, barbecue, ketchup e maionese."
     },
 
@@ -1868,7 +1902,6 @@ const products = [
         cat:"fritas",
         name:"Batata Frita P",
         price:15,
-        image:"batata-p.jpeg",
         desc:"Porção de batata frita tamanho P."
     },
 
@@ -1877,7 +1910,6 @@ const products = [
         cat:"fritas",
         name:"Batata Frita M",
         price:21.99,
-        image:"Batata M.png",
         desc:"Porção de batata frita tamanho M."
     },
 
@@ -1886,7 +1918,6 @@ const products = [
         cat:"fritas",
         name:"Batata Frita G",
         price:30,
-        image:"Batata G.png",
         desc:"Porção de batata frita tamanho G."
     },
 
@@ -1928,7 +1959,6 @@ const products = [
         cat:"promocoes",
         name:"X-Tudo + Guaravita + Batata P",
         price:19.99,
-        image:"X-tudo + batata p + Guaravita.png",
         desc:"X-Tudo completo + batata P douradinha e crocante + Guaravita."
     },
 
@@ -1937,7 +1967,6 @@ const products = [
         cat:"promocoes",
         name:"Duplo Cheddar + Coca-Cola Lata",
         price:18.99,
-        image:"Duplo cheddar + coca.png",
         desc:"Duplo Cheddar com duas carnes, cheddar, cebola caramelizada e barbecue + Coca-Cola lata."
     },
 
@@ -1949,7 +1978,6 @@ const products = [
         cat:"bebidas",
         name:"Coca-Cola lata 350 ml",
         price:10,
-        image:"coca-lata.jpeg",
         desc:"Coca-Cola lata 350 ml."
     },
 
@@ -1958,7 +1986,6 @@ const products = [
         cat:"bebidas",
         name:"Guaravita Natural 290 ml",
         price:6,
-        image:"guaravita.jpeg",
         desc:"Guaravita Natural 290 ml."
     },
 
@@ -1967,7 +1994,6 @@ const products = [
         cat:"bebidas",
         name:"Água Mineral 500 ml",
         price:5,
-        image:"agua-mineral.jpeg",
         desc:"Água mineral 500 ml."
     },
 
@@ -1979,7 +2005,6 @@ const products = [
         cat:"adicionais",
         name:"Maionese",
         price:3,
-        image:"adicional-de-maionese.jpeg",
         desc:"Adicional de maionese."
     },
 
@@ -1988,7 +2013,6 @@ const products = [
         cat:"adicionais",
         name:"Barbecue",
         price:3,
-        image:"adicional-de-barbecue.jpeg",
         desc:"Adicional de molho barbecue."
     },
 
@@ -1997,7 +2021,6 @@ const products = [
         cat:"adicionais",
         name:"Ketchup",
         price:3,
-        image:"adicional-de-ketchup.jpeg",
         desc:"Adicional de ketchup."
     },
 
@@ -2015,7 +2038,6 @@ const products = [
         cat:"adicionais",
         name:"Molho Verde",
         price:4,
-        image:"adicional-de-molho-verde.jpeg",
         desc:"Adicional de molho verde."
     },
 
@@ -2033,7 +2055,6 @@ const products = [
         cat:"adicionais",
         name:"Ovo",
         price:5,
-        image:"adicional-de-ovo.jpeg",
         desc:"Adicional de ovo."
     },
 
@@ -2044,8 +2065,7 @@ const products = [
         id:29,
         cat:"frango",
         name:"Frango Assado Completo",
-        price:34.99,
-        image:"frango-assado-completo.jpeg",
+        price:45,
         desc:"Frango assado douradinho e suculento, acompanhado de linguiça de churrasco, batatas, calabresas e farofa crocante."
     }
 
@@ -2104,6 +2124,100 @@ function escapeHTML(valor){
         .replaceAll(">","&gt;")
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+   STATUS DA LOJA
+===================================================== */
+
+function atualizarStatusLoja(){
+
+    const status =
+        document.getElementById(
+            "storeStatus"
+        );
+
+    const texto =
+        document.getElementById(
+            "storeStatusText"
+        );
+
+    if(
+        !status ||
+        !texto
+    ){
+
+        return;
+
+    }
+
+
+    const agora =
+        new Date();
+
+
+    const hora =
+        agora.getHours();
+
+
+    const minuto =
+        agora.getMinutes();
+
+
+    const minutosAgora =
+        (hora * 60) +
+        minuto;
+
+
+    /*
+     * A loja funciona
+     * das 10:00 até 00:00.
+     *
+     * 10:00 = 600 minutos
+     * 00:00 = início do novo dia
+     *
+     * Portanto:
+     * 10:00 até 23:59 = aberta
+     * 00:00 até 09:59 = fechada
+     */
+
+    const abre =
+        10 * 60;
+
+
+    const aberta =
+        minutosAgora >= abre;
+
+
+    if(aberta){
+
+        status.classList.remove(
+            "closed"
+        );
+
+        status.classList.add(
+            "open"
+        );
+
+        texto.textContent =
+            "🟢 LOJA ABERTA";
+
+    }else{
+
+        status.classList.remove(
+            "open"
+        );
+
+        status.classList.add(
+            "closed"
+        );
+
+        texto.textContent =
+            "🔴 LOJA FECHADA";
+
+    }
 
 }
 
@@ -2418,13 +2532,21 @@ function renderProducts(){
                                         <article
                                             class="product">
 
-                                            <img
-                                                class="product-img"
-                                                src="${escapeHTML(produto.image)}"
-                                                alt="${escapeHTML(produto.name)}"
-                                                loading="lazy"
-                                                onerror="this.style.display='none'"
-                                            >
+                                            ${
+                                                produto.image
+                                                ?
+                                                `
+                                                <img
+                                                    class="product-image"
+                                                    src="${escapeHTML(produto.image)}"
+                                                    alt="${escapeHTML(produto.name)}"
+                                                    loading="lazy"
+                                                    onerror="this.style.display='none'"
+                                                >
+                                                `
+                                                :
+                                                ""
+                                            }
 
 
                                             <h3>
@@ -2577,11 +2699,6 @@ function add(id){
 
     renderCart();
 
-
-    /*
-     * Conforme combinado:
-     * adicionar já abre o carrinho.
-     */
 
     openCart();
 
@@ -3237,11 +3354,6 @@ function prepararPedido(event){
     }
 
 
-    /*
-     * Cria uma cópia dos itens
-     * antes de enviar.
-     */
-
     const itens =
         cart.map(
             item=>({
@@ -3646,10 +3758,6 @@ async function confirmarPedido(){
 
     try{
 
-        /*
-         * INSERT
-         */
-
         const resposta =
             await fetch(
                 `${SUPABASE_URL}/rest/v1/pedidos`,
@@ -3725,10 +3833,6 @@ async function confirmarPedido(){
         }
 
 
-        /*
-         * NÚMERO DO PEDIDO
-         */
-
         const numeroPedido =
             pedidoSalvo.numero_pedido ||
             (
@@ -3741,12 +3845,6 @@ async function confirmarPedido(){
                 )
             );
 
-
-        /*
-         * Se o banco ainda não tiver
-         * preenchido numero_pedido,
-         * tentamos salvar.
-         */
 
         if(
             !pedidoSalvo.numero_pedido
@@ -3798,20 +3896,12 @@ async function confirmarPedido(){
         }
 
 
-        /*
-         * MENSAGEM WHATSAPP
-         */
-
         const mensagem =
             criarMensagemWhatsApp(
                 pendingOrder,
                 numeroPedido
             );
 
-
-        /*
-         * SALVA ÚLTIMO PEDIDO
-         */
 
         lastOrder = {
 
@@ -3854,10 +3944,6 @@ async function confirmarPedido(){
         );
 
 
-        /*
-         * LIMPA CARRINHO
-         */
-
         cart = [];
 
         saveCart();
@@ -3865,16 +3951,8 @@ async function confirmarPedido(){
         renderCart();
 
 
-        /*
-         * FECHA MODAL
-         */
-
         closeOrder();
 
-
-        /*
-         * LIMPA FORM
-         */
 
         document
             .getElementById("checkoutForm")
@@ -3884,17 +3962,9 @@ async function confirmarPedido(){
         toggleChange();
 
 
-        /*
-         * LIMPA PEDIDO PENDENTE
-         */
-
         pendingOrder =
             null;
 
-
-        /*
-         * ABRE WHATSAPP
-         */
 
         const whatsappURL =
             `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
@@ -4227,7 +4297,20 @@ toggleAddress();
 
 toggleChange();
 
+atualizarStatusLoja();
+
+
+/*
+ * Atualiza o status da loja
+ * automaticamente a cada 30 segundos.
+ */
+
+setInterval(
+    atualizarStatusLoja,
+    30000
+);
+
 </script>
 
 </body>
-  </html>
+                        </html>
