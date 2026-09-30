@@ -3,30 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090909">
-<meta name="description" content="VF FILHOS LANCHES - Hambúrgueres, combos, promoções, fritas, bebidas, adicionais, açaí e frango assado.">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="VF FILHOS LANCHES - Faça seu pedido online.">
 <title>VF FILHOS LANCHES</title>
 
 <style>
 :root{
-    --black:#070707;
-    --black2:#0d0d0d;
-    --card:#121212;
-    --card2:#181818;
+    --black:#050505;
+    --black2:#0b0b0b;
+    --black3:#111;
+    --card:#151515;
+    --card2:#1b1b1b;
     --gold:#d4af37;
-    --gold2:#f1cf63;
-    --gold3:#a98518;
+    --gold2:#f3d66b;
+    --gold3:#9d7917;
     --white:#fff;
-    --muted:#aaa;
-    --green:#22c55e;
+    --muted:#999;
+    --green:#20c66a;
     --red:#ef4444;
-    --border:rgba(212,175,55,.20);
+    --border:rgba(212,175,55,.22);
 }
 
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 html{
@@ -34,128 +35,151 @@ html{
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:
-        linear-gradient(rgba(0,0,0,.90),rgba(0,0,0,.96)),
-        url("banner-vf-filhos-lanches.jpeg") center/cover fixed;
-    color:var(--white);
     min-height:100vh;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-1;
+    font-family:Arial,Helvetica,sans-serif;
+    color:var(--white);
     background:
-        radial-gradient(circle at top right,rgba(212,175,55,.10),transparent 35%),
-        radial-gradient(circle at bottom left,rgba(212,175,55,.07),transparent 30%);
-    pointer-events:none;
+        linear-gradient(
+            rgba(0,0,0,.91),
+            rgba(0,0,0,.96)
+        ),
+        url("banner-vf-filhos-lanches.jpeg") center/cover fixed;
 }
 
-/* ================= HEADER ================= */
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
 
-header{
+button{
+    -webkit-tap-highlight-color:transparent;
+}
+
+a{
+    color:inherit;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
     position:sticky;
     top:0;
     z-index:1000;
-    height:74px;
-    background:rgba(7,7,7,.96);
-    backdrop-filter:blur(15px);
+    height:76px;
+    background:rgba(5,5,5,.96);
+    backdrop-filter:blur(18px);
     border-bottom:1px solid var(--border);
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 18px;
+    padding:0 16px;
 }
 
-.logo-area{
+.brand{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:11px;
+    min-width:0;
 }
 
 .logo{
-    width:48px;
-    height:48px;
-    object-fit:contain;
+    width:50px;
+    height:50px;
+    object-fit:cover;
     border-radius:50%;
     border:2px solid var(--gold);
     background:#000;
+    box-shadow:0 0 18px rgba(212,175,55,.15);
 }
 
-.logo-text strong{
-    display:block;
+.brand-text{
+    min-width:0;
+}
+
+.brand-name{
     color:var(--gold2);
     font-size:15px;
+    font-weight:900;
     letter-spacing:1px;
+    white-space:nowrap;
 }
 
-.logo-text span{
-    display:block;
-    color:#aaa;
-    font-size:10px;
-    margin-top:2px;
+.brand-sub{
+    color:#777;
+    font-size:9px;
+    letter-spacing:1.4px;
+    margin-top:3px;
 }
 
 .header-actions{
     display:flex;
     align-items:center;
-    gap:9px;
+    gap:8px;
 }
 
-.icon-btn{
-    position:relative;
+.header-btn{
     width:43px;
     height:43px;
-    border-radius:12px;
     border:1px solid var(--border);
+    border-radius:12px;
     background:#111;
     color:var(--gold2);
-    font-size:20px;
     cursor:pointer;
+    font-size:19px;
+    position:relative;
     display:flex;
     align-items:center;
     justify-content:center;
+}
+
+.header-btn:hover{
+    background:#1b1b1b;
+    border-color:var(--gold);
 }
 
 .cart-count{
     position:absolute;
-    right:-4px;
-    top:-5px;
+    top:-6px;
+    right:-5px;
     min-width:19px;
     height:19px;
     padding:0 5px;
-    border-radius:20px;
+    border-radius:30px;
     background:var(--gold);
     color:#000;
-    font-size:11px;
-    font-weight:bold;
+    font-size:10px;
+    font-weight:900;
     display:flex;
     align-items:center;
     justify-content:center;
 }
 
-/* ================= STATUS ================= */
+/* =====================================================
+   STATUS
+===================================================== */
 
-.status-wrap{
-    padding:12px 15px;
-    background:#090909;
-    border-bottom:1px solid rgba(255,255,255,.05);
+.status-area{
+    background:#080808;
+    border-bottom:1px solid rgba(255,255,255,.04);
+    padding:10px 15px;
 }
 
-.status{
-    max-width:1100px;
+.status-box{
+    max-width:1180px;
     margin:auto;
-    border:1px solid var(--border);
-    background:rgba(18,18,18,.92);
-    border-radius:14px;
     min-height:48px;
-    padding:10px 14px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:#101010;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:12px;
+    padding:9px 14px;
+    gap:15px;
 }
 
 .status-left{
@@ -167,171 +191,221 @@ header{
 .status-dot{
     width:11px;
     height:11px;
+    flex:none;
     border-radius:50%;
     background:var(--red);
-    box-shadow:0 0 12px rgba(239,68,68,.6);
+    box-shadow:0 0 14px rgba(239,68,68,.65);
 }
 
-.status.open .status-dot{
+.status-box.open .status-dot{
     background:var(--green);
-    box-shadow:0 0 12px rgba(34,197,94,.7);
+    box-shadow:0 0 14px rgba(32,198,106,.7);
 }
 
 .status-title{
-    font-size:13px;
-    font-weight:bold;
+    font-size:12px;
+    font-weight:900;
 }
 
-.status-sub{
-    font-size:11px;
-    color:var(--muted);
+.status-description{
+    color:#777;
+    font-size:10px;
     margin-top:2px;
 }
 
-/* ================= HERO ================= */
+.status-hours{
+    color:#777;
+    font-size:10px;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
-    max-width:1100px;
-    margin:16px auto;
+    max-width:1180px;
+    margin:16px auto 0;
     padding:0 15px;
 }
 
 .hero-box{
-    min-height:250px;
-    border-radius:24px;
+    min-height:300px;
+    border:1px solid rgba(212,175,55,.28);
+    border-radius:25px;
     overflow:hidden;
     position:relative;
-    border:1px solid rgba(212,175,55,.30);
-    background:
-        linear-gradient(90deg,rgba(0,0,0,.92),rgba(0,0,0,.55),rgba(0,0,0,.80)),
-        url("banner-vf-filhos-lanches.jpeg") center/cover;
     display:flex;
     align-items:center;
-    padding:35px;
+    padding:32px;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.96) 0%,
+            rgba(0,0,0,.76) 48%,
+            rgba(0,0,0,.58) 100%
+        ),
+        url("banner-vf-filhos-lanches.jpeg") center/cover;
+    box-shadow:0 18px 60px rgba(0,0,0,.35);
 }
 
 .hero-content{
-    max-width:650px;
+    max-width:680px;
 }
 
-.hero-small{
+.hero-label{
     color:var(--gold2);
-    font-size:12px;
-    letter-spacing:3px;
-    font-weight:bold;
-    margin-bottom:10px;
-}
-
-.hero h1{
-    font-size:clamp(30px,7vw,54px);
-    line-height:1;
+    font-size:11px;
+    letter-spacing:4px;
+    font-weight:900;
     margin-bottom:12px;
 }
 
-.hero h1 span{
+.hero-title{
+    font-size:clamp(32px,7vw,58px);
+    line-height:.98;
+    font-weight:900;
+}
+
+.hero-title span{
     color:var(--gold2);
 }
 
-.hero p{
-    color:#ddd;
-    line-height:1.6;
+.hero-text{
+    color:#d0d0d0;
     font-size:14px;
+    line-height:1.6;
+    max-width:620px;
+    margin-top:14px;
 }
 
-.hero-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:20px;
-}
-
-.hero-btn{
-    border:none;
-    border-radius:11px;
-    padding:12px 18px;
-    cursor:pointer;
+.hero-highlight{
+    display:inline-flex;
+    margin-top:18px;
+    padding:9px 13px;
+    border:1px solid rgba(212,175,55,.35);
+    border-radius:999px;
+    background:rgba(212,175,55,.08);
+    color:var(--gold2);
+    font-size:11px;
     font-weight:bold;
 }
 
-.hero-btn.gold{
-    background:linear-gradient(135deg,var(--gold2),var(--gold3));
-    color:#050505;
+/* =====================================================
+   PESQUISA
+===================================================== */
+
+.search-area{
+    max-width:1180px;
+    margin:17px auto 0;
+    padding:0 15px;
 }
 
-.hero-btn.dark{
-    background:#111;
-    color:white;
+.search-box{
+    position:relative;
+}
+
+.search-input{
+    width:100%;
+    height:52px;
+    border-radius:15px;
     border:1px solid var(--border);
+    background:#101010;
+    color:#fff;
+    outline:none;
+    padding:0 48px 0 17px;
+    font-size:14px;
 }
 
-/* ================= CATEGORIAS ================= */
+.search-input:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(212,175,55,.07);
+}
+
+.search-icon{
+    position:absolute;
+    right:17px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--gold2);
+    pointer-events:none;
+}
+
+/* =====================================================
+   CATEGORIAS
+===================================================== */
 
 .categories{
-    max-width:1100px;
-    margin:0 auto;
-    padding:0 15px 10px;
+    max-width:1180px;
+    margin:14px auto 0;
+    padding:0 15px;
 }
 
-.categories-scroll{
+.category-scroll{
     display:flex;
-    gap:9px;
+    gap:8px;
     overflow-x:auto;
-    padding:3px 0 10px;
+    padding:2px 0 8px;
     scrollbar-width:none;
 }
 
-.categories-scroll::-webkit-scrollbar{
+.category-scroll::-webkit-scrollbar{
     display:none;
 }
 
-.category-btn{
+.category-button{
     flex:none;
     border:1px solid var(--border);
     background:#111;
     color:#ddd;
-    padding:10px 15px;
     border-radius:999px;
-    font-weight:bold;
-    font-size:12px;
+    padding:10px 15px;
     cursor:pointer;
+    font-size:11px;
+    font-weight:900;
 }
 
-.category-btn.active{
+.category-button.active,
+.category-button:hover{
     background:var(--gold);
-    color:#000;
+    color:#050505;
     border-color:var(--gold);
 }
 
-/* ================= PRODUTOS ================= */
+/* =====================================================
+   CONTEÚDO
+===================================================== */
 
 .main{
-    max-width:1100px;
+    max-width:1180px;
     margin:auto;
-    padding:5px 15px 90px;
+    padding:5px 15px 80px;
 }
 
 .category-section{
-    margin-top:24px;
+    margin-top:27px;
+    scroll-margin-top:100px;
 }
 
-.category-title{
+.section-heading{
     display:flex;
-    align-items:center;
+    align-items:end;
     justify-content:space-between;
+    gap:10px;
     margin-bottom:13px;
 }
 
-.category-title h2{
+.section-heading h2{
     font-size:21px;
 }
 
-.category-title h2 span{
+.section-heading h2 span{
     color:var(--gold2);
 }
 
-.category-title small{
-    color:#777;
-    font-size:10px;
+.section-heading small{
+    color:#666;
+    font-size:9px;
+    letter-spacing:1px;
 }
 
 .products{
@@ -341,12 +415,12 @@ header{
 }
 
 .product{
-    background:linear-gradient(145deg,#171717,#0e0e0e);
-    border:1px solid rgba(212,175,55,.16);
+    background:linear-gradient(145deg,#181818,#0e0e0e);
+    border:1px solid rgba(212,175,55,.15);
     border-radius:18px;
     overflow:hidden;
     transition:.2s;
-    box-shadow:0 10px 30px rgba(0,0,0,.18);
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
 }
 
 .product:hover{
@@ -354,12 +428,29 @@ header{
     border-color:rgba(212,175,55,.42);
 }
 
-.product-img{
+.product-image-wrap{
+    position:relative;
+    background:#080808;
+}
+
+.product-image{
     width:100%;
     aspect-ratio:1/1;
-    object-fit:cover;
     display:block;
-    background:#090909;
+    object-fit:cover;
+}
+
+.weekend-badge{
+    position:absolute;
+    left:9px;
+    top:9px;
+    background:#050505;
+    border:1px solid var(--gold);
+    color:var(--gold2);
+    border-radius:8px;
+    padding:6px 8px;
+    font-size:9px;
+    font-weight:900;
 }
 
 .product-info{
@@ -367,82 +458,104 @@ header{
 }
 
 .product-name{
-    font-size:16px;
-    font-weight:bold;
     color:#fff;
+    font-size:15px;
+    font-weight:900;
 }
 
 .product-description{
     color:#999;
-    font-size:11px;
-    line-height:1.45;
+    font-size:10.5px;
+    line-height:1.5;
     margin-top:7px;
-    min-height:48px;
+    min-height:63px;
 }
 
-.product-bottom{
-    margin-top:13px;
+.product-footer{
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:8px;
+    margin-top:13px;
 }
 
-.price{
+.product-price{
     color:var(--gold2);
-    font-weight:bold;
-    font-size:17px;
-    white-space:nowrap;
+    font-size:16px;
+    font-weight:900;
 }
 
-.add-btn{
+.add-button{
     border:none;
+    border-radius:10px;
     background:linear-gradient(135deg,var(--gold2),var(--gold3));
     color:#050505;
     padding:10px 13px;
-    border-radius:10px;
+    font-size:10px;
     font-weight:900;
     cursor:pointer;
-    font-size:11px;
+    min-width:88px;
 }
 
-.add-btn:disabled{
-    background:#333;
+.add-button:hover{
+    filter:brightness(1.08);
+}
+
+.add-button:disabled{
+    background:#2a2a2a;
     color:#777;
     cursor:not-allowed;
 }
 
-/* ================= EMPTY AÇAI ================= */
+.no-results{
+    border:1px dashed rgba(212,175,55,.3);
+    border-radius:16px;
+    padding:35px 15px;
+    text-align:center;
+    color:#777;
+}
 
-.coming-soon{
+.no-results strong{
+    display:block;
+    color:#ddd;
+    margin-bottom:6px;
+}
+
+/* =====================================================
+   AÇAÍ
+===================================================== */
+
+.acai-placeholder{
     border:1px dashed rgba(212,175,55,.35);
-    background:rgba(15,15,15,.8);
+    background:rgba(15,15,15,.85);
     border-radius:18px;
-    padding:28px 20px;
+    padding:38px 20px;
     text-align:center;
 }
 
-.coming-soon .emoji{
-    font-size:35px;
+.acai-placeholder-icon{
+    font-size:38px;
 }
 
-.coming-soon h3{
-    margin:8px 0;
+.acai-placeholder h3{
     color:var(--gold2);
+    margin:10px 0 7px;
 }
 
-.coming-soon p{
-    color:#999;
-    font-size:13px;
+.acai-placeholder p{
+    color:#777;
+    font-size:12px;
 }
 
-/* ================= MENU ================= */
+/* =====================================================
+   MENU LATERAL
+===================================================== */
 
 .overlay{
     position:fixed;
     inset:0;
     background:rgba(0,0,0,.78);
-    z-index:1900;
+    z-index:1800;
     display:none;
 }
 
@@ -452,16 +565,16 @@ header{
 
 .drawer{
     position:fixed;
+    right:-370px;
     top:0;
-    right:-360px;
-    width:min(350px,90%);
+    width:min(360px,91%);
     height:100%;
-    background:#0c0c0c;
-    z-index:2000;
-    border-left:1px solid var(--border);
-    transition:.3s ease;
-    padding:20px;
     overflow-y:auto;
+    z-index:1900;
+    background:#0a0a0a;
+    border-left:1px solid var(--border);
+    padding:20px;
+    transition:.3s ease;
 }
 
 .drawer.open{
@@ -472,69 +585,89 @@ header{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding-bottom:18px;
+    padding-bottom:17px;
     border-bottom:1px solid #222;
 }
 
-.drawer-header h2{
+.drawer-title{
     color:var(--gold2);
     font-size:20px;
+    font-weight:900;
 }
 
-.close-btn{
-    border:none;
-    background:#191919;
-    color:white;
+.close-button{
     width:40px;
     height:40px;
+    border:none;
     border-radius:10px;
-    cursor:pointer;
+    background:#181818;
+    color:#fff;
     font-size:20px;
+    cursor:pointer;
 }
 
 .menu-links{
     display:grid;
     gap:10px;
-    margin-top:20px;
+    margin-top:19px;
 }
 
 .menu-link{
-    text-decoration:none;
-    border:1px solid #252525;
+    width:100%;
+    border:1px solid #292929;
+    border-radius:12px;
     background:#141414;
     color:#eee;
     padding:14px;
-    border-radius:12px;
+    cursor:pointer;
+    text-decoration:none;
     display:flex;
     align-items:center;
-    gap:11px;
-    font-weight:bold;
+    gap:10px;
+    font-size:13px;
+    font-weight:900;
+    text-align:left;
 }
 
-.menu-link.gold{
-    background:linear-gradient(135deg,#e5c75e,#aa8519);
-    color:#050505;
+.menu-link.highlight{
+    background:linear-gradient(135deg,var(--gold2),var(--gold3));
     border-color:var(--gold);
+    color:#050505;
 }
 
-.menu-section-title{
-    color:#777;
-    font-size:11px;
-    margin:24px 0 8px;
-    text-transform:uppercase;
+.menu-title{
+    color:#666;
+    font-size:10px;
     letter-spacing:1px;
+    margin:23px 0 7px;
 }
 
-/* ================= MODAIS ================= */
+.menu-info{
+    border:1px solid #242424;
+    background:#111;
+    border-radius:12px;
+    padding:13px;
+    color:#888;
+    font-size:11px;
+    line-height:1.7;
+}
+
+.menu-info strong{
+    color:#fff;
+}
+
+/* =====================================================
+   MODAIS
+===================================================== */
 
 .modal{
     position:fixed;
     inset:0;
-    z-index:2100;
+    z-index:2000;
+    background:rgba(0,0,0,.82);
     display:none;
     align-items:flex-end;
     justify-content:center;
-    background:rgba(0,0,0,.80);
 }
 
 .modal.show{
@@ -542,8 +675,8 @@ header{
 }
 
 .modal-box{
-    width:min(700px,100%);
-    max-height:92vh;
+    width:min(720px,100%);
+    max-height:94vh;
     overflow-y:auto;
     background:#101010;
     border:1px solid var(--border);
@@ -555,7 +688,7 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:10px;
+    gap:12px;
     margin-bottom:17px;
 }
 
@@ -564,17 +697,26 @@ header{
     font-size:20px;
 }
 
-.close-modal{
-    width:38px;
-    height:38px;
+.modal-close{
+    width:39px;
+    height:39px;
     border:none;
     border-radius:10px;
     background:#1b1b1b;
     color:#fff;
     cursor:pointer;
+    font-size:20px;
 }
 
-/* ================= CARRINHO ================= */
+/* =====================================================
+   CARRINHO
+===================================================== */
+
+.cart-empty{
+    text-align:center;
+    color:#777;
+    padding:45px 15px;
+}
 
 .cart-item{
     display:flex;
@@ -583,38 +725,40 @@ header{
     border-bottom:1px solid #242424;
 }
 
-.cart-item img{
-    width:65px;
-    height:65px;
-    border-radius:10px;
+.cart-image{
+    width:68px;
+    height:68px;
     object-fit:cover;
+    border-radius:11px;
+    flex:none;
 }
 
 .cart-item-info{
     flex:1;
+    min-width:0;
 }
 
 .cart-item-name{
-    font-weight:bold;
     font-size:14px;
+    font-weight:900;
 }
 
 .cart-item-price{
     color:var(--gold2);
+    font-size:12px;
     margin-top:4px;
-    font-size:13px;
 }
 
-.qty{
+.quantity{
     display:flex;
     align-items:center;
     gap:7px;
     margin-top:8px;
 }
 
-.qty button{
-    width:28px;
-    height:28px;
+.quantity button{
+    width:29px;
+    height:29px;
     border:1px solid #333;
     background:#191919;
     color:#fff;
@@ -622,56 +766,56 @@ header{
     cursor:pointer;
 }
 
-.remove{
+.quantity strong{
+    min-width:20px;
+    text-align:center;
+}
+
+.remove-item{
     color:#ef4444!important;
 }
 
-.cart-summary{
-    padding-top:17px;
-}
-
-.total-row{
+.cart-total{
     display:flex;
     justify-content:space-between;
+    align-items:center;
+    margin-top:18px;
     font-size:20px;
-    font-weight:bold;
+    font-weight:900;
 }
 
-.total-row strong{
+.cart-total strong{
     color:var(--gold2);
 }
 
-.primary-btn{
+.primary-button{
     width:100%;
+    margin-top:15px;
     border:none;
+    border-radius:12px;
+    padding:14px;
     background:linear-gradient(135deg,var(--gold2),var(--gold3));
     color:#050505;
-    padding:14px;
-    border-radius:12px;
+    font-size:12px;
     font-weight:900;
     cursor:pointer;
-    margin-top:15px;
 }
 
-.secondary-btn{
+.secondary-button{
     width:100%;
-    border:1px solid #333;
+    margin-top:9px;
+    border:1px solid #303030;
+    border-radius:12px;
+    padding:13px;
     background:#181818;
     color:#fff;
-    padding:13px;
-    border-radius:12px;
-    font-weight:bold;
+    font-weight:900;
     cursor:pointer;
-    margin-top:9px;
 }
 
-.empty{
-    text-align:center;
-    padding:40px 10px;
-    color:#777;
-}
-
-/* ================= FORMULÁRIO ================= */
+/* =====================================================
+   CHECKOUT
+===================================================== */
 
 .form-grid{
     display:grid;
@@ -690,7 +834,7 @@ header{
 }
 
 .field label{
-    color:#aaa;
+    color:#999;
     font-size:11px;
 }
 
@@ -700,8 +844,8 @@ header{
     width:100%;
     background:#171717;
     border:1px solid #303030;
-    color:#fff;
     border-radius:10px;
+    color:#fff;
     padding:12px;
     outline:none;
     font-size:14px;
@@ -714,150 +858,189 @@ header{
 }
 
 .field textarea{
-    min-height:80px;
+    min-height:82px;
     resize:vertical;
 }
 
+/* =====================================================
+   PIX
+===================================================== */
+
 .pix-box{
     display:none;
+    margin-top:16px;
     text-align:center;
-    border:1px solid rgba(212,175,55,.35);
     background:#151515;
+    border:1px solid rgba(212,175,55,.32);
+    border-radius:16px;
     padding:17px;
-    border-radius:15px;
-    margin-top:15px;
 }
 
 .pix-box.show{
     display:block;
 }
 
-.pix-box img{
-    width:220px;
-    height:220px;
-    background:#fff;
-    padding:8px;
-    border-radius:12px;
-    margin:10px auto;
-}
-
 .pix-title{
     color:var(--gold2);
-    font-weight:bold;
+    font-size:13px;
+    font-weight:900;
+}
+
+.pix-qr{
+    width:220px;
+    height:220px;
+    padding:8px;
+    margin:12px auto;
+    display:block;
+    background:#fff;
+    border-radius:12px;
 }
 
 .pix-key{
-    color:#fff;
+    font-size:12px;
     word-break:break-all;
-    font-size:13px;
 }
 
 .pix-receiver{
-    color:#aaa;
-    font-size:12px;
+    color:#999;
+    font-size:11px;
     margin-top:5px;
 }
 
-/* ================= HISTÓRICO ================= */
+/* =====================================================
+   HISTÓRICO
+===================================================== */
 
-.history-card{
+.history-item{
     border:1px solid #292929;
     background:#151515;
-    padding:14px;
     border-radius:14px;
+    padding:14px;
     margin-bottom:10px;
 }
 
-.history-top{
+.history-header{
     display:flex;
     justify-content:space-between;
     gap:10px;
 }
 
+.history-id{
+    font-weight:900;
+}
+
 .history-date{
-    color:#999;
-    font-size:11px;
+    color:#777;
+    font-size:10px;
+    margin-top:3px;
 }
 
 .history-total{
     color:var(--gold2);
-    font-weight:bold;
+    font-weight:900;
 }
 
 .history-products{
-    margin-top:9px;
     color:#ccc;
-    font-size:12px;
+    font-size:11px;
     line-height:1.7;
+    margin-top:10px;
 }
 
 .history-status{
-    margin-top:10px;
     color:var(--green);
-    font-size:11px;
+    font-size:10px;
     font-weight:bold;
+    margin-top:9px;
 }
 
-/* ================= TOAST ================= */
+/* =====================================================
+   TOAST
+===================================================== */
 
 .toast{
     position:fixed;
     left:50%;
     bottom:20px;
-    transform:translate(-50%,120px);
     z-index:5000;
+    transform:translate(-50%,130px);
     background:#171717;
-    color:#fff;
     border:1px solid var(--border);
-    padding:13px 17px;
     border-radius:12px;
-    box-shadow:0 15px 40px #000;
-    transition:.3s;
-    font-size:13px;
+    padding:13px 17px;
+    color:#fff;
+    font-size:12px;
+    box-shadow:0 15px 45px #000;
+    transition:.3s ease;
+    max-width:90%;
+    text-align:center;
 }
 
 .toast.show{
     transform:translate(-50%,0);
 }
 
-footer{
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
     border-top:1px solid #202020;
-    background:#080808;
-    padding:25px 15px;
+    background:#070707;
     text-align:center;
-    color:#777;
-    font-size:11px;
+    padding:25px 15px;
+    color:#666;
+    font-size:10px;
+    line-height:1.7;
 }
 
-footer strong{
+.footer strong{
     color:var(--gold2);
+    font-size:13px;
 }
 
-/* ================= RESPONSIVO ================= */
+/* =====================================================
+   RESPONSIVO
+===================================================== */
 
-@media(max-width:900px){
+@media(max-width:1000px){
+
     .products{
         grid-template-columns:repeat(3,1fr);
     }
 }
 
-@media(max-width:650px){
-    header{
+@media(max-width:700px){
+
+    .header{
         height:68px;
     }
 
     .logo{
-        width:42px;
-        height:42px;
+        width:43px;
+        height:43px;
     }
 
-    .logo-text strong{
+    .brand-name{
         font-size:12px;
     }
 
+    .brand-sub{
+        display:none;
+    }
+
+    .header-btn{
+        width:40px;
+        height:40px;
+    }
+
     .hero-box{
-        min-height:280px;
+        min-height:285px;
         padding:25px 20px;
+    }
+
+    .hero-text{
+        font-size:13px;
     }
 
     .products{
@@ -870,21 +1053,22 @@ footer strong{
     }
 
     .product-name{
-        font-size:14px;
+        font-size:13px;
     }
 
     .product-description{
         font-size:10px;
-        min-height:60px;
+        min-height:73px;
     }
 
-    .price{
+    .product-price{
         font-size:14px;
     }
 
-    .add-btn{
-        padding:9px 10px;
-        font-size:10px;
+    .add-button{
+        min-width:78px;
+        padding:9px 8px;
+        font-size:9px;
     }
 
     .form-grid{
@@ -894,9 +1078,14 @@ footer strong{
     .field.full{
         grid-column:auto;
     }
+
+    .status-hours{
+        display:none;
+    }
 }
 
 @media(max-width:380px){
+
     .products{
         grid-template-columns:1fr;
     }
@@ -910,297 +1099,761 @@ footer strong{
 
 <body>
 
-<!-- HEADER -->
-<header>
-    <div class="logo-area">
-        <img class="logo" src="logo.jpeg" alt="VF Filhos Lanches">
-        <div class="logo-text">
-            <strong>VF FILHOS LANCHES</strong>
-            <span>QUALIDADE EM CADA PEDIDO</span>
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="brand">
+
+        <img
+            class="logo"
+            src="logo-vf.jpeg"
+            alt="Logo VF Filhos Lanches"
+        >
+
+        <div class="brand-text">
+            <div class="brand-name">
+                VF FILHOS LANCHES
+            </div>
+
+            <div class="brand-sub">
+                QUALIDADE EM CADA PEDIDO
+            </div>
         </div>
+
     </div>
 
     <div class="header-actions">
-        <button class="icon-btn" onclick="openHistory()" aria-label="Histórico">
+
+        <button
+            class="header-btn"
+            onclick="openHistory()"
+            aria-label="Histórico"
+        >
             🧾
         </button>
 
-        <button class="icon-btn" onclick="openCart()" aria-label="Carrinho">
+        <button
+            class="header-btn"
+            onclick="openCart()"
+            aria-label="Carrinho"
+        >
             🛒
-            <span class="cart-count" id="cartCount">0</span>
+            <span
+                class="cart-count"
+                id="cartCount"
+            >0</span>
         </button>
 
-        <button class="icon-btn" onclick="openMenu()" aria-label="Menu">
+        <button
+            class="header-btn"
+            onclick="openMenu()"
+            aria-label="Menu"
+        >
             ☰
         </button>
+
     </div>
+
 </header>
 
-<!-- STATUS -->
-<div class="status-wrap">
-    <div class="status" id="storeStatus">
+
+<!-- =====================================================
+     STATUS
+===================================================== -->
+
+<div class="status-area">
+
+    <div
+        class="status-box"
+        id="storeStatus"
+    >
+
         <div class="status-left">
+
             <span class="status-dot"></span>
+
             <div>
-                <div class="status-title" id="statusTitle">Verificando...</div>
-                <div class="status-sub" id="statusSub">Horário: 10:00 às 00:00</div>
+
+                <div
+                    class="status-title"
+                    id="statusTitle"
+                >
+                    VERIFICANDO...
+                </div>
+
+                <div
+                    class="status-description"
+                    id="statusDescription"
+                >
+                    Aguarde...
+                </div>
+
             </div>
+
         </div>
 
-        <div style="font-size:11px;color:#777;">
-            Todos os dias
+        <div class="status-hours">
+            10:00 às 00:00
         </div>
+
     </div>
+
 </div>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-box">
-        <div class="hero-content">
-            <div class="hero-small">VF FILHOS LANCHES</div>
 
-            <h1>
-                O sabor que<br>
-                <span>você merece.</span>
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-box">
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+                VF FILHOS LANCHES
+            </div>
+
+            <h1 class="hero-title">
+                SEU LANCHE.<br>
+                <span>SEU MOMENTO.</span>
             </h1>
 
-            <p>
-                Hambúrgueres artesanais, combos, porções, bebidas,
-                adicionais e muito mais. Faça seu pedido de forma rápida
-                e segura.
+            <p class="hero-text">
+                Hambúrgueres, combos, promoções, porções,
+                bebidas, adicionais e muito mais preparados
+                para deixar seu pedido ainda mais especial.
             </p>
 
-            <div class="hero-buttons">
-                <button class="hero-btn gold" onclick="scrollToCategory('hamburgueres')">
-                    VER CARDÁPIO
-                </button>
-
-                <button class="hero-btn dark" onclick="openCart()">
-                    VER CARRINHO
-                </button>
+            <div class="hero-highlight">
+                ✨ Ficou top, chat!
             </div>
+
         </div>
+
     </div>
+
 </section>
 
-<!-- CATEGORIAS -->
-<div class="categories">
-    <div class="categories-scroll">
-        <button class="category-btn active" onclick="scrollToCategory('hamburgueres')">🍔 Hambúrgueres</button>
-        <button class="category-btn" onclick="scrollToCategory('combos')">🍟 Combos</button>
-        <button class="category-btn" onclick="scrollToCategory('promocoes')">🔥 Promoções</button>
-        <button class="category-btn" onclick="scrollToCategory('bebidas')">🥤 Bebidas</button>
-        <button class="category-btn" onclick="scrollToCategory('adicionais')">➕ Adicionais</button>
-        <button class="category-btn" onclick="scrollToCategory('porcoes')">🍟 Porções</button>
-        <button class="category-btn" onclick="scrollToCategory('frango')">🍗 Frango</button>
-        <button class="category-btn" onclick="scrollToCategory('acai')">🍧 Açaí</button>
-    </div>
-</div>
 
-<main class="main" id="cardapio"></main>
+<!-- =====================================================
+     PESQUISA
+===================================================== -->
 
-<footer>
-    <strong>VF FILHOS LANCHES</strong><br><br>
-    Hambúrgueres • Combos • Porções • Bebidas • Açaí<br><br>
-    Funcionamento: 10:00 às 00:00
-</footer>
+<section class="search-area">
 
-<!-- OVERLAY -->
-<div class="overlay" id="overlay" onclick="closeEverything()"></div>
+    <div class="search-box">
 
-<!-- MENU HAMBÚRGUER -->
-<aside class="drawer" id="menuDrawer">
-    <div class="drawer-header">
-        <h2>Menu</h2>
-        <button class="close-btn" onclick="closeEverything()">×</button>
+        <input
+            id="searchInput"
+            class="search-input"
+            type="search"
+            placeholder="Pesquisar produto..."
+            autocomplete="off"
+        >
+
+        <span class="search-icon">
+            🔎
+        </span>
+
     </div>
 
-    <div class="menu-links">
-        <a class="menu-link gold" href="https://wa.me/5521983950843" target="_blank">
-            📱 WhatsApp
-        </a>
+</section>
 
-        <a class="menu-link gold"
-           href="https://www.instagram.com/vf_filhoslanches?stkn=aGVnYjFycWo4YXgz"
-           target="_blank">
-            📸 Instagram
-        </a>
 
-        <button class="menu-link" onclick="openHistory()">
-            🧾 Histórico de pedidos
-        </button>
+<!-- =====================================================
+     CATEGORIAS
+===================================================== -->
 
-        <button class="menu-link" onclick="openCart()">
-            🛒 Meu carrinho
-        </button>
+<section class="categories">
 
-        <button class="menu-link" onclick="scrollToCategory('hamburgueres');closeEverything()">
+    <div class="category-scroll">
+
+        <button
+            class="category-button active"
+            data-category="hamburgueres"
+            onclick="scrollToCategory('hamburgueres')"
+        >
             🍔 Hambúrgueres
         </button>
 
-        <button class="menu-link" onclick="scrollToCategory('combos');closeEverything()">
+        <button
+            class="category-button"
+            data-category="combos"
+            onclick="scrollToCategory('combos')"
+        >
             🍟 Combos
         </button>
 
-        <button class="menu-link" onclick="scrollToCategory('promocoes');closeEverything()">
+        <button
+            class="category-button"
+            data-category="promocoes"
+            onclick="scrollToCategory('promocoes')"
+        >
             🔥 Promoções
         </button>
 
-        <button class="menu-link" onclick="scrollToCategory('bebidas');closeEverything()">
+        <button
+            class="category-button"
+            data-category="bebidas"
+            onclick="scrollToCategory('bebidas')"
+        >
             🥤 Bebidas
         </button>
 
-        <button class="menu-link" onclick="scrollToCategory('adicionais');closeEverything()">
+        <button
+            class="category-button"
+            data-category="adicionais"
+            onclick="scrollToCategory('adicionais')"
+        >
             ➕ Adicionais
         </button>
 
-        <button class="menu-link" onclick="scrollToCategory('porcoes');closeEverything()">
+        <button
+            class="category-button"
+            data-category="porcoes"
+            onclick="scrollToCategory('porcoes')"
+        >
             🍟 Porções
         </button>
 
-        <button class="menu-link" onclick="scrollToCategory('frango');closeEverything()">
+        <button
+            class="category-button"
+            data-category="frango"
+            onclick="scrollToCategory('frango')"
+        >
+            🍗 Frango
+        </button>
+
+        <button
+            class="category-button"
+            data-category="acai"
+            onclick="scrollToCategory('acai')"
+        >
+            🍧 Açaí
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CARDÁPIO
+===================================================== -->
+
+<main
+    class="main"
+    id="cardapio"
+></main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <strong>VF FILHOS LANCHES</strong>
+
+    <br>
+
+    Hambúrgueres • Combos • Porções • Bebidas • Açaí
+
+    <br>
+
+    Funcionamento: 10:00 às 00:00
+
+    <br><br>
+
+    © VF Filhos Lanches
+
+</footer>
+
+
+<!-- =====================================================
+     OVERLAY
+===================================================== -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeEverything()"
+></div>
+
+
+<!-- =====================================================
+     MENU
+===================================================== -->
+
+<aside
+    class="drawer"
+    id="menuDrawer"
+>
+
+    <div class="drawer-header">
+
+        <div class="drawer-title">
+            MENU
+        </div>
+
+        <button
+            class="close-button"
+            onclick="closeEverything()"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="menu-links">
+
+        <a
+            class="menu-link highlight"
+            href="https://wa.me/5521983950843"
+            target="_blank"
+        >
+            📱 WhatsApp
+        </a>
+
+        <a
+            class="menu-link highlight"
+            href="https://www.instagram.com/vf_filhoslanches?stkn=aGVnYjFycWo4YXgz"
+            target="_blank"
+        >
+            📸 Instagram
+        </a>
+
+        <button
+            class="menu-link"
+            onclick="openHistory()"
+        >
+            🧾 Histórico de pedidos
+        </button>
+
+        <button
+            class="menu-link"
+            onclick="openCart()"
+        >
+            🛒 Meu carrinho
+        </button>
+
+    </div>
+
+
+    <div class="menu-title">
+        CATEGORIAS
+    </div>
+
+
+    <div class="menu-links">
+
+        <button
+            class="menu-link"
+            onclick="scrollToCategory('hamburgueres')"
+        >
+            🍔 Hambúrgueres
+        </button>
+
+        <button
+            class="menu-link"
+            onclick="scrollToCategory('combos')"
+        >
+            🍟 Combos
+        </button>
+
+        <button
+            class="menu-link"
+            onclick="scrollToCategory('promocoes')"
+        >
+            🔥 Promoções
+        </button>
+
+        <button
+            class="menu-link"
+            onclick="scrollToCategory('bebidas')"
+        >
+            🥤 Bebidas
+        </button>
+
+        <button
+            class="menu-link"
+            onclick="scrollToCategory('adicionais')"
+        >
+            ➕ Adicionais
+        </button>
+
+        <button
+            class="menu-link"
+            onclick="scrollToCategory('porcoes')"
+        >
+            🍟 Porções
+        </button>
+
+        <button
+            class="menu-link"
+            onclick="scrollToCategory('frango')"
+        >
             🍗 Frango Assado
         </button>
 
-        <button class="menu-link" onclick="scrollToCategory('acai');closeEverything()">
+        <button
+            class="menu-link"
+            onclick="scrollToCategory('acai')"
+        >
             🍧 Açaí
         </button>
+
     </div>
 
-    <div class="menu-section-title">Funcionamento</div>
 
-    <div style="background:#141414;border:1px solid #292929;padding:14px;border-radius:12px;color:#aaa;font-size:12px;line-height:1.7;">
-        🕙 Todos os dias<br>
-        <strong style="color:#fff;">10:00 às 00:00</strong><br>
-        <span style="color:#777;">Pedidos bloqueados automaticamente quando a loja estiver fechada.</span>
+    <div class="menu-title">
+        FUNCIONAMENTO
     </div>
+
+    <div class="menu-info">
+
+        🕙 Todos os dias
+
+        <br>
+
+        <strong>10:00 às 00:00</strong>
+
+        <br>
+
+        Os pedidos são bloqueados automaticamente
+        quando a loja está fechada.
+
+    </div>
+
 </aside>
 
-<!-- CARRINHO -->
-<div class="modal" id="cartModal">
+
+<!-- =====================================================
+     CARRINHO
+===================================================== -->
+
+<div
+    class="modal"
+    id="cartModal"
+>
+
     <div class="modal-box">
+
         <div class="modal-header">
-            <h2>🛒 Seu carrinho</h2>
-            <button class="close-modal" onclick="closeCart()">×</button>
+
+            <h2>
+                🛒 Seu carrinho
+            </h2>
+
+            <button
+                class="modal-close"
+                onclick="closeCart()"
+            >
+                ×
+            </button>
+
         </div>
 
         <div id="cartItems"></div>
 
-        <div class="cart-summary" id="cartSummary"></div>
+        <div id="cartSummary"></div>
+
     </div>
+
 </div>
 
-<!-- CHECKOUT -->
-<div class="modal" id="checkoutModal">
+
+<!-- =====================================================
+     CHECKOUT
+===================================================== -->
+
+<div
+    class="modal"
+    id="checkoutModal"
+>
+
     <div class="modal-box">
+
         <div class="modal-header">
-            <h2>📋 Finalizar pedido</h2>
-            <button class="close-modal" onclick="closeCheckout()">×</button>
+
+            <h2>
+                📋 Dados do pedido
+            </h2>
+
+            <button
+                class="modal-close"
+                onclick="closeCheckout()"
+            >
+                ×
+            </button>
+
         </div>
 
+
         <form id="checkoutForm">
+
             <div class="form-grid">
 
                 <div class="field">
-                    <label>Nome completo *</label>
-                    <input id="customerName" required placeholder="Seu nome">
+
+                    <label>
+                        Nome completo *
+                    </label>
+
+                    <input
+                        id="customerName"
+                        required
+                        placeholder="Seu nome"
+                    >
+
                 </div>
 
+
                 <div class="field">
-                    <label>Telefone / WhatsApp *</label>
-                    <input id="customerPhone" required placeholder="(21) 99999-9999">
+
+                    <label>
+                        Telefone / WhatsApp *
+                    </label>
+
+                    <input
+                        id="customerPhone"
+                        required
+                        type="tel"
+                        placeholder="(21) 99999-9999"
+                    >
+
                 </div>
+
 
                 <div class="field full">
-                    <label>Endereço *</label>
-                    <input id="customerAddress" required placeholder="Rua, número, bairro">
+
+                    <label>
+                        Endereço *
+                    </label>
+
+                    <input
+                        id="customerAddress"
+                        required
+                        placeholder="Rua, número, bairro"
+                    >
+
                 </div>
 
-                <div class="field">
-                    <label>Complemento</label>
-                    <input id="customerComplement" placeholder="Casa, apto...">
-                </div>
 
                 <div class="field">
-                    <label>Ponto de referência</label>
-                    <input id="customerReference" placeholder="Próximo de...">
+
+                    <label>
+                        Complemento
+                    </label>
+
+                    <input
+                        id="customerComplement"
+                        placeholder="Casa, apartamento..."
+                    >
+
                 </div>
 
+
                 <div class="field">
-                    <label>Forma de pagamento *</label>
-                    <select id="paymentMethod" required>
-                        <option value="">Selecione</option>
-                        <option value="PIX">PIX</option>
-                        <option value="Dinheiro">Dinheiro</option>
-                        <option value="Cartão de crédito">Cartão de crédito</option>
-                        <option value="Cartão de débito">Cartão de débito</option>
+
+                    <label>
+                        Ponto de referência
+                    </label>
+
+                    <input
+                        id="customerReference"
+                        placeholder="Próximo de..."
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Forma de pagamento *
+                    </label>
+
+                    <select
+                        id="paymentMethod"
+                        required
+                    >
+
+                        <option value="">
+                            Escolha
+                        </option>
+
+                        <option value="PIX">
+                            PIX
+                        </option>
+
+                        <option value="Dinheiro">
+                            Dinheiro
+                        </option>
+
+                        <option value="Cartão de crédito">
+                            Cartão de crédito
+                        </option>
+
+                        <option value="Cartão de débito">
+                            Cartão de débito
+                        </option>
+
                     </select>
+
                 </div>
 
-                <div class="field" id="changeField">
-                    <label>Troco para quanto?</label>
-                    <input id="changeFor" type="number" min="0" step="0.01" placeholder="Ex.: 50">
+
+                <div
+                    class="field"
+                    id="changeField"
+                >
+
+                    <label>
+                        Troco para quanto?
+                    </label>
+
+                    <input
+                        id="changeFor"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="Ex.: 50"
+                    >
+
                 </div>
+
 
                 <div class="field full">
-                    <label>Observações do pedido</label>
-                    <textarea id="orderNotes" placeholder="Alguma observação?"></textarea>
+
+                    <label>
+                        Observações
+                    </label>
+
+                    <textarea
+                        id="orderNotes"
+                        placeholder="Alguma observação sobre o pedido?"
+                    ></textarea>
+
                 </div>
 
             </div>
 
-            <!-- PIX -->
-            <div class="pix-box" id="pixBox">
-                <div class="pix-title">PAGAMENTO VIA PIX</div>
 
-                <img id="pixQr" alt="QR Code PIX">
+            <!-- PIX -->
+
+            <div
+                class="pix-box"
+                id="pixBox"
+            >
+
+                <div class="pix-title">
+                    PAGAMENTO VIA PIX
+                </div>
+
+                <img
+                    id="pixQr"
+                    class="pix-qr"
+                    alt="QR Code PIX"
+                >
 
                 <div class="pix-key">
-                    Chave PIX: 126.370.707-65
+                    Chave PIX:
+                    <strong>126.370.707-65</strong>
                 </div>
 
                 <div class="pix-receiver">
-                    Recebedor: VANESSA NOGUEIRA DA SILVA
+                    Recebedor:
+                    VANESSA NOGUEIRA DA SILVA
                 </div>
 
-                <div style="margin-top:9px;color:#777;font-size:10px;">
-                    Faça o pagamento pelo QR Code e envie o pedido.
-                </div>
             </div>
 
-            <button class="primary-btn" type="submit">
+
+            <button
+                class="primary-button"
+                type="submit"
+            >
                 ENVIAR PEDIDO PELO WHATSAPP
             </button>
 
-            <button class="secondary-btn" type="button" onclick="closeCheckout()">
+
+            <button
+                class="secondary-button"
+                type="button"
+                onclick="closeCheckout()"
+            >
                 VOLTAR
             </button>
+
         </form>
+
     </div>
+
 </div>
 
-<!-- HISTÓRICO -->
-<div class="modal" id="historyModal">
+
+<!-- =====================================================
+     HISTÓRICO
+===================================================== -->
+
+<div
+    class="modal"
+    id="historyModal"
+>
+
     <div class="modal-box">
+
         <div class="modal-header">
-            <h2>🧾 Histórico de pedidos</h2>
-            <button class="close-modal" onclick="closeHistory()">×</button>
+
+            <h2>
+                🧾 Histórico
+            </h2>
+
+            <button
+                class="modal-close"
+                onclick="closeHistory()"
+            >
+                ×
+            </button>
+
         </div>
 
         <div id="historyList"></div>
 
-        <button class="secondary-btn" onclick="clearHistory()">
+        <button
+            class="secondary-button"
+            onclick="clearHistory()"
+        >
             LIMPAR HISTÓRICO
         </button>
+
     </div>
+
 </div>
 
-<div class="toast" id="toast"></div>
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
 
 <script>
-/* =========================================================
+
+/* =====================================================
    CONFIGURAÇÕES
-========================================================= */
+===================================================== */
 
 const WHATSAPP = "5521983950843";
 
@@ -1208,500 +1861,869 @@ const INSTAGRAM =
 "https://www.instagram.com/vf_filhoslanches?stkn=aGVnYjFycWo4YXgz";
 
 const PIX_KEY = "126.370.707-65";
-const PIX_RECEIVER = "VANESSA NOGUEIRA DA SILVA";
 
-const STORE_OPEN_HOUR = 10;
-const STORE_CLOSE_HOUR = 24;
+const PIX_RECEIVER =
+"VANESSA NOGUEIRA DA SILVA";
 
-let cart = JSON.parse(localStorage.getItem("vf_cart") || "[]");
+const STORE_OPEN = 10 * 60;
+
+const STORE_CLOSE = 24 * 60;
+
+let cart =
+JSON.parse(
+    localStorage.getItem("vf_cart") || "[]"
+);
 
 let previousStoreState = null;
 
+let audioUnlocked = false;
 
-/* =========================================================
+
+/* =====================================================
    PRODUTOS
-========================================================= */
+===================================================== */
 
 const products = [
 
-/* ================= HAMBÚRGUERES ================= */
+    /* HAMBÚRGUERES */
 
-{
-    category:"hamburgueres",
-    name:"X-Burger",
-    price:9.00,
-    image:"cheesburger.jpeg",
-    description:"Pão macio, carne bovina suculenta, presunto e queijo prato derretido, acompanhado de barbecue, maionese, mostarda e ketchup."
-},
+    {
+        category:"hamburgueres",
+        name:"X-Burger",
+        price:9.00,
+        image:"cheesburger.jpeg",
+        description:
+        "Pão macio, carne bovina suculenta, presunto e queijo prato derretido, acompanhado de barbecue, maionese, mostarda e ketchup."
+    },
 
-{
-    category:"hamburgueres",
-    name:"X-Tudo",
-    price:15.99,
-    image:"x-tudo.jpeg",
-    description:"Pão macio, carne bovina, queijo, presunto, ovo, salada fresquinha, batata palha, ketchup, maionese, mostarda e barbecue."
-},
+    {
+        category:"hamburgueres",
+        name:"X-Tudo",
+        price:15.99,
+        image:"x-tudo.jpeg",
+        description:
+        "Pão macio, carne bovina, queijo, presunto, ovo, salada fresquinha, batata palha, ketchup, maionese, mostarda e barbecue."
+    },
 
-{
-    category:"hamburgueres",
-    name:"X-Duplo",
-    price:20.99,
-    image:"x-duplo.jpeg",
-    description:"Pão fresquinho, duas carnes bovinas, ovo, queijo prato, presunto, salada crocante, batata palha, ketchup, maionese, barbecue e mostarda."
-},
+    {
+        category:"hamburgueres",
+        name:"X-Duplo",
+        price:20.99,
+        image:"x-duplo.jpeg",
+        description:
+        "Pão fresquinho, duas carnes bovinas, ovo, queijo prato, presunto, salada crocante, batata palha, ketchup, maionese, barbecue e mostarda."
+    },
 
-{
-    category:"hamburgueres",
-    name:"X-Bacon",
-    price:19.99,
-    image:"X-bacon.jpeg",
-    description:"Pão macio, carne bovina, ovo, presunto, queijo prato, salada, batata palha, bacon crocante, ketchup, mostarda, maionese e barbecue."
-},
+    {
+        category:"hamburgueres",
+        name:"X-Bacon",
+        price:19.99,
+        image:"X-bacon.jpeg",
+        description:
+        "Pão macio, carne bovina, ovo, presunto, queijo prato, salada, batata palha, bacon crocante, ketchup, mostarda, maionese e barbecue."
+    },
 
-{
-    category:"hamburgueres",
-    name:"X-Picanha",
-    price:19.99,
-    image:"x-picanha.jpeg",
-    description:"Pão macio, carne de picanha suculenta, presunto, queijo, ovo, bacon crocante, batata palha, alface, ketchup, maionese e barbecue."
-},
+    {
+        category:"hamburgueres",
+        name:"X-Picanha",
+        price:19.99,
+        image:"x-picanha.jpeg",
+        description:
+        "Pão macio, carne de picanha suculenta, presunto, queijo, ovo, bacon crocante, batata palha, alface, ketchup, maionese e barbecue."
+    },
 
-{
-    category:"hamburgueres",
-    name:"X Chicken",
-    price:12.99,
-    image:"x-chicken.jpeg",
-    description:"Pão macio, carne de frango, queijo prato derretido, presunto, ovo, ketchup, salada, batata palha, mostarda e maionese."
-},
+    {
+        category:"hamburgueres",
+        name:"X Chicken",
+        price:12.99,
+        image:"x-chicken.jpeg",
+        description:
+        "Pão macio, carne de frango, queijo prato derretido, presunto, ovo, ketchup, salada, batata palha, mostarda e maionese."
+    },
 
-{
-    category:"hamburgueres",
-    name:"X-Batata",
-    price:18.99,
-    image:"x-batata.jpeg",
-    description:"Pão fresquinho, carne bovina, presunto, cheddar cremoso, bacon crocante, ovo e salada, finalizado com fritas crocantes."
-},
+    {
+        category:"hamburgueres",
+        name:"X-Batata",
+        price:18.99,
+        image:"x-batata.jpeg",
+        description:
+        "Pão fresquinho, carne bovina, presunto, cheddar cremoso, bacon crocante, ovo e salada, finalizado com fritas crocantes."
+    },
 
-{
-    category:"hamburgueres",
-    name:"X-Onion",
-    price:18.99,
-    image:"X-onions.jpeg",
-    description:"Pão macio e fresquinho, hambúrguer de picanha, cheddar derretido, dois anéis de cebola fritos e crocantes, barbecue, ketchup e maionese."
-},
+    {
+        category:"hamburgueres",
+        name:"X-Onions",
+        price:18.99,
+        image:"X-onions.jpeg",
+        description:
+        "Pão macio e fresquinho, hambúrguer de picanha, cheddar derretido, dois anéis de cebola fritos e crocantes, barbecue, ketchup e maionese."
+    },
 
-{
-    category:"hamburgueres",
-    name:"X-Mineiro",
-    price:19.99,
-    image:"X-Mineiro.jpeg",
-    description:"Pão macio, carne bovina, carne sabor picanha, presunto douradinho, queijo minas derretido, batata palha, salada, ketchup, barbecue e maionese."
-},
+    {
+        category:"hamburgueres",
+        name:"X-Mineiro",
+        price:19.99,
+        image:"X-Mineiro.jpeg",
+        description:
+        "Pão macio, carne bovina, carne sabor picanha, presunto douradinho, queijo minas derretido, batata palha, salada, ketchup, barbecue e maionese."
+    },
 
-{
-    category:"hamburgueres",
-    name:"X-3 Queijos",
-    price:19.99,
-    image:"X-3queijos.jpeg",
-    description:"Pão macio, carne bovina, carne sabor picanha, queijo prato, cheddar e queijo minas, presunto, bacon, batata palha, salada, ketchup, barbecue e maionese."
-},
+    {
+        category:"hamburgueres",
+        name:"X-3 Queijos",
+        price:19.99,
+        image:"X-3queijos.jpeg",
+        description:
+        "Pão macio, carne bovina, carne sabor picanha, queijo prato, cheddar e queijo minas, presunto, bacon, batata palha, salada, ketchup, barbecue e maionese."
+    },
 
-{
-    category:"hamburgueres",
-    name:"Duplo Cheddar",
-    price:17.99,
-    image:"Duplo Cheddar.jpeg",
-    description:"Pão macio, duas carnes bovinas suculentas, cheddar derretido, cebola caramelizada e molho barbecue."
-},
+    {
+        category:"hamburgueres",
+        name:"Duplo Cheddar",
+        price:17.99,
+        image:"Duplo Cheddar.jpeg",
+        description:
+        "Pão macio, duas carnes bovinas suculentas, cheddar derretido, cebola caramelizada e molho barbecue."
+    },
 
-/* ================= COMBOS ================= */
 
-{
-    category:"combos",
-    name:"Combo Individual",
-    price:29.99,
-    image:"compo individual.png",
-    description:"X-Tudo completo + batata frita douradinha com calabresa, ketchup e maionese + 4 anéis de cebola + 4 nuggets."
-},
+    /* COMBOS */
 
-{
-    category:"combos",
-    name:"Combo Duplo",
-    price:38.99,
-    image:"combo-duplo.jpeg",
-    description:"2 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 5 anéis de cebola + 5 nuggets."
-},
+    {
+        category:"combos",
+        name:"Combo Individual",
+        price:29.99,
+        image:"compo individual.png",
+        description:
+        "X-Tudo completo + batata frita douradinha com calabresa, ketchup e maionese + 4 anéis de cebola + 4 nuggets."
+    },
 
-{
-    category:"combos",
-    name:"Combo Família",
-    price:64.99,
-    image:"combo-familia.jpeg",
-    description:"4 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 6 anéis de cebola + 6 nuggets."
-},
+    {
+        category:"combos",
+        name:"Combo Duplo",
+        price:38.99,
+        image:"combo-duplo.jpeg",
+        description:
+        "2 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 5 anéis de cebola + 5 nuggets."
+    },
 
-/* ================= PROMOÇÕES ================= */
+    {
+        category:"combos",
+        name:"Combo Família",
+        price:64.99,
+        image:"combo-familia.jpeg",
+        description:
+        "4 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 6 anéis de cebola + 6 nuggets."
+    },
 
-{
-    category:"promocoes",
-    name:"X-Tudo + Guaravita + Batata P",
-    price:19.99,
-    image:"X-tudo + batata p + Guaravita.png",
-    description:"X-Tudo completo + batata P douradinha e crocante + Guaravita."
-},
 
-{
-    category:"promocoes",
-    name:"Duplo Cheddar + Coca-Cola",
-    price:18.99,
-    image:"Duplo cheddar + coca.png",
-    description:"Duplo Cheddar com duas carnes, cheddar, cebola caramelizada e barbecue + Coca-Cola lata."
-},
+    /* PROMOÇÕES */
 
-/* ================= BEBIDAS ================= */
+    {
+        category:"promocoes",
+        name:"X-Tudo + Guaravita + Batata P",
+        price:19.99,
+        image:"X-tudo + batata p + Guaravita.png",
+        description:
+        "X-Tudo completo + batata P douradinha e crocante + Guaravita."
+    },
 
-{
-    category:"bebidas",
-    name:"Coca-Cola lata 350 ml",
-    price:6.50,
-    image:"coca-lata.jpeg",
-    description:"Coca-Cola lata 350 ml, perfeita para acompanhar seu lanche."
-},
+    {
+        category:"promocoes",
+        name:"Duplo Cheddar + Coca-Cola",
+        price:18.99,
+        image:"Duplo cheddar + coca.png",
+        description:
+        "Duplo Cheddar com duas carnes, cheddar, cebola caramelizada e barbecue + Coca-Cola lata."
+    },
 
-{
-    category:"bebidas",
-    name:"Guaravita Natural 290 ml",
-    price:2.50,
-    image:"guaravita.jpeg",
-    description:"Guaravita Natural 290 ml, refrescante para acompanhar sua refeição."
-},
 
-{
-    category:"bebidas",
-    name:"Água Mineral 500 ml",
-    price:3.00,
-    image:"agua-mineral.jpeg",
-    description:"Água mineral 500 ml, uma opção refrescante para sua refeição."
-},
+    /* BEBIDAS */
 
-/* ================= ADICIONAIS ================= */
+    {
+        category:"bebidas",
+        name:"Coca-Cola lata 350 ml",
+        price:6.50,
+        image:"coca-lata.jpeg",
+        description:
+        "Coca-Cola lata 350 ml, perfeita para acompanhar seu lanche."
+    },
 
-{
-    category:"adicionais",
-    name:"Maionese",
-    price:3.00,
-    image:"adicional-de-maionese.jpeg",
-    description:"Adicional de maionese para deixar seu lanche ainda mais cremoso."
-},
+    {
+        category:"bebidas",
+        name:"Guaravita Natural 290 ml",
+        price:2.50,
+        image:"guaravita.jpeg",
+        description:
+        "Guaravita Natural 290 ml, refrescante para acompanhar sua refeição."
+    },
 
-{
-    category:"adicionais",
-    name:"Barbecue",
-    price:3.00,
-    image:"adicional-de-barbecue.jpeg",
-    description:"Adicional de molho barbecue com sabor marcante e defumado."
-},
+    {
+        category:"bebidas",
+        name:"Água Mineral 500 ml",
+        price:3.00,
+        image:"agua-mineral.jpeg",
+        description:
+        "Água mineral 500 ml, uma opção refrescante para sua refeição."
+    },
 
-{
-    category:"adicionais",
-    name:"Ketchup",
-    price:3.00,
-    image:"adicional-de-ketchup.jpeg",
-    description:"Adicional de ketchup para complementar seu lanche."
-},
 
-{
-    category:"adicionais",
-    name:"Mostarda",
-    price:3.00,
-    image:"adicional-de-mostarda.jpeg",
-    description:"Adicional de mostarda para dar aquele toque especial."
-},
+    /* ADICIONAIS */
 
-{
-    category:"adicionais",
-    name:"Molho Verde",
-    price:4.00,
-    image:"adicional-de-molho-verde.jpeg",
-    description:"Adicional de molho verde cremoso e saboroso."
-},
+    {
+        category:"adicionais",
+        name:"Maionese",
+        price:3.00,
+        image:"adicional-de-maionese.jpeg",
+        description:
+        "Adicional de maionese para deixar seu lanche ainda mais cremoso."
+    },
 
-{
-    category:"adicionais",
-    name:"Cheddar",
-    price:5.00,
-    image:"adicional-de-cheedar.jpeg",
-    description:"Adicional de cheddar cremoso para deixar seu lanche ainda mais especial."
-},
+    {
+        category:"adicionais",
+        name:"Barbecue",
+        price:3.00,
+        image:"adicional-de-barbecue.jpeg",
+        description:
+        "Adicional de molho barbecue com sabor marcante e defumado."
+    },
 
-{
-    category:"adicionais",
-    name:"Ovo",
-    price:5.00,
-    image:"adicional-de-ovo.jpeg",
-    description:"Ovo adicional preparado para complementar seu lanche."
-},
+    {
+        category:"adicionais",
+        name:"Ketchup",
+        price:3.00,
+        image:"adicional-de-ketchup.jpeg",
+        description:
+        "Adicional de ketchup para complementar seu lanche."
+    },
 
-/* ================= PORÇÕES ================= */
+    {
+        category:"adicionais",
+        name:"Mostarda",
+        price:3.00,
+        image:"adicional-de-mostarda.jpeg",
+        description:
+        "Adicional de mostarda para dar aquele toque especial."
+    },
 
-{
-    category:"porcoes",
-    name:"Batata Frita P",
-    price:15.00,
-    image:"batata-p.jpeg",
-    description:"Porção de batata frita tamanho P, douradinha e crocante."
-},
+    {
+        category:"adicionais",
+        name:"Molho Verde",
+        price:4.00,
+        image:"adicional-de-molho-verde.jpeg",
+        description:
+        "Adicional de molho verde cremoso e saboroso."
+    },
 
-{
-    category:"porcoes",
-    name:"Batata Frita M",
-    price:21.99,
-    image:"Batata M.png",
-    description:"Porção de batata frita tamanho M, douradinha e crocante."
-},
+    {
+        category:"adicionais",
+        name:"Cheddar",
+        price:5.00,
+        image:"adicional-de-cheedar.jpeg",
+        description:
+        "Adicional de cheddar cremoso para deixar seu lanche ainda mais especial."
+    },
 
-{
-    category:"porcoes",
-    name:"Batata Frita G",
-    price:30.00,
-    image:"Batata G.png",
-    description:"Porção de batata frita tamanho G, douradinha e crocante."
-},
+    {
+        category:"adicionais",
+        name:"Ovo",
+        price:5.00,
+        image:"adicional-de-ovo.jpeg",
+        description:
+        "Ovo adicional preparado para complementar seu lanche."
+    },
 
-/* ================= FRANGO ================= */
 
-{
-    category:"frango",
-    name:"Frango Assado Completo",
-    price:34.99,
-    image:"frango-assado-completo.jpeg",
-    weekendOnly:true,
-    description:"Frango assado douradinho e suculento, acompanhado de linguiça de churrasco, batatas, calabresas e farofa crocante."
-}
+    /* PORÇÕES */
+
+    {
+        category:"porcoes",
+        name:"Batata Frita P",
+        price:15.00,
+        image:"batata-p.jpeg",
+        description:
+        "Porção de batata frita tamanho P, douradinha e crocante."
+    },
+
+    {
+        category:"porcoes",
+        name:"Batata Frita M",
+        price:21.99,
+        image:"Batata M.png",
+        description:
+        "Porção de batata frita tamanho M, douradinha e crocante."
+    },
+
+    {
+        category:"porcoes",
+        name:"Batata Frita G",
+        price:30.00,
+        image:"Batata G.png",
+        description:
+        "Porção de batata frita tamanho G, douradinha e crocante."
+    },
+
+
+    /* FRANGO */
+
+    {
+        category:"frango",
+        name:"Frango Assado Completo",
+        price:34.99,
+        image:"frango-assado-completo.jpeg",
+        weekendOnly:true,
+        description:
+        "Frango assado douradinho e suculento, acompanhado de linguiça de churrasco, batatas, calabresas e farofa crocante."
+    }
 
 ];
 
 
-/* =========================================================
+/* =====================================================
    CATEGORIAS
-========================================================= */
+===================================================== */
 
-const categoryNames = {
-    hamburgueres:"Hambúrgueres",
-    combos:"Combos",
-    promocoes:"Promoções",
-    bebidas:"Bebidas",
-    adicionais:"Adicionais",
-    porcoes:"Porções",
-    frango:"Frango Assado",
-    acai:"Açaí"
-};
+const categories = [
 
-const categoryIcons = {
-    hamburgueres:"🍔",
-    combos:"🍟",
-    promocoes:"🔥",
-    bebidas:"🥤",
-    adicionais:"➕",
-    porcoes:"🍟",
-    frango:"🍗",
-    acai:"🍧"
-};
+    {
+        id:"hamburgueres",
+        name:"Hambúrgueres",
+        icon:"🍔"
+    },
+
+    {
+        id:"combos",
+        name:"Combos",
+        icon:"🍟"
+    },
+
+    {
+        id:"promocoes",
+        name:"Promoções",
+        icon:"🔥"
+    },
+
+    {
+        id:"bebidas",
+        name:"Bebidas",
+        icon:"🥤"
+    },
+
+    {
+        id:"adicionais",
+        name:"Adicionais",
+        icon:"➕"
+    },
+
+    {
+        id:"porcoes",
+        name:"Porções",
+        icon:"🍟"
+    },
+
+    {
+        id:"frango",
+        name:"Frango Assado",
+        icon:"🍗"
+    },
+
+    {
+        id:"acai",
+        name:"Açaí",
+        icon:"🍧"
+    }
+
+];
 
 
-/* =========================================================
-   UTILITÁRIOS
-========================================================= */
+/* =====================================================
+   FUNÇÕES GERAIS
+===================================================== */
 
 function money(value){
-    return value.toLocaleString("pt-BR",{
-        style:"currency",
-        currency:"BRL"
-    });
+
+    return value.toLocaleString(
+        "pt-BR",
+        {
+            style:"currency",
+            currency:"BRL"
+        }
+    );
+
 }
 
-function escapeHtml(text){
-    const div = document.createElement("div");
-    div.textContent = text ?? "";
+
+function escapeHtml(value){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value == null ? "" : value;
+
     return div.innerHTML;
+
 }
 
-function getToday(){
-    return new Date();
-}
 
 function isWeekend(){
-    const day = getToday().getDay();
+
+    const day =
+        new Date().getDay();
+
     return day === 0 || day === 6;
+
 }
+
 
 function isStoreOpen(){
-    const now = new Date();
-    const hour = now.getHours();
-    const minutes = now.getMinutes();
 
-    const current = hour * 60 + minutes;
-    const open = STORE_OPEN_HOUR * 60;
-    const close = STORE_CLOSE_HOUR * 60;
+    const now =
+        new Date();
 
-    return current >= open && current < close;
+    const minutes =
+        now.getHours() * 60 +
+        now.getMinutes();
+
+    return (
+        minutes >= STORE_OPEN &&
+        minutes < STORE_CLOSE
+    );
+
 }
 
+
 function canBuy(product){
-    if(product.weekendOnly && !isWeekend()){
+
+    if(!isStoreOpen()){
         return false;
     }
 
-    return isStoreOpen();
+    if(
+        product.weekendOnly &&
+        !isWeekend()
+    ){
+        return false;
+    }
+
+    return true;
+
 }
 
 
-/* =========================================================
+/* =====================================================
    STATUS DA LOJA
-========================================================= */
+===================================================== */
 
-function updateStoreStatus(playSound = true){
+function updateStoreStatus(playSound=true){
 
-    const open = isStoreOpen();
+    const open =
+        isStoreOpen();
 
-    const status = document.getElementById("storeStatus");
-    const title = document.getElementById("statusTitle");
-    const sub = document.getElementById("statusSub");
+    const box =
+        document.getElementById(
+            "storeStatus"
+        );
+
+    const title =
+        document.getElementById(
+            "statusTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "statusDescription"
+        );
 
     if(open){
-        status.classList.add("open");
-        title.textContent = "LOJA ABERTA";
-        sub.textContent = "Estamos recebendo pedidos agora.";
+
+        box.classList.add("open");
+
+        title.textContent =
+            "LOJA ABERTA";
+
+        description.textContent =
+            "Estamos recebendo pedidos agora.";
+
     }else{
-        status.classList.remove("open");
-        title.textContent = "LOJA FECHADA";
-        sub.textContent = "Pedidos disponíveis das 10:00 às 00:00.";
+
+        box.classList.remove("open");
+
+        title.textContent =
+            "LOJA FECHADA";
+
+        description.textContent =
+            "Pedidos disponíveis das 10:00 às 00:00.";
+
     }
+
 
     if(
         playSound &&
         previousStoreState !== null &&
         previousStoreState !== open
     ){
+
         playStoreSound(open);
+
     }
 
-    previousStoreState = open;
+
+    previousStoreState =
+        open;
+
 
     renderProducts();
+
 }
 
-setInterval(updateStoreStatus,1000);
 
-
-/* =========================================================
-   SOM DE ABERTURA / FECHAMENTO
-========================================================= */
-
-let audioUnlocked = false;
+/* =====================================================
+   ÁUDIO
+===================================================== */
 
 function unlockAudio(){
+
     audioUnlocked = true;
+
 }
 
-document.addEventListener("click",unlockAudio,{once:true});
+document.addEventListener(
+    "click",
+    unlockAudio,
+    {once:true}
+);
+
 
 function playStoreSound(open){
 
     if(!audioUnlocked) return;
 
     try{
+
         const AudioContext =
             window.AudioContext ||
             window.webkitAudioContext;
 
         if(!AudioContext) return;
 
-        const ctx = new AudioContext();
+        const context =
+            new AudioContext();
 
         const notes = open
-            ? [523,659,784,1046,784,1046,1318]
-            : [784,659,523,440,392,330,262];
 
-        notes.forEach((frequency,index)=>{
+            ? [
+                523,
+                659,
+                784,
+                1046,
+                784,
+                1046,
+                1318
+              ]
 
-            const oscillator = ctx.createOscillator();
-            const gain = ctx.createGain();
+            : [
+                784,
+                659,
+                523,
+                440,
+                392,
+                330,
+                262
+              ];
 
-            oscillator.type = "sine";
-            oscillator.frequency.value = frequency;
 
-            oscillator.connect(gain);
-            gain.connect(ctx.destination);
+        notes.forEach(
+            (frequency,index)=>{
 
-            const start = ctx.currentTime + index * .68;
-            const end = start + .48;
+                const oscillator =
+                    context.createOscillator();
 
-            gain.gain.setValueAtTime(0.0001,start);
-            gain.gain.exponentialRampToValueAtTime(.12,start+.04);
-            gain.gain.exponentialRampToValueAtTime(.0001,end);
+                const gain =
+                    context.createGain();
 
-            oscillator.start(start);
-            oscillator.stop(end);
-        });
+                oscillator.type =
+                    "sine";
 
-        setTimeout(()=>{
-            ctx.close();
-        },5200);
+                oscillator.frequency.value =
+                    frequency;
+
+                oscillator.connect(gain);
+
+                gain.connect(
+                    context.destination
+                );
+
+                const start =
+                    context.currentTime +
+                    index * .68;
+
+                const end =
+                    start + .48;
+
+                gain.gain.setValueAtTime(
+                    .0001,
+                    start
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    .12,
+                    start + .04
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    .0001,
+                    end
+                );
+
+                oscillator.start(start);
+
+                oscillator.stop(end);
+
+            }
+        );
+
+
+        setTimeout(
+            ()=>context.close(),
+            5200
+        );
 
     }catch(error){
-        console.log("Áudio indisponível:",error);
+
+        console.log(
+            "Áudio indisponível",
+            error
+        );
+
     }
+
 }
 
 
-/* =========================================================
-   RENDER PRODUTOS
-========================================================= */
+function playConfirmationSound(){
+
+    if(!audioUnlocked) return;
+
+    try{
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+        if(!AudioContext) return;
+
+        const context =
+            new AudioContext();
+
+        const notes =
+            [659,784,1046,1318];
+
+        notes.forEach(
+            (frequency,index)=>{
+
+                const oscillator =
+                    context.createOscillator();
+
+                const gain =
+                    context.createGain();
+
+                oscillator.type =
+                    "sine";
+
+                oscillator.frequency.value =
+                    frequency;
+
+                oscillator.connect(gain);
+
+                gain.connect(
+                    context.destination
+                );
+
+                const start =
+                    context.currentTime +
+                    index * .16;
+
+                const end =
+                    start + .22;
+
+                gain.gain.setValueAtTime(
+                    .0001,
+                    start
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    .15,
+                    start + .03
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    .0001,
+                    end
+                );
+
+                oscillator.start(start);
+
+                oscillator.stop(end);
+
+            }
+        );
+
+        setTimeout(
+            ()=>context.close(),
+            1200
+        );
+
+    }catch(error){
+
+        console.log(
+            "Som de confirmação indisponível",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDERIZAÇÃO
+===================================================== */
 
 function renderProducts(){
 
-    const main = document.getElementById("cardapio");
+    const main =
+        document.getElementById(
+            "cardapio"
+        );
 
-    const categories = [
-        "hamburgueres",
-        "combos",
-        "promocoes",
-        "bebidas",
-        "adicionais",
-        "porcoes",
-        "frango",
-        "acai"
-    ];
+    const search =
+        document.getElementById(
+            "searchInput"
+        )?.value
+        .trim()
+        .toLowerCase() || "";
+
 
     main.innerHTML = "";
 
-    categories.forEach(category=>{
 
-        const section = document.createElement("section");
+    if(search){
 
-        section.className = "category-section";
-        section.id = category;
+        const results =
+            products.filter(product=>{
 
-        const title = document.createElement("div");
-        title.className = "category-title";
+                return (
+                    product.name
+                        .toLowerCase()
+                        .includes(search)
 
-        title.innerHTML = `
-            <h2>
-                ${categoryIcons[category]}
-                <span>${categoryNames[category]}</span>
-            </h2>
-            <small>VF FILHOS LANCHES</small>
+                    ||
+
+                    product.description
+                        .toLowerCase()
+                        .includes(search)
+                );
+
+            });
+
+
+        if(results.length === 0){
+
+            main.innerHTML = `
+                <div class="no-results">
+                    🔎
+                    <strong>Nenhum produto encontrado</strong>
+                    Tente pesquisar outro nome.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        const section =
+            document.createElement("section");
+
+        section.className =
+            "category-section";
+
+        section.innerHTML = `
+            <div class="section-heading">
+                <h2>
+                    🔎 <span>Resultados da pesquisa</span>
+                </h2>
+                <small>
+                    ${results.length} produto(s)
+                </small>
+            </div>
         `;
 
-        section.appendChild(title);
 
-        if(category === "acai"){
+        const grid =
+            document.createElement("div");
+
+        grid.className =
+            "products";
+
+
+        results.forEach(product=>{
+
+            grid.appendChild(
+                createProductCard(product)
+            );
+
+        });
+
+
+        section.appendChild(grid);
+
+        main.appendChild(section);
+
+        return;
+
+    }
+
+
+    categories.forEach(category=>{
+
+        const section =
+            document.createElement("section");
+
+        section.className =
+            "category-section";
+
+        section.id =
+            category.id;
+
+
+        section.innerHTML = `
+            <div class="section-heading">
+                <h2>
+                    ${category.icon}
+                    <span>${category.name}</span>
+                </h2>
+
+                <small>
+                    VF FILHOS LANCHES
+                </small>
+            </div>
+        `;
+
+
+        if(category.id === "acai"){
 
             section.innerHTML += `
-                <div class="coming-soon">
-                    <div class="emoji">🍧</div>
-                    <h3>Açaí em breve!</h3>
+                <div class="acai-placeholder">
+                    <div class="acai-placeholder-icon">
+                        🍧
+                    </div>
+
+                    <h3>
+                        Açaí em breve!
+                    </h3>
+
                     <p>
                         Estamos preparando novidades deliciosas
                         para essa categoria.
@@ -1710,204 +2732,406 @@ function renderProducts(){
             `;
 
             main.appendChild(section);
+
             return;
+
         }
 
-        const list = products.filter(
-            product => product.category === category
-        );
 
-        const grid = document.createElement("div");
-        grid.className = "products";
+        const list =
+            products.filter(
+                product =>
+                    product.category === category.id
+            );
+
+
+        const grid =
+            document.createElement("div");
+
+        grid.className =
+            "products";
+
 
         list.forEach(product=>{
 
-            const index = products.indexOf(product);
+            grid.appendChild(
+                createProductCard(product)
+            );
 
-            const disabled = !canBuy(product);
-
-            let disabledText = "ADICIONAR";
-
-            if(!isStoreOpen()){
-                disabledText = "LOJA FECHADA";
-            }else if(product.weekendOnly && !isWeekend()){
-                disabledText = "SÓ FIM DE SEMANA";
-            }
-
-            grid.innerHTML += `
-                <article class="product">
-
-                    <img
-                        class="product-img"
-                        src="${escapeHtml(product.image)}"
-                        alt="${escapeHtml(product.name)}"
-                        loading="lazy"
-                        onerror="this.style.opacity='.25';"
-                    >
-
-                    <div class="product-info">
-
-                        <div class="product-name">
-                            ${escapeHtml(product.name)}
-                        </div>
-
-                        <div class="product-description">
-                            ${escapeHtml(product.description)}
-                        </div>
-
-                        <div class="product-bottom">
-
-                            <div class="price">
-                                ${money(product.price)}
-                            </div>
-
-                            <button
-                                class="add-btn"
-                                ${disabled ? "disabled" : ""}
-                                onclick="addToCart(${index})"
-                            >
-                                ${disabledText}
-                            </button>
-
-                        </div>
-
-                    </div>
-                </article>
-            `;
         });
 
+
         section.appendChild(grid);
+
         main.appendChild(section);
+
     });
+
 }
 
 
-/* =========================================================
+function createProductCard(product){
+
+    const article =
+        document.createElement("article");
+
+    article.className =
+        "product";
+
+
+    const index =
+        products.indexOf(product);
+
+    const available =
+        canBuy(product);
+
+
+    let buttonText =
+        "ADICIONAR";
+
+
+    if(!isStoreOpen()){
+
+        buttonText =
+            "LOJA FECHADA";
+
+    }else if(
+        product.weekendOnly &&
+        !isWeekend()
+    ){
+
+        buttonText =
+            "FIM DE SEMANA";
+
+    }
+
+
+    article.innerHTML = `
+
+        <div class="product-image-wrap">
+
+            <img
+                class="product-image"
+                src="${escapeHtml(product.image)}"
+                alt="${escapeHtml(product.name)}"
+                loading="lazy"
+            >
+
+            ${
+                product.weekendOnly
+                ?
+                `
+                <div class="weekend-badge">
+                    SÁBADO E DOMINGO
+                </div>
+                `
+                :
+                ""
+            }
+
+        </div>
+
+
+        <div class="product-info">
+
+            <div class="product-name">
+                ${escapeHtml(product.name)}
+            </div>
+
+
+            <div class="product-description">
+                ${escapeHtml(product.description)}
+            </div>
+
+
+            <div class="product-footer">
+
+                <div class="product-price">
+                    ${money(product.price)}
+                </div>
+
+
+                <button
+                    class="add-button"
+                    ${available ? "" : "disabled"}
+                    onclick="addToCart(${index})"
+                >
+                    ${buttonText}
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    return article;
+
+}
+
+
+/* =====================================================
+   PESQUISA
+===================================================== */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+    "input",
+    renderProducts
+);
+
+
+/* =====================================================
    CARRINHO
-========================================================= */
+===================================================== */
 
 function saveCart(){
-    localStorage.setItem("vf_cart",JSON.stringify(cart));
+
+    localStorage.setItem(
+        "vf_cart",
+        JSON.stringify(cart)
+    );
+
 }
+
+
+function updateCartCount(){
+
+    const count =
+        cart.reduce(
+            (total,item)=>
+                total + item.quantity,
+            0
+        );
+
+    document
+        .getElementById("cartCount")
+        .textContent = count;
+
+}
+
 
 function addToCart(index){
 
-    const product = products[index];
+    const product =
+        products[index];
 
-    if(!canBuy(product)){
 
-        if(!isStoreOpen()){
-            showToast("A loja está fechada no momento.");
-        }else if(product.weekendOnly){
-            showToast("O frango assado só pode ser comprado aos sábados e domingos.");
-        }
+    if(!isStoreOpen()){
+
+        showToast(
+            "A loja está fechada no momento."
+        );
 
         return;
+
     }
 
-    const existing = cart.find(
-        item => item.index === index
-    );
+
+    if(
+        product.weekendOnly &&
+        !isWeekend()
+    ){
+
+        showToast(
+            "O frango assado só pode ser comprado aos sábados e domingos."
+        );
+
+        return;
+
+    }
+
+
+    const existing =
+        cart.find(
+            item =>
+                item.index === index
+        );
+
 
     if(existing){
+
         existing.quantity++;
+
     }else{
+
         cart.push({
             index:index,
             quantity:1
         });
+
     }
 
+
     saveCart();
+
     updateCartCount();
 
-    showToast(product.name + " adicionado ao carrinho!");
-}
-
-function updateCartCount(){
-
-    const total = cart.reduce(
-        (sum,item)=>sum + item.quantity,
-        0
+    showToast(
+        product.name +
+        " adicionado ao carrinho!"
     );
 
-    document.getElementById("cartCount").textContent = total;
 }
+
 
 function cartTotal(){
 
-    return cart.reduce((sum,item)=>{
+    return cart.reduce(
+        (total,item)=>{
 
-        const product = products[item.index];
+            const product =
+                products[item.index];
 
-        return sum + product.price * item.quantity;
+            return (
+                total +
+                product.price *
+                item.quantity
+            );
 
-    },0);
+        },
+        0
+    );
+
 }
 
-function changeQuantity(index,delta){
 
-    const item = cart.find(
-        item => item.index === index
-    );
+function changeQuantity(index,change){
+
+    const item =
+        cart.find(
+            item =>
+                item.index === index
+        );
 
     if(!item) return;
 
-    item.quantity += delta;
+
+    item.quantity += change;
+
 
     if(item.quantity <= 0){
-        cart = cart.filter(
-            item => item.index !== index
-        );
+
+        cart =
+            cart.filter(
+                item =>
+                    item.index !== index
+            );
+
     }
 
+
     saveCart();
-    renderCart();
+
     updateCartCount();
+
+    renderCart();
+
 }
+
 
 function removeFromCart(index){
 
-    cart = cart.filter(
-        item => item.index !== index
-    );
+    cart =
+        cart.filter(
+            item =>
+                item.index !== index
+        );
 
     saveCart();
-    renderCart();
+
     updateCartCount();
+
+    renderCart();
+
 }
+
+
+/* =====================================================
+   MODAL CARRINHO
+===================================================== */
+
+function openCart(){
+
+    closeEverything();
+
+    renderCart();
+
+    document
+        .getElementById("cartModal")
+        .classList.add("show");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeCart(){
+
+    document
+        .getElementById("cartModal")
+        .classList.remove("show");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
 
 function renderCart(){
 
-    const container = document.getElementById("cartItems");
-    const summary = document.getElementById("cartSummary");
+    const container =
+        document.getElementById(
+            "cartItems"
+        );
+
+    const summary =
+        document.getElementById(
+            "cartSummary"
+        );
+
 
     if(cart.length === 0){
 
         container.innerHTML = `
-            <div class="empty">
-                🛒<br><br>
+            <div class="cart-empty">
+                🛒
+                <br><br>
                 Seu carrinho está vazio.
             </div>
         `;
 
         summary.innerHTML = "";
+
         return;
+
     }
+
 
     container.innerHTML = "";
 
+
     cart.forEach(item=>{
 
-        const product = products[item.index];
+        const product =
+            products[item.index];
+
 
         container.innerHTML += `
+
             <div class="cart-item">
 
                 <img
+                    class="cart-image"
                     src="${escapeHtml(product.image)}"
                     alt="${escapeHtml(product.name)}"
                 >
+
 
                 <div class="cart-item-info">
 
@@ -1916,25 +3140,34 @@ function renderCart(){
                     </div>
 
                     <div class="cart-item-price">
-                        ${money(product.price * item.quantity)}
+                        ${money(
+                            product.price *
+                            item.quantity
+                        )}
                     </div>
 
-                    <div class="qty">
 
-                        <button onclick="changeQuantity(${item.index},-1)">
+                    <div class="quantity">
+
+                        <button
+                            onclick="changeQuantity(${item.index},-1)"
+                        >
                             −
                         </button>
 
-                        <strong>${item.quantity}</strong>
+                        <strong>
+                            ${item.quantity}
+                        </strong>
 
-                        <button onclick="changeQuantity(${item.index},1)">
+                        <button
+                            onclick="changeQuantity(${item.index},1)"
+                        >
                             +
                         </button>
 
                         <button
-                            class="remove"
+                            class="remove-item"
                             onclick="removeFromCart(${item.index})"
-                            title="Remover"
                         >
                             🗑
                         </button>
@@ -1944,374 +3177,673 @@ function renderCart(){
                 </div>
 
             </div>
+
         `;
+
     });
 
+
     summary.innerHTML = `
-        <div class="total-row">
-            <span>Total</span>
-            <strong>${money(cartTotal())}</strong>
+
+        <div class="cart-total">
+
+            <span>
+                Total
+            </span>
+
+            <strong>
+                ${money(cartTotal())}
+            </strong>
+
         </div>
 
-        <button class="primary-btn" onclick="startCheckout()">
+
+        <button
+            class="primary-button"
+            onclick="startCheckout()"
+        >
             FINALIZAR PEDIDO
         </button>
 
-        <button class="secondary-btn" onclick="closeCart()">
+
+        <button
+            class="secondary-button"
+            onclick="closeCart()"
+        >
             CONTINUAR COMPRANDO
         </button>
+
     `;
+
 }
 
 
-/* =========================================================
-   MODAL CARRINHO
-========================================================= */
-
-function openCart(){
-
-    closeEverything();
-
-    renderCart();
-
-    document.getElementById("cartModal").classList.add("show");
-
-    document.getElementById("overlay").classList.add("show");
-}
-
-function closeCart(){
-
-    document.getElementById("cartModal").classList.remove("show");
-
-    document.getElementById("overlay").classList.remove("show");
-}
-
-
-/* =========================================================
+/* =====================================================
    CHECKOUT
-========================================================= */
+===================================================== */
 
 function startCheckout(){
 
     if(!isStoreOpen()){
 
-        closeCart();
-
         showToast(
-            "A loja está fechada. Pedidos só podem ser feitos das 10:00 às 00:00."
+            "A loja está fechada. Não é possível fazer pedidos agora."
         );
 
         return;
+
     }
 
+
     if(cart.length === 0){
-        showToast("Adicione algum produto ao carrinho.");
+
+        showToast(
+            "Seu carrinho está vazio."
+        );
+
         return;
+
     }
+
 
     closeCart();
 
-    document.getElementById("checkoutModal").classList.add("show");
+    document
+        .getElementById("checkoutModal")
+        .classList.add("show");
 
-    document.getElementById("overlay").classList.add("show");
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
 
     updatePixVisibility();
+
 }
+
 
 function closeCheckout(){
 
-    document.getElementById("checkoutModal").classList.remove("show");
+    document
+        .getElementById("checkoutModal")
+        .classList.remove("show");
 
-    document.getElementById("overlay").classList.remove("show");
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
 }
 
-document.getElementById("paymentMethod")
-.addEventListener("change",updatePixVisibility);
+
+/* =====================================================
+   PAGAMENTO
+===================================================== */
+
+document
+.getElementById("paymentMethod")
+.addEventListener(
+    "change",
+    updatePixVisibility
+);
+
 
 function updatePixVisibility(){
 
     const method =
-        document.getElementById("paymentMethod").value;
+        document
+        .getElementById(
+            "paymentMethod"
+        )
+        .value;
 
-    const pixBox =
-        document.getElementById("pixBox");
 
-    const changeField =
-        document.getElementById("changeField");
+    const pix =
+        document
+        .getElementById(
+            "pixBox"
+        );
+
+
+    const change =
+        document
+        .getElementById(
+            "changeField"
+        );
+
 
     if(method === "PIX"){
-        pixBox.classList.add("show");
+
+        pix.classList.add("show");
+
         generatePixQr();
+
     }else{
-        pixBox.classList.remove("show");
+
+        pix.classList.remove("show");
+
     }
+
 
     if(method === "Dinheiro"){
-        changeField.style.display = "flex";
+
+        change.style.display =
+            "flex";
+
     }else{
-        changeField.style.display = "none";
-    }
-}
 
+        change.style.display =
+            "none";
 
-/* =========================================================
-   PIX QR CODE
-========================================================= */
-
-function crc16(str){
-
-    let crc = 0xFFFF;
-
-    for(let c=0;c<str.length;c++){
-
-        crc ^= str.charCodeAt(c) << 8;
-
-        for(let i=0;i<8;i++){
-
-            if(crc & 0x8000){
-                crc = (crc << 1) ^ 0x1021;
-            }else{
-                crc <<= 1;
-            }
-
-            crc &= 0xFFFF;
-        }
     }
 
-    return crc.toString(16)
-        .toUpperCase()
-        .padStart(4,"0");
 }
 
-function pixField(id,value){
 
-    return id + String(value.length).padStart(2,"0") + value;
-}
+/* =====================================================
+   PIX
+===================================================== */
 
 function removeAccents(text){
 
     return text
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g,"")
-        .replace(/[^A-Z0-9 ]/gi,"");
+        .replace(
+            /[\u0300-\u036f]/g,
+            ""
+        )
+        .replace(
+            /[^A-Z0-9 ]/gi,
+            ""
+        );
+
 }
+
+
+function pixField(id,value){
+
+    return (
+        id +
+        String(value.length)
+            .padStart(2,"0") +
+        value
+    );
+
+}
+
+
+function crc16(text){
+
+    let crc = 0xFFFF;
+
+
+    for(
+        let i=0;
+        i<text.length;
+        i++
+    ){
+
+        crc ^=
+            text.charCodeAt(i) << 8;
+
+
+        for(
+            let j=0;
+            j<8;
+            j++
+        ){
+
+            if(crc & 0x8000){
+
+                crc =
+                    (crc << 1) ^
+                    0x1021;
+
+            }else{
+
+                crc <<= 1;
+
+            }
+
+            crc &= 0xFFFF;
+
+        }
+
+    }
+
+
+    return crc
+        .toString(16)
+        .toUpperCase()
+        .padStart(4,"0");
+
+}
+
 
 function createPixPayload(){
 
-    const key = PIX_KEY.replace(/\D/g,"");
+    const key =
+        PIX_KEY.replace(
+            /\D/g,
+            ""
+        );
 
-    const name = removeAccents(PIX_RECEIVER)
+
+    const name =
+        removeAccents(
+            PIX_RECEIVER
+        )
         .toUpperCase()
         .slice(0,25);
 
-    const city = "NOVA IGUACU";
+
+    const city =
+        "NOVA IGUACU";
+
 
     const merchantAccount =
-        pixField("00","BR.GOV.BCB.PIX") +
-        pixField("01",key);
+        pixField(
+            "00",
+            "BR.GOV.BCB.PIX"
+        ) +
+
+        pixField(
+            "01",
+            key
+        );
+
 
     let payload =
         "000201" +
-        pixField("26",merchantAccount) +
+
+        pixField(
+            "26",
+            merchantAccount
+        ) +
+
         "52040000" +
+
         "5303986" +
+
         "5802BR" +
-        pixField("59",name) +
-        pixField("60",city) +
+
+        pixField(
+            "59",
+            name
+        ) +
+
+        pixField(
+            "60",
+            city
+        ) +
+
         "62070503***";
+
 
     payload += "6304";
 
     payload += crc16(payload);
 
+
     return payload;
+
 }
+
 
 function generatePixQr(){
 
-    const img = document.getElementById("pixQr");
+    const qr =
+        document.getElementById(
+            "pixQr"
+        );
 
-    const payload = createPixPayload();
 
-    img.src =
+    const payload =
+        createPixPayload();
+
+
+    qr.src =
         "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=" +
         encodeURIComponent(payload);
+
 }
 
 
-/* =========================================================
-   FINALIZAR PEDIDO
-========================================================= */
+/* =====================================================
+   ENVIO DO PEDIDO
+===================================================== */
 
-document.getElementById("checkoutForm")
-.addEventListener("submit",function(event){
+document
+.getElementById("checkoutForm")
+.addEventListener(
+    "submit",
+    function(event){
 
-    event.preventDefault();
+        event.preventDefault();
 
-    if(!isStoreOpen()){
 
-        showToast(
-            "A loja fechou. O pedido não pode ser enviado agora."
+        if(!isStoreOpen()){
+
+            showToast(
+                "A loja fechou. O pedido não pode ser enviado."
+            );
+
+            return;
+
+        }
+
+
+        if(cart.length === 0){
+
+            showToast(
+                "Seu carrinho está vazio."
+            );
+
+            return;
+
+        }
+
+
+        const customer = {
+
+            name:
+                document
+                .getElementById(
+                    "customerName"
+                )
+                .value
+                .trim(),
+
+            phone:
+                document
+                .getElementById(
+                    "customerPhone"
+                )
+                .value
+                .trim(),
+
+            address:
+                document
+                .getElementById(
+                    "customerAddress"
+                )
+                .value
+                .trim(),
+
+            complement:
+                document
+                .getElementById(
+                    "customerComplement"
+                )
+                .value
+                .trim(),
+
+            reference:
+                document
+                .getElementById(
+                    "customerReference"
+                )
+                .value
+                .trim(),
+
+            payment:
+                document
+                .getElementById(
+                    "paymentMethod"
+                )
+                .value,
+
+            changeFor:
+                document
+                .getElementById(
+                    "changeFor"
+                )
+                .value
+                .trim(),
+
+            notes:
+                document
+                .getElementById(
+                    "orderNotes"
+                )
+                .value
+                .trim()
+
+        };
+
+
+        const total =
+            cartTotal();
+
+
+        /* HISTÓRICO */
+
+        const history =
+            JSON.parse(
+                localStorage.getItem(
+                    "vf_order_history"
+                ) || "[]"
+            );
+
+
+        const order = {
+
+            id:Date.now(),
+
+            date:
+                new Date()
+                .toLocaleString(
+                    "pt-BR"
+                ),
+
+            customer,
+
+            total,
+
+            products:
+                cart.map(item=>({
+
+                    name:
+                        products[
+                            item.index
+                        ].name,
+
+                    quantity:
+                        item.quantity,
+
+                    price:
+                        products[
+                            item.index
+                        ].price
+
+                })),
+
+            status:
+                "Pedido enviado"
+
+        };
+
+
+        history.unshift(order);
+
+
+        localStorage.setItem(
+            "vf_order_history",
+            JSON.stringify(history)
         );
 
-        return;
-    }
 
-    if(cart.length === 0){
+        /* MENSAGEM */
 
-        showToast("Seu carrinho está vazio.");
-
-        return;
-    }
-
-    const customer = {
-
-        name:
-            document.getElementById("customerName").value.trim(),
-
-        phone:
-            document.getElementById("customerPhone").value.trim(),
-
-        address:
-            document.getElementById("customerAddress").value.trim(),
-
-        complement:
-            document.getElementById("customerComplement").value.trim(),
-
-        reference:
-            document.getElementById("customerReference").value.trim(),
-
-        payment:
-            document.getElementById("paymentMethod").value,
-
-        changeFor:
-            document.getElementById("changeFor").value.trim(),
-
-        notes:
-            document.getElementById("orderNotes").value.trim()
-    };
-
-    const total = cartTotal();
-
-    const history = JSON.parse(
-        localStorage.getItem("vf_order_history") || "[]"
-    );
-
-    const order = {
-
-        id:Date.now(),
-
-        date:new Date().toLocaleString("pt-BR"),
-
-        customer:customer,
-
-        total:total,
-
-        products:cart.map(item=>({
-
-            name:products[item.index].name,
-
-            quantity:item.quantity,
-
-            price:products[item.index].price
-
-        })),
-
-        status:"Pedido enviado"
-    };
-
-    history.unshift(order);
-
-    localStorage.setItem(
-        "vf_order_history",
-        JSON.stringify(history)
-    );
-
-    let message =
+        let message =
 `🍔 *VF FILHOS LANCHES - NOVO PEDIDO*
 
 ━━━━━━━━━━━━━━━━━━
+
 👤 *CLIENTE*
+
 Nome: ${customer.name}
 Telefone: ${customer.phone}
 
 📍 *ENDEREÇO*
+
 ${customer.address}`;
 
-    if(customer.complement){
-        message += `\nComplemento: ${customer.complement}`;
-    }
 
-    if(customer.reference){
-        message += `\nReferência: ${customer.reference}`;
-    }
+        if(customer.complement){
 
-    message +=
-`\n\n🛒 *PEDIDO*\n━━━━━━━━━━━━━━━━━━`;
+            message +=
+                `\nComplemento: ${customer.complement}`;
 
-    cart.forEach(item=>{
+        }
 
-        const product = products[item.index];
 
-        message +=
-`\n${item.quantity}x ${product.name} - ${money(product.price * item.quantity)}`;
-    });
+        if(customer.reference){
 
-    message +=
-`\n\n💰 *TOTAL: ${money(total)}*`;
+            message +=
+                `\nReferência: ${customer.reference}`;
 
-    message +=
-`\n\n💳 *PAGAMENTO:* ${customer.payment}`;
+        }
 
-    if(customer.payment === "Dinheiro" && customer.changeFor){
-        message +=
-        `\n💵 Troco para: ${money(Number(customer.changeFor))}`;
-    }
-
-    if(customer.payment === "PIX"){
 
         message +=
-`\n\n🔑 PIX: ${PIX_KEY}
+`\n
+🛒 *PEDIDO*
+
+━━━━━━━━━━━━━━━━━━`;
+
+
+        cart.forEach(item=>{
+
+            const product =
+                products[item.index];
+
+
+            message +=
+`
+${item.quantity}x ${product.name} - ${money(
+    product.price *
+    item.quantity
+)}`;
+
+        });
+
+
+        message +=
+`
+
+━━━━━━━━━━━━━━━━━━
+
+💰 *TOTAL: ${money(total)}*
+
+💳 *PAGAMENTO: ${customer.payment}*`;
+
+
+        if(
+            customer.payment === "Dinheiro" &&
+            customer.changeFor
+        ){
+
+            message +=
+`
+💵 Troco para: ${money(
+    Number(customer.changeFor)
+)}`;
+
+        }
+
+
+        if(customer.payment === "PIX"){
+
+            message +=
+`
+🔑 Chave PIX: ${PIX_KEY}
 👤 Recebedor: ${PIX_RECEIVER}`;
-    }
 
-    if(customer.notes){
-        message +=
-`\n\n📝 *OBSERVAÇÕES*
+        }
+
+
+        if(customer.notes){
+
+            message +=
+`
+📝 *OBSERVAÇÕES*
+
 ${customer.notes}`;
+
+        }
+
+
+        message +=
+`
+
+━━━━━━━━━━━━━━━━━━
+
+❤️ Obrigado por pedir na VF FILHOS LANCHES!`;
+
+
+        /* LIMPA CARRINHO */
+
+        cart = [];
+
+        saveCart();
+
+        updateCartCount();
+
+
+        /* SOM DE CONFIRMAÇÃO */
+
+        playConfirmationSound();
+
+
+        /* FECHA CHECKOUT */
+
+        closeCheckout();
+
+
+        document
+        .getElementById(
+            "checkoutForm"
+        )
+        .reset();
+
+
+        document
+        .getElementById(
+            "pixBox"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+        /* WHATSAPP */
+
+        const url =
+            "https://wa.me/" +
+            WHATSAPP +
+            "?text=" +
+            encodeURIComponent(
+                message
+            );
+
+
+        window.open(
+            url,
+            "_blank"
+        );
+
+
+        showToast(
+            "Pedido confirmado! Abrindo o WhatsApp..."
+        );
+
     }
-
-    message +=
-`\n\n━━━━━━━━━━━━━━━━━━
-Obrigado por pedir na VF FILHOS LANCHES! ❤️`;
-
-    cart = [];
-
-    saveCart();
-    updateCartCount();
-
-    closeCheckout();
-
-    document.getElementById("checkoutForm").reset();
-
-    document.getElementById("pixBox")
-        .classList.remove("show");
-
-    const url =
-        "https://wa.me/" +
-        WHATSAPP +
-        "?text=" +
-        encodeURIComponent(message);
-
-    window.open(url,"_blank");
-
-    showToast("Pedido preparado para envio no WhatsApp!");
-});
+);
 
 
-/* =========================================================
+/* =====================================================
    HISTÓRICO
-========================================================= */
+===================================================== */
 
 function openHistory(){
 
@@ -2319,195 +3851,346 @@ function openHistory(){
 
     renderHistory();
 
-    document.getElementById("historyModal")
+    document
+        .getElementById(
+            "historyModal"
+        )
         .classList.add("show");
 
-    document.getElementById("overlay")
+    document
+        .getElementById(
+            "overlay"
+        )
         .classList.add("show");
+
 }
+
 
 function closeHistory(){
 
-    document.getElementById("historyModal")
-        .classList.remove("show");
+    document
+        .getElementById(
+            "historyModal"
+        )
+        .classList.remove(
+            "show"
+        );
 
-    document.getElementById("overlay")
-        .classList.remove("show");
+    document
+        .getElementById(
+            "overlay"
+        )
+        .classList.remove(
+            "show"
+        );
+
 }
+
 
 function renderHistory(){
 
     const list =
-        document.getElementById("historyList");
+        document.getElementById(
+            "historyList"
+        );
 
-    const history = JSON.parse(
-        localStorage.getItem("vf_order_history") || "[]"
-    );
+
+    const history =
+        JSON.parse(
+            localStorage.getItem(
+                "vf_order_history"
+            ) || "[]"
+        );
+
 
     if(history.length === 0){
 
         list.innerHTML = `
-            <div class="empty">
-                🧾<br><br>
-                Você ainda não possui pedidos no histórico.
+            <div class="cart-empty">
+                🧾
+                <br><br>
+                Nenhum pedido no histórico.
             </div>
         `;
 
         return;
+
     }
 
-    list.innerHTML = history.map(order=>{
 
-        const items = order.products
-            .map(item =>
-                `${item.quantity}x ${escapeHtml(item.name)}`
-            )
-            .join("<br>");
+    list.innerHTML =
+        history.map(order=>{
 
-        return `
-            <div class="history-card">
+            const items =
+                order.products
+                .map(
+                    item =>
+                    `${item.quantity}x ${escapeHtml(item.name)}`
+                )
+                .join("<br>");
 
-                <div class="history-top">
 
-                    <div>
-                        <strong>
-                            Pedido #${String(order.id).slice(-6)}
-                        </strong>
+            return `
 
-                        <div class="history-date">
-                            ${escapeHtml(order.date)}
+                <div class="history-item">
+
+                    <div class="history-header">
+
+                        <div>
+
+                            <div class="history-id">
+                                Pedido #${String(
+                                    order.id
+                                ).slice(-6)}
+                            </div>
+
+                            <div class="history-date">
+                                ${escapeHtml(
+                                    order.date
+                                )}
+                            </div>
+
                         </div>
+
+
+                        <div class="history-total">
+                            ${money(order.total)}
+                        </div>
+
                     </div>
 
-                    <div class="history-total">
-                        ${money(order.total)}
+
+                    <div class="history-products">
+                        ${items}
+                    </div>
+
+
+                    <div class="history-status">
+                        ● ${escapeHtml(
+                            order.status
+                        )}
                     </div>
 
                 </div>
 
-                <div class="history-products">
-                    ${items}
-                </div>
+            `;
 
-                <div class="history-status">
-                    ● ${escapeHtml(order.status)}
-                </div>
+        })
+        .join("");
 
-            </div>
-        `;
-
-    }).join("");
 }
+
 
 function clearHistory(){
 
-    if(!confirm("Deseja realmente limpar o histórico de pedidos?")){
+    if(
+        !confirm(
+            "Deseja realmente limpar o histórico?"
+        )
+    ){
+
         return;
+
     }
 
-    localStorage.removeItem("vf_order_history");
+
+    localStorage.removeItem(
+        "vf_order_history"
+    );
+
 
     renderHistory();
 
-    showToast("Histórico apagado.");
+    showToast(
+        "Histórico apagado."
+    );
+
 }
 
 
-/* =========================================================
+/* =====================================================
    MENU
-========================================================= */
+===================================================== */
 
 function openMenu(){
 
     closeEverything();
 
-    document.getElementById("menuDrawer")
-        .classList.add("open");
+    document
+        .getElementById(
+            "menuDrawer"
+        )
+        .classList.add(
+            "open"
+        );
 
-    document.getElementById("overlay")
-        .classList.add("show");
+    document
+        .getElementById(
+            "overlay"
+        )
+        .classList.add(
+            "show"
+        );
+
 }
 
-function closeMenu(){
-
-    document.getElementById("menuDrawer")
-        .classList.remove("open");
-
-    document.getElementById("overlay")
-        .classList.remove("show");
-}
 
 function closeEverything(){
 
-    document.getElementById("menuDrawer")
-        .classList.remove("open");
+    document
+        .getElementById(
+            "menuDrawer"
+        )
+        .classList.remove(
+            "open"
+        );
 
-    document.getElementById("cartModal")
-        .classList.remove("show");
 
-    document.getElementById("checkoutModal")
-        .classList.remove("show");
+    document
+        .getElementById(
+            "cartModal"
+        )
+        .classList.remove(
+            "show"
+        );
 
-    document.getElementById("historyModal")
-        .classList.remove("show");
 
-    document.getElementById("overlay")
-        .classList.remove("show");
+    document
+        .getElementById(
+            "checkoutModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "historyModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "overlay"
+        )
+        .classList.remove(
+            "show"
+        );
+
 }
 
 
-/* =========================================================
+/* =====================================================
    NAVEGAÇÃO
-========================================================= */
+===================================================== */
 
 function scrollToCategory(category){
 
     const section =
-        document.getElementById(category);
+        document.getElementById(
+            category
+        );
+
 
     if(!section) return;
+
 
     section.scrollIntoView({
         behavior:"smooth",
         block:"start"
     });
 
+
+    document
+        .querySelectorAll(
+            ".category-button"
+        )
+        .forEach(button=>{
+
+            button.classList.toggle(
+                "active",
+                button.dataset.category === category
+            );
+
+        });
+
+
     closeEverything();
+
 }
 
 
-/* =========================================================
+/* =====================================================
    TOAST
-========================================================= */
+===================================================== */
 
 let toastTimer;
+
 
 function showToast(message){
 
     const toast =
-        document.getElementById("toast");
+        document.getElementById(
+            "toast"
+        );
 
-    toast.textContent = message;
 
-    toast.classList.add("show");
+    toast.textContent =
+        message;
 
-    clearTimeout(toastTimer);
 
-    toastTimer = setTimeout(()=>{
-        toast.classList.remove("show");
-    },2800);
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            ()=>{
+                toast.classList.remove(
+                    "show"
+                );
+            },
+            3000
+        );
+
 }
 
 
-/* =========================================================
+/* =====================================================
    INICIALIZAÇÃO
-========================================================= */
+===================================================== */
 
 renderProducts();
+
 updateCartCount();
+
 updateStoreStatus(false);
+
+
+/*
+   Verifica o horário a cada segundo.
+   Quando mudar de aberto para fechado ou
+   de fechado para aberto, o som é acionado.
+*/
+
+setInterval(
+    ()=>{
+        updateStoreStatus(true);
+    },
+    1000
+);
 
 </script>
 
 </body>
-  </html>
+    </html>
