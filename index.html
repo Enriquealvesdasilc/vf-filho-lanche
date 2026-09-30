@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta name="theme-color" content="#080808">
-<meta name="description" content="VF FILHOS LANCHES - Hambúrgueres, combos, promoções, fritas, bebidas, adicionais e frango assado.">
+<meta name="description" content="VF FILHOS LANCHES - Hambúrgueres, combos, promoções, porções, bebidas, adicionais e frango assado.">
 
 <title>VF FILHOS LANCHES</title>
 
@@ -43,10 +42,7 @@ body{
     min-height:100vh;
 }
 
-button,
-input,
-textarea,
-select{
+button,input,textarea,select{
     font-family:inherit;
 }
 
@@ -59,9 +55,7 @@ a{
     text-decoration:none;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header{
     position:sticky;
@@ -97,10 +91,6 @@ a{
     border-radius:50%;
     border:2px solid var(--gold);
     background:#000;
-}
-
-.logo-text{
-    min-width:0;
 }
 
 .logo-text strong{
@@ -163,9 +153,7 @@ a{
     justify-content:center;
 }
 
-/* =========================
-   STATUS
-========================= */
+/* STATUS */
 
 .status-bar{
     max-width:1250px;
@@ -202,9 +190,7 @@ a{
     color:var(--gold);
 }
 
-/* =========================
-   SIDE MENU
-========================= */
+/* MENU */
 
 .menu-overlay{
     position:fixed;
@@ -351,9 +337,7 @@ a{
     color:var(--gold);
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
     max-width:1250px;
@@ -429,9 +413,7 @@ a{
     padding:13px 18px;
 }
 
-/* =========================
-   SEARCH
-========================= */
+/* SEARCH */
 
 .search-area{
     max-width:1250px;
@@ -467,9 +449,7 @@ a{
     color:var(--gold);
 }
 
-/* =========================
-   CATEGORIES
-========================= */
+/* CATEGORIAS */
 
 .categories{
     max-width:1250px;
@@ -503,9 +483,7 @@ a{
     color:var(--gold);
 }
 
-/* =========================
-   PRODUCTS
-========================= */
+/* PRODUTOS */
 
 .catalog{
     max-width:1250px;
@@ -546,8 +524,7 @@ a{
 }
 
 .product{
-    background:
-        linear-gradient(145deg,#151515,#0e0e0e);
+    background:linear-gradient(145deg,#151515,#0e0e0e);
     border:1px solid var(--border);
     border-radius:17px;
     overflow:hidden;
@@ -628,9 +605,7 @@ a{
     color:#000;
 }
 
-/* =========================
-   CART DRAWER
-========================= */
+/* CARRINHO */
 
 .cart-overlay{
     position:fixed;
@@ -808,9 +783,7 @@ a{
     cursor:not-allowed;
 }
 
-/* =========================
-   MODALS
-========================= */
+/* MODAIS */
 
 .modal-overlay{
     position:fixed;
@@ -992,9 +965,7 @@ a{
     font-weight:bold;
 }
 
-/* =========================
-   HISTORY
-========================= */
+/* HISTÓRICO */
 
 .history-list{
     display:flex;
@@ -1049,9 +1020,7 @@ a{
     font-size:11px;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer{
     border-top:1px solid rgba(212,175,55,.2);
@@ -1090,9 +1059,7 @@ footer{
     color:var(--gold);
 }
 
-/* =========================
-   TOAST
-========================= */
+/* TOAST */
 
 .toast{
     position:fixed;
@@ -1117,9 +1084,7 @@ footer{
     transform:translate(-50%,0);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVO */
 
 @media(max-width:1050px){
     .products-grid{
@@ -1128,6 +1093,7 @@ footer{
 }
 
 @media(max-width:760px){
+
     .header-inner{
         height:70px;
     }
@@ -1203,6 +1169,7 @@ footer{
 }
 
 @media(max-width:430px){
+
     .products-grid{
         grid-template-columns:1fr 1fr;
     }
@@ -1233,21 +1200,27 @@ footer{
 
 <body>
 
-<!-- =========================
-     MENU
-========================= -->
+<!-- MENU -->
 
 <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
 <aside class="side-menu" id="sideMenu">
 
     <div class="menu-top">
+
         <div class="menu-brand">
+
             <img src="logo-vf.jpeg" alt="VF Filhos Lanches">
-            <strong>VF FILHOS<br>LANCHES</strong>
+
+            <strong>
+                VF FILHOS<br>
+                LANCHES
+            </strong>
+
         </div>
 
         <button class="close-menu" onclick="closeMenu()">×</button>
+
     </div>
 
     <div class="menu-content">
@@ -1289,7 +1262,9 @@ footer{
             <span>Frango Assado</span>
         </button>
 
-        <div class="menu-title" style="margin-top:22px;">Pedidos</div>
+        <div class="menu-title" style="margin-top:22px;">
+            Pedidos
+        </div>
 
         <button class="menu-link" onclick="openCart();closeMenu();">
             <span class="icon">🛒</span>
@@ -1303,7 +1278,9 @@ footer{
 
         <div class="menu-social">
 
-            <div class="menu-title">Fale conosco</div>
+            <div class="menu-title">
+                Fale conosco
+            </div>
 
             <a
                 class="menu-link"
@@ -1312,6 +1289,7 @@ footer{
                 rel="noopener"
             >
                 <span class="icon">W</span>
+
                 <span>
                     <strong>WhatsApp</strong><br>
                     <small>21983950843</small>
@@ -1325,6 +1303,7 @@ footer{
                 rel="noopener"
             >
                 <span class="icon">◎</span>
+
                 <span>
                     <strong>Instagram</strong><br>
                     <small>@vf_filhoslanches</small>
@@ -1334,17 +1313,21 @@ footer{
         </div>
 
         <div class="menu-hours">
+
             <span>Funcionamento</span>
-            <strong>Todos os dias — 10:00 às 00:00</strong>
+
+            <strong>
+                Todos os dias — 10:00 às 00:00
+            </strong>
+
         </div>
 
     </div>
 
 </aside>
 
-<!-- =========================
-     HEADER
-========================= -->
+
+<!-- HEADER -->
 
 <header class="header">
 
@@ -1352,24 +1335,50 @@ footer{
 
         <div class="logo-area">
 
-            <button class="header-btn" onclick="openMenu()" aria-label="Abrir menu">
+            <button
+                class="header-btn"
+                onclick="openMenu()"
+                aria-label="Abrir menu"
+            >
                 ☰
             </button>
 
-            <img class="logo" src="logo-vf.jpeg" alt="VF Filhos Lanches">
+            <img
+                class="logo"
+                src="logo-vf.jpeg"
+                alt="VF Filhos Lanches"
+            >
 
             <div class="logo-text">
-                <strong>VF FILHOS LANCHES</strong>
-                <span>Seu lanche do seu jeito</span>
+
+                <strong>
+                    VF FILHOS LANCHES
+                </strong>
+
+                <span>
+                    Seu lanche do seu jeito
+                </span>
+
             </div>
 
         </div>
 
         <div class="header-actions">
 
-            <button class="header-btn cart-btn" onclick="openCart()" aria-label="Carrinho">
+            <button
+                class="header-btn cart-btn"
+                onclick="openCart()"
+                aria-label="Carrinho"
+            >
                 🛒
-                <span class="cart-count" id="cartCount">0</span>
+
+                <span
+                    class="cart-count"
+                    id="cartCount"
+                >
+                    0
+                </span>
+
             </button>
 
         </div>
@@ -1377,17 +1386,26 @@ footer{
     </div>
 
     <div class="status-bar">
-        <div class="status" id="storeStatus">
+
+        <div
+            class="status"
+            id="storeStatus"
+        >
+
             <span class="status-dot"></span>
-            <span id="statusText">Verificando...</span>
+
+            <span id="statusText">
+                Verificando...
+            </span>
+
         </div>
+
     </div>
 
 </header>
 
-<!-- =========================
-     HERO
-========================= -->
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -1395,7 +1413,9 @@ footer{
 
         <div class="hero-content">
 
-            <div class="hero-small">VF FILHOS LANCHES</div>
+            <div class="hero-small">
+                VF FILHOS LANCHES
+            </div>
 
             <h1>
                 SABOR QUE<br>
@@ -1403,19 +1423,24 @@ footer{
             </h1>
 
             <p>
-                Hambúrgueres, combos, promoções, porções,
-                bebidas, adicionais e frango assado.
-                Faça seu pedido de forma rápida e acompanhe
-                seus pedidos pelo histórico.
+                Hambúrgueres, combos, promoções,
+                porções, bebidas, adicionais e
+                frango assado.
             </p>
 
             <div class="hero-actions">
 
-                <button class="gold-btn" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">
+                <button
+                    class="gold-btn"
+                    onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})"
+                >
                     Ver cardápio
                 </button>
 
-                <button class="dark-btn" onclick="openCart()">
+                <button
+                    class="dark-btn"
+                    onclick="openCart()"
+                >
                     Abrir carrinho
                 </button>
 
@@ -1427,15 +1452,16 @@ footer{
 
 </section>
 
-<!-- =========================
-     BUSCA
-========================= -->
+
+<!-- BUSCA -->
 
 <section class="search-area">
 
     <div class="search-box">
 
-        <span class="search-icon">⌕</span>
+        <span class="search-icon">
+            ⌕
+        </span>
 
         <input
             type="search"
@@ -1448,170 +1474,306 @@ footer{
 
 </section>
 
-<!-- =========================
-     CATEGORIAS
-========================= -->
 
-<nav class="categories" id="categoriesNav">
+<!-- CATEGORIAS -->
 
-    <button class="category-btn active" onclick="goToCategory('hamburgueres')">
+<nav class="categories">
+
+    <button
+        class="category-btn active"
+        onclick="goToCategory('hamburgueres')"
+    >
         🍔 Hambúrgueres
     </button>
 
-    <button class="category-btn" onclick="goToCategory('porcoes')">
+    <button
+        class="category-btn"
+        onclick="goToCategory('porcoes')"
+    >
         🍟 Porções
     </button>
 
-    <button class="category-btn" onclick="goToCategory('combos')">
+    <button
+        class="category-btn"
+        onclick="goToCategory('combos')"
+    >
         🍱 Combos
     </button>
 
-    <button class="category-btn" onclick="goToCategory('promocoes')">
+    <button
+        class="category-btn"
+        onclick="goToCategory('promocoes')"
+    >
         🔥 Promoções
     </button>
 
-    <button class="category-btn" onclick="goToCategory('bebidas')">
+    <button
+        class="category-btn"
+        onclick="goToCategory('bebidas')"
+    >
         🥤 Bebidas
     </button>
 
-    <button class="category-btn" onclick="goToCategory('adicionais')">
+    <button
+        class="category-btn"
+        onclick="goToCategory('adicionais')"
+    >
         ➕ Adicionais
     </button>
 
-    <button class="category-btn" onclick="goToCategory('frango')">
+    <button
+        class="category-btn"
+        onclick="goToCategory('frango')"
+    >
         🍗 Frango Assado
     </button>
 
 </nav>
 
-<!-- =========================
-     CATÁLOGO
-========================= -->
 
-<main class="catalog" id="catalog">
+<!-- CATÁLOGO -->
 
-    <section class="category-section" id="hamburgueres">
+<main
+    class="catalog"
+    id="catalog"
+>
+
+    <section
+        class="category-section"
+        id="hamburgueres"
+    >
 
         <div class="category-heading">
+
             <div>
-                <h2>🍔 <span>Hambúrgueres</span></h2>
+                <h2>
+                    🍔 <span>Hambúrgueres</span>
+                </h2>
             </div>
-            <p>Escolha seu favorito</p>
+
+            <p>
+                Escolha seu favorito
+            </p>
+
         </div>
 
-        <div class="products-grid" id="grid-hamburgueres"></div>
+        <div
+            class="products-grid"
+            id="grid-hamburgueres"
+        ></div>
 
     </section>
 
 
-    <section class="category-section" id="porcoes">
+    <section
+        class="category-section"
+        id="porcoes"
+    >
 
         <div class="category-heading">
+
             <div>
-                <h2>🍟 <span>Porções</span></h2>
+                <h2>
+                    🍟 <span>Porções</span>
+                </h2>
             </div>
-            <p>Para acompanhar</p>
+
+            <p>
+                Para acompanhar
+            </p>
+
         </div>
 
-        <div class="products-grid" id="grid-porcoes"></div>
+        <div
+            class="products-grid"
+            id="grid-porcoes"
+        ></div>
 
     </section>
 
 
-    <section class="category-section" id="combos">
+    <section
+        class="category-section"
+        id="combos"
+    >
 
         <div class="category-heading">
+
             <div>
-                <h2>🍱 <span>Combos</span></h2>
+                <h2>
+                    🍱 <span>Combos</span>
+                </h2>
             </div>
-            <p>Mais por menos</p>
+
+            <p>
+                Mais por menos
+            </p>
+
         </div>
 
-        <div class="products-grid" id="grid-combos"></div>
+        <div
+            class="products-grid"
+            id="grid-combos"
+        ></div>
 
     </section>
 
 
-    <section class="category-section" id="promocoes">
+    <section
+        class="category-section"
+        id="promocoes"
+    >
 
         <div class="category-heading">
+
             <div>
-                <h2>🔥 <span>Promoções</span></h2>
+                <h2>
+                    🔥 <span>Promoções</span>
+                </h2>
             </div>
-            <p>Ofertas da casa</p>
+
+            <p>
+                Ofertas da casa
+            </p>
+
         </div>
 
-        <div class="products-grid" id="grid-promocoes"></div>
+        <div
+            class="products-grid"
+            id="grid-promocoes"
+        ></div>
 
     </section>
 
 
-    <section class="category-section" id="bebidas">
+    <section
+        class="category-section"
+        id="bebidas"
+    >
 
         <div class="category-heading">
+
             <div>
-                <h2>🥤 <span>Bebidas</span></h2>
+                <h2>
+                    🥤 <span>Bebidas</span>
+                </h2>
             </div>
-            <p>Para refrescar</p>
+
+            <p>
+                Para refrescar
+            </p>
+
         </div>
 
-        <div class="products-grid" id="grid-bebidas"></div>
+        <div
+            class="products-grid"
+            id="grid-bebidas"
+        ></div>
 
     </section>
 
 
-    <section class="category-section" id="adicionais">
+    <section
+        class="category-section"
+        id="adicionais"
+    >
 
         <div class="category-heading">
+
             <div>
-                <h2>➕ <span>Adicionais</span></h2>
+                <h2>
+                    ➕ <span>Adicionais</span>
+                </h2>
             </div>
-            <p>Monte do seu jeito</p>
+
+            <p>
+                Monte do seu jeito
+            </p>
+
         </div>
 
-        <div class="products-grid" id="grid-adicionais"></div>
+        <div
+            class="products-grid"
+            id="grid-adicionais"
+        ></div>
 
     </section>
 
 
-    <section class="category-section" id="frango">
+    <section
+        class="category-section"
+        id="frango"
+    >
 
         <div class="category-heading">
+
             <div>
-                <h2>🍗 <span>Frango Assado</span></h2>
+                <h2>
+                    🍗 <span>Frango Assado</span>
+                </h2>
             </div>
-            <p>Especial da casa</p>
+
+            <p>
+                Especial da casa
+            </p>
+
         </div>
 
-        <div class="products-grid" id="grid-frango"></div>
+        <div
+            class="products-grid"
+            id="grid-frango"
+        ></div>
 
     </section>
 
 </main>
 
-<!-- =========================
-     CART
-========================= -->
 
-<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<!-- CARRINHO -->
 
-<aside class="cart-drawer" id="cartDrawer">
+<div
+    class="cart-overlay"
+    id="cartOverlay"
+    onclick="closeCart()"
+></div>
+
+<aside
+    class="cart-drawer"
+    id="cartDrawer"
+>
 
     <div class="cart-header">
 
-        <h2>Meu <span>carrinho</span></h2>
+        <h2>
+            Meu <span>carrinho</span>
+        </h2>
 
-        <button class="cart-close" onclick="closeCart()">×</button>
+        <button
+            class="cart-close"
+            onclick="closeCart()"
+        >
+            ×
+        </button>
 
     </div>
 
-    <div class="cart-items" id="cartItems"></div>
+    <div
+        class="cart-items"
+        id="cartItems"
+    ></div>
 
     <div class="cart-footer">
 
         <div class="total-row">
-            <span>Total do pedido</span>
-            <strong id="cartTotal">R$ 0,00</strong>
+
+            <span>
+                Total do pedido
+            </span>
+
+            <strong id="cartTotal">
+                R$ 0,00
+            </strong>
+
         </div>
 
         <button
@@ -1627,19 +1789,28 @@ footer{
 
 </aside>
 
-<!-- =========================
-     CHECKOUT
-========================= -->
 
-<div class="modal-overlay" id="checkoutModal">
+<!-- CHECKOUT -->
+
+<div
+    class="modal-overlay"
+    id="checkoutModal"
+>
 
     <div class="modal">
 
         <div class="modal-header">
 
-            <h2>Finalizar <span>pedido</span></h2>
+            <h2>
+                Finalizar <span>pedido</span>
+            </h2>
 
-            <button class="modal-close" onclick="closeCheckout()">×</button>
+            <button
+                class="modal-close"
+                onclick="closeCheckout()"
+            >
+                ×
+            </button>
 
         </div>
 
@@ -1648,38 +1819,101 @@ footer{
             <div class="form-grid">
 
                 <div class="field">
-                    <label>Nome completo</label>
-                    <input id="customerName" type="text" placeholder="Seu nome">
+
+                    <label>
+                        Nome completo
+                    </label>
+
+                    <input
+                        id="customerName"
+                        type="text"
+                        placeholder="Seu nome"
+                    >
+
                 </div>
 
                 <div class="field">
-                    <label>WhatsApp / telefone</label>
-                    <input id="customerPhone" type="tel" placeholder="(21) 99999-9999">
+
+                    <label>
+                        WhatsApp / telefone
+                    </label>
+
+                    <input
+                        id="customerPhone"
+                        type="tel"
+                        placeholder="(21) 99999-9999"
+                    >
+
                 </div>
 
                 <div class="field full">
-                    <label>Endereço</label>
-                    <input id="customerAddress" type="text" placeholder="Rua / Avenida">
+
+                    <label>
+                        Endereço
+                    </label>
+
+                    <input
+                        id="customerAddress"
+                        type="text"
+                        placeholder="Rua / Avenida"
+                    >
+
                 </div>
 
                 <div class="field">
-                    <label>Número</label>
-                    <input id="customerNumber" type="text" placeholder="Número">
+
+                    <label>
+                        Número
+                    </label>
+
+                    <input
+                        id="customerNumber"
+                        type="text"
+                        placeholder="Número"
+                    >
+
                 </div>
 
                 <div class="field">
-                    <label>Complemento</label>
-                    <input id="customerComplement" type="text" placeholder="Casa, apto...">
+
+                    <label>
+                        Complemento
+                    </label>
+
+                    <input
+                        id="customerComplement"
+                        type="text"
+                        placeholder="Casa, apto..."
+                    >
+
                 </div>
 
                 <div class="field">
-                    <label>Bairro</label>
-                    <input id="customerNeighborhood" type="text" placeholder="Bairro">
+
+                    <label>
+                        Bairro
+                    </label>
+
+                    <input
+                        id="customerNeighborhood"
+                        type="text"
+                        placeholder="Bairro"
+                    >
+
                 </div>
 
                 <div class="field">
-                    <label>Ponto de referência</label>
-                    <input id="customerReference" type="text" placeholder="Próximo de...">
+
+                    <label>
+                        Ponto de referência
+                    </label>
+
+                    <input
+                        id="customerReference"
+                        type="text"
+                        placeholder="Próximo de..."
+                    >
+
                 </div>
 
             </div>
@@ -1691,30 +1925,77 @@ footer{
             <div class="payment-grid">
 
                 <div class="payment-option">
-                    <input type="radio" name="payment" id="pix" value="PIX">
-                    <label for="pix">PIX</label>
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        id="pix"
+                        value="PIX"
+                    >
+
+                    <label for="pix">
+                        PIX
+                    </label>
+
                 </div>
 
                 <div class="payment-option">
-                    <input type="radio" name="payment" id="money" value="Dinheiro">
-                    <label for="money">Dinheiro</label>
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        id="money"
+                        value="Dinheiro"
+                    >
+
+                    <label for="money">
+                        Dinheiro
+                    </label>
+
                 </div>
 
                 <div class="payment-option">
-                    <input type="radio" name="payment" id="card" value="Cartão">
-                    <label for="card">Cartão</label>
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        id="card"
+                        value="Cartão"
+                    >
+
+                    <label for="card">
+                        Cartão
+                    </label>
+
                 </div>
 
             </div>
 
-            <div class="field" style="margin-top:12px;">
-                <label>Observações do pedido</label>
-                <textarea id="customerNotes" placeholder="Alguma observação?"></textarea>
+            <div
+                class="field"
+                style="margin-top:12px;"
+            >
+
+                <label>
+                    Observações do pedido
+                </label>
+
+                <textarea
+                    id="customerNotes"
+                    placeholder="Alguma observação?"
+                ></textarea>
+
             </div>
 
-            <div class="checkout-summary" id="checkoutSummary"></div>
+            <div
+                class="checkout-summary"
+                id="checkoutSummary"
+            ></div>
 
-            <button class="send-order" onclick="sendOrder()">
+            <button
+                class="send-order"
+                onclick="sendOrder()"
+            >
                 Enviar pedido pelo WhatsApp
             </button>
 
@@ -1724,25 +2005,37 @@ footer{
 
 </div>
 
-<!-- =========================
-     HISTORY
-========================= -->
 
-<div class="modal-overlay" id="historyModal">
+<!-- HISTÓRICO -->
+
+<div
+    class="modal-overlay"
+    id="historyModal"
+>
 
     <div class="modal">
 
         <div class="modal-header">
 
-            <h2>Histórico de <span>pedidos</span></h2>
+            <h2>
+                Histórico de <span>pedidos</span>
+            </h2>
 
-            <button class="modal-close" onclick="closeHistory()">×</button>
+            <button
+                class="modal-close"
+                onclick="closeHistory()"
+            >
+                ×
+            </button>
 
         </div>
 
         <div class="modal-body">
 
-            <div class="history-list" id="historyList"></div>
+            <div
+                class="history-list"
+                id="historyList"
+            ></div>
 
         </div>
 
@@ -1750,9 +2043,8 @@ footer{
 
 </div>
 
-<!-- =========================
-     FOOTER
-========================= -->
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -1760,10 +2052,13 @@ footer{
 
         <div class="footer-brand">
 
-            <strong>VF FILHOS LANCHES</strong>
+            <strong>
+                VF FILHOS LANCHES
+            </strong>
 
             <p>
-                Sabor, qualidade e aquele lanche que dá vontade de pedir de novo.
+                Sabor, qualidade e aquele lanche
+                que dá vontade de pedir de novo.
             </p>
 
         </div>
@@ -1779,7 +2074,8 @@ footer{
             </div>
 
             <div>
-                WhatsApp: <strong>21983950843</strong>
+                WhatsApp:
+                <strong>21983950843</strong>
             </div>
 
         </div>
@@ -1788,36 +2084,34 @@ footer{
 
 </footer>
 
-<div class="toast" id="toast"></div>
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
 
 <script>
 
-/* =========================================================
-   CONFIGURAÇÕES
-========================================================= */
+/* CONFIGURAÇÕES */
 
 const WHATSAPP = "5521983950843";
 
 const INSTAGRAM =
-    "https://www.instagram.com/vf_filhoslanches?stkn=aGVnYjFycWo4YXgz";
+"https://www.instagram.com/vf_filhoslanches?stkn=aGVnYjFycWo4YXgz";
 
 const OPEN_HOUR = 10;
 const CLOSE_HOUR = 0;
 
-const HISTORY_KEY = "vf_filhos_lanches_historico";
+const HISTORY_KEY =
+"vf_filhos_lanches_historico";
 
 let carrinho = [];
 
 
-/* =========================================================
-   PRODUTOS
-========================================================= */
+/* PRODUTOS */
 
 const produtos = [
-
-    /* =========================
-       HAMBÚRGUERES
-    ========================= */
 
     {
         id:1,
@@ -1900,10 +2194,6 @@ const produtos = [
     },
 
 
-    /* =========================
-       PORÇÕES
-    ========================= */
-
     {
         id:11,
         nome:"Batata P",
@@ -1929,9 +2219,7 @@ const produtos = [
     },
 
 
-    /* =========================
-       COMBOS
-    ========================= */
+    /* COMBOS - NOMES ATUALIZADOS */
 
     {
         id:14,
@@ -1946,7 +2234,7 @@ const produtos = [
         nome:"Combo Duplo",
         categoria:"combos",
         preco:38.99,
-        imagem:"Combo Duplo.png"
+        imagem:"combo-duplo.jpeg"
     },
 
     {
@@ -1954,13 +2242,9 @@ const produtos = [
         nome:"Combo Família",
         categoria:"combos",
         preco:64.99,
-        imagem:"Combo familia.png"
+        imagem:"combo-familia.jpeg"
     },
 
-
-    /* =========================
-       PROMOÇÕES
-    ========================= */
 
     {
         id:17,
@@ -1978,10 +2262,6 @@ const produtos = [
         imagem:"Duplo cheddar + coca.png"
     },
 
-
-    /* =========================
-       BEBIDAS
-    ========================= */
 
     {
         id:19,
@@ -2007,10 +2287,6 @@ const produtos = [
         imagem:"agua-mineral.jpeg"
     },
 
-
-    /* =========================
-       ADICIONAIS
-    ========================= */
 
     {
         id:22,
@@ -2069,10 +2345,6 @@ const produtos = [
     },
 
 
-    /* =========================
-       FRANGO
-    ========================= */
-
     {
         id:29,
         nome:"Frango Assado Completo",
@@ -2084,19 +2356,19 @@ const produtos = [
 ];
 
 
-/* =========================================================
-   UTILIDADES
-========================================================= */
+/* UTILIDADES */
 
 function dinheiro(valor){
 
-    return valor.toLocaleString("pt-BR",{
-        style:"currency",
-        currency:"BRL"
-    });
+    return valor.toLocaleString(
+        "pt-BR",
+        {
+            style:"currency",
+            currency:"BRL"
+        }
+    );
 
 }
-
 
 function escapeHTML(text){
 
@@ -2110,9 +2382,7 @@ function escapeHTML(text){
 }
 
 
-/* =========================================================
-   STATUS DA LOJA
-========================================================= */
+/* STATUS */
 
 function lojaEstaAberta(){
 
@@ -2124,22 +2394,32 @@ function lojaEstaAberta(){
 
 }
 
-
 function atualizarStatus(){
 
-    const status = document.getElementById("storeStatus");
-    const texto = document.getElementById("statusText");
+    const status =
+        document.getElementById(
+            "storeStatus"
+        );
+
+    const texto =
+        document.getElementById(
+            "statusText"
+        );
 
     if(lojaEstaAberta()){
 
-        status.classList.remove("closed");
+        status.classList.remove(
+            "closed"
+        );
 
         texto.innerHTML =
             "<strong>ABERTA</strong> • Pedidos disponíveis";
 
     }else{
 
-        status.classList.add("closed");
+        status.classList.add(
+            "closed"
+        );
 
         texto.innerHTML =
             "<strong>FECHADA</strong> • Funcionamos 10:00 às 00:00";
@@ -2149,13 +2429,11 @@ function atualizarStatus(){
 }
 
 
-/* =========================================================
-   RENDER DOS PRODUTOS
-========================================================= */
+/* RENDER */
 
-function renderProducts(lista = produtos){
+function renderProducts(lista=produtos){
 
-    const categorias = [
+    const categorias=[
         "hamburgueres",
         "porcoes",
         "combos",
@@ -2165,26 +2443,32 @@ function renderProducts(lista = produtos){
         "frango"
     ];
 
-    categorias.forEach(categoria => {
+    categorias.forEach(categoria=>{
 
         const grid =
-            document.getElementById("grid-" + categoria);
+            document.getElementById(
+                "grid-"+categoria
+            );
 
-        if(!grid) return;
+        if(!grid)return;
 
-        grid.innerHTML = "";
+        grid.innerHTML="";
 
         const itens =
-            lista.filter(p => p.categoria === categoria);
+            lista.filter(
+                p=>p.categoria===categoria
+            );
 
-        itens.forEach(produto => {
+        itens.forEach(produto=>{
 
             const article =
-                document.createElement("article");
+                document.createElement(
+                    "article"
+                );
 
-            article.className = "product";
+            article.className="product";
 
-            article.innerHTML = `
+            article.innerHTML=`
 
                 <div class="product-img-wrap">
 
@@ -2217,7 +2501,6 @@ function renderProducts(lista = produtos){
                         <button
                             class="add-btn"
                             onclick="adicionarAoCarrinho(${produto.id})"
-                            aria-label="Adicionar ${escapeHTML(produto.nome)}"
                         >
                             +
                         </button>
@@ -2225,6 +2508,7 @@ function renderProducts(lista = produtos){
                     </div>
 
                 </div>
+
             `;
 
             grid.appendChild(article);
@@ -2238,7 +2522,7 @@ function renderProducts(lista = produtos){
 
 function getDescricao(produto){
 
-    const descricoes = {
+    const descricoes={
 
         "Cheesburger":"Hambúrguer da casa.",
         "X-Tudo":"Lanche completo da casa.",
@@ -2259,12 +2543,20 @@ function getDescricao(produto){
         "Combo Duplo":"Combo para compartilhar.",
         "Combo Família":"Combo especial para a família.",
 
-        "X-Tudo + Guaravita + Batata P":"Oferta especial da casa.",
-        "Duplo Cheddar + Coca-Cola Lata":"Oferta especial da casa.",
+        "X-Tudo + Guaravita + Batata P":
+        "Oferta especial da casa.",
 
-        "Coca-Cola lata 350 ml":"Bebida gelada.",
-        "Guaravita Natural 290 ml":"Bebida refrescante.",
-        "Água Mineral 500 ml":"Água mineral.",
+        "Duplo Cheddar + Coca-Cola Lata":
+        "Oferta especial da casa.",
+
+        "Coca-Cola lata 350 ml":
+        "Bebida gelada.",
+
+        "Guaravita Natural 290 ml":
+        "Bebida refrescante.",
+
+        "Água Mineral 500 ml":
+        "Água mineral.",
 
         "Maionese":"Adicional.",
         "Barbecue":"Adicional.",
@@ -2274,34 +2566,38 @@ function getDescricao(produto){
         "Cheddar":"Adicional de cheddar.",
         "Ovo":"Adicional.",
 
-        "Frango Assado Completo":"Frango assado completo da casa."
+        "Frango Assado Completo":
+        "Frango assado completo da casa."
 
     };
 
-    return descricoes[produto.nome] || "Produto da VF Filhos Lanches.";
+    return descricoes[produto.nome]
+        || "Produto da VF Filhos Lanches.";
 
 }
 
 
-/* =========================================================
-   BUSCA
-========================================================= */
+/* BUSCA */
 
 function searchProducts(){
 
     const termo =
-        document.getElementById("searchInput")
+        document.getElementById(
+            "searchInput"
+        )
         .value
         .toLowerCase()
         .trim();
 
     const sections =
-        document.querySelectorAll(".category-section");
+        document.querySelectorAll(
+            ".category-section"
+        );
 
     if(!termo){
 
-        sections.forEach(section => {
-            section.style.display = "";
+        sections.forEach(section=>{
+            section.style.display="";
         });
 
         renderProducts(produtos);
@@ -2310,20 +2606,20 @@ function searchProducts(){
     }
 
     const encontrados =
-        produtos.filter(produto =>
+        produtos.filter(produto=>
             produto.nome
             .toLowerCase()
             .includes(termo)
         );
 
-    sections.forEach(section => {
+    sections.forEach(section=>{
 
         const categoria =
             section.id;
 
         const existe =
-            encontrados.some(p =>
-                p.categoria === categoria
+            encontrados.some(
+                p=>p.categoria===categoria
             );
 
         section.style.display =
@@ -2336,18 +2632,18 @@ function searchProducts(){
 }
 
 
-/* =========================================================
-   CATEGORIAS
-========================================================= */
+/* CATEGORIAS */
 
 function goToCategory(categoria){
 
     closeMenu();
 
     const elemento =
-        document.getElementById(categoria);
+        document.getElementById(
+            categoria
+        );
 
-    if(!elemento) return;
+    if(!elemento)return;
 
     elemento.scrollIntoView({
         behavior:"smooth",
@@ -2357,9 +2653,7 @@ function goToCategory(categoria){
 }
 
 
-/* =========================================================
-   MENU
-========================================================= */
+/* MENU */
 
 function openMenu(){
 
@@ -2372,7 +2666,6 @@ function openMenu(){
         .classList.add("active");
 
 }
-
 
 function closeMenu(){
 
@@ -2387,19 +2680,21 @@ function closeMenu(){
 }
 
 
-/* =========================================================
-   CARRINHO
-========================================================= */
+/* CARRINHO */
 
 function adicionarAoCarrinho(id){
 
     const produto =
-        produtos.find(p => p.id === id);
+        produtos.find(
+            p=>p.id===id
+        );
 
-    if(!produto) return;
+    if(!produto)return;
 
     const existente =
-        carrinho.find(item => item.id === id);
+        carrinho.find(
+            item=>item.id===id
+        );
 
     if(existente){
 
@@ -2408,11 +2703,13 @@ function adicionarAoCarrinho(id){
     }else{
 
         carrinho.push({
+
             id:produto.id,
             nome:produto.nome,
             preco:produto.preco,
             imagem:produto.imagem,
             quantidade:1
+
         });
 
     }
@@ -2420,25 +2717,30 @@ function adicionarAoCarrinho(id){
     atualizarCarrinho();
 
     mostrarToast(
-        produto.nome + " adicionado ao carrinho"
+        produto.nome+
+        " adicionado ao carrinho"
     );
 
 }
 
 
-function alterarQuantidade(id, quantidade){
+function alterarQuantidade(id,quantidade){
 
     const item =
-        carrinho.find(p => p.id === id);
+        carrinho.find(
+            p=>p.id===id
+        );
 
-    if(!item) return;
+    if(!item)return;
 
-    item.quantidade += quantidade;
+    item.quantidade+=quantidade;
 
-    if(item.quantidade <= 0){
+    if(item.quantidade<=0){
 
         carrinho =
-            carrinho.filter(p => p.id !== id);
+            carrinho.filter(
+                p=>p.id!==id
+            );
 
     }
 
@@ -2450,7 +2752,9 @@ function alterarQuantidade(id, quantidade){
 function removerDoCarrinho(id){
 
     carrinho =
-        carrinho.filter(p => p.id !== id);
+        carrinho.filter(
+            p=>p.id!==id
+        );
 
     atualizarCarrinho();
 
@@ -2460,8 +2764,10 @@ function removerDoCarrinho(id){
 function totalCarrinho(){
 
     return carrinho.reduce(
-        (total,item) =>
-            total + item.preco * item.quantidade,
+        (total,item)=>
+            total+
+            item.preco*
+            item.quantidade,
         0
     );
 
@@ -2471,8 +2777,9 @@ function totalCarrinho(){
 function quantidadeCarrinho(){
 
     return carrinho.reduce(
-        (total,item) =>
-            total + item.quantidade,
+        (total,item)=>
+            total+
+            item.quantidade,
         0
     );
 
@@ -2482,33 +2789,45 @@ function quantidadeCarrinho(){
 function atualizarCarrinho(){
 
     const container =
-        document.getElementById("cartItems");
+        document.getElementById(
+            "cartItems"
+        );
 
     const count =
-        document.getElementById("cartCount");
+        document.getElementById(
+            "cartCount"
+        );
 
     const total =
-        document.getElementById("cartTotal");
+        document.getElementById(
+            "cartTotal"
+        );
 
     const checkout =
-        document.getElementById("checkoutButton");
+        document.getElementById(
+            "checkoutButton"
+        );
 
     count.textContent =
         quantidadeCarrinho();
 
     total.textContent =
-        dinheiro(totalCarrinho());
+        dinheiro(
+            totalCarrinho()
+        );
 
     checkout.disabled =
-        carrinho.length === 0;
+        carrinho.length===0;
 
-    if(carrinho.length === 0){
+    if(carrinho.length===0){
 
-        container.innerHTML = `
+        container.innerHTML=`
 
             <div class="empty-cart">
 
-                <strong>Seu carrinho está vazio</strong>
+                <strong>
+                    Seu carrinho está vazio
+                </strong>
 
                 <span>
                     Adicione produtos do cardápio.
@@ -2521,16 +2840,18 @@ function atualizarCarrinho(){
         return;
     }
 
-    container.innerHTML = "";
+    container.innerHTML="";
 
-    carrinho.forEach(item => {
+    carrinho.forEach(item=>{
 
         const div =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        div.className = "cart-item";
+        div.className="cart-item";
 
-        div.innerHTML = `
+        div.innerHTML=`
 
             <img
                 src="${encodeURI(item.imagem)}"
@@ -2573,7 +2894,6 @@ function atualizarCarrinho(){
             <button
                 class="remove-item"
                 onclick="removerDoCarrinho(${item.id})"
-                title="Remover"
             >
                 ×
             </button>
@@ -2615,13 +2935,11 @@ function closeCart(){
 }
 
 
-/* =========================================================
-   CHECKOUT
-========================================================= */
+/* CHECKOUT */
 
 function openCheckout(){
 
-    if(carrinho.length === 0) return;
+    if(carrinho.length===0)return;
 
     if(!lojaEstaAberta()){
 
@@ -2655,22 +2973,28 @@ function closeCheckout(){
 function renderCheckoutSummary(){
 
     const container =
-        document.getElementById("checkoutSummary");
+        document.getElementById(
+            "checkoutSummary"
+        );
 
-    let html = "";
+    let html="";
 
-    carrinho.forEach(item => {
+    carrinho.forEach(item=>{
 
-        html += `
+        html+=`
 
             <div class="checkout-summary-row">
 
                 <span>
-                    ${item.quantidade}x ${escapeHTML(item.nome)}
+                    ${item.quantidade}x
+                    ${escapeHTML(item.nome)}
                 </span>
 
                 <span>
-                    ${dinheiro(item.preco * item.quantidade)}
+                    ${dinheiro(
+                        item.preco*
+                        item.quantidade
+                    )}
                 </span>
 
             </div>
@@ -2679,11 +3003,13 @@ function renderCheckoutSummary(){
 
     });
 
-    html += `
+    html+=`
 
         <div class="checkout-summary-row">
 
-            <span>Total</span>
+            <span>
+                Total
+            </span>
 
             <strong>
                 ${dinheiro(totalCarrinho())}
@@ -2693,20 +3019,20 @@ function renderCheckoutSummary(){
 
     `;
 
-    container.innerHTML = html;
+    container.innerHTML=html;
 
 }
 
 
-/* =========================================================
-   CHECKOUT / PEDIDO
-========================================================= */
+/* ENVIO DO PEDIDO */
 
 function sendOrder(){
 
-    if(carrinho.length === 0){
+    if(carrinho.length===0){
 
-        mostrarToast("Seu carrinho está vazio.");
+        mostrarToast(
+            "Seu carrinho está vazio."
+        );
 
         return;
     }
@@ -2721,72 +3047,125 @@ function sendOrder(){
     }
 
     const nome =
-        document.getElementById("customerName").value.trim();
+        document
+        .getElementById(
+            "customerName"
+        )
+        .value
+        .trim();
 
     const telefone =
-        document.getElementById("customerPhone").value.trim();
+        document
+        .getElementById(
+            "customerPhone"
+        )
+        .value
+        .trim();
 
     const endereco =
-        document.getElementById("customerAddress").value.trim();
+        document
+        .getElementById(
+            "customerAddress"
+        )
+        .value
+        .trim();
 
     const numero =
-        document.getElementById("customerNumber").value.trim();
+        document
+        .getElementById(
+            "customerNumber"
+        )
+        .value
+        .trim();
 
     const complemento =
-        document.getElementById("customerComplement").value.trim();
+        document
+        .getElementById(
+            "customerComplement"
+        )
+        .value
+        .trim();
 
     const bairro =
-        document.getElementById("customerNeighborhood").value.trim();
+        document
+        .getElementById(
+            "customerNeighborhood"
+        )
+        .value
+        .trim();
 
     const referencia =
-        document.getElementById("customerReference").value.trim();
+        document
+        .getElementById(
+            "customerReference"
+        )
+        .value
+        .trim();
 
     const observacoes =
-        document.getElementById("customerNotes").value.trim();
+        document
+        .getElementById(
+            "customerNotes"
+        )
+        .value
+        .trim();
 
     const pagamento =
         document.querySelector(
             'input[name="payment"]:checked'
         );
 
+
     if(!nome){
 
-        mostrarToast("Informe seu nome.");
+        mostrarToast(
+            "Informe seu nome."
+        );
 
         return;
     }
 
     if(!telefone){
 
-        mostrarToast("Informe seu WhatsApp ou telefone.");
+        mostrarToast(
+            "Informe seu WhatsApp ou telefone."
+        );
 
         return;
     }
 
     if(!endereco){
 
-        mostrarToast("Informe seu endereço.");
+        mostrarToast(
+            "Informe seu endereço."
+        );
 
         return;
     }
 
     if(!numero){
 
-        mostrarToast("Informe o número do endereço.");
+        mostrarToast(
+            "Informe o número do endereço."
+        );
 
         return;
     }
 
     if(!bairro){
 
-        mostrarToast("Informe o bairro.");
+        mostrarToast(
+            "Informe o bairro."
+        );
 
         return;
     }
 
     if(!pagamento){
 
-        mostrarToast("Escolha a forma de pagamento.");
+        mostrarToast(
+            "Escolha a forma de pagamento."
+        );
 
         return;
     }
@@ -2800,32 +3179,44 @@ function sendOrder(){
         "CLIENTE\n";
 
     mensagem +=
-        "Nome: " + nome + "\n";
+        "Nome: "+
+        nome+
+        "\n";
 
     mensagem +=
-        "WhatsApp: " + telefone + "\n\n";
+        "WhatsApp: "+
+        telefone+
+        "\n\n";
 
 
     mensagem +=
         "ENDEREÇO\n";
 
     mensagem +=
-        "Rua: " + endereco + "\n";
-
-    mensagem +=
-        "Número: " + numero + "\n";
-
-    mensagem +=
-        "Complemento: " +
-        (complemento || "Não informado") +
+        "Rua: "+
+        endereco+
         "\n";
 
     mensagem +=
-        "Bairro: " + bairro + "\n";
+        "Número: "+
+        numero+
+        "\n";
 
     mensagem +=
-        "Referência: " +
-        (referencia || "Não informado") +
+        "Complemento: "+
+        (complemento||
+        "Não informado")+
+        "\n";
+
+    mensagem +=
+        "Bairro: "+
+        bairro+
+        "\n";
+
+    mensagem +=
+        "Referência: "+
+        (referencia||
+        "Não informado")+
         "\n\n";
 
 
@@ -2833,39 +3224,41 @@ function sendOrder(){
         "PEDIDO\n";
 
 
-    carrinho.forEach(item => {
+    carrinho.forEach(item=>{
 
         mensagem +=
-            item.quantidade +
-            "x " +
-            item.nome +
-            " - " +
+            item.quantidade+
+            "x "+
+            item.nome+
+            " - "+
             dinheiro(
-                item.preco *
+                item.preco*
                 item.quantidade
-            ) +
+            )+
             "\n";
 
     });
 
 
     mensagem +=
-        "\nTOTAL: " +
-        dinheiro(totalCarrinho()) +
+        "\nTOTAL: "+
+        dinheiro(
+            totalCarrinho()
+        )+
         "\n";
 
 
     mensagem +=
-        "Pagamento: " +
-        pagamento.value +
+        "Pagamento: "+
+        pagamento.value+
         "\n";
 
 
     if(observacoes){
 
         mensagem +=
-            "\nObservações: " +
-            observacoes +
+            "\nObservações: "+
+            observacoes+
             "\n";
 
     }
@@ -2876,6 +3269,7 @@ function sendOrder(){
 
 
     salvarHistorico({
+
         nome,
         telefone,
         endereco,
@@ -2885,21 +3279,34 @@ function sendOrder(){
         referencia,
         pagamento:pagamento.value,
         observacoes,
-        itens:carrinho.map(item => ({
-            nome:item.nome,
-            quantidade:item.quantidade,
-            preco:item.preco
-        })),
-        total:totalCarrinho(),
-        data:new Date().toISOString()
+
+        itens:
+            carrinho.map(
+                item=>({
+
+                    nome:item.nome,
+                    quantidade:item.quantidade,
+                    preco:item.preco
+
+                })
+            ),
+
+        total:
+            totalCarrinho(),
+
+        data:
+            new Date().toISOString()
+
     });
 
 
     const url =
-        "https://wa.me/" +
-        WHATSAPP +
-        "?text=" +
-        encodeURIComponent(mensagem);
+        "https://wa.me/"+
+        WHATSAPP+
+        "?text="+
+        encodeURIComponent(
+            mensagem
+        );
 
 
     window.open(
@@ -2908,7 +3315,7 @@ function sendOrder(){
     );
 
 
-    carrinho = [];
+    carrinho=[];
 
     atualizarCarrinho();
 
@@ -2923,13 +3330,11 @@ function sendOrder(){
 }
 
 
-/* =========================================================
-   FORMULÁRIO
-========================================================= */
+/* FORMULÁRIO */
 
 function limparFormulario(){
 
-    const ids = [
+    const ids=[
 
         "customerName",
         "customerPhone",
@@ -2942,14 +3347,14 @@ function limparFormulario(){
 
     ];
 
-    ids.forEach(id => {
+    ids.forEach(id=>{
 
         const campo =
             document.getElementById(id);
 
         if(campo){
 
-            campo.value = "";
+            campo.value="";
 
         }
 
@@ -2959,26 +3364,26 @@ function limparFormulario(){
         .querySelectorAll(
             'input[name="payment"]'
         )
-        .forEach(input => {
+        .forEach(input=>{
 
-            input.checked = false;
+            input.checked=false;
 
         });
 
 }
 
 
-/* =========================================================
-   HISTÓRICO
-========================================================= */
+/* HISTÓRICO */
 
 function getHistorico(){
 
     try{
 
         return JSON.parse(
-            localStorage.getItem(HISTORY_KEY)
-        ) || [];
+            localStorage.getItem(
+                HISTORY_KEY
+            )
+        )||[];
 
     }catch(e){
 
@@ -2994,7 +3399,9 @@ function salvarHistorico(pedido){
     const historico =
         getHistorico();
 
-    historico.unshift(pedido);
+    historico.unshift(
+        pedido
+    );
 
     localStorage.setItem(
         HISTORY_KEY,
@@ -3011,7 +3418,9 @@ function openHistory(){
     renderHistory();
 
     document
-        .getElementById("historyModal")
+        .getElementById(
+            "historyModal"
+        )
         .classList.add("active");
 
 }
@@ -3020,7 +3429,9 @@ function openHistory(){
 function closeHistory(){
 
     document
-        .getElementById("historyModal")
+        .getElementById(
+            "historyModal"
+        )
         .classList.remove("active");
 
 }
@@ -3029,19 +3440,21 @@ function closeHistory(){
 function renderHistory(){
 
     const container =
-        document.getElementById("historyList");
+        document.getElementById(
+            "historyList"
+        );
 
     const historico =
         getHistorico();
 
-    if(historico.length === 0){
+    if(historico.length===0){
 
-        container.innerHTML = `
+        container.innerHTML=`
 
             <div class="history-empty">
 
-                Você ainda não fez nenhum pedido
-                neste dispositivo.
+                Você ainda não fez nenhum
+                pedido neste dispositivo.
 
             </div>
 
@@ -3050,142 +3463,175 @@ function renderHistory(){
         return;
     }
 
-    container.innerHTML = "";
+    container.innerHTML="";
 
-    historico.forEach((pedido,index) => {
+    historico.forEach(
+        (pedido,index)=>{
 
-        const data =
-            new Date(pedido.data);
+            const data =
+                new Date(
+                    pedido.data
+                );
 
-        const itens =
-            pedido.itens
-            .map(item =>
-                `${item.quantidade}x ${escapeHTML(item.nome)}`
-            )
-            .join("<br>");
+            const itens =
+                pedido.itens
+                .map(
+                    item=>
+                    `${item.quantidade}x ${escapeHTML(item.nome)}`
+                )
+                .join("<br>");
 
-        const card =
-            document.createElement("div");
+            const card =
+                document.createElement(
+                    "div"
+                );
 
-        card.className =
-            "history-card";
+            card.className=
+                "history-card";
 
-        card.innerHTML = `
+            card.innerHTML=`
 
-            <div class="history-card-top">
+                <div class="history-card-top">
 
-                <strong>
-                    Pedido #${historico.length - index}
-                </strong>
+                    <strong>
+                        Pedido #${historico.length-index}
+                    </strong>
 
-                <span class="history-date">
-                    ${data.toLocaleDateString("pt-BR")}
-                    ${data.toLocaleTimeString("pt-BR",{
-                        hour:"2-digit",
-                        minute:"2-digit"
-                    })}
-                </span>
+                    <span class="history-date">
 
-            </div>
+                        ${data.toLocaleDateString(
+                            "pt-BR"
+                        )}
 
-            <div class="history-products">
-                ${itens}
-            </div>
+                        ${data.toLocaleTimeString(
+                            "pt-BR",
+                            {
+                                hour:"2-digit",
+                                minute:"2-digit"
+                            }
+                        )}
 
-            <div class="history-total">
-                Total: ${dinheiro(pedido.total)}
-            </div>
+                    </span>
 
-            <div class="history-customer">
-                ${escapeHTML(pedido.nome)}
-                • ${escapeHTML(pedido.telefone)}
-            </div>
+                </div>
 
-        `;
+                <div class="history-products">
+                    ${itens}
+                </div>
 
-        container.appendChild(card);
+                <div class="history-total">
+                    Total:
+                    ${dinheiro(pedido.total)}
+                </div>
 
-    });
+                <div class="history-customer">
+
+                    ${escapeHTML(pedido.nome)}
+                    •
+                    ${escapeHTML(pedido.telefone)}
+
+                </div>
+
+            `;
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
 
 }
 
 
-/* =========================================================
-   TOAST
-========================================================= */
+/* TOAST */
 
 let toastTimer;
 
 function mostrarToast(mensagem){
 
     const toast =
-        document.getElementById("toast");
+        document.getElementById(
+            "toast"
+        );
 
     toast.textContent =
         mensagem;
 
-    toast.classList.add("show");
+    toast.classList.add(
+        "show"
+    );
 
-    clearTimeout(toastTimer);
+    clearTimeout(
+        toastTimer
+    );
 
     toastTimer =
-        setTimeout(() => {
-
-            toast.classList.remove("show");
-
-        },2500);
+        setTimeout(
+            ()=>{
+                toast.classList.remove(
+                    "show"
+                );
+            },
+            2500
+        );
 
 }
 
 
-/* =========================================================
-   INICIALIZAÇÃO
-========================================================= */
+/* INICIALIZAÇÃO */
 
-document.addEventListener("DOMContentLoaded",() => {
+document.addEventListener(
+    "DOMContentLoaded",
+    ()=>{
 
-    renderProducts();
+        renderProducts();
 
-    atualizarCarrinho();
+        atualizarCarrinho();
 
-    atualizarStatus();
+        atualizarStatus();
 
-    setInterval(
-        atualizarStatus,
-        30000
+        setInterval(
+            atualizarStatus,
+            30000
+        );
+
+    }
+);
+
+
+/* FECHAR MODAIS */
+
+document
+    .getElementById(
+        "checkoutModal"
+    )
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target===this){
+                closeCheckout();
+            }
+
+        }
     );
 
-});
-
-
-/* =========================================================
-   FECHAR MODAIS CLICANDO FORA
-========================================================= */
 
 document
-    .getElementById("checkoutModal")
-    .addEventListener("click",function(event){
+    .getElementById(
+        "historyModal"
+    )
+    .addEventListener(
+        "click",
+        function(event){
 
-        if(event.target === this){
-
-            closeCheckout();
-
-        }
-
-    });
-
-
-document
-    .getElementById("historyModal")
-    .addEventListener("click",function(event){
-
-        if(event.target === this){
-
-            closeHistory();
+            if(event.target===this){
+                closeHistory();
+            }
 
         }
-
-    });
+    );
 
 </script>
 
