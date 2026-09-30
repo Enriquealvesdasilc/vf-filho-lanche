@@ -6,37 +6,46 @@
 
 <title>VF FILHOS LANCHES</title>
 
-<meta name="theme-color" content="#080808">
+<meta name="theme-color" content="#050505">
 <meta name="description" content="VF FILHOS LANCHES - Hambúrgueres, combos, promoções, bebidas, porções e muito mais.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<!-- QR CODE -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
+
 :root{
-    --black:#080808;
-    --black2:#111111;
-    --black3:#171717;
-    --gold:#d9ad32;
-    --gold2:#f4d35e;
-    --gold3:#a77d12;
+    --black:#050505;
+    --black2:#0a0a0a;
+    --black3:#111111;
+    --black4:#181818;
+
+    --gold:#d4a928;
+    --gold2:#f4d66a;
+    --gold3:#8d6913;
+
     --white:#ffffff;
-    --muted:#a9a9a9;
-    --green:#22d276;
+    --muted:#999999;
+
+    --green:#21d276;
     --red:#ff4d4d;
-    --border:rgba(217,173,50,.22);
-    --shadow:0 18px 50px rgba(0,0,0,.45);
+
+    --border:rgba(212,169,40,.25);
+
+    --shadow:
+        0 25px 70px rgba(0,0,0,.55);
+
+    --gold-shadow:
+        0 0 35px rgba(212,169,40,.13);
 }
 
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
 html{
@@ -44,12 +53,40 @@ html{
 }
 
 body{
-    font-family:'Poppins',sans-serif;
-    background:
-        radial-gradient(circle at top right,rgba(217,173,50,.07),transparent 30%),
-        linear-gradient(180deg,#080808,#111111 45%,#080808);
-    color:var(--white);
     min-height:100vh;
+    color:white;
+    font-family:'Poppins',sans-serif;
+
+    background:
+        linear-gradient(
+            rgba(3,3,3,.94),
+            rgba(3,3,3,.97)
+        ),
+        url("logo-vf.jpeg") center center / 430px auto repeat;
+
+    background-attachment:fixed;
+
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(212,169,40,.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(212,169,40,.08),
+            transparent 30%
+        );
 }
 
 body.no-scroll{
@@ -58,8 +95,8 @@ body.no-scroll{
 
 button,
 input,
-select,
-textarea{
+textarea,
+select{
     font-family:inherit;
 }
 
@@ -72,27 +109,45 @@ img{
     display:block;
 }
 
-/* =========================
-   HEADER
-========================= */
 
-header{
+/* =========================================
+   HEADER
+========================================= */
+
+.header{
     position:sticky;
     top:0;
     z-index:1000;
-    background:rgba(6,6,6,.96);
-    backdrop-filter:blur(16px);
-    border-bottom:1px solid rgba(217,173,50,.18);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,5,5,.98),
+            rgba(5,5,5,.91)
+        );
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+        1px solid rgba(212,169,40,.2);
+
+    box-shadow:
+        0 8px 35px rgba(0,0,0,.35);
 }
 
 .header-inner{
-    max-width:1400px;
+    width:min(1400px,100%);
     margin:auto;
-    min-height:88px;
-    padding:12px 22px;
+
+    min-height:86px;
+
+    padding:
+        10px 22px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:15px;
 }
 
@@ -100,264 +155,468 @@ header{
     display:flex;
     align-items:center;
     gap:13px;
+
     min-width:0;
 }
 
 .logo{
     width:62px;
     height:62px;
+
     object-fit:cover;
+
     border-radius:50%;
-    border:2px solid var(--gold);
+
+    border:
+        2px solid var(--gold);
+
     box-shadow:
-        0 0 0 3px rgba(217,173,50,.08),
-        0 0 30px rgba(217,173,50,.18);
+        0 0 0 3px rgba(212,169,40,.08),
+        0 0 35px rgba(212,169,40,.25);
+
+    background:#090909;
 }
 
-.brand-text{
+.brand-info{
     min-width:0;
 }
 
 .brand-name{
-    color:#f7dc73;
+    color:var(--gold2);
+
     font-size:17px;
     font-weight:900;
-    letter-spacing:.7px;
+
+    letter-spacing:.8px;
+
     white-space:nowrap;
 }
 
 .brand-sub{
-    color:#888;
-    font-size:11px;
+    color:#777;
+
+    font-size:10px;
+
     margin-top:2px;
+
+    letter-spacing:1px;
 }
 
 .header-actions{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:9px;
 }
 
-.header-btn{
+.header-button{
     position:relative;
-    width:58px;
-    height:58px;
-    border-radius:18px;
-    border:1px solid var(--border);
-    background:#101010;
-    color:var(--white);
-    font-size:24px;
+
+    width:56px;
+    height:56px;
+
+    border-radius:17px;
+
+    border:
+        1px solid rgba(212,169,40,.25);
+
+    background:
+        linear-gradient(
+            145deg,
+            #191919,
+            #090909
+        );
+
+    color:white;
+
+    font-size:22px;
+
     display:grid;
     place-items:center;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04),
+        0 8px 20px rgba(0,0,0,.25);
+
     transition:.25s;
 }
 
-.header-btn:hover{
-    transform:translateY(-2px);
+.header-button:hover{
+    transform:
+        translateY(-2px)
+        scale(1.02);
+
     border-color:var(--gold);
+
     color:var(--gold2);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.4),
+        0 0 20px rgba(212,169,40,.1);
 }
 
 .cart-count{
     position:absolute;
+
     top:-5px;
     right:-5px;
+
     min-width:23px;
     height:23px;
-    padding:0 6px;
+
+    padding:0 5px;
+
     border-radius:50px;
-    background:var(--gold);
-    color:#090909;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f6d75e,
+            #b48617
+        );
+
+    color:#080808;
+
     font-size:11px;
     font-weight:900;
+
     display:grid;
     place-items:center;
+
+    border:2px solid #080808;
 }
 
-/* =========================
-   STORE STATUS
-========================= */
 
-.status-wrap{
-    max-width:1400px;
+/* =========================================
+   STATUS
+========================================= */
+
+.status-container{
+    width:min(1400px,100%);
     margin:18px auto 0;
     padding:0 22px;
 }
 
-.status{
-    border:1px solid var(--border);
-    background:linear-gradient(135deg,#121212,#0d0d0d);
-    border-radius:20px;
-    padding:16px 20px;
+.status-box{
     display:flex;
     align-items:center;
-    gap:15px;
-    box-shadow:0 8px 30px rgba(0,0,0,.2);
+    gap:14px;
+
+    padding:17px 20px;
+
+    border-radius:20px;
+
+    border:
+        1px solid rgba(212,169,40,.23);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,25,25,.96),
+            rgba(10,10,10,.96)
+        );
+
+    box-shadow:
+        var(--shadow),
+        inset 0 1px 0 rgba(255,255,255,.03);
 }
 
-.status-dot{
-    width:18px;
-    height:18px;
+.status-light{
+    width:17px;
+    height:17px;
+
     border-radius:50%;
+
     flex-shrink:0;
 }
 
-.status.open .status-dot{
+.status-box.open .status-light{
     background:var(--green);
-    box-shadow:0 0 18px rgba(34,210,118,.7);
-    animation:pulse 1.6s infinite;
+
+    box-shadow:
+        0 0 0 5px rgba(33,210,118,.08),
+        0 0 25px rgba(33,210,118,.7);
+
+    animation:
+        statusPulse 1.6s infinite;
 }
 
-.status.closed .status-dot{
+.status-box.closed .status-light{
     background:var(--red);
-    box-shadow:0 0 15px rgba(255,77,77,.5);
+
+    box-shadow:
+        0 0 20px rgba(255,77,77,.55);
+}
+
+@keyframes statusPulse{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.18);
+    }
 }
 
 .status-title{
+    font-size:16px;
     font-weight:900;
-    font-size:17px;
 }
 
 .status-sub{
-    color:#888;
-    font-size:13px;
     margin-top:2px;
+    color:#777;
+    font-size:12px;
 }
 
-@keyframes pulse{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.16)}
-}
 
-/* =========================
-   HERO
-========================= */
+/* =========================================
+   HERO 3D
+========================================= */
 
-.hero{
-    max-width:1400px;
+.hero-container{
+    width:min(1400px,100%);
     margin:28px auto;
+
     padding:0 22px;
 }
 
-.hero-card{
-    min-height:420px;
-    border-radius:32px;
-    overflow:hidden;
-    border:1px solid rgba(217,173,50,.3);
+.hero{
+    min-height:440px;
+
     position:relative;
-    display:flex;
-    align-items:center;
+
+    overflow:hidden;
+
+    border-radius:32px;
+
+    border:
+        1px solid rgba(212,169,40,.34);
+
     background:
         linear-gradient(
             90deg,
-            rgba(0,0,0,.94) 0%,
-            rgba(0,0,0,.78) 48%,
-            rgba(0,0,0,.45) 100%
+            rgba(0,0,0,.97) 0%,
+            rgba(0,0,0,.86) 45%,
+            rgba(0,0,0,.5) 100%
         ),
-        url('banner-vf-filhos-lanches.jpeg') center/cover no-repeat,
-        linear-gradient(135deg,#171717,#050505);
-    box-shadow:var(--shadow);
+        url("logo-vf.jpeg") center / cover no-repeat;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.65),
+        inset 0 0 100px rgba(212,169,40,.06);
+
+    transform-style:preserve-3d;
+}
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:380px;
+    height:380px;
+
+    right:-110px;
+    top:-110px;
+
+    border-radius:50%;
+
+    border:
+        1px solid rgba(212,169,40,.18);
+
+    box-shadow:
+        0 0 80px rgba(212,169,40,.12);
+
+    transform:rotate(18deg);
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    right:100px;
+    bottom:-170px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212,169,40,.2),
+            transparent 65%
+        );
+
+    pointer-events:none;
 }
 
 .hero-content{
+    position:relative;
+    z-index:2;
+
     max-width:760px;
-    padding:55px;
+
+    padding:
+        65px 55px;
 }
 
-.hero-mini{
+.hero-small{
     color:var(--gold2);
-    font-size:13px;
+
+    font-size:12px;
+
     font-weight:900;
+
     letter-spacing:7px;
-    margin-bottom:22px;
+
+    margin-bottom:20px;
 }
 
 .hero h1{
-    font-size:clamp(42px,7vw,78px);
+    font-family:'Montserrat',sans-serif;
+
+    font-size:
+        clamp(42px,7vw,78px);
+
     line-height:.98;
+
     font-weight:900;
+
     letter-spacing:-3px;
+
+    text-shadow:
+        0 8px 30px rgba(0,0,0,.8);
 }
 
 .hero h1 span{
     color:var(--gold2);
+
+    text-shadow:
+        0 0 35px rgba(212,169,40,.18);
 }
 
 .hero-description{
-    color:#c7c7c7;
-    font-size:17px;
-    line-height:1.8;
-    margin-top:25px;
     max-width:700px;
+
+    margin-top:24px;
+
+    color:#c5c5c5;
+
+    font-size:16px;
+
+    line-height:1.8;
 }
 
-.hero-badge{
-    display:inline-flex;
-    margin-top:26px;
-    padding:11px 17px;
-    border:1px solid rgba(217,173,50,.45);
+.hero-info{
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:28px;
+}
+
+.hero-pill{
+    padding:11px 15px;
+
     border-radius:50px;
-    color:#f3d76a;
-    background:rgba(217,173,50,.08);
-    font-size:13px;
+
+    border:
+        1px solid rgba(212,169,40,.3);
+
+    background:
+        rgba(212,169,40,.07);
+
+    color:#ead069;
+
+    font-size:12px;
+
     font-weight:800;
 }
 
-/* =========================
-   SEARCH
-========================= */
 
-.search-wrap{
-    max-width:1400px;
-    margin:0 auto 25px;
+/* =========================================
+   PESQUISA
+========================================= */
+
+.search-container{
+    width:min(1400px,100%);
+    margin:auto;
     padding:0 22px;
 }
 
 .search-box{
+    height:64px;
+
     display:flex;
     align-items:center;
+
     gap:12px;
-    height:64px;
-    border:1px solid var(--border);
-    border-radius:19px;
-    background:#101010;
+
     padding:0 20px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171717,
+            #0b0b0b
+        );
+
+    border:
+        1px solid rgba(212,169,40,.23);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.03),
+        0 12px 30px rgba(0,0,0,.25);
 }
 
 .search-icon{
-    font-size:23px;
+    font-size:22px;
 }
 
 .search-box input{
     flex:1;
+
     height:100%;
-    background:none;
+
     border:0;
-    outline:none;
+    outline:0;
+
+    background:transparent;
+
     color:white;
-    font-size:16px;
+
+    font-size:15px;
 }
 
 .search-box input::placeholder{
-    color:#666;
+    color:#626262;
 }
 
-/* =========================
-   CATEGORIES
-========================= */
 
-.categories-wrap{
-    max-width:1400px;
-    margin:auto;
+/* =========================================
+   CATEGORIAS
+========================================= */
+
+.categories-container{
+    width:min(1400px,100%);
+    margin:20px auto 0;
     padding:0 22px;
-    overflow:hidden;
 }
 
 .categories{
     display:flex;
     gap:10px;
+
     overflow-x:auto;
-    padding-bottom:7px;
+
+    padding-bottom:6px;
+
     scrollbar-width:none;
 }
 
@@ -365,36 +624,59 @@ header{
     display:none;
 }
 
-.category-btn{
+.category-button{
     flex-shrink:0;
-    border:1px solid var(--border);
-    background:#111;
-    color:#cfcfcf;
+
+    padding:13px 19px;
+
     border-radius:50px;
-    padding:13px 20px;
+
+    border:
+        1px solid rgba(212,169,40,.22);
+
+    background:#111;
+
+    color:#aaa;
+
+    font-size:13px;
+
     font-weight:800;
+
     transition:.25s;
 }
 
-.category-btn:hover{
+.category-button:hover{
     border-color:var(--gold);
     color:var(--gold2);
 }
 
-.category-btn.active{
-    background:linear-gradient(135deg,#f1c843,#c9981c);
-    color:#090909;
-    border-color:#f1c843;
-    box-shadow:0 8px 25px rgba(217,173,50,.18);
+.category-button.active{
+    background:
+        linear-gradient(
+            135deg,
+            #f0ce4d,
+            #b88816
+        );
+
+    color:#080808;
+
+    border-color:#efcc49;
+
+    box-shadow:
+        0 8px 25px rgba(212,169,40,.17);
 }
 
-/* =========================
-   PRODUCTS
-========================= */
 
-.products-area{
-    max-width:1400px;
-    margin:45px auto 100px;
+/* =========================================
+   PRODUTOS
+========================================= */
+
+.products-container{
+    width:min(1400px,100%);
+
+    margin:
+        45px auto 100px;
+
     padding:0 22px;
 }
 
@@ -402,164 +684,303 @@ header{
     margin-bottom:55px;
 }
 
-.category-heading{
+.category-header{
     display:flex;
-    align-items:end;
+    align-items:flex-end;
     justify-content:space-between;
-    gap:20px;
+
+    gap:15px;
+
     margin-bottom:22px;
 }
 
-.category-heading h2{
+.category-title{
+    color:#f0d267;
+
     font-size:28px;
-    color:#f1d36a;
+
     font-weight:900;
 }
 
-.category-heading span{
-    color:#5e5e5e;
-    font-size:12px;
-    font-weight:700;
+.category-label{
+    color:#555;
+
+    font-size:10px;
+
+    font-weight:800;
+
     letter-spacing:3px;
 }
 
 .products-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
     gap:18px;
 }
 
+
+/* =========================================
+   CARD PRODUTO 3D
+========================================= */
+
 .product-card{
-    background:linear-gradient(180deg,#171717,#101010);
-    border:1px solid rgba(255,255,255,.07);
-    border-radius:23px;
+    position:relative;
+
     overflow:hidden;
-    transition:.3s;
-    box-shadow:0 12px 35px rgba(0,0,0,.25);
+
+    border-radius:23px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1a1a1a,
+            #0c0c0c
+        );
+
+    border:
+        1px solid rgba(255,255,255,.06);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.03);
+
+    transition:
+        transform .3s,
+        border-color .3s,
+        box-shadow .3s;
 }
 
 .product-card:hover{
-    transform:translateY(-5px);
-    border-color:rgba(217,173,50,.35);
-    box-shadow:0 18px 45px rgba(0,0,0,.45);
+    transform:
+        translateY(-7px)
+        perspective(900px)
+        rotateX(1deg);
+
+    border-color:
+        rgba(212,169,40,.35);
+
+    box-shadow:
+        0 28px 60px rgba(0,0,0,.55),
+        0 0 30px rgba(212,169,40,.06);
+}
+
+.product-image-wrap{
+    position:relative;
+
+    overflow:hidden;
 }
 
 .product-image{
     width:100%;
-    aspect-ratio:1/1;
+
+    aspect-ratio:1 / 1;
+
     object-fit:cover;
-    background:#202020;
+
+    background:#1b1b1b;
+
+    transition:
+        transform .45s;
+}
+
+.product-card:hover .product-image{
+    transform:scale(1.04);
+}
+
+.product-image-shine{
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            125deg,
+            rgba(255,255,255,.08),
+            transparent 30%,
+            transparent 70%,
+            rgba(212,169,40,.06)
+        );
 }
 
 .product-info{
     padding:18px;
 }
 
-.product-tag{
-    color:#b99836;
+.product-category{
+    color:#ad8b2e;
+
+    font-size:9px;
+
     text-transform:uppercase;
-    font-size:10px;
+
+    letter-spacing:1.6px;
+
     font-weight:900;
-    letter-spacing:1.5px;
 }
 
 .product-name{
-    font-size:18px;
-    font-weight:900;
     margin-top:7px;
+
+    font-size:18px;
+
+    font-weight:900;
+
+    line-height:1.2;
 }
 
 .product-description{
-    color:#999;
-    font-size:12px;
-    line-height:1.65;
-    min-height:61px;
     margin-top:8px;
+
+    min-height:63px;
+
+    color:#929292;
+
+    font-size:11px;
+
+    line-height:1.65;
 }
 
-.product-bottom{
+.product-footer{
     margin-top:17px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     gap:10px;
 }
 
-.price{
-    color:#f2d365;
+.product-price{
+    color:#f0d365;
+
     font-size:20px;
+
     font-weight:900;
+
     white-space:nowrap;
 }
 
-.add-btn{
-    border:0;
-    border-radius:12px;
-    background:linear-gradient(135deg,#eac43d,#bb8c13);
-    color:#080808;
+.product-status{
+    margin-top:3px;
+
+    color:#ff6969;
+
+    font-size:9px;
+
     font-weight:900;
-    padding:12px 14px;
+}
+
+.add-button{
     min-width:105px;
+
+    padding:12px 14px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #efd04c,
+            #b98918
+        );
+
+    color:#090909;
+
+    font-weight:900;
+
+    font-size:12px;
+
     transition:.25s;
 }
 
-.add-btn:hover:not(:disabled){
+.add-button:hover:not(:disabled){
     transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(217,173,50,.2);
+
+    box-shadow:
+        0 10px 25px rgba(212,169,40,.18);
 }
 
-.add-btn:disabled{
-    opacity:.4;
+.add-button:disabled{
+    background:#2a2a2a;
+    color:#777;
     cursor:not-allowed;
-    background:#333;
-    color:#888;
 }
 
-.closed-label{
-    font-size:10px;
-    color:#ff6565;
+
+/* =========================================
+   AÇAÍ
+========================================= */
+
+.acai-box{
+    padding:55px 20px;
+
+    border-radius:25px;
+
+    border:
+        1px dashed rgba(212,169,40,.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212,169,40,.06),
+            rgba(0,0,0,.2)
+        );
+
+    text-align:center;
+}
+
+.acai-icon{
+    font-size:50px;
+}
+
+.acai-box h3{
+    margin-top:12px;
+
+    color:#efd264;
+
+    font-size:24px;
+
     font-weight:900;
 }
 
-/* =========================
-   ACAI
-========================= */
+.acai-box p{
+    margin-top:7px;
 
-.acai-placeholder{
-    border:1px dashed rgba(217,173,50,.35);
-    border-radius:25px;
-    padding:45px 20px;
-    text-align:center;
-    background:rgba(217,173,50,.03);
+    color:#777;
+
+    font-size:13px;
 }
 
-.acai-placeholder .emoji{
-    font-size:45px;
-}
 
-.acai-placeholder h3{
-    color:#f0d260;
-    margin-top:10px;
-    font-size:24px;
-}
-
-.acai-placeholder p{
-    color:#888;
-    margin-top:8px;
-}
-
-/* =========================
-   CART DRAWER
-========================= */
+/* =========================================
+   OVERLAY
+========================================= */
 
 .overlay{
     position:fixed;
+
     inset:0;
-    background:rgba(0,0,0,.72);
+
+    z-index:1900;
+
+    background:
+        rgba(0,0,0,.76);
+
     backdrop-filter:blur(5px);
-    z-index:2000;
+
     opacity:0;
+
     visibility:hidden;
+
     transition:.25s;
 }
 
@@ -568,19 +989,41 @@ header{
     visibility:visible;
 }
 
+
+/* =========================================
+   CARRINHO
+========================================= */
+
 .cart-drawer{
     position:fixed;
-    z-index:2100;
+
     top:0;
     right:0;
-    width:min(460px,100%);
+
+    z-index:2100;
+
+    width:min(470px,100%);
     height:100%;
-    background:#0e0e0e;
-    border-left:1px solid var(--border);
+
+    background:
+        linear-gradient(
+            180deg,
+            #111,
+            #080808
+        );
+
+    border-left:
+        1px solid rgba(212,169,40,.25);
+
     transform:translateX(100%);
+
     transition:.3s;
+
     display:flex;
     flex-direction:column;
+
+    box-shadow:
+        -25px 0 80px rgba(0,0,0,.5);
 }
 
 .cart-drawer.show{
@@ -588,11 +1031,14 @@ header{
 }
 
 .drawer-header{
-    padding:23px;
-    border-bottom:1px solid rgba(255,255,255,.08);
+    padding:22px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.07);
 }
 
 .drawer-title{
@@ -600,225 +1046,346 @@ header{
     font-weight:900;
 }
 
-.close-btn{
-    width:42px;
-    height:42px;
-    border-radius:12px;
-    border:1px solid #333;
-    background:#171717;
-    color:white;
-    font-size:20px;
+.drawer-subtitle{
+    margin-top:3px;
+
+    color:#666;
+
+    font-size:11px;
 }
 
-.cart-items{
+.close-button{
+    width:42px;
+    height:42px;
+
+    border-radius:12px;
+
+    border:1px solid #333;
+
+    background:#171717;
+
+    color:white;
+
+    font-size:18px;
+}
+
+.cart-content{
     flex:1;
+
     overflow-y:auto;
+
     padding:20px;
 }
 
 .empty-cart{
     min-height:350px;
+
     display:grid;
     place-items:center;
+
     text-align:center;
+
     color:#777;
 }
 
 .cart-item{
     display:grid;
-    grid-template-columns:65px 1fr auto;
+
+    grid-template-columns:
+        66px 1fr auto;
+
     gap:12px;
-    align-items:center;
-    padding:13px 0;
-    border-bottom:1px solid rgba(255,255,255,.07);
+
+    padding:14px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.07);
 }
 
-.cart-item img{
-    width:65px;
-    height:65px;
+.cart-item-image{
+    width:66px;
+    height:66px;
+
     object-fit:cover;
+
     border-radius:13px;
 }
 
 .cart-item-name{
-    font-weight:800;
     font-size:14px;
-}
-
-.cart-item-price{
-    color:#e5c554;
     font-weight:800;
-    font-size:13px;
-    margin-top:4px;
 }
 
-.qty{
+.cart-item-total{
+    margin-top:4px;
+
+    color:#e9cd60;
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
+.quantity-controls{
     display:flex;
+
     align-items:center;
+
     gap:7px;
+
     margin-top:8px;
 }
 
-.qty button{
+.quantity-controls button{
     width:28px;
     height:28px;
+
     border-radius:8px;
-    border:1px solid #444;
-    background:#1a1a1a;
+
+    border:1px solid #3b3b3b;
+
+    background:#181818;
+
     color:white;
+
     font-weight:900;
 }
 
-.qty span{
+.quantity-number{
     min-width:18px;
+
     text-align:center;
+
     font-weight:900;
 }
 
-.remove-item{
-    color:#ff5c5c;
-    font-size:11px;
-    background:none;
+.remove-button{
+    margin-top:4px;
+
     border:0;
-    margin-top:5px;
+
+    background:none;
+
+    color:#ff6464;
+
+    font-size:10px;
+
+    font-weight:800;
 }
 
 .cart-footer{
     padding:20px;
-    border-top:1px solid rgba(255,255,255,.08);
+
+    border-top:
+        1px solid rgba(255,255,255,.08);
 }
 
-.total-row{
+.total-line{
     display:flex;
+
+    align-items:center;
+
     justify-content:space-between;
-    font-size:17px;
+
+    font-size:16px;
+
     font-weight:800;
 }
 
 .total-value{
-    color:#f2d365;
+    color:#f0d365;
+
     font-size:24px;
 }
 
-.checkout-btn{
+.checkout-button{
     width:100%;
-    margin-top:16px;
+
+    margin-top:15px;
+
     padding:16px;
+
     border:0;
+
     border-radius:15px;
-    background:linear-gradient(135deg,#efd04b,#bd8e17);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0d04e,
+            #b88717
+        );
+
     color:#080808;
-    font-size:15px;
+
     font-weight:900;
 }
 
-.checkout-btn:disabled{
+.checkout-button:disabled{
     opacity:.4;
+
     cursor:not-allowed;
 }
 
-/* =========================
-   MENU
-========================= */
+
+/* =========================================
+   MENU HAMBÚRGUER
+========================================= */
 
 .side-menu{
     position:fixed;
-    z-index:2100;
+
     top:0;
     left:0;
-    width:min(380px,90%);
+
+    z-index:2100;
+
+    width:min(390px,90%);
     height:100%;
-    background:#0d0d0d;
-    border-right:1px solid var(--border);
+
+    background:
+        linear-gradient(
+            180deg,
+            #121212,
+            #080808
+        );
+
+    border-right:
+        1px solid rgba(212,169,40,.25);
+
     transform:translateX(-100%);
+
     transition:.3s;
+
     overflow-y:auto;
+
+    box-shadow:
+        25px 0 80px rgba(0,0,0,.45);
 }
 
 .side-menu.show{
     transform:translateX(0);
 }
 
-.menu-top{
-    padding:24px;
+.menu-header{
+    padding:23px;
+
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    border-bottom:1px solid rgba(255,255,255,.08);
+    justify-content:space-between;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.07);
 }
 
 .menu-title{
+    color:#f0d365;
+
     font-size:22px;
+
     font-weight:900;
-    color:#f0d263;
 }
 
 .menu-content{
     padding:20px;
 }
 
-.menu-link{
+.menu-button{
+    width:100%;
+
     display:flex;
     align-items:center;
-    gap:14px;
-    width:100%;
+
+    gap:13px;
+
     padding:15px;
+
     margin-bottom:10px;
+
     border-radius:15px;
-    border:1px solid #252525;
-    background:#141414;
+
+    border:1px solid #292929;
+
+    background:#151515;
+
     color:white;
+
     text-decoration:none;
+
     font-weight:800;
+
+    text-align:left;
+
     transition:.25s;
 }
 
-.menu-link:hover{
+.menu-button:hover{
     border-color:var(--gold);
+
+    transform:translateX(3px);
 }
 
-.menu-link.highlight{
-    border-color:rgba(217,173,50,.5);
-    background:linear-gradient(
-        135deg,
-        rgba(217,173,50,.18),
-        rgba(217,173,50,.04)
-    );
+.menu-button.highlight{
+    border-color:
+        rgba(212,169,40,.45);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(212,169,40,.16),
+            rgba(212,169,40,.04)
+        );
+
+    color:#f2d467;
 }
 
-.menu-link .icon{
-    font-size:23px;
+.menu-icon{
+    font-size:22px;
 }
 
-.menu-info{
-    margin-top:25px;
+.menu-card{
+    margin-top:22px;
+
     padding:18px;
+
     border-radius:17px;
-    background:#151515;
-    border:1px solid #262626;
+
+    border:
+        1px solid #252525;
+
+    background:#121212;
 }
 
-.menu-info-title{
-    color:#f0d263;
+.menu-card-title{
+    color:#efd264;
+
     font-weight:900;
 }
 
-.menu-info p{
-    color:#888;
-    font-size:13px;
-    margin-top:6px;
+.menu-card p{
+    margin-top:5px;
+
+    color:#777;
+
+    font-size:12px;
 }
 
-/* =========================
-   MODAL
-========================= */
+
+/* =========================================
+   MODAIS
+========================================= */
 
 .modal{
     position:fixed;
+
     inset:0;
+
     z-index:3000;
+
     display:none;
+
     place-items:center;
+
     padding:18px;
 }
 
@@ -827,21 +1394,39 @@ header{
 }
 
 .modal-box{
-    width:min(700px,100%);
+    width:min(720px,100%);
+
     max-height:92vh;
+
     overflow-y:auto;
-    background:#101010;
-    border:1px solid var(--border);
+
     border-radius:25px;
-    box-shadow:0 30px 80px rgba(0,0,0,.7);
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #090909
+        );
+
+    border:
+        1px solid rgba(212,169,40,.25);
+
+    box-shadow:
+        0 35px 90px rgba(0,0,0,.7);
 }
 
 .modal-header{
     padding:22px;
-    border-bottom:1px solid rgba(255,255,255,.08);
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.07);
 }
 
 .modal-header h2{
@@ -855,7 +1440,10 @@ header{
 
 .form-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:14px;
 }
 
@@ -871,7 +1459,9 @@ header{
 
 .form-group label{
     color:#aaa;
-    font-size:12px;
+
+    font-size:11px;
+
     font-weight:700;
 }
 
@@ -879,18 +1469,27 @@ header{
 .form-group select,
 .form-group textarea{
     width:100%;
-    background:#171717;
-    border:1px solid #303030;
+
+    border:
+        1px solid #303030;
+
     border-radius:12px;
+
+    background:#171717;
+
     color:white;
+
     padding:13px;
+
     outline:none;
-    font-size:14px;
+
+    font-size:13px;
 }
 
 .form-group textarea{
-    resize:vertical;
     min-height:90px;
+
+    resize:vertical;
 }
 
 .form-group input:focus,
@@ -899,22 +1498,38 @@ header{
     border-color:var(--gold);
 }
 
-.payment-box{
-    margin-top:18px;
-    border:1px solid rgba(217,173,50,.2);
-    border-radius:18px;
+
+/* =========================================
+   PIX
+========================================= */
+
+.payment-card{
+    margin-top:20px;
+
     padding:18px;
-    background:rgba(217,173,50,.03);
+
+    border-radius:18px;
+
+    border:
+        1px solid rgba(212,169,40,.2);
+
+    background:
+        rgba(212,169,40,.035);
 }
 
-.payment-box h3{
-    color:#f1d363;
-    font-size:15px;
+.payment-title{
+    color:#efd264;
+
+    font-size:14px;
+
+    font-weight:900;
 }
 
 .pix-area{
     display:none;
-    margin-top:15px;
+
+    margin-top:18px;
+
     text-align:center;
 }
 
@@ -924,117 +1539,199 @@ header{
 
 #qrcode{
     display:inline-block;
-    background:white;
+
     padding:12px;
-    border-radius:12px;
+
+    border-radius:14px;
+
+    background:white;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.4);
+}
+
+.pix-name{
+    margin-top:12px;
+
+    color:#f0d365;
+
+    font-size:13px;
+
+    font-weight:900;
 }
 
 .pix-key{
-    margin-top:13px;
-    color:#ddd;
+    margin-top:4px;
+
+    color:#aaa;
+
     font-size:12px;
-    word-break:break-word;
 }
 
-.pix-receiver{
-    color:#f0d263;
-    font-weight:900;
-    margin-top:5px;
+.pix-note{
+    margin-top:7px;
+
+    color:#666;
+
+    font-size:10px;
 }
 
 .modal-footer{
     padding:20px 22px;
-    border-top:1px solid rgba(255,255,255,.08);
+
+    border-top:
+        1px solid rgba(255,255,255,.07);
 }
 
-.confirm-order{
+.confirm-button{
     width:100%;
-    border:0;
-    border-radius:14px;
+
     padding:16px;
-    background:linear-gradient(135deg,#efd04b,#bd8e17);
-    color:#090909;
+
+    border:0;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0d04e,
+            #b88717
+        );
+
+    color:#080808;
+
+    font-size:14px;
+
     font-weight:900;
-    font-size:15px;
 }
 
-/* =========================
-   HISTORY
-========================= */
+
+/* =========================================
+   HISTÓRICO
+========================================= */
 
 .history-list{
     display:flex;
     flex-direction:column;
+
     gap:12px;
 }
 
 .history-item{
-    border:1px solid #282828;
-    border-radius:17px;
     padding:16px;
+
+    border-radius:17px;
+
     background:#151515;
+
+    border:
+        1px solid #292929;
 }
 
 .history-top{
     display:flex;
+
     justify-content:space-between;
+
     gap:10px;
 }
 
-.history-number{
-    color:#f0d263;
+.history-id{
+    color:#f0d365;
+
     font-weight:900;
 }
 
 .history-date{
-    color:#777;
-    font-size:11px;
+    color:#666;
+
+    font-size:10px;
 }
 
-.history-items{
+.history-products{
     margin-top:12px;
+
     color:#aaa;
-    font-size:13px;
+
+    font-size:12px;
+
     line-height:1.7;
 }
 
 .history-total{
-    margin-top:12px;
-    color:#f0d263;
+    margin-top:10px;
+
+    color:#f0d365;
+
+    font-size:15px;
+
     font-weight:900;
 }
 
-.no-history{
-    text-align:center;
+.history-payment{
+    margin-top:4px;
+
+    color:#666;
+
+    font-size:10px;
+}
+
+.empty-history{
     padding:50px 20px;
+
+    text-align:center;
+
     color:#777;
 }
 
-/* =========================
+
+/* =========================================
    TOAST
-========================= */
+========================================= */
 
 .toast{
     position:fixed;
+
     z-index:5000;
+
     left:50%;
     bottom:25px;
-    transform:translate(-50%,120px);
-    background:#151515;
-    border:1px solid var(--gold);
-    border-radius:15px;
-    padding:14px 20px;
-    box-shadow:0 15px 40px rgba(0,0,0,.5);
-    color:white;
-    font-weight:700;
-    opacity:0;
-    transition:.3s;
+
+    transform:
+        translate(-50%,120px);
+
     max-width:90%;
+
+    padding:14px 20px;
+
+    border-radius:15px;
+
+    background:#151515;
+
+    border:
+        1px solid var(--gold);
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:700;
+
     text-align:center;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.6);
+
+    opacity:0;
+
+    transition:.3s;
 }
 
 .toast.show{
-    transform:translate(-50%,0);
+    transform:
+        translate(-50%,0);
+
     opacity:1;
 }
 
@@ -1046,125 +1743,126 @@ header{
     border-color:var(--red);
 }
 
-/* =========================
-   CLOSED SCREEN
-========================= */
 
-.closed-warning{
-    display:none;
-    margin:18px auto 0;
-    max-width:1400px;
-    padding:0 22px;
-}
-
-.closed-warning.show{
-    display:block;
-}
-
-.closed-warning-box{
-    padding:16px 20px;
-    border-radius:17px;
-    border:1px solid rgba(255,77,77,.25);
-    background:rgba(255,77,77,.05);
-    color:#ff8a8a;
-    font-size:13px;
-    font-weight:700;
-}
-
-/* =========================
+/* =========================================
    FOOTER
-========================= */
+========================================= */
 
-footer{
-    border-top:1px solid rgba(217,173,50,.14);
-    background:#070707;
-    padding:40px 22px;
+.footer{
+    padding:45px 22px;
+
     text-align:center;
+
+    border-top:
+        1px solid rgba(212,169,40,.15);
+
+    background:#050505;
 }
 
 .footer-logo{
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    border:1px solid var(--gold);
+    width:62px;
+    height:62px;
+
     margin:0 auto 12px;
+
+    border-radius:50%;
+
+    border:
+        2px solid var(--gold);
+
+    object-fit:cover;
 }
 
-footer strong{
-    color:#f0d263;
+.footer-name{
+    color:#efd264;
+
+    font-weight:900;
 }
 
-footer p{
-    color:#666;
-    font-size:12px;
+.footer p{
     margin-top:5px;
+
+    color:#666;
+
+    font-size:11px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+
+/* =========================================
+   RESPONSIVO
+========================================= */
 
 @media(max-width:1100px){
+
     .products-grid{
-        grid-template-columns:repeat(3,1fr);
+        grid-template-columns:
+            repeat(3,minmax(0,1fr));
     }
+
 }
 
 @media(max-width:780px){
+
     .header-inner{
         min-height:76px;
-        padding:10px 15px;
+
+        padding:
+            9px 14px;
     }
 
     .logo{
-        width:53px;
-        height:53px;
+        width:52px;
+        height:52px;
     }
 
     .brand-name{
-        font-size:14px;
+        font-size:13px;
     }
 
     .brand-sub{
         display:none;
     }
 
-    .header-btn{
+    .header-button{
         width:48px;
         height:48px;
+
         border-radius:14px;
-        font-size:20px;
     }
 
-    .status-wrap,
-    .hero,
-    .search-wrap,
-    .categories-wrap,
-    .products-area{
+    .status-container,
+    .hero-container,
+    .search-container,
+    .categories-container,
+    .products-container{
         padding-left:15px;
         padding-right:15px;
     }
 
-    .hero-card{
-        min-height:420px;
-        border-radius:24px;
+    .hero{
+        min-height:430px;
+
+        border-radius:25px;
     }
 
     .hero-content{
-        padding:35px 25px;
+        padding:42px 25px;
     }
 
     .hero h1{
-        font-size:45px;
+        font-size:44px;
+
         letter-spacing:-2px;
     }
 
     .hero-description{
-        font-size:14px;
+        font-size:13px;
     }
 
     .products-grid{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
         gap:12px;
     }
 
@@ -1177,16 +1875,18 @@ footer p{
     }
 
     .product-description{
-        font-size:11px;
         min-height:auto;
+
+        font-size:10px;
     }
 
-    .product-bottom{
-        align-items:stretch;
+    .product-footer{
         flex-direction:column;
+
+        align-items:stretch;
     }
 
-    .add-btn{
+    .add-button{
         width:100%;
     }
 
@@ -1197,112 +1897,151 @@ footer p{
     .form-group.full{
         grid-column:auto;
     }
+
 }
 
 @media(max-width:430px){
+
     .brand-name{
-        font-size:12px;
+        font-size:11px;
     }
 
     .header-actions{
-        gap:5px;
+        gap:4px;
     }
 
-    .products-grid{
-        grid-template-columns:1fr 1fr;
+    .header-button{
+        width:44px;
+        height:44px;
+
+        font-size:18px;
     }
 
     .hero h1{
-        font-size:38px;
+        font-size:37px;
     }
 
-    .category-heading h2{
+    .hero-small{
+        letter-spacing:4px;
+    }
+
+    .category-title{
         font-size:22px;
     }
 
-    .price{
-        font-size:18px;
+    .product-price{
+        font-size:17px;
     }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
 
-<header>
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="header">
+
     <div class="header-inner">
 
         <div class="brand">
+
             <img
                 src="logo-vf.jpeg"
                 class="logo"
                 alt="Logo VF Filhos Lanches"
-                onerror="this.style.background='#171717';"
             >
 
-            <div class="brand-text">
-                <div class="brand-name">VF FILHOS LANCHES</div>
-                <div class="brand-sub">Sabor que marca o momento.</div>
+            <div class="brand-info">
+
+                <div class="brand-name">
+                    VF FILHOS LANCHES
+                </div>
+
+                <div class="brand-sub">
+                    SABOR • QUALIDADE • MOMENTO
+                </div>
+
             </div>
+
         </div>
+
 
         <div class="header-actions">
 
             <button
-                class="header-btn"
+                class="header-button"
                 onclick="openHistory()"
-                aria-label="Histórico de pedidos"
-                title="Histórico de pedidos"
+                title="Histórico"
             >
                 🧾
             </button>
 
             <button
-                class="header-btn"
+                class="header-button"
                 onclick="openCart()"
-                aria-label="Carrinho"
                 title="Carrinho"
             >
                 🛒
-                <span class="cart-count" id="cartCount">0</span>
+
+                <span
+                    class="cart-count"
+                    id="cartCount"
+                >
+                    0
+                </span>
+
             </button>
 
             <button
-                class="header-btn"
+                class="header-button"
                 onclick="openMenu()"
-                aria-label="Menu"
                 title="Menu"
             >
                 ☰
             </button>
 
         </div>
+
     </div>
+
 </header>
 
 
-<!-- =========================
+<!-- =========================================
      STATUS
-========================= -->
+========================================= -->
 
-<div class="status-wrap">
+<div class="status-container">
 
-    <div class="status open" id="storeStatus">
+    <div
+        class="status-box open"
+        id="storeStatus"
+    >
 
-        <div class="status-dot"></div>
+        <div class="status-light"></div>
 
         <div>
-            <div class="status-title" id="statusTitle">
+
+            <div
+                class="status-title"
+                id="statusTitle"
+            >
                 LOJA ABERTA
             </div>
 
-            <div class="status-sub" id="statusSub">
+            <div
+                class="status-sub"
+                id="statusSub"
+            >
                 Estamos recebendo pedidos agora.
             </div>
+
         </div>
 
     </div>
@@ -1310,24 +2049,17 @@ footer p{
 </div>
 
 
-<div class="closed-warning" id="closedWarning">
-    <div class="closed-warning-box">
-        🔒 A loja está fechada no momento. Os pedidos ficam bloqueados até a abertura às 10:00.
-    </div>
-</div>
-
-
-<!-- =========================
+<!-- =========================================
      HERO
-========================= -->
+========================================= -->
 
-<section class="hero">
+<section class="hero-container">
 
-    <div class="hero-card">
+    <div class="hero">
 
         <div class="hero-content">
 
-            <div class="hero-mini">
+            <div class="hero-small">
                 VF FILHOS LANCHES
             </div>
 
@@ -1337,13 +2069,26 @@ footer p{
             </h1>
 
             <p class="hero-description">
-                Hambúrgueres, combos, promoções, porções, bebidas,
-                adicionais, frango assado e muito mais preparados
-                para deixar seu pedido ainda mais especial.
+                Hambúrgueres, combos, promoções, porções,
+                bebidas, adicionais e muito mais.
+                Tudo preparado para deixar seu pedido
+                ainda mais especial.
             </p>
 
-            <div class="hero-badge">
-                ✨ Vf filhos lanches sua escolha perfeita!
+            <div class="hero-info">
+
+                <div class="hero-pill">
+                    🍔 Hambúrguer artesanal
+                </div>
+
+                <div class="hero-pill">
+                    🕐 10:00 às 00:00
+                </div>
+
+                <div class="hero-pill">
+                    ✨ VF FILHOS LANCHES
+                </div>
+
             </div>
 
         </div>
@@ -1353,19 +2098,21 @@ footer p{
 </section>
 
 
-<!-- =========================
-     SEARCH
-========================= -->
+<!-- =========================================
+     PESQUISA
+========================================= -->
 
-<div class="search-wrap">
+<div class="search-container">
 
     <div class="search-box">
 
-        <span class="search-icon">🔎</span>
+        <span class="search-icon">
+            🔎
+        </span>
 
         <input
-            type="search"
             id="searchInput"
+            type="search"
             placeholder="Pesquisar produto..."
             autocomplete="off"
         >
@@ -1375,65 +2122,68 @@ footer p{
 </div>
 
 
-<!-- =========================
-     CATEGORIES
-========================= -->
+<!-- =========================================
+     CATEGORIAS
+========================================= -->
 
-<div class="categories-wrap">
+<div class="categories-container">
 
-    <div class="categories" id="categories">
+    <div
+        class="categories"
+        id="categories"
+    >
 
         <button
-            class="category-btn active"
+            class="category-button active"
             data-category="all"
         >
             🍔 Hambúrgueres
         </button>
 
         <button
-            class="category-btn"
+            class="category-button"
             data-category="Combos"
         >
             🍟 Combos
         </button>
 
         <button
-            class="category-btn"
+            class="category-button"
             data-category="Promoções"
         >
             🔥 Promoções
         </button>
 
         <button
-            class="category-btn"
+            class="category-button"
             data-category="Bebidas"
         >
             🥤 Bebidas
         </button>
 
         <button
-            class="category-btn"
+            class="category-button"
             data-category="Adicionais"
         >
             🧀 Adicionais
         </button>
 
         <button
-            class="category-btn"
+            class="category-button"
             data-category="Porções"
         >
             🍟 Porções
         </button>
 
         <button
-            class="category-btn"
+            class="category-button"
             data-category="Frango"
         >
             🍗 Frango
         </button>
 
         <button
-            class="category-btn"
+            class="category-button"
             data-category="Açaí"
         >
             🥤 Açaí
@@ -1444,18 +2194,21 @@ footer p{
 </div>
 
 
-<!-- =========================
-     PRODUCTS
-========================= -->
+<!-- =========================================
+     PRODUTOS
+========================================= -->
 
-<main class="products-area" id="productsArea"></main>
+<main
+    class="products-container"
+    id="productsArea"
+></main>
 
 
-<!-- =========================
+<!-- =========================================
      FOOTER
-========================= -->
+========================================= -->
 
-<footer>
+<footer class="footer">
 
     <img
         src="logo-vf.jpeg"
@@ -1463,8 +2216,8 @@ footer p{
         alt="VF Filhos Lanches"
     >
 
-    <div>
-        <strong>VF FILHOS LANCHES</strong>
+    <div class="footer-name">
+        VF FILHOS LANCHES
     </div>
 
     <p>
@@ -1478,9 +2231,9 @@ footer p{
 </footer>
 
 
-<!-- =========================
+<!-- =========================================
      OVERLAY
-========================= -->
+========================================= -->
 
 <div
     class="overlay"
@@ -1489,79 +2242,23 @@ footer p{
 ></div>
 
 
-<!-- =========================
-     CART
-========================= -->
-
-<aside class="cart-drawer" id="cartDrawer">
-
-    <div class="drawer-header">
-
-        <div>
-            <div class="drawer-title">
-                Seu carrinho
-            </div>
-
-            <div style="color:#777;font-size:12px;margin-top:3px;">
-                Confira seu pedido antes de finalizar.
-            </div>
-        </div>
-
-        <button
-            class="close-btn"
-            onclick="closeCart()"
-        >
-            ✕
-        </button>
-
-    </div>
-
-    <div
-        class="cart-items"
-        id="cartItems"
-    ></div>
-
-    <div class="cart-footer">
-
-        <div class="total-row">
-            <span>Total</span>
-
-            <span
-                class="total-value"
-                id="cartTotal"
-            >
-                R$ 0,00
-            </span>
-        </div>
-
-        <button
-            class="checkout-btn"
-            id="checkoutBtn"
-            onclick="openCheckout()"
-            disabled
-        >
-            FINALIZAR PEDIDO
-        </button>
-
-    </div>
-
-</aside>
-
-
-<!-- =========================
+<!-- =========================================
      MENU
-========================= -->
+========================================= -->
 
-<aside class="side-menu" id="sideMenu">
+<aside
+    class="side-menu"
+    id="sideMenu"
+>
 
-    <div class="menu-top">
+    <div class="menu-header">
 
         <div class="menu-title">
             MENU
         </div>
 
         <button
-            class="close-btn"
+            class="close-button"
             onclick="closeMenu()"
         >
             ✕
@@ -1569,48 +2266,81 @@ footer p{
 
     </div>
 
+
     <div class="menu-content">
 
         <a
-            class="menu-link highlight"
+            class="menu-button highlight"
             href="https://wa.me/5521983950843"
             target="_blank"
             rel="noopener"
         >
-            <span class="icon">💬</span>
-            <span>WhatsApp</span>
+
+            <span class="menu-icon">
+                💬
+            </span>
+
+            <span>
+                WhatsApp
+            </span>
+
         </a>
 
+
         <a
-            class="menu-link highlight"
+            class="menu-button highlight"
             href="https://www.instagram.com/vf_filhoslanches?stkn=aGVnYjFycWo4YXgz"
             target="_blank"
             rel="noopener"
         >
-            <span class="icon">📸</span>
-            <span>Instagram</span>
+
+            <span class="menu-icon">
+                📸
+            </span>
+
+            <span>
+                Instagram
+            </span>
+
         </a>
 
-        <button
-            class="menu-link"
-            onclick="closeMenu();openHistory();"
-        >
-            <span class="icon">🧾</span>
-            <span>Histórico de pedidos</span>
-        </button>
 
         <button
-            class="menu-link"
+            class="menu-button"
             onclick="closeMenu();openCart();"
         >
-            <span class="icon">🛒</span>
-            <span>Meu carrinho</span>
+
+            <span class="menu-icon">
+                🛒
+            </span>
+
+            <span>
+                Meu carrinho
+            </span>
+
         </button>
 
-        <div class="menu-info">
 
-            <div class="menu-info-title">
-                🕐 Horário da loja
+        <button
+            class="menu-button"
+            onclick="closeMenu();openHistory();"
+        >
+
+            <span class="menu-icon">
+                🧾
+            </span>
+
+            <span>
+                Histórico de pedidos
+            </span>
+
+        </button>
+
+
+        <div class="menu-card">
+
+            <div class="menu-card-title">
+                🕐 Horário
             </div>
 
             <p>
@@ -1623,9 +2353,10 @@ footer p{
 
         </div>
 
-        <div class="menu-info">
 
-            <div class="menu-info-title">
+        <div class="menu-card">
+
+            <div class="menu-card-title">
                 🍗 Frango Assado
             </div>
 
@@ -1640,9 +2371,80 @@ footer p{
 </aside>
 
 
-<!-- =========================
-     CHECKOUT MODAL
-========================= -->
+<!-- =========================================
+     CARRINHO
+========================================= -->
+
+<aside
+    class="cart-drawer"
+    id="cartDrawer"
+>
+
+    <div class="drawer-header">
+
+        <div>
+
+            <div class="drawer-title">
+                Meu carrinho
+            </div>
+
+            <div class="drawer-subtitle">
+                Confira seu pedido antes de finalizar.
+            </div>
+
+        </div>
+
+        <button
+            class="close-button"
+            onclick="closeCart()"
+        >
+            ✕
+        </button>
+
+    </div>
+
+
+    <div
+        class="cart-content"
+        id="cartItems"
+    ></div>
+
+
+    <div class="cart-footer">
+
+        <div class="total-line">
+
+            <span>
+                Total
+            </span>
+
+            <span
+                class="total-value"
+                id="cartTotal"
+            >
+                R$ 0,00
+            </span>
+
+        </div>
+
+
+        <button
+            class="checkout-button"
+            id="checkoutButton"
+            onclick="openCheckout()"
+            disabled
+        >
+            FINALIZAR PEDIDO
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================
+     CHECKOUT
+========================================= -->
 
 <div
     class="modal"
@@ -1658,7 +2460,7 @@ footer p{
             </h2>
 
             <button
-                class="close-btn"
+                class="close-button"
                 onclick="closeCheckout()"
             >
                 ✕
@@ -1666,91 +2468,141 @@ footer p{
 
         </div>
 
+
         <div class="modal-body">
 
             <div class="form-grid">
 
+
                 <div class="form-group">
-                    <label>Nome completo *</label>
+
+                    <label>
+                        Nome completo *
+                    </label>
 
                     <input
-                        type="text"
                         id="customerName"
+                        type="text"
                         placeholder="Seu nome"
                     >
+
                 </div>
 
+
                 <div class="form-group">
-                    <label>WhatsApp / telefone *</label>
+
+                    <label>
+                        Número de contato *
+                    </label>
 
                     <input
-                        type="tel"
                         id="customerPhone"
+                        type="tel"
                         placeholder="(21) 99999-9999"
                     >
+
                 </div>
 
+
                 <div class="form-group full">
-                    <label>Endereço *</label>
+
+                    <label>
+                        Endereço *
+                    </label>
 
                     <input
-                        type="text"
                         id="customerAddress"
+                        type="text"
                         placeholder="Rua, número, bairro..."
                     >
+
                 </div>
 
+
                 <div class="form-group">
-                    <label>Complemento</label>
+
+                    <label>
+                        Complemento
+                    </label>
 
                     <input
-                        type="text"
                         id="customerComplement"
-                        placeholder="Casa, apto..."
+                        type="text"
+                        placeholder="Casa, apartamento..."
                     >
+
                 </div>
 
+
                 <div class="form-group">
-                    <label>Ponto de referência</label>
+
+                    <label>
+                        Ponto de referência
+                    </label>
 
                     <input
-                        type="text"
                         id="customerReference"
+                        type="text"
                         placeholder="Perto de..."
                     >
+
                 </div>
+
 
                 <div class="form-group full">
-                    <label>Forma de pagamento *</label>
+
+                    <label>
+                        Forma de pagamento *
+                    </label>
 
                     <select id="paymentMethod">
-                        <option value="">Selecione</option>
-                        <option value="PIX">PIX</option>
-                        <option value="Dinheiro">Dinheiro</option>
-                        <option value="Cartão">Cartão</option>
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="PIX">
+                            PIX
+                        </option>
+
+                        <option value="Dinheiro">
+                            Dinheiro
+                        </option>
+
+                        <option value="Cartão">
+                            Cartão
+                        </option>
+
                     </select>
+
                 </div>
+
 
                 <div
                     class="form-group full"
                     id="changeGroup"
                     style="display:none;"
                 >
-                    <label>Troco para quanto?</label>
+
+                    <label>
+                        Troco para quanto?
+                    </label>
 
                     <input
-                        type="number"
                         id="changeFor"
+                        type="number"
                         min="0"
                         step="0.01"
                         placeholder="Ex.: 50,00"
                     >
+
                 </div>
+
 
                 <div class="form-group full">
 
                     <label>
-                        Observações do pedido
+                        Observações
                     </label>
 
                     <textarea
@@ -1765,11 +2617,12 @@ footer p{
 
             <!-- PIX -->
 
-            <div class="payment-box">
+            <div class="payment-card">
 
-                <h3>
+                <div class="payment-title">
                     💳 Pagamento via PIX
-                </h3>
+                </div>
+
 
                 <div
                     class="pix-area"
@@ -1778,7 +2631,7 @@ footer p{
 
                     <div id="qrcode"></div>
 
-                    <div class="pix-receiver">
+                    <div class="pix-name">
                         VANESSA NOGUEIRA DA SILVA
                     </div>
 
@@ -1786,13 +2639,7 @@ footer p{
                         Chave PIX: 126.370.707-65
                     </div>
 
-                    <div
-                        style="
-                            color:#777;
-                            font-size:11px;
-                            margin-top:8px;
-                        "
-                    >
+                    <div class="pix-note">
                         Escaneie o QR Code para realizar o pagamento.
                     </div>
 
@@ -1802,10 +2649,11 @@ footer p{
 
         </div>
 
+
         <div class="modal-footer">
 
             <button
-                class="confirm-order"
+                class="confirm-button"
                 onclick="finishOrder()"
             >
                 CONFIRMAR PEDIDO
@@ -1818,9 +2666,9 @@ footer p{
 </div>
 
 
-<!-- =========================
-     HISTORY MODAL
-========================= -->
+<!-- =========================================
+     HISTÓRICO
+========================================= -->
 
 <div
     class="modal"
@@ -1836,13 +2684,14 @@ footer p{
             </h2>
 
             <button
-                class="close-btn"
+                class="close-button"
                 onclick="closeHistory()"
             >
                 ✕
             </button>
 
         </div>
+
 
         <div class="modal-body">
 
@@ -1858,9 +2707,9 @@ footer p{
 </div>
 
 
-<!-- =========================
+<!-- =========================================
      TOAST
-========================= -->
+========================================= -->
 
 <div
     class="toast"
@@ -1870,19 +2719,18 @@ footer p{
 
 <script>
 
-/* =========================================================
-   CONFIGURAÇÕES
-========================================================= */
+/* =====================================================
+   CONFIGURAÇÃO
+===================================================== */
 
 const CONFIG = {
 
-    whatsapp: "5521983950843",
+    whatsapp:"5521983950843",
 
     instagram:
         "https://www.instagram.com/vf_filhoslanches?stkn=aGVnYjFycWo4YXgz",
 
-    pixKey:
-        "126.370.707-65",
+    pixKey:"126.370.707-65",
 
     pixReceiver:
         "VANESSA NOGUEIRA DA SILVA",
@@ -1890,31 +2738,27 @@ const CONFIG = {
     pixCity:
         "NOVA IGUACU",
 
-    openingHour: 10,
+    openHour:10,
 
-    closingHour: 24
+    closeHour:24
 
 };
 
 
-/* =========================================================
+/* =====================================================
    PRODUTOS
-========================================================= */
+===================================================== */
 
 const products = [
-
-    /* =========================
-       HAMBÚRGUERES
-    ========================= */
 
     {
         id:"cheesburger",
         category:"Hambúrgueres",
-        name:"Cheesburger / X-Burger",
-        price:9.00,
+        name:"X-Burger",
+        price:9,
         image:"cheesburger.jpeg",
         description:
-            "Pão macio, carne bovina suculenta, presunto e queijo prato derretido, acompanhado de barbecue, maionese, mostarda e ketchup."
+        "Pão macio, carne bovina suculenta, presunto e queijo prato derretido, acompanhado de barbecue, maionese, mostarda e ketchup."
     },
 
     {
@@ -1924,7 +2768,7 @@ const products = [
         price:15.99,
         image:"x-tudo.jpeg",
         description:
-            "Pão macio, carne bovina, queijo, presunto, ovo, salada fresquinha, batata palha, ketchup, maionese, mostarda e barbecue."
+        "Pão macio, carne bovina, queijo, presunto, ovo, salada fresquinha, batata palha, ketchup, maionese, mostarda e barbecue."
     },
 
     {
@@ -1934,7 +2778,7 @@ const products = [
         price:20.99,
         image:"x-duplo.jpeg",
         description:
-            "Pão fresquinho, duas carnes bovinas, ovo, queijo prato, presunto, salada crocante, batata palha, ketchup, maionese, barbecue e mostarda."
+        "Pão fresquinho, duas carnes bovinas, ovo, queijo prato, presunto, salada crocante, batata palha, ketchup, maionese, barbecue e mostarda."
     },
 
     {
@@ -1944,7 +2788,7 @@ const products = [
         price:19.99,
         image:"X-bacon.jpeg",
         description:
-            "Pão macio, carne bovina, ovo, presunto, queijo prato, salada, batata palha, bacon crocante, ketchup, mostarda, maionese e barbecue."
+        "Pão macio, carne bovina, ovo, presunto, queijo prato, salada, batata palha, bacon crocante, ketchup, mostarda, maionese e barbecue."
     },
 
     {
@@ -1954,7 +2798,7 @@ const products = [
         price:19.99,
         image:"x-picanha.jpeg",
         description:
-            "Pão macio, carne de picanha suculenta, presunto, queijo, ovo, bacon crocante, batata palha, alface, ketchup, maionese e barbecue."
+        "Pão macio, carne de picanha suculenta, presunto, queijo, ovo, bacon crocante, batata palha, alface, ketchup, maionese e barbecue."
     },
 
     {
@@ -1964,7 +2808,7 @@ const products = [
         price:12.99,
         image:"x-chicken.jpeg",
         description:
-            "Pão macio, carne de frango, queijo prato derretido, presunto, ovo, ketchup, salada, batata palha, mostarda e maionese."
+        "Pão macio, carne de frango, queijo prato derretido, presunto, ovo, ketchup, salada, batata palha, mostarda e maionese."
     },
 
     {
@@ -1974,7 +2818,7 @@ const products = [
         price:18.99,
         image:"x-batata.jpeg",
         description:
-            "Pão fresquinho, carne bovina, presunto, cheddar cremoso, bacon crocante, ovo e salada, finalizado com fritas crocantes."
+        "Pão fresquinho, carne bovina, presunto, cheddar cremoso, bacon crocante, ovo e salada, finalizado com fritas crocantes."
     },
 
     {
@@ -1984,7 +2828,7 @@ const products = [
         price:18.99,
         image:"X-onions.jpeg",
         description:
-            "Pão macio e fresquinho, hambúrguer de picanha, cheddar derretido, dois anéis de cebola fritos e crocantes, barbecue, ketchup e maionese."
+        "Pão macio e fresquinho, hambúrguer de picanha, cheddar derretido, dois anéis de cebola fritos e crocantes, barbecue, ketchup e maionese."
     },
 
     {
@@ -1994,17 +2838,17 @@ const products = [
         price:19.99,
         image:"X-Mineiro.jpeg",
         description:
-            "Pão macio, carne bovina, carne sabor picanha, presunto douradinho, queijo minas derretido, batata palha, salada, ketchup, barbecue e maionese."
+        "Pão macio, carne bovina, carne sabor picanha, presunto douradinho, queijo minas derretido, batata palha, salada, ketchup, barbecue e maionese."
     },
 
     {
-        id:"x-3-queijos",
+        id:"x-3queijos",
         category:"Hambúrgueres",
         name:"X-3 Queijos",
         price:19.99,
         image:"X-3queijos.jpeg",
         description:
-            "Pão macio, carne bovina, carne sabor picanha, queijo prato, cheddar e queijo minas, presunto, bacon, batata palha, salada, ketchup, barbecue e maionese."
+        "Pão macio, carne bovina, carne sabor picanha, queijo prato, cheddar e queijo minas, presunto, bacon, batata palha, salada, ketchup, barbecue e maionese."
     },
 
     {
@@ -2014,13 +2858,9 @@ const products = [
         price:17.99,
         image:"Duplo Cheddar.jpeg",
         description:
-            "Pão macio, duas carnes bovinas suculentas, cheddar derretido, cebola caramelizada e molho barbecue."
+        "Pão macio, duas carnes bovinas suculentas, cheddar derretido, cebola caramelizada e molho barbecue."
     },
 
-
-    /* =========================
-       COMBOS
-    ========================= */
 
     {
         id:"combo-individual",
@@ -2029,7 +2869,7 @@ const products = [
         price:29.99,
         image:"compo individual.png",
         description:
-            "X-Tudo completo + batata frita douradinha com calabresa, ketchup e maionese + 4 anéis de cebola + 4 nuggets."
+        "X-Tudo completo + batata frita douradinha com calabresa, ketchup e maionese + 4 anéis de cebola + 4 nuggets."
     },
 
     {
@@ -2039,7 +2879,7 @@ const products = [
         price:38.99,
         image:"combo-duplo.jpeg",
         description:
-            "2 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 5 anéis de cebola + 5 nuggets."
+        "2 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 5 anéis de cebola + 5 nuggets."
     },
 
     {
@@ -2049,13 +2889,9 @@ const products = [
         price:64.99,
         image:"combo-familia.jpeg",
         description:
-            "4 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 6 anéis de cebola + 6 nuggets."
+        "4 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 6 anéis de cebola + 6 nuggets."
     },
 
-
-    /* =========================
-       PROMOÇÕES
-    ========================= */
 
     {
         id:"promo-x-tudo",
@@ -2064,23 +2900,19 @@ const products = [
         price:19.99,
         image:"X-tudo + batata p + Guaravita.png",
         description:
-            "X-Tudo completo + batata P douradinha e crocante + Guaravita."
+        "X-Tudo completo + batata P douradinha e crocante + Guaravita."
     },
 
     {
-        id:"promo-cheddar",
+        id:"promo-duplo-cheddar",
         category:"Promoções",
         name:"Duplo Cheddar + Coca-Cola",
         price:18.99,
         image:"Duplo cheddar + coca.png",
         description:
-            "Duplo Cheddar com duas carnes, cheddar, cebola caramelizada e barbecue + Coca-Cola lata."
+        "Duplo Cheddar com duas carnes, cheddar, cebola caramelizada e barbecue + Coca-Cola lata."
     },
 
-
-    /* =========================
-       BEBIDAS
-    ========================= */
 
     {
         id:"coca",
@@ -2089,7 +2921,7 @@ const products = [
         price:6.50,
         image:"coca-lata.jpeg",
         description:
-            "Coca-Cola lata 350 ml, perfeita para acompanhar seu lanche."
+        "Coca-Cola lata 350 ml, perfeita para acompanhar seu lanche."
     },
 
     {
@@ -2099,107 +2931,99 @@ const products = [
         price:2.50,
         image:"guaravita.jpeg",
         description:
-            "Guaravita Natural 290 ml, refrescante para acompanhar sua refeição."
+        "Guaravita Natural 290 ml, refrescante para acompanhar sua refeição."
     },
 
     {
         id:"agua",
         category:"Bebidas",
         name:"Água Mineral 500 ml",
-        price:3.00,
+        price:3,
         image:"agua-mineral.jpeg",
         description:
-            "Água mineral 500 ml, uma opção refrescante para sua refeição."
+        "Água mineral 500 ml, uma opção refrescante para sua refeição."
     },
 
-
-    /* =========================
-       ADICIONAIS
-    ========================= */
 
     {
         id:"maionese",
         category:"Adicionais",
         name:"Maionese",
-        price:3.00,
+        price:3,
         image:"adicional-de-maionese.jpeg",
         description:
-            "Adicional de maionese para deixar seu lanche ainda mais cremoso."
+        "Adicional de maionese para deixar seu lanche ainda mais cremoso."
     },
 
     {
         id:"barbecue",
         category:"Adicionais",
         name:"Barbecue",
-        price:3.00,
+        price:3,
         image:"adicional-de-barbecue.jpeg",
         description:
-            "Adicional de molho barbecue com sabor marcante e defumado."
+        "Adicional de molho barbecue com sabor marcante e defumado."
     },
 
     {
         id:"ketchup",
         category:"Adicionais",
         name:"Ketchup",
-        price:3.00,
+        price:3,
         image:"adicional-de-ketchup.jpeg",
         description:
-            "Adicional de ketchup para complementar seu lanche."
+        "Adicional de ketchup para complementar seu lanche."
     },
 
     {
         id:"mostarda",
         category:"Adicionais",
         name:"Mostarda",
-        price:3.00,
+        price:3,
         image:"adicional-de-mostarda.jpeg",
         description:
-            "Adicional de mostarda para dar aquele toque especial."
+        "Adicional de mostarda para dar aquele toque especial."
     },
 
     {
         id:"molho-verde",
         category:"Adicionais",
         name:"Molho Verde",
-        price:4.00,
+        price:4,
         image:"adicional-de-molho-verde.jpeg",
         description:
-            "Adicional de molho verde cremoso e saboroso."
+        "Adicional de molho verde cremoso e saboroso."
     },
 
     {
         id:"cheddar",
         category:"Adicionais",
         name:"Cheddar",
-        price:5.00,
+        price:5,
         image:"adicional-de-cheedar.jpeg",
         description:
-            "Adicional de cheddar cremoso para deixar seu lanche ainda mais especial."
+        "Adicional de cheddar cremoso para deixar seu lanche ainda mais especial."
     },
 
     {
         id:"ovo",
         category:"Adicionais",
         name:"Ovo",
-        price:5.00,
+        price:5,
         image:"adicional-de-ovo.jpeg",
         description:
-            "Ovo adicional preparado para complementar seu lanche."
+        "Ovo adicional preparado para complementar seu lanche."
     },
 
-
-    /* =========================
-       PORÇÕES
-    ========================= */
 
     {
         id:"batata-p",
         category:"Porções",
         name:"Batata Frita P",
-        price:15.00,
+        price:15,
         image:"batata-p.jpeg",
         description:
-            "Porção de batata frita tamanho P, douradinha e crocante."
+        "Porção de batata frita tamanho P, douradinha e crocante."
     },
 
     {
@@ -2209,23 +3033,19 @@ const products = [
         price:21.99,
         image:"Batata M.png",
         description:
-            "Porção de batata frita tamanho M, douradinha e crocante."
+        "Porção de batata frita tamanho M, douradinha e crocante."
     },
 
     {
         id:"batata-g",
         category:"Porções",
         name:"Batata Frita G",
-        price:30.00,
+        price:30,
         image:"Batata G.png",
         description:
-            "Porção de batata frita tamanho G, douradinha e crocante."
+        "Porção de batata frita tamanho G, douradinha e crocante."
     },
 
-
-    /* =========================
-       FRANGO
-    ========================= */
 
     {
         id:"frango-assado",
@@ -2235,28 +3055,34 @@ const products = [
         image:"frango-assado-completo.jpeg",
         weekendOnly:true,
         description:
-            "Frango assado douradinho e suculento, acompanhado de linguiça de churrasco, batatas, calabresas e farofa crocante."
+        "Frango assado douradinho e suculento, acompanhado de linguiça de churrasco, batatas, calabresas e farofa crocante."
     }
 
 ];
 
 
-/* =========================================================
+/* =====================================================
    ESTADO
-========================================================= */
+===================================================== */
 
 let cart =
-    JSON.parse(localStorage.getItem("vf_cart") || "[]");
+    JSON.parse(
+        localStorage.getItem("vf_cart") || "[]"
+    );
 
 let selectedCategory = "all";
 
-let lastStoreOpen =
+let lastStoreState =
     isStoreOpen();
 
+let audioContext = null;
 
-/* =========================================================
+let audioReady = false;
+
+
+/* =====================================================
    UTILIDADES
-========================================================= */
+===================================================== */
 
 function money(value){
 
@@ -2267,40 +3093,6 @@ function money(value){
             currency:"BRL"
         }
     ).format(value);
-
-}
-
-
-function isWeekend(){
-
-    const day = new Date().getDay();
-
-    return day === 0 || day === 6;
-
-}
-
-
-function isStoreOpen(){
-
-    const hour = new Date().getHours();
-
-    return hour >= CONFIG.openingHour &&
-           hour < CONFIG.closingHour;
-
-}
-
-
-function canBuy(product){
-
-    if(!isStoreOpen()){
-        return false;
-    }
-
-    if(product.weekendOnly && !isWeekend()){
-        return false;
-    }
-
-    return true;
 
 }
 
@@ -2317,61 +3109,115 @@ function escapeHTML(value){
 }
 
 
-/* =========================================================
+function isStoreOpen(){
+
+    const hour =
+        new Date().getHours();
+
+    return (
+        hour >= CONFIG.openHour &&
+        hour < CONFIG.closeHour
+    );
+
+}
+
+
+function isWeekend(){
+
+    const day =
+        new Date().getDay();
+
+    return (
+        day === 0 ||
+        day === 6
+    );
+
+}
+
+
+function canBuy(product){
+
+    if(!isStoreOpen()){
+        return false;
+    }
+
+    if(
+        product.weekendOnly &&
+        !isWeekend()
+    ){
+        return false;
+    }
+
+    return true;
+
+}
+
+
+/* =====================================================
    STATUS DA LOJA
-========================================================= */
+===================================================== */
 
-function updateStoreStatus(playSound=false){
+function updateStoreStatus(
+    playSound=false
+){
 
-    const open = isStoreOpen();
+    const open =
+        isStoreOpen();
 
-    const status =
-        document.getElementById("storeStatus");
+    const box =
+        document.getElementById(
+            "storeStatus"
+        );
 
     const title =
-        document.getElementById("statusTitle");
+        document.getElementById(
+            "statusTitle"
+        );
 
     const sub =
-        document.getElementById("statusSub");
-
-    const warning =
-        document.getElementById("closedWarning");
+        document.getElementById(
+            "statusSub"
+        );
 
 
     if(open){
 
-        status.classList.remove("closed");
-        status.classList.add("open");
+        box.classList.remove("closed");
+        box.classList.add("open");
 
-        title.textContent = "LOJA ABERTA";
+        title.textContent =
+            "LOJA ABERTA";
 
         sub.textContent =
             "Estamos recebendo pedidos agora.";
 
-        warning.classList.remove("show");
-
     }else{
 
-        status.classList.remove("open");
-        status.classList.add("closed");
+        box.classList.remove("open");
+        box.classList.add("closed");
 
-        title.textContent = "LOJA FECHADA";
+        title.textContent =
+            "LOJA FECHADA";
 
         sub.textContent =
             "Pedidos disponíveis das 10:00 às 00:00.";
 
-        warning.classList.add("show");
-
     }
 
 
-    if(playSound && open !== lastStoreOpen){
+    if(
+        playSound &&
+        open !== lastStoreState
+    ){
 
         playStoreSound();
 
     }
 
-    lastStoreOpen = open;
+
+    lastStoreState =
+        open;
+
 
     renderProducts();
     renderCart();
@@ -2379,35 +3225,33 @@ function updateStoreStatus(playSound=false){
 }
 
 
-/* =========================================================
-   SOM DA LOJA
-   Aproximadamente 5 segundos
-========================================================= */
+/* =====================================================
+   ÁUDIO
+===================================================== */
 
-let audioUnlocked = false;
+function prepareAudio(){
 
-let audioContext = null;
-
-
-function unlockAudio(){
-
-    if(audioUnlocked){
+    if(audioReady){
         return;
     }
 
     try{
 
         audioContext =
-            new (window.AudioContext ||
-                 window.webkitAudioContext)();
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
 
         audioContext.resume();
 
-        audioUnlocked = true;
+        audioReady = true;
 
     }catch(error){
 
-        console.log("Áudio indisponível.");
+        console.log(
+            "Áudio não disponível."
+        );
 
     }
 
@@ -2416,7 +3260,7 @@ function unlockAudio(){
 
 document.addEventListener(
     "pointerdown",
-    unlockAudio,
+    prepareAudio,
     {
         once:true,
         passive:true
@@ -2424,12 +3268,10 @@ document.addEventListener(
 );
 
 
-function playTone(
+function tone(
     frequency,
-    startTime,
-    duration,
-    type="sine",
-    volume=.045
+    start,
+    duration
 ){
 
     if(!audioContext){
@@ -2442,40 +3284,47 @@ function playTone(
     const gain =
         audioContext.createGain();
 
-    oscillator.type = type;
+    oscillator.type =
+        "sine";
 
     oscillator.frequency.setValueAtTime(
         frequency,
-        startTime
+        start
     );
 
     gain.gain.setValueAtTime(
         0,
-        startTime
+        start
     );
 
     gain.gain.linearRampToValueAtTime(
-        volume,
-        startTime + .08
+        .06,
+        start + .08
     );
 
     gain.gain.exponentialRampToValueAtTime(
         .001,
-        startTime + duration
+        start + duration
     );
 
     oscillator.connect(gain);
-    gain.connect(audioContext.destination);
 
-    oscillator.start(startTime);
-    oscillator.stop(startTime + duration);
+    gain.connect(
+        audioContext.destination
+    );
+
+    oscillator.start(start);
+
+    oscillator.stop(
+        start + duration
+    );
 
 }
 
 
 function playStoreSound(){
 
-    unlockAudio();
+    prepareAudio();
 
     if(!audioContext){
         return;
@@ -2484,23 +3333,21 @@ function playStoreSound(){
     const now =
         audioContext.currentTime;
 
-    /* sequência com aproximadamente 5 segundos */
-
-    playTone(523.25,now,.8,"sine",.055);
-    playTone(659.25,now+.55,.8,"sine",.055);
-    playTone(783.99,now+1.1,.8,"sine",.055);
-    playTone(659.25,now+1.7,.8,"sine",.055);
-    playTone(783.99,now+2.25,.8,"sine",.055);
-    playTone(1046.5,now+2.9,1,"sine",.055);
-    playTone(783.99,now+3.5,.8,"sine",.055);
-    playTone(1046.5,now+4.05,.8,"sine",.055);
+    tone(523.25,now,.7);
+    tone(659.25,now+.55,.7);
+    tone(783.99,now+1.1,.7);
+    tone(659.25,now+1.65,.7);
+    tone(783.99,now+2.2,.7);
+    tone(1046.5,now+2.8,.9);
+    tone(783.99,now+3.5,.7);
+    tone(1046.5,now+4.05,.9);
 
 }
 
 
 function playConfirmationSound(){
 
-    unlockAudio();
+    prepareAudio();
 
     if(!audioContext){
         return;
@@ -2509,81 +3356,188 @@ function playConfirmationSound(){
     const now =
         audioContext.currentTime;
 
-    playTone(659.25,now,.25,"sine",.07);
-    playTone(783.99,now+.18,.25,"sine",.07);
-    playTone(1046.5,now+.36,.55,"sine",.07);
+    tone(659.25,now,.25);
+    tone(783.99,now+.18,.25);
+    tone(1046.5,now+.36,.6);
 
 }
 
 
-/* =========================================================
-   RENDER PRODUTOS
-========================================================= */
+/* =====================================================
+   RENDERIZAÇÃO
+===================================================== */
 
 function renderProducts(){
 
     const area =
-        document.getElementById("productsArea");
+        document.getElementById(
+            "productsArea"
+        );
 
     const search =
         document
-            .getElementById("searchInput")
+            .getElementById(
+                "searchInput"
+            )
             .value
             .trim()
             .toLowerCase();
 
 
-    let filtered =
+    if(
+        selectedCategory === "Açaí"
+    ){
+
+        area.innerHTML = `
+
+            <section class="category-section">
+
+                <div class="category-header">
+
+                    <h2 class="category-title">
+                        🥤 Açaí
+                    </h2>
+
+                    <span class="category-label">
+                        NOVIDADE
+                    </span>
+
+                </div>
+
+                <div class="acai-box">
+
+                    <div class="acai-icon">
+                        🥤
+                    </div>
+
+                    <h3>
+                        Açaí em breve!
+                    </h3>
+
+                    <p>
+                        Estamos preparando novidades
+                        deliciosas para essa categoria.
+                    </p>
+
+                </div>
+
+            </section>
+
+        `;
+
+        return;
+
+    }
+
+
+    let list =
         products.filter(product => {
 
-            const matchesCategory =
+            const categoryMatch =
                 selectedCategory === "all" ||
                 product.category === selectedCategory;
 
-            const matchesSearch =
+            const searchMatch =
                 !search ||
-                product.name.toLowerCase().includes(search) ||
-                product.description.toLowerCase().includes(search);
+                product.name
+                    .toLowerCase()
+                    .includes(search) ||
+                product.description
+                    .toLowerCase()
+                    .includes(search);
 
-            return matchesCategory && matchesSearch;
+            return (
+                categoryMatch &&
+                searchMatch
+            );
 
         });
 
 
+    area.innerHTML = "";
+
+
     if(search){
 
-        renderFlatSearchResults(
-            filtered,
-            area
-        );
+        const section =
+            document.createElement("section");
 
-        return;
-
-    }
+        section.className =
+            "category-section";
 
 
-    if(selectedCategory !== "all"){
+        section.innerHTML = `
 
-        if(selectedCategory === "Açaí"){
+            <div class="category-header">
 
-            renderAcai(area);
+                <h2 class="category-title">
+                    🔎 Resultados
+                </h2>
 
-        }else{
+                <span class="category-label">
+                    ${list.length} ITEM(NS)
+                </span>
 
-            renderCategory(
-                selectedCategory,
-                filtered,
-                area
-            );
+            </div>
+
+        `;
+
+
+        if(!list.length){
+
+            section.innerHTML += `
+
+                <div class="acai-box">
+
+                    <div class="acai-icon">
+                        🔎
+                    </div>
+
+                    <h3>
+                        Nenhum produto encontrado
+                    </h3>
+
+                    <p>
+                        Tente pesquisar por outro nome.
+                    </p>
+
+                </div>
+
+            `;
+
+            area.appendChild(section);
+
+            return;
 
         }
 
+
+        const grid =
+            document.createElement("div");
+
+        grid.className =
+            "products-grid";
+
+
+        list.forEach(product => {
+
+            grid.appendChild(
+                createProductCard(product)
+            );
+
+        });
+
+
+        section.appendChild(grid);
+
+        area.appendChild(section);
+
         return;
 
     }
 
 
-    const categoryOrder = [
+    const order = [
         "Hambúrgueres",
         "Combos",
         "Promoções",
@@ -2594,9 +3548,24 @@ function renderProducts(){
     ];
 
 
-    area.innerHTML = "";
+    if(
+        selectedCategory !== "all"
+    ){
 
-    categoryOrder.forEach(category => {
+        const section =
+            createCategorySection(
+                selectedCategory,
+                list
+            );
+
+        area.appendChild(section);
+
+        return;
+
+    }
+
+
+    order.forEach(category => {
 
         const list =
             products.filter(
@@ -2606,42 +3575,89 @@ function renderProducts(){
 
         if(list.length){
 
-            const section =
+            area.appendChild(
                 createCategorySection(
                     category,
                     list
-                );
-
-            area.appendChild(section);
+                )
+            );
 
         }
 
     });
 
 
-    const acaiSection =
-        document.createElement("section");
+    area.innerHTML += `
 
-    acaiSection.className =
-        "category-section";
+        <section class="category-section">
 
-    acaiSection.innerHTML = `
-        <div class="category-heading">
-            <h2>🥤 Açaí</h2>
-            <span>NOVIDADE</span>
-        </div>
+            <div class="category-header">
 
-        <div class="acai-placeholder">
-            <div class="emoji">🥤</div>
-            <h3>Açaí em breve!</h3>
-            <p>
-                Estamos preparando novidades deliciosas
-                para essa categoria.
-            </p>
-        </div>
+                <h2 class="category-title">
+                    🥤 Açaí
+                </h2>
+
+                <span class="category-label">
+                    NOVIDADE
+                </span>
+
+            </div>
+
+            <div class="acai-box">
+
+                <div class="acai-icon">
+                    🥤
+                </div>
+
+                <h3>
+                    Açaí em breve!
+                </h3>
+
+                <p>
+                    Estamos preparando novidades
+                    deliciosas para essa categoria.
+                </p>
+
+            </div>
+
+        </section>
+
     `;
 
-    area.appendChild(acaiSection);
+}
+
+
+function getCategoryTitle(category){
+
+    const titles = {
+
+        "Hambúrgueres":
+            "🍔 Hambúrgueres",
+
+        "Combos":
+            "🍟 Combos",
+
+        "Promoções":
+            "🔥 Promoções",
+
+        "Bebidas":
+            "🥤 Bebidas",
+
+        "Adicionais":
+            "🧀 Adicionais",
+
+        "Porções":
+            "🍟 Porções",
+
+        "Frango":
+            "🍗 Frango"
+
+    };
+
+    return (
+        titles[category] ||
+        category
+    );
 
 }
 
@@ -2652,23 +3668,35 @@ function createCategorySection(
 ){
 
     const section =
-        document.createElement("section");
+        document.createElement(
+            "section"
+        );
 
     section.className =
         "category-section";
 
-    const title =
-        getCategoryTitle(category);
 
     section.innerHTML = `
-        <div class="category-heading">
-            <h2>${title}</h2>
-            <span>VF FILHOS LANCHES</span>
+
+        <div class="category-header">
+
+            <h2 class="category-title">
+                ${getCategoryTitle(category)}
+            </h2>
+
+            <span class="category-label">
+                VF FILHOS LANCHES
+            </span>
+
         </div>
+
     `;
 
+
     const grid =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     grid.className =
         "products-grid";
@@ -2690,149 +3718,16 @@ function createCategorySection(
 }
 
 
-function renderCategory(
-    category,
-    list,
-    area
-){
-
-    area.innerHTML = "";
-
-    area.appendChild(
-        createCategorySection(
-            category,
-            list
-        )
-    );
-
-}
-
-
-function renderFlatSearchResults(
-    list,
-    area
-){
-
-    area.innerHTML = "";
-
-    const section =
-        document.createElement("section");
-
-    section.className =
-        "category-section";
-
-    section.innerHTML = `
-        <div class="category-heading">
-            <h2>🔎 Resultados da pesquisa</h2>
-            <span>${list.length} ITEM(NS)</span>
-        </div>
-    `;
-
-
-    const grid =
-        document.createElement("div");
-
-    grid.className =
-        "products-grid";
-
-
-    if(!list.length){
-
-        section.innerHTML += `
-            <div class="acai-placeholder">
-                <div class="emoji">🔎</div>
-                <h3>Nenhum produto encontrado</h3>
-                <p>
-                    Tente pesquisar por outro nome.
-                </p>
-            </div>
-        `;
-
-        area.appendChild(section);
-
-        return;
-
-    }
-
-
-    list.forEach(product => {
-
-        grid.appendChild(
-            createProductCard(product)
-        );
-
-    });
-
-
-    section.appendChild(grid);
-
-    area.appendChild(section);
-
-}
-
-
-function renderAcai(area){
-
-    area.innerHTML = `
-        <section class="category-section">
-
-            <div class="category-heading">
-                <h2>🥤 Açaí</h2>
-                <span>NOVIDADE</span>
-            </div>
-
-            <div class="acai-placeholder">
-
-                <div class="emoji">🥤</div>
-
-                <h3>Açaí em breve!</h3>
-
-                <p>
-                    Estamos preparando novidades deliciosas
-                    para essa categoria.
-                </p>
-
-            </div>
-
-        </section>
-    `;
-
-}
-
-
-function getCategoryTitle(category){
-
-    const titles = {
-
-        "Hambúrgueres":"🍔 Hambúrgueres",
-
-        "Combos":"🍟 Combos",
-
-        "Promoções":"🔥 Promoções",
-
-        "Bebidas":"🥤 Bebidas",
-
-        "Adicionais":"🧀 Adicionais",
-
-        "Porções":"🍟 Porções",
-
-        "Frango":"🍗 Frango"
-
-    };
-
-    return titles[category] || category;
-
-}
-
-
-/* =========================================================
-   CARD DO PRODUTO
-========================================================= */
+/* =====================================================
+   CARD
+===================================================== */
 
 function createProductCard(product){
 
     const card =
-        document.createElement("article");
+        document.createElement(
+            "article"
+        );
 
     card.className =
         "product-card";
@@ -2842,20 +3737,24 @@ function createProductCard(product){
         canBuy(product);
 
 
-    let disabledText = "";
+    let status = "";
+
 
     if(!isStoreOpen()){
 
-        disabledText =
-            `<div class="closed-label">
+        status =
+            `<div class="product-status">
                 LOJA FECHADA
             </div>`;
 
-    }else if(product.weekendOnly && !isWeekend()){
+    }else if(
+        product.weekendOnly &&
+        !isWeekend()
+    ){
 
-        disabledText =
-            `<div class="closed-label">
-                DISPONÍVEL SÁBADO E DOMINGO
+        status =
+            `<div class="product-status">
+                SOMENTE SÁBADO E DOMINGO
             </div>`;
 
     }
@@ -2863,17 +3762,23 @@ function createProductCard(product){
 
     card.innerHTML = `
 
-        <img
-            class="product-image"
-            src="${escapeHTML(product.image)}"
-            alt="${escapeHTML(product.name)}"
-            loading="lazy"
-            onerror="this.style.opacity='.15';"
-        >
+        <div class="product-image-wrap">
+
+            <img
+                class="product-image"
+                src="${escapeHTML(product.image)}"
+                alt="${escapeHTML(product.name)}"
+                loading="lazy"
+            >
+
+            <div class="product-image-shine"></div>
+
+        </div>
+
 
         <div class="product-info">
 
-            <div class="product-tag">
+            <div class="product-category">
                 ${escapeHTML(product.category)}
             </div>
 
@@ -2885,20 +3790,22 @@ function createProductCard(product){
                 ${escapeHTML(product.description)}
             </div>
 
-            <div class="product-bottom">
+
+            <div class="product-footer">
 
                 <div>
 
-                    <div class="price">
+                    <div class="product-price">
                         ${money(product.price)}
                     </div>
 
-                    ${disabledText}
+                    ${status}
 
                 </div>
 
+
                 <button
-                    class="add-btn"
+                    class="add-button"
                     ${available ? "" : "disabled"}
                 >
                     ADICIONAR
@@ -2907,11 +3814,14 @@ function createProductCard(product){
             </div>
 
         </div>
+
     `;
 
 
     const button =
-        card.querySelector(".add-btn");
+        card.querySelector(
+            ".add-button"
+        );
 
 
     if(available){
@@ -2929,9 +3839,9 @@ function createProductCard(product){
 }
 
 
-/* =========================================================
+/* =====================================================
    CATEGORIAS
-========================================================= */
+===================================================== */
 
 document
     .getElementById("categories")
@@ -2940,24 +3850,34 @@ document
         event => {
 
             const button =
-                event.target.closest(".category-btn");
+                event.target.closest(
+                    ".category-button"
+                );
 
             if(!button){
                 return;
             }
+
 
             selectedCategory =
                 button.dataset.category;
 
 
             document
-                .querySelectorAll(".category-btn")
+                .querySelectorAll(
+                    ".category-button"
+                )
                 .forEach(btn =>
-                    btn.classList.remove("active")
+                    btn.classList.remove(
+                        "active"
+                    )
                 );
 
 
-            button.classList.add("active");
+            button.classList.add(
+                "active"
+            );
+
 
             renderProducts();
 
@@ -2965,21 +3885,21 @@ document
     );
 
 
-/* =========================================================
+/* =====================================================
    PESQUISA
-========================================================= */
+===================================================== */
 
 document
     .getElementById("searchInput")
     .addEventListener(
         "input",
-        () => renderProducts()
+        renderProducts
     );
 
 
-/* =========================================================
+/* =====================================================
    CARRINHO
-========================================================= */
+===================================================== */
 
 function saveCart(){
 
@@ -2991,12 +3911,12 @@ function saveCart(){
 }
 
 
-function addToCart(productId){
+function addToCart(id){
 
     if(!isStoreOpen()){
 
         showToast(
-            "🔒 A loja está fechada. Não é possível fazer pedidos.",
+            "🔒 A loja está fechada. O pedido não pode ser realizado.",
             "error"
         );
 
@@ -3007,7 +3927,7 @@ function addToCart(productId){
 
     const product =
         products.find(
-            item => item.id === productId
+            item => item.id === id
         );
 
 
@@ -3016,7 +3936,10 @@ function addToCart(productId){
     }
 
 
-    if(product.weekendOnly && !isWeekend()){
+    if(
+        product.weekendOnly &&
+        !isWeekend()
+    ){
 
         showToast(
             "🍗 O Frango Assado só pode ser comprado aos sábados e domingos.",
@@ -3030,7 +3953,7 @@ function addToCart(productId){
 
     const existing =
         cart.find(
-            item => item.id === productId
+            item => item.id === id
         );
 
 
@@ -3041,7 +3964,7 @@ function addToCart(productId){
     }else{
 
         cart.push({
-            id:product.id,
+            id:id,
             quantity:1
         });
 
@@ -3053,14 +3976,14 @@ function addToCart(productId){
     renderCart();
 
     showToast(
-        `✅ ${product.name} adicionado ao carrinho.`,
+        "✅ Produto adicionado ao carrinho.",
         "success"
     );
 
 }
 
 
-function getCartProductData(){
+function getCartItems(){
 
     return cart
         .map(item => {
@@ -3085,12 +4008,14 @@ function getCartProductData(){
 }
 
 
-function cartTotal(){
+function getCartTotal(){
 
-    return getCartProductData()
+    return getCartItems()
         .reduce(
-            (sum,item) =>
-                sum + item.price * item.quantity,
+            (total,item) =>
+                total +
+                item.price *
+                item.quantity,
             0
         );
 
@@ -3100,20 +4025,28 @@ function cartTotal(){
 function renderCart(){
 
     const container =
-        document.getElementById("cartItems");
+        document.getElementById(
+            "cartItems"
+        );
 
     const count =
-        document.getElementById("cartCount");
+        document.getElementById(
+            "cartCount"
+        );
 
     const total =
-        document.getElementById("cartTotal");
+        document.getElementById(
+            "cartTotal"
+        );
 
     const checkout =
-        document.getElementById("checkoutBtn");
+        document.getElementById(
+            "checkoutButton"
+        );
 
 
     const items =
-        getCartProductData();
+        getCartItems();
 
 
     const quantity =
@@ -3129,45 +4062,46 @@ function renderCart(){
 
 
     total.textContent =
-        money(cartTotal());
+        money(getCartTotal());
 
 
     checkout.disabled =
-        items.length === 0 ||
+        !items.length ||
         !isStoreOpen();
 
 
     if(!items.length){
 
         container.innerHTML = `
+
             <div class="empty-cart">
 
                 <div>
 
-                    <div style="font-size:48px;">
+                    <div style="font-size:48px">
                         🛒
                     </div>
 
                     <div style="
-                        font-size:17px;
-                        font-weight:900;
-                        color:#ddd;
                         margin-top:12px;
+                        color:#ddd;
+                        font-weight:900;
                     ">
                         Seu carrinho está vazio
                     </div>
 
                     <div style="
-                        font-size:12px;
-                        color:#666;
                         margin-top:5px;
+                        color:#666;
+                        font-size:11px;
                     ">
-                        Adicione seus favoritos.
+                        Adicione seus produtos favoritos.
                     </div>
 
                 </div>
 
             </div>
+
         `;
 
         return;
@@ -3181,7 +4115,9 @@ function renderCart(){
     items.forEach(item => {
 
         const row =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         row.className =
             "cart-item";
@@ -3190,9 +4126,11 @@ function renderCart(){
         row.innerHTML = `
 
             <img
+                class="cart-item-image"
                 src="${escapeHTML(item.image)}"
                 alt="${escapeHTML(item.name)}"
             >
+
 
             <div>
 
@@ -3200,11 +4138,15 @@ function renderCart(){
                     ${escapeHTML(item.name)}
                 </div>
 
-                <div class="cart-item-price">
-                    ${money(item.price * item.quantity)}
+                <div class="cart-item-total">
+                    ${money(
+                        item.price *
+                        item.quantity
+                    )}
                 </div>
 
-                <div class="qty">
+
+                <div class="quantity-controls">
 
                     <button
                         onclick="changeQuantity('${item.id}',-1)"
@@ -3212,7 +4154,7 @@ function renderCart(){
                         −
                     </button>
 
-                    <span>
+                    <span class="quantity-number">
                         ${item.quantity}
                     </span>
 
@@ -3224,18 +4166,20 @@ function renderCart(){
 
                 </div>
 
+
                 <button
-                    class="remove-item"
-                    onclick="removeFromCart('${item.id}')"
+                    class="remove-button"
+                    onclick="removeItem('${item.id}')"
                 >
                     Remover
                 </button>
 
             </div>
 
+
             <div style="
                 color:#777;
-                font-size:11px;
+                font-size:10px;
             ">
                 ${money(item.price)}
             </div>
@@ -3251,13 +4195,13 @@ function renderCart(){
 
 
 function changeQuantity(
-    productId,
+    id,
     amount
 ){
 
     const item =
         cart.find(
-            item => item.id === productId
+            product => product.id === id
         );
 
 
@@ -3273,7 +4217,8 @@ function changeQuantity(
 
         cart =
             cart.filter(
-                item => item.id !== productId
+                product =>
+                    product.id !== id
             );
 
     }
@@ -3286,11 +4231,12 @@ function changeQuantity(
 }
 
 
-function removeFromCart(productId){
+function removeItem(id){
 
     cart =
         cart.filter(
-            item => item.id !== productId
+            product =>
+                product.id !== id
         );
 
     saveCart();
@@ -3300,22 +4246,25 @@ function removeFromCart(productId){
 }
 
 
-/* =========================================================
-   ABRIR / FECHAR CARRINHO
-========================================================= */
+/* =====================================================
+   ABRIR / FECHAR
+===================================================== */
 
 function openCart(){
 
     document
-        .getElementById("overlay")
+        .getElementById(
+            "overlay"
+        )
         .classList.add("show");
 
     document
-        .getElementById("cartDrawer")
+        .getElementById(
+            "cartDrawer"
+        )
         .classList.add("show");
 
-    document
-        .body
+    document.body
         .classList.add("no-scroll");
 
 }
@@ -3324,21 +4273,27 @@ function openCart(){
 function closeCart(){
 
     document
-        .getElementById("cartDrawer")
+        .getElementById(
+            "cartDrawer"
+        )
         .classList.remove("show");
+
 
     if(
         !document
-            .getElementById("sideMenu")
+            .getElementById(
+                "sideMenu"
+            )
             .classList.contains("show")
     ){
 
         document
-            .getElementById("overlay")
+            .getElementById(
+                "overlay"
+            )
             .classList.remove("show");
 
-        document
-            .body
+        document.body
             .classList.remove("no-scroll");
 
     }
@@ -3346,22 +4301,21 @@ function closeCart(){
 }
 
 
-/* =========================================================
-   MENU
-========================================================= */
-
 function openMenu(){
 
     document
-        .getElementById("overlay")
+        .getElementById(
+            "overlay"
+        )
         .classList.add("show");
 
     document
-        .getElementById("sideMenu")
+        .getElementById(
+            "sideMenu"
+        )
         .classList.add("show");
 
-    document
-        .body
+    document.body
         .classList.add("no-scroll");
 
 }
@@ -3370,21 +4324,27 @@ function openMenu(){
 function closeMenu(){
 
     document
-        .getElementById("sideMenu")
+        .getElementById(
+            "sideMenu"
+        )
         .classList.remove("show");
+
 
     if(
         !document
-            .getElementById("cartDrawer")
+            .getElementById(
+                "cartDrawer"
+            )
             .classList.contains("show")
     ){
 
         document
-            .getElementById("overlay")
+            .getElementById(
+                "overlay"
+            )
             .classList.remove("show");
 
-        document
-            .body
+        document.body
             .classList.remove("no-scroll");
 
     }
@@ -3395,27 +4355,32 @@ function closeMenu(){
 function closeEverything(){
 
     document
-        .getElementById("cartDrawer")
+        .getElementById(
+            "cartDrawer"
+        )
         .classList.remove("show");
 
     document
-        .getElementById("sideMenu")
+        .getElementById(
+            "sideMenu"
+        )
         .classList.remove("show");
 
     document
-        .getElementById("overlay")
+        .getElementById(
+            "overlay"
+        )
         .classList.remove("show");
 
-    document
-        .body
+    document.body
         .classList.remove("no-scroll");
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CHECKOUT
-========================================================= */
+===================================================== */
 
 function openCheckout(){
 
@@ -3447,15 +4412,18 @@ function openCheckout(){
 
 
     document
-        .getElementById("checkoutModal")
+        .getElementById(
+            "checkoutModal"
+        )
         .classList.add("show");
 
     document
-        .getElementById("overlay")
+        .getElementById(
+            "overlay"
+        )
         .classList.add("show");
 
-    document
-        .body
+    document.body
         .classList.add("no-scroll");
 
 }
@@ -3464,26 +4432,31 @@ function openCheckout(){
 function closeCheckout(){
 
     document
-        .getElementById("checkoutModal")
+        .getElementById(
+            "checkoutModal"
+        )
         .classList.remove("show");
 
     document
-        .getElementById("overlay")
+        .getElementById(
+            "overlay"
+        )
         .classList.remove("show");
 
-    document
-        .body
+    document.body
         .classList.remove("no-scroll");
 
 }
 
 
-/* =========================================================
+/* =====================================================
    PAGAMENTO
-========================================================= */
+===================================================== */
 
 document
-    .getElementById("paymentMethod")
+    .getElementById(
+        "paymentMethod"
+    )
     .addEventListener(
         "change",
         function(){
@@ -3491,18 +4464,18 @@ document
             const method =
                 this.value;
 
-            const changeGroup =
+            const change =
                 document.getElementById(
                     "changeGroup"
                 );
 
-            const pixArea =
+            const pix =
                 document.getElementById(
                     "pixArea"
                 );
 
 
-            changeGroup.style.display =
+            change.style.display =
                 method === "Dinheiro"
                     ? "flex"
                     : "none";
@@ -3510,13 +4483,17 @@ document
 
             if(method === "PIX"){
 
-                pixArea.classList.add("show");
+                pix.classList.add(
+                    "show"
+                );
 
                 generatePixQR();
 
             }else{
 
-                pixArea.classList.remove("show");
+                pix.classList.remove(
+                    "show"
+                );
 
             }
 
@@ -3524,25 +4501,40 @@ document
     );
 
 
-/* =========================================================
+/* =====================================================
    PIX
-========================================================= */
+===================================================== */
 
 function crc16(payload){
 
     let crc = 0xFFFF;
 
-    for(let i=0;i<payload.length;i++){
 
-        crc ^= payload.charCodeAt(i) << 8;
+    for(
+        let i=0;
+        i<payload.length;
+        i++
+    ){
 
-        for(let j=0;j<8;j++){
+        crc ^=
+            payload.charCodeAt(i)
+            << 8;
 
-            if(crc & 0x8000){
+
+        for(
+            let j=0;
+            j<8;
+            j++
+        ){
+
+            if(
+                crc &
+                0x8000
+            ){
 
                 crc =
-                    (crc << 1) ^
-                    0x1021;
+                    (crc << 1)
+                    ^ 0x1021;
 
             }else{
 
@@ -3550,11 +4542,13 @@ function crc16(payload){
 
             }
 
-            crc &= 0xFFFF;
+            crc &=
+                0xFFFF;
 
         }
 
     }
+
 
     return crc
         .toString(16)
@@ -3564,7 +4558,7 @@ function crc16(payload){
 }
 
 
-function emvField(
+function pixField(
     id,
     value
 ){
@@ -3582,14 +4576,19 @@ function emvField(
 function generatePixPayload(){
 
     const key =
-        CONFIG.pixKey
-            .replace(/\D/g,"");
+        CONFIG.pixKey.replace(
+            /\D/g,
+            ""
+        );
 
 
-    const merchant =
+    const receiver =
         CONFIG.pixReceiver
             .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g,"")
+            .replace(
+                /[\u0300-\u036f]/g,
+                ""
+            )
             .toUpperCase()
             .substring(0,25);
 
@@ -3597,66 +4596,69 @@ function generatePixPayload(){
     const city =
         CONFIG.pixCity
             .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g,"")
+            .replace(
+                /[\u0300-\u036f]/g,
+                ""
+            )
             .toUpperCase()
             .substring(0,15);
 
 
-    const merchantAccountInfo =
-        emvField(
+    const merchantAccount =
+        pixField(
             "00",
             "BR.GOV.BCB.PIX"
         ) +
-        emvField(
+        pixField(
             "01",
             key
         );
 
 
-    const payloadWithoutCRC =
-        emvField(
+    const payload =
+        pixField(
             "00",
             "01"
         ) +
 
-        emvField(
+        pixField(
             "26",
-            merchantAccountInfo
+            merchantAccount
         ) +
 
-        emvField(
+        pixField(
             "52",
             "0000"
         ) +
 
-        emvField(
+        pixField(
             "53",
             "986"
         ) +
 
-        emvField(
+        pixField(
             "54",
-            cartTotal().toFixed(2)
+            getCartTotal().toFixed(2)
         ) +
 
-        emvField(
+        pixField(
             "58",
             "BR"
         ) +
 
-        emvField(
+        pixField(
             "59",
-            merchant
+            receiver
         ) +
 
-        emvField(
+        pixField(
             "60",
             city
         ) +
 
-        emvField(
+        pixField(
             "62",
-            emvField(
+            pixField(
                 "05",
                 "***"
             )
@@ -3666,8 +4668,8 @@ function generatePixPayload(){
 
 
     return (
-        payloadWithoutCRC +
-        crc16(payloadWithoutCRC)
+        payload +
+        crc16(payload)
     );
 
 }
@@ -3675,29 +4677,19 @@ function generatePixPayload(){
 
 function generatePixQR(){
 
-    const qrcode =
+    const qr =
         document.getElementById(
             "qrcode"
         );
 
 
-    qrcode.innerHTML = "";
+    qr.innerHTML = "";
 
 
     if(
-        typeof QRCode === "undefined"
+        typeof QRCode ===
+        "undefined"
     ){
-
-        qrcode.innerHTML = `
-            <div style="
-                color:#111;
-                padding:10px;
-                font-size:12px;
-            ">
-                QR Code indisponível.<br>
-                Use a chave PIX abaixo.
-            </div>
-        `;
 
         return;
 
@@ -3705,13 +4697,19 @@ function generatePixQR(){
 
 
     new QRCode(
-        qrcode,
+        qr,
         {
-            text:generatePixPayload(),
+            text:
+                generatePixPayload(),
+
             width:210,
+
             height:210,
+
             colorDark:"#000000",
+
             colorLight:"#ffffff",
+
             correctLevel:
                 QRCode.CorrectLevel.M
         }
@@ -3720,16 +4718,16 @@ function generatePixQR(){
 }
 
 
-/* =========================================================
-   FINALIZAR PEDIDO
-========================================================= */
+/* =====================================================
+   FINALIZAÇÃO
+===================================================== */
 
 function finishOrder(){
 
     if(!isStoreOpen()){
 
         showToast(
-            "🔒 A loja acabou de fechar. O pedido não pode ser enviado.",
+            "🔒 A loja está fechada.",
             "error"
         );
 
@@ -3742,50 +4740,59 @@ function finishOrder(){
 
     const name =
         document
-            .getElementById("customerName")
-            .value
-            .trim();
+            .getElementById(
+                "customerName"
+            )
+            .value.trim();
 
     const phone =
         document
-            .getElementById("customerPhone")
-            .value
-            .trim();
+            .getElementById(
+                "customerPhone"
+            )
+            .value.trim();
 
     const address =
         document
-            .getElementById("customerAddress")
-            .value
-            .trim();
+            .getElementById(
+                "customerAddress"
+            )
+            .value.trim();
 
     const complement =
         document
-            .getElementById("customerComplement")
-            .value
-            .trim();
+            .getElementById(
+                "customerComplement"
+            )
+            .value.trim();
 
     const reference =
         document
-            .getElementById("customerReference")
-            .value
-            .trim();
+            .getElementById(
+                "customerReference"
+            )
+            .value.trim();
 
     const payment =
         document
-            .getElementById("paymentMethod")
+            .getElementById(
+                "paymentMethod"
+            )
             .value;
 
     const changeFor =
         document
-            .getElementById("changeFor")
-            .value
-            .trim();
+            .getElementById(
+                "changeFor"
+            )
+            .value.trim();
 
     const notes =
         document
-            .getElementById("orderNotes")
-            .value
-            .trim();
+            .getElementById(
+                "orderNotes"
+            )
+            .value.trim();
 
 
     if(!name){
@@ -3827,7 +4834,7 @@ function finishOrder(){
     if(!payment){
 
         showToast(
-            "Selecione a forma de pagamento.",
+            "Escolha a forma de pagamento.",
             "error"
         );
 
@@ -3840,25 +4847,12 @@ function finishOrder(){
 
         if(
             !changeFor ||
-            Number(changeFor) <= 0
-        ){
-
-            showToast(
-                "Informe o valor para o troco.",
-                "error"
-            );
-
-            return;
-
-        }
-
-        if(
             Number(changeFor) <
-            cartTotal()
+            getCartTotal()
         ){
 
             showToast(
-                "O valor do troco precisa ser maior ou igual ao total.",
+                "Informe um valor válido para o troco.",
                 "error"
             );
 
@@ -3867,10 +4861,6 @@ function finishOrder(){
         }
 
     }
-
-
-    const items =
-        getCartProductData();
 
 
     const order = {
@@ -3905,23 +4895,26 @@ function finishOrder(){
         notes,
 
         items:
-            items.map(item => ({
-                name:item.name,
-                quantity:item.quantity,
-                price:item.price
-            })),
+            getCartItems()
+                .map(item => ({
+                    name:item.name,
+                    quantity:item.quantity,
+                    price:item.price
+                })),
 
         total:
-            cartTotal()
+            getCartTotal()
 
     };
 
 
-    saveOrderHistory(order);
+    saveOrder(order);
 
 
     const message =
-        buildWhatsAppMessage(order);
+        createWhatsAppMessage(
+            order
+        );
 
 
     playConfirmationSound();
@@ -3937,7 +4930,7 @@ function finishOrder(){
 
 
     showToast(
-        "✅ Pedido registrado! Abrindo o WhatsApp...",
+        "✅ Pedido confirmado! Abrindo WhatsApp...",
         "success"
     );
 
@@ -3949,7 +4942,9 @@ function finishOrder(){
                 "https://wa.me/" +
                 CONFIG.whatsapp +
                 "?text=" +
-                encodeURIComponent(message),
+                encodeURIComponent(
+                    message
+                ),
                 "_blank"
             );
 
@@ -3960,33 +4955,33 @@ function finishOrder(){
 }
 
 
-/* =========================================================
-   MENSAGEM WHATSAPP
-========================================================= */
+/* =====================================================
+   WHATSAPP
+===================================================== */
 
-function buildWhatsAppMessage(order){
+function createWhatsAppMessage(order){
 
     let message =
         "🍔 *NOVO PEDIDO - VF FILHOS LANCHES*\\n\\n";
 
 
     message +=
-        "📋 *Pedido:* " +
+        "📋 Pedido: " +
         order.id +
         "\\n";
 
     message +=
-        "👤 *Cliente:* " +
+        "👤 Cliente: " +
         order.customer.name +
         "\\n";
 
     message +=
-        "📱 *Contato:* " +
+        "📱 Contato: " +
         order.customer.phone +
         "\\n";
 
     message +=
-        "📍 *Endereço:* " +
+        "📍 Endereço: " +
         order.customer.address +
         "\\n";
 
@@ -3994,7 +4989,7 @@ function buildWhatsAppMessage(order){
     if(order.customer.complement){
 
         message +=
-            "🏠 *Complemento:* " +
+            "🏠 Complemento: " +
             order.customer.complement +
             "\\n";
 
@@ -4004,28 +4999,34 @@ function buildWhatsAppMessage(order){
     if(order.customer.reference){
 
         message +=
-            "📌 *Referência:* " +
+            "📌 Referência: " +
             order.customer.reference +
             "\\n";
 
     }
 
 
-    message += "\\n🛒 *ITENS DO PEDIDO*\\n";
+    message +=
+        "\\n🛒 *ITENS*\\n";
 
 
-    order.items.forEach(item => {
+    order.items.forEach(
+        item => {
 
-        message +=
-            "• " +
-            item.quantity +
-            "x " +
-            item.name +
-            " - " +
-            money(item.price * item.quantity) +
-            "\\n";
+            message +=
+                "• " +
+                item.quantity +
+                "x " +
+                item.name +
+                " - " +
+                money(
+                    item.price *
+                    item.quantity
+                ) +
+                "\\n";
 
-    });
+        }
+    );
 
 
     message +=
@@ -4033,32 +5034,23 @@ function buildWhatsAppMessage(order){
         money(order.total) +
         "\\n";
 
+
     message +=
-        "💳 *Pagamento:* " +
+        "💳 Pagamento: " +
         order.payment +
         "\\n";
 
 
-    if(order.payment === "Dinheiro"){
+    if(
+        order.payment ===
+        "Dinheiro"
+    ){
 
         message +=
-            "💵 *Troco para:* " +
-            money(order.changeFor) +
-            "\\n";
-
-    }
-
-
-    if(order.payment === "PIX"){
-
-        message +=
-            "🔑 *Chave PIX:* " +
-            CONFIG.pixKey +
-            "\\n";
-
-        message +=
-            "👤 *Recebedor:* " +
-            CONFIG.pixReceiver +
+            "💵 Troco para: " +
+            money(
+                order.changeFor
+            ) +
             "\\n";
 
     }
@@ -4067,7 +5059,7 @@ function buildWhatsAppMessage(order){
     if(order.notes){
 
         message +=
-            "\\n📝 *Observações:* " +
+            "\\n📝 Observações: " +
             order.notes +
             "\\n";
 
@@ -4075,7 +5067,7 @@ function buildWhatsAppMessage(order){
 
 
     message +=
-        "\\n🔥 Pedido enviado pelo site VF FILHOS LANCHES.";
+        "\\n🍔 Pedido realizado pelo site VF FILHOS LANCHES.";
 
 
     return message;
@@ -4083,11 +5075,11 @@ function buildWhatsAppMessage(order){
 }
 
 
-/* =========================================================
+/* =====================================================
    HISTÓRICO
-========================================================= */
+===================================================== */
 
-function saveOrderHistory(order){
+function saveOrder(order){
 
     const history =
         JSON.parse(
@@ -4116,16 +5108,22 @@ function openHistory(){
 
     renderHistory();
 
-    document
-        .getElementById("historyModal")
-        .classList.add("show");
 
     document
-        .getElementById("overlay")
+        .getElementById(
+            "historyModal"
+        )
         .classList.add("show");
 
+
     document
-        .body
+        .getElementById(
+            "overlay"
+        )
+        .classList.add("show");
+
+
+    document.body
         .classList.add("no-scroll");
 
 }
@@ -4134,15 +5132,20 @@ function openHistory(){
 function closeHistory(){
 
     document
-        .getElementById("historyModal")
+        .getElementById(
+            "historyModal"
+        )
         .classList.remove("show");
 
-    document
-        .getElementById("overlay")
-        .classList.remove("show");
 
     document
-        .body
+        .getElementById(
+            "overlay"
+        )
+        .classList.remove("show");
+
+
+    document.body
         .classList.remove("no-scroll");
 
 }
@@ -4167,9 +5170,10 @@ function renderHistory(){
     if(!history.length){
 
         container.innerHTML = `
-            <div class="no-history">
 
-                <div style="font-size:45px;">
+            <div class="empty-history">
+
+                <div style="font-size:45px">
                     🧾
                 </div>
 
@@ -4181,6 +5185,7 @@ function renderHistory(){
                 </div>
 
             </div>
+
         `;
 
         return;
@@ -4194,13 +5199,15 @@ function renderHistory(){
     history.forEach(order => {
 
         const item =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         item.className =
             "history-item";
 
 
-        const itemsText =
+        const productsText =
             order.items
                 .map(
                     product =>
@@ -4213,7 +5220,7 @@ function renderHistory(){
 
             <div class="history-top">
 
-                <div class="history-number">
+                <div class="history-id">
                     ${escapeHTML(order.id)}
                 </div>
 
@@ -4223,19 +5230,15 @@ function renderHistory(){
 
             </div>
 
-            <div class="history-items">
-                ${itemsText}
+            <div class="history-products">
+                ${productsText}
             </div>
 
             <div class="history-total">
                 Total: ${money(order.total)}
             </div>
 
-            <div style="
-                color:#777;
-                font-size:11px;
-                margin-top:6px;
-            ">
+            <div class="history-payment">
                 Pagamento: ${escapeHTML(order.payment)}
             </div>
 
@@ -4249,9 +5252,9 @@ function renderHistory(){
 }
 
 
-/* =========================================================
+/* =====================================================
    TOAST
-========================================================= */
+===================================================== */
 
 let toastTimer;
 
@@ -4296,9 +5299,9 @@ function showToast(
 }
 
 
-/* =========================================================
+/* =====================================================
    ATUALIZAÇÃO AUTOMÁTICA
-========================================================= */
+===================================================== */
 
 setInterval(
     () => {
@@ -4310,9 +5313,9 @@ setInterval(
 );
 
 
-/* =========================================================
+/* =====================================================
    INICIALIZAÇÃO
-========================================================= */
+===================================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
