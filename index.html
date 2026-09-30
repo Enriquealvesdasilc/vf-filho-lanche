@@ -39,6 +39,10 @@
       min-height:100vh;
     }
 
+    body.modal-open{
+      overflow:hidden;
+    }
+
     button,
     input,
     select,
@@ -48,6 +52,10 @@
 
     button{
       cursor:pointer;
+    }
+
+    button:disabled{
+      cursor:not-allowed;
     }
 
     a{
@@ -87,6 +95,10 @@
       border-radius:12px;
       font-size:22px;
       flex-shrink:0;
+    }
+
+    .menu-btn:hover{
+      background:#1b1b1b;
     }
 
     .logo-box{
@@ -140,6 +152,10 @@
       align-items:center;
       justify-content:center;
       flex-shrink:0;
+    }
+
+    .header-cart:hover{
+      background:#1b1b1b;
     }
 
     .cart-svg{
@@ -786,6 +802,10 @@
       font-weight:900;
     }
 
+    .qty button:hover{
+      background:#25200f;
+    }
+
     .qty span{
       min-width:22px;
       text-align:center;
@@ -879,6 +899,10 @@
       justify-content:space-between;
       align-items:center;
       gap:10px;
+      position:sticky;
+      top:0;
+      background:#101010;
+      z-index:2;
     }
 
     .modal-head h2{
@@ -893,6 +917,7 @@
       background:#171717;
       color:#fff;
       border-radius:8px;
+      flex-shrink:0;
     }
 
     .modal-body{
@@ -937,6 +962,11 @@
     .field select:focus,
     .field textarea:focus{
       border-color:var(--gold);
+    }
+
+    .field input.invalid,
+    .field select.invalid{
+      border-color:var(--danger);
     }
 
     .field textarea{
@@ -1040,6 +1070,69 @@
       font-size:16px;
     }
 
+    .send-order:hover{
+      filter:brightness(1.05);
+    }
+
+    /* =========================
+       CONFIRMAÇÃO
+    ========================= */
+
+    .confirm-box{
+      background:#151515;
+      border:1px solid #2d281b;
+      border-radius:13px;
+      padding:15px;
+    }
+
+    .confirm-title{
+      color:var(--gold2);
+      font-size:18px;
+      font-weight:900;
+      margin-bottom:13px;
+    }
+
+    .confirm-row{
+      padding:8px 0;
+      border-bottom:1px solid #252525;
+      color:#bbb;
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .confirm-row:last-child{
+      border-bottom:0;
+    }
+
+    .confirm-row strong{
+      color:#fff;
+    }
+
+    .confirm-buttons{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:9px;
+      margin-top:15px;
+    }
+
+    .confirm-buttons button{
+      padding:13px;
+      border-radius:10px;
+      font-weight:900;
+    }
+
+    .confirm-back{
+      border:1px solid #444;
+      background:#181818;
+      color:#ddd;
+    }
+
+    .confirm-send{
+      border:0;
+      background:var(--green);
+      color:#000;
+    }
+
     /* =========================
        LAST ORDER
     ========================= */
@@ -1081,6 +1174,8 @@
       font-size:13px;
       transition:.25s ease;
       box-shadow:0 10px 30px rgba(0,0,0,.4);
+      max-width:calc(100% - 30px);
+      text-align:center;
     }
 
     .toast.show{
@@ -1125,6 +1220,7 @@
     }
 
     @media(max-width:720px){
+
       .header-inner{
         min-height:68px;
       }
@@ -1189,9 +1285,11 @@
       .field.full{
         grid-column:auto;
       }
+
     }
 
     @media(max-width:420px){
+
       .header-inner{
         padding-left:10px;
         padding-right:10px;
@@ -1233,6 +1331,11 @@
         padding:10px 13px;
         font-size:12px;
       }
+
+      .confirm-buttons{
+        grid-template-columns:1fr;
+      }
+
     }
   </style>
 </head>
@@ -1244,36 +1347,78 @@
   ========================= -->
 
   <header class="header">
+
     <div class="header-inner">
 
-      <button class="menu-btn" onclick="openDrawer()" aria-label="Abrir menu">
+      <button
+        class="menu-btn"
+        onclick="openDrawer()"
+        aria-label="Abrir menu"
+      >
         ☰
       </button>
 
-      <a href="#" class="logo-box" aria-label="VF FILHOS LANCHES">
-        <img src="logo-vf.jpeg" alt="VF FILHOS LANCHES">
+      <a
+        href="#"
+        class="logo-box"
+        aria-label="VF FILHOS LANCHES"
+      >
+        <img
+          src="logo-vf.jpeg"
+          alt="VF FILHOS LANCHES"
+        >
       </a>
 
       <div class="brand">
-        <div class="brand-name">VF FILHOS LANCHES</div>
+
+        <div class="brand-name">
+          VF FILHOS LANCHES
+        </div>
+
         <div class="brand-address">
           Estrada Luiz Mário da Rocha Lima, 1459
         </div>
+
       </div>
 
-      <button class="header-cart" onclick="openCart()" aria-label="Abrir carrinho">
+      <button
+        class="header-cart"
+        onclick="openCart()"
+        aria-label="Abrir carrinho"
+      >
 
-        <svg class="cart-svg" viewBox="0 0 24 24">
-          <circle cx="9" cy="20" r="1.5"></circle>
-          <circle cx="18" cy="20" r="1.5"></circle>
-          <path d="M3 4h2l2.5 11h10.8l2-8H6"></path>
+        <svg
+          class="cart-svg"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            cx="9"
+            cy="20"
+            r="1.5"
+          ></circle>
+
+          <circle
+            cx="18"
+            cy="20"
+            r="1.5"
+          ></circle>
+
+          <path
+            d="M3 4h2l2.5 11h10.8l2-8H6"
+          ></path>
         </svg>
 
-        <span class="cart-badge" id="cartBadge">0</span>
+        <span
+          class="cart-badge"
+          id="cartBadge"
+        >
+          0
+        </span>
 
       </button>
 
     </div>
+
   </header>
 
 
@@ -1281,43 +1426,74 @@
        DRAWER
   ========================= -->
 
-  <aside class="drawer" id="drawer">
+  <aside
+    class="drawer"
+    id="drawer"
+  >
 
     <div class="drawer-head">
-      <div class="drawer-title">VF FILHOS LANCHES</div>
 
-      <button class="drawer-close" onclick="closeDrawer()">
+      <div class="drawer-title">
+        VF FILHOS LANCHES
+      </div>
+
+      <button
+        class="drawer-close"
+        onclick="closeDrawer()"
+      >
         ×
       </button>
+
     </div>
 
     <div class="drawer-menu">
 
-      <button class="drawer-item" onclick="goHome()">
+      <button
+        class="drawer-item"
+        onclick="goHome()"
+      >
         🏠 Início
       </button>
 
-      <button class="drawer-item" onclick="goToCardapio()">
+      <button
+        class="drawer-item"
+        onclick="goToCardapio()"
+      >
         🍔 Cardápio
       </button>
 
-      <button class="drawer-item" onclick="openCart();closeDrawer()">
+      <button
+        class="drawer-item"
+        onclick="openCart();closeDrawer()"
+      >
         🛒 Meu pedido
       </button>
 
-      <button class="drawer-item" onclick="showLastOrder()">
+      <button
+        class="drawer-item"
+        onclick="showLastOrder()"
+      >
         📋 Meu último pedido
       </button>
 
-      <button class="drawer-item" onclick="showAbout()">
+      <button
+        class="drawer-item"
+        onclick="showAbout()"
+      >
         ℹ️ Sobre a loja
       </button>
 
-      <button class="drawer-item" onclick="showDelivery()">
+      <button
+        class="drawer-item"
+        onclick="showDelivery()"
+      >
         🛵 Entrega e retirada
       </button>
 
-      <button class="drawer-item" onclick="showHours()">
+      <button
+        class="drawer-item"
+        onclick="showHours()"
+      >
         🕐 Horário
       </button>
 
@@ -1346,20 +1522,36 @@
     </div>
 
     <div class="drawer-info">
-      <strong style="color:#f1d36b;">VF FILHOS LANCHES</strong><br>
-      Lanches, combos, fritas, bebidas, adicionais e Frango Assado aos finais de semana.
+
+      <strong style="color:#f1d36b;">
+        VF FILHOS LANCHES
+      </strong>
+
+      <br>
+
+      Lanches, combos, fritas, bebidas,
+      adicionais e Frango Assado aos finais
+      de semana.
+
     </div>
 
   </aside>
 
-  <div class="overlay" id="overlay" onclick="closeAll()"></div>
+  <div
+    class="overlay"
+    id="overlay"
+    onclick="closeAll()"
+  ></div>
 
 
   <!-- =========================
        HERO
   ========================= -->
 
-  <section class="hero" id="inicio">
+  <section
+    class="hero"
+    id="inicio"
+  >
 
     <div class="hero-card">
 
@@ -1373,13 +1565,17 @@
       </h1>
 
       <p class="hero-text">
-        Escolha seus produtos, monte seu pedido e envie diretamente pelo
-        WhatsApp da VF FILHOS LANCHES.
+        Escolha seus produtos, monte seu pedido
+        e envie diretamente pelo WhatsApp da
+        VF FILHOS LANCHES.
       </p>
 
       <div class="hero-actions">
 
-        <button class="gold-btn" onclick="goToCardapio()">
+        <button
+          class="gold-btn"
+          onclick="goToCardapio()"
+        >
           Ver cardápio
         </button>
 
@@ -1395,10 +1591,20 @@
       </div>
 
       <div class="status-area">
-        <div class="status-pill" id="storeStatus">
+
+        <div
+          class="status-pill"
+          id="storeStatus"
+        >
+
           <span class="status-dot"></span>
-          <span id="storeStatusText">Verificando horário...</span>
+
+          <span id="storeStatusText">
+            Verificando horário...
+          </span>
+
         </div>
+
       </div>
 
     </div>
@@ -1414,7 +1620,9 @@
 
     <div class="search-box">
 
-      <span class="search-icon">⌕</span>
+      <span class="search-icon">
+        ⌕
+      </span>
 
       <input
         type="search"
@@ -1434,7 +1642,10 @@
 
   <div class="categories-wrap">
 
-    <div class="categories" id="categories"></div>
+    <div
+      class="categories"
+      id="categories"
+    ></div>
 
   </div>
 
@@ -1443,7 +1654,10 @@
        MENU
   ========================= -->
 
-  <main class="content" id="cardapio"></main>
+  <main
+    class="content"
+    id="cardapio"
+  ></main>
 
 
   <!-- =========================
@@ -1461,8 +1675,10 @@
         </div>
 
         <div class="footer-text">
-          Lanches preparados para você pedir de forma rápida e prática.
-          Faça seu pedido pelo nosso cardápio e envie pelo WhatsApp.
+          Lanches preparados para você pedir
+          de forma rápida e prática.
+          Faça seu pedido pelo nosso cardápio
+          e envie pelo WhatsApp.
         </div>
 
       </div>
@@ -1513,7 +1729,12 @@
     </div>
 
     <div class="copyright">
-      © <span id="year"></span> VF FILHOS LANCHES. Todos os direitos reservados.
+
+      ©
+      <span id="year"></span>
+      VF FILHOS LANCHES.
+      Todos os direitos reservados.
+
     </div>
 
   </footer>
@@ -1523,34 +1744,61 @@
        CART
   ========================= -->
 
-  <aside class="cart-panel" id="cartPanel">
+  <aside
+    class="cart-panel"
+    id="cartPanel"
+  >
 
     <div class="cart-head">
 
-      <h2>Meu pedido</h2>
+      <h2>
+        Meu pedido
+      </h2>
 
-      <button class="cart-close" onclick="closeCart()">
+      <button
+        class="cart-close"
+        onclick="closeCart()"
+      >
         ×
       </button>
 
     </div>
 
-    <div class="cart-body" id="cartBody"></div>
+    <div
+      class="cart-body"
+      id="cartBody"
+    ></div>
 
     <div class="cart-footer">
 
       <div class="total-row">
-        <span>Total</span>
-        <span class="total-value" id="cartTotal">R$ 0,00</span>
+
+        <span>
+          Total
+        </span>
+
+        <span
+          class="total-value"
+          id="cartTotal"
+        >
+          R$ 0,00
+        </span>
+
       </div>
 
       <div class="cart-buttons">
 
-        <button class="clear-btn" onclick="clearCart()">
+        <button
+          class="clear-btn"
+          onclick="clearCart()"
+        >
           Limpar
         </button>
 
-        <button class="checkout-btn" onclick="openCheckout()">
+        <button
+          class="checkout-btn"
+          onclick="openCheckout()"
+        >
           Finalizar pedido
         </button>
 
@@ -1565,15 +1813,23 @@
        CHECKOUT MODAL
   ========================= -->
 
-  <div class="modal" id="checkoutModal">
+  <div
+    class="modal"
+    id="checkoutModal"
+  >
 
     <div class="modal-card">
 
       <div class="modal-head">
 
-        <h2>Finalizar pedido</h2>
+        <h2>
+          Finalizar pedido
+        </h2>
 
-        <button class="modal-close" onclick="closeCheckout()">
+        <button
+          class="modal-close"
+          onclick="closeCheckout()"
+        >
           ×
         </button>
 
@@ -1590,16 +1846,31 @@
           <div id="checkoutSummary"></div>
 
           <div class="checkout-total">
-            <span>Total</span>
-            <span id="checkoutTotal">R$ 0,00</span>
+
+            <span>
+              Total
+            </span>
+
+            <span id="checkoutTotal">
+              R$ 0,00
+            </span>
+
           </div>
 
         </div>
 
         <div class="notice">
-          Ao enviar, o WhatsApp da VF FILHOS LANCHES será aberto com seu pedido
-          preenchido. A loja poderá confirmar disponibilidade, taxa de entrega
-          e demais detalhes pelo atendimento.
+
+          Confira seus dados antes de enviar.
+          O WhatsApp da VF FILHOS LANCHES será
+          aberto com o pedido preenchido.
+
+          <br><br>
+
+          A loja poderá confirmar disponibilidade,
+          taxa de entrega e demais detalhes
+          diretamente pelo atendimento.
+
         </div>
 
         <form id="checkoutForm">
@@ -1607,30 +1878,44 @@
           <div class="form-grid">
 
             <div class="field">
-              <label for="customerName">Nome *</label>
+
+              <label for="customerName">
+                Nome *
+              </label>
 
               <input
                 id="customerName"
                 type="text"
                 placeholder="Seu nome"
+                autocomplete="name"
                 required
               >
+
             </div>
 
             <div class="field">
-              <label for="customerPhone">Telefone *</label>
+
+              <label for="customerPhone">
+                Telefone *
+              </label>
 
               <input
                 id="customerPhone"
                 type="tel"
                 placeholder="(21) 99999-9999"
+                autocomplete="tel"
+                inputmode="tel"
+                maxlength="15"
                 required
               >
+
             </div>
 
             <div class="field full">
 
-              <label>Forma de recebimento *</label>
+              <label>
+                Forma de recebimento *
+              </label>
 
               <div class="choice-box">
 
@@ -1662,58 +1947,82 @@
 
             </div>
 
-            <div id="deliveryFields" class="field full">
+            <div
+              id="deliveryFields"
+              class="field full"
+            >
 
               <div class="form-grid">
 
                 <div class="field full">
-                  <label for="address">Endereço *</label>
+
+                  <label for="address">
+                    Endereço *
+                  </label>
 
                   <input
                     id="address"
                     type="text"
                     placeholder="Rua / avenida"
+                    autocomplete="street-address"
                   >
+
                 </div>
 
                 <div class="field">
-                  <label for="addressNumber">Número *</label>
+
+                  <label for="addressNumber">
+                    Número *
+                  </label>
 
                   <input
                     id="addressNumber"
                     type="text"
                     placeholder="Número"
                   >
+
                 </div>
 
                 <div class="field">
-                  <label for="complement">Complemento</label>
+
+                  <label for="complement">
+                    Complemento
+                  </label>
 
                   <input
                     id="complement"
                     type="text"
                     placeholder="Casa, apto..."
                   >
+
                 </div>
 
                 <div class="field">
-                  <label for="neighborhood">Bairro *</label>
+
+                  <label for="neighborhood">
+                    Bairro *
+                  </label>
 
                   <input
                     id="neighborhood"
                     type="text"
                     placeholder="Seu bairro"
                   >
+
                 </div>
 
                 <div class="field">
-                  <label for="reference">Referência</label>
+
+                  <label for="reference">
+                    Referência
+                  </label>
 
                   <input
                     id="reference"
                     type="text"
                     placeholder="Perto de..."
                   >
+
                 </div>
 
               </div>
@@ -1722,9 +2031,15 @@
 
             <div class="field full">
 
-              <label for="payment">Pagamento *</label>
+              <label for="payment">
+                Pagamento *
+              </label>
 
-              <select id="payment" required onchange="toggleChange()">
+              <select
+                id="payment"
+                required
+                onchange="toggleChange()"
+              >
 
                 <option value="">
                   Selecione
@@ -1784,8 +2099,11 @@
 
           </div>
 
-          <button class="send-order" type="submit">
-            💬 Enviar pedido pelo WhatsApp
+          <button
+            class="send-order"
+            type="submit"
+          >
+            💬 Continuar para confirmação
           </button>
 
         </form>
@@ -1798,18 +2116,101 @@
 
 
   <!-- =========================
-       LAST ORDER MODAL
+       CONFIRMATION MODAL
   ========================= -->
 
-  <div class="modal" id="lastOrderModal">
+  <div
+    class="modal"
+    id="confirmModal"
+  >
 
     <div class="modal-card">
 
       <div class="modal-head">
 
-        <h2>Meu último pedido</h2>
+        <h2>
+          Confirmar pedido
+        </h2>
 
-        <button class="modal-close" onclick="closeLastOrder()">
+        <button
+          class="modal-close"
+          onclick="closeConfirm()"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <div class="confirm-box">
+
+          <div class="confirm-title">
+            Confira tudo antes de enviar
+          </div>
+
+          <div
+            id="confirmContent"
+          ></div>
+
+        </div>
+
+        <div class="notice" style="margin-top:14px;">
+
+          Depois de confirmar, o WhatsApp será
+          aberto com a mensagem pronta para enviar
+          para a VF FILHOS LANCHES.
+
+        </div>
+
+        <div class="confirm-buttons">
+
+          <button
+            type="button"
+            class="confirm-back"
+            onclick="closeConfirm()"
+          >
+            Voltar e editar
+          </button>
+
+          <button
+            type="button"
+            class="confirm-send"
+            onclick="sendConfirmedOrder()"
+          >
+            💬 Enviar no WhatsApp
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       LAST ORDER MODAL
+  ========================= -->
+
+  <div
+    class="modal"
+    id="lastOrderModal"
+  >
+
+    <div class="modal-card">
+
+      <div class="modal-head">
+
+        <h2>
+          Meu último pedido
+        </h2>
+
+        <button
+          class="modal-close"
+          onclick="closeLastOrder()"
+        >
           ×
         </button>
 
@@ -1830,7 +2231,10 @@
        INFO MODAL
   ========================= -->
 
-  <div class="modal" id="infoModal">
+  <div
+    class="modal"
+    id="infoModal"
+  >
 
     <div class="modal-card">
 
@@ -1840,7 +2244,10 @@
           VF FILHOS LANCHES
         </h2>
 
-        <button class="modal-close" onclick="closeInfo()">
+        <button
+          class="modal-close"
+          onclick="closeInfo()"
+        >
           ×
         </button>
 
@@ -1879,7 +2286,10 @@
        TOAST
   ========================= -->
 
-  <div class="toast" id="toast"></div>
+  <div
+    class="toast"
+    id="toast"
+  ></div>
 
 
   <script>
@@ -1888,7 +2298,8 @@
        CONFIGURAÇÕES
     ========================================= */
 
-    const WHATSAPP = "5521983950843";
+    const WHATSAPP =
+      "5521983950843";
 
     const INSTAGRAM =
       "https://www.instagram.com/vf_filhoslanches/";
@@ -1906,19 +2317,19 @@
 
     const categories = [
 
-      ["hamburgueres", "🍔 Hambúrgueres"],
+      ["hamburgueres","🍔 Hambúrgueres"],
 
-      ["fritas", "🍟 Fritas"],
+      ["fritas","🍟 Fritas"],
 
-      ["combos", "🍱 Combos"],
+      ["combos","🍱 Combos"],
 
-      ["promocoes", "🔥 Promoções"],
+      ["promocoes","🔥 Promoções"],
 
-      ["bebidas", "🥤 Bebidas"],
+      ["bebidas","🥤 Bebidas"],
 
-      ["adicionais", "➕ Adicionais"],
+      ["adicionais","➕ Adicionais"],
 
-      ["frango", "🍗 Frango Assado"]
+      ["frango","🍗 Frango Assado"]
 
     ];
 
@@ -2009,9 +2420,6 @@
         description:"Pão macio e fresquinho, hambúrguer de picanha, cheddar derretido, dois anéis de cebola fritos e crocantes, barbecue, ketchup e maionese."
       },
 
-
-      /* COMBOS */
-
       {
         id:11,
         category:"combos",
@@ -2036,9 +2444,6 @@
         description:"4 X-Tudo completos + batata frita douradinha com calabresa, ketchup e maionese + 6 anéis de cebola + 6 nuggets."
       },
 
-
-      /* PROMOÇÕES */
-
       {
         id:14,
         category:"promocoes",
@@ -2054,9 +2459,6 @@
         price:18.99,
         description:"Duplo Cheddar com duas carnes, cheddar, cebola caramelizada e barbecue + Coca-Cola lata."
       },
-
-
-      /* BEBIDAS */
 
       {
         id:16,
@@ -2081,9 +2483,6 @@
         price:5,
         description:"Água mineral 500 ml."
       },
-
-
-      /* ADICIONAIS */
 
       {
         id:19,
@@ -2141,9 +2540,6 @@
         description:"Adicional de ovo."
       },
 
-
-      /* FRITAS */
-
       {
         id:26,
         category:"fritas",
@@ -2168,9 +2564,6 @@
         description:"Porção de batata frita tamanho G."
       },
 
-
-      /* FRANGO */
-
       {
         id:29,
         category:"frango",
@@ -2192,6 +2585,8 @@
 
     let orderType = "delivery";
 
+    let pendingOrder = null;
+
 
     /* =========================================
        DINHEIRO
@@ -2199,16 +2594,20 @@
 
     function money(value){
 
-      const number = Number(value);
+      const number =
+        Number(value);
 
       if(!Number.isFinite(number)){
         return "R$ 0,00";
       }
 
-      return number.toLocaleString("pt-BR",{
-        style:"currency",
-        currency:"BRL"
-      });
+      return number.toLocaleString(
+        "pt-BR",
+        {
+          style:"currency",
+          currency:"BRL"
+        }
+      );
 
     }
 
@@ -2223,47 +2622,61 @@
 
         const raw =
           JSON.parse(
-            localStorage.getItem(STORAGE_CART) || "[]"
+            localStorage.getItem(
+              STORAGE_CART
+            ) || "[]"
           );
 
         if(!Array.isArray(raw)){
+
           cart = [];
+
           saveCart();
+
           return;
+
         }
 
-        cart = raw
-          .map(item => {
+        cart =
+          raw
+            .map(item=>{
 
-            const product =
-              products.find(
-                p => p.id === Number(item.id)
-              );
+              const product =
+                products.find(
+                  p =>
+                    p.id ===
+                    Number(item.id)
+                );
 
-            const qty =
-              Math.floor(Number(item.qty));
+              const qty =
+                Math.floor(
+                  Number(item.qty)
+                );
 
-            if(
-              !product ||
-              !Number.isFinite(qty) ||
-              qty <= 0
-            ){
-              return null;
-            }
+              if(
+                !product ||
+                !Number.isFinite(qty) ||
+                qty <= 0
+              ){
 
-            return {
-              id:product.id,
-              qty:qty
-            };
+                return null;
 
-          })
-          .filter(Boolean);
+              }
+
+              return {
+                id:product.id,
+                qty:Math.min(qty,99)
+              };
+
+            })
+            .filter(Boolean);
 
         saveCart();
 
       }catch(error){
 
         cart = [];
+
         saveCart();
 
       }
@@ -2273,10 +2686,21 @@
 
     function saveCart(){
 
-      localStorage.setItem(
-        STORAGE_CART,
-        JSON.stringify(cart)
-      );
+      try{
+
+        localStorage.setItem(
+          STORAGE_CART,
+          JSON.stringify(cart)
+        );
+
+      }catch(error){
+
+        console.error(
+          "Erro ao salvar carrinho:",
+          error
+        );
+
+      }
 
     }
 
@@ -2288,7 +2712,8 @@
     function getProduct(id){
 
       return products.find(
-        p => p.id === Number(id)
+        p =>
+          p.id === Number(id)
       );
 
     }
@@ -2300,19 +2725,23 @@
 
     function cartTotal(){
 
-      return cart.reduce((total,item)=>{
+      return cart.reduce(
+        (total,item)=>{
 
-        const product =
-          getProduct(item.id);
+          const product =
+            getProduct(item.id);
 
-        if(!product){
-          return total;
-        }
+          if(!product){
+            return total;
+          }
 
-        return total +
-          product.price * item.qty;
+          return total +
+            product.price *
+            item.qty;
 
-      },0);
+        },
+        0
+      );
 
     }
 
@@ -2320,8 +2749,9 @@
     function cartCount(){
 
       return cart.reduce(
-        (total,item) =>
-          total + Number(item.qty || 0),
+        (total,item)=>
+          total +
+          Number(item.qty || 0),
         0
       );
 
@@ -2329,13 +2759,14 @@
 
 
     /* =========================================
-       STATUS DA LOJA
+       STATUS
        10:00 ÀS 00:00
     ========================================= */
 
     function updateStoreStatus(){
 
-      const now = new Date();
+      const now =
+        new Date();
 
       const minutes =
         now.getHours() * 60 +
@@ -2346,10 +2777,14 @@
         minutes < 1440;
 
       const status =
-        document.getElementById("storeStatus");
+        document.getElementById(
+          "storeStatus"
+        );
 
       const text =
-        document.getElementById("storeStatusText");
+        document.getElementById(
+          "storeStatusText"
+        );
 
       if(open){
 
@@ -2381,15 +2816,23 @@
       const day =
         new Date().getDay();
 
-      return day === 0 || day === 6;
+      return (
+        day === 0 ||
+        day === 6
+      );
 
     }
 
 
     function isProductAvailable(product){
 
-      if(product.category === "frango"){
+      if(
+        product.category ===
+        "frango"
+      ){
+
         return isWeekend();
+
       }
 
       return true;
@@ -2404,77 +2847,96 @@
     function renderCategories(){
 
       const container =
-        document.getElementById("categories");
+        document.getElementById(
+          "categories"
+        );
 
       container.innerHTML = "";
 
       const allButton =
-        document.createElement("button");
+        document.createElement(
+          "button"
+        );
 
       allButton.className =
         "category-btn" +
-        (currentCategory === "all"
-          ? " active"
-          : "");
+        (
+          currentCategory === "all"
+            ? " active"
+            : ""
+        );
 
       allButton.textContent =
         "🍽️ Todos";
 
-      allButton.onclick = () => {
+      allButton.onclick = ()=>{
 
-        currentCategory = "all";
+        currentCategory =
+          "all";
 
         renderCategories();
         renderProducts();
 
       };
 
-      container.appendChild(allButton);
+      container.appendChild(
+        allButton
+      );
 
 
-      categories.forEach(([id,label])=>{
+      categories.forEach(
+        ([id,label])=>{
 
-        const button =
-          document.createElement("button");
+          const button =
+            document.createElement(
+              "button"
+            );
 
-        button.className =
-          "category-btn" +
-          (currentCategory === id
-            ? " active"
-            : "");
+          button.className =
+            "category-btn" +
+            (
+              currentCategory === id
+                ? " active"
+                : ""
+            );
 
-        button.textContent = label;
+          button.textContent =
+            label;
 
-        button.onclick = () => {
+          button.onclick = ()=>{
 
-          currentCategory = id;
+            currentCategory =
+              id;
 
-          renderCategories();
-          renderProducts();
+            renderCategories();
+            renderProducts();
 
-          setTimeout(()=>{
+            setTimeout(()=>{
 
-            const section =
-              document.getElementById(
-                "section-" + id
-              );
+              const section =
+                document.getElementById(
+                  "section-" + id
+                );
 
-            if(section){
+              if(section){
 
-              section.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-              });
+                section.scrollIntoView({
+                  behavior:"smooth",
+                  block:"start"
+                });
 
-            }
+              }
 
-          },50);
+            },50);
 
-        };
+          };
 
-        container.appendChild(button);
+          container.appendChild(
+            button
+          );
 
-      });
+        }
+      );
 
     }
 
@@ -2486,203 +2948,282 @@
     function renderProducts(){
 
       const container =
-        document.getElementById("cardapio");
+        document.getElementById(
+          "cardapio"
+        );
+
+      const searchInput =
+        document.getElementById(
+          "searchInput"
+        );
 
       const search =
-        document
-          .getElementById("searchInput")
-          .value
-          .trim()
-          .toLowerCase();
+        searchInput
+          ? searchInput.value
+              .trim()
+              .toLowerCase()
+          : "";
 
       container.innerHTML = "";
 
       const categoriesToRender =
         currentCategory === "all"
-          ? categories.map(c=>c[0])
+          ? categories.map(
+              c=>c[0]
+            )
           : [currentCategory];
 
 
-      categoriesToRender.forEach(categoryId=>{
+      categoriesToRender.forEach(
+        categoryId=>{
 
-        const category =
-          categories.find(
-            c => c[0] === categoryId
-          );
-
-        if(!category){
-          return;
-        }
-
-        let categoryProducts =
-          products.filter(
-            p => p.category === categoryId
-          );
-
-
-        if(search){
-
-          categoryProducts =
-            categoryProducts.filter(p =>
-
-              p.name
-                .toLowerCase()
-                .includes(search)
-
-              ||
-
-              p.description
-                .toLowerCase()
-                .includes(search)
-
+          const category =
+            categories.find(
+              c =>
+                c[0] ===
+                categoryId
             );
 
-        }
+          if(!category){
+            return;
+          }
+
+          let categoryProducts =
+            products.filter(
+              p =>
+                p.category ===
+                categoryId
+            );
 
 
-        if(categoryProducts.length === 0){
-          return;
-        }
+          if(search){
 
-
-        const section =
-          document.createElement("section");
-
-        section.className = "section";
-
-        section.id =
-          "section-" + categoryId;
-
-
-        const title =
-          document.createElement("div");
-
-        title.className =
-          "section-title";
-
-
-        const h2 =
-          document.createElement("h2");
-
-        h2.textContent =
-          category[1];
-
-
-        const line =
-          document.createElement("div");
-
-        line.className =
-          "section-line";
-
-
-        title.appendChild(h2);
-        title.appendChild(line);
-
-
-        const grid =
-          document.createElement("div");
-
-        grid.className =
-          "products-grid";
-
-
-        categoryProducts.forEach(product=>{
-
-          const available =
-            isProductAvailable(product);
-
-          const card =
-            document.createElement("article");
-
-          card.className =
-            "product-card" +
-            (!available
-              ? " disabled-product"
-              : "");
-
-
-          const name =
-            document.createElement("div");
-
-          name.className =
-            "product-name";
-
-          name.textContent =
-            product.name;
-
-
-          const description =
-            document.createElement("div");
-
-          description.className =
-            "product-description";
-
-          description.textContent =
-            product.description;
-
-
-          const bottom =
-            document.createElement("div");
-
-          bottom.className =
-            "product-bottom";
-
-
-          const price =
-            document.createElement("div");
-
-          price.className =
-            "price";
-
-          price.textContent =
-            money(product.price);
-
-
-          const button =
-            document.createElement("button");
-
-          button.className =
-            "add-btn";
-
-          if(available){
-
-            button.textContent =
-              "Adicionar";
-
-            button.onclick = () =>
-              add(product.id);
-
-          }else{
-
-            button.textContent =
-              "Só sábado/domingo";
-
-            button.disabled = true;
+            categoryProducts =
+              categoryProducts.filter(
+                p =>
+                  p.name
+                    .toLowerCase()
+                    .includes(search)
+                  ||
+                  p.description
+                    .toLowerCase()
+                    .includes(search)
+              );
 
           }
 
 
-          bottom.appendChild(price);
-          bottom.appendChild(button);
+          if(
+            categoryProducts.length === 0
+          ){
 
-          card.appendChild(name);
-          card.appendChild(description);
-          card.appendChild(bottom);
+            return;
 
-          grid.appendChild(card);
-
-        });
+          }
 
 
-        section.appendChild(title);
-        section.appendChild(grid);
+          const section =
+            document.createElement(
+              "section"
+            );
 
-        container.appendChild(section);
+          section.className =
+            "section";
 
-      });
+          section.id =
+            "section-" +
+            categoryId;
 
 
-      if(!container.children.length){
+          const title =
+            document.createElement(
+              "div"
+            );
+
+          title.className =
+            "section-title";
+
+
+          const h2 =
+            document.createElement(
+              "h2"
+            );
+
+          h2.textContent =
+            category[1];
+
+
+          const line =
+            document.createElement(
+              "div"
+            );
+
+          line.className =
+            "section-line";
+
+
+          title.appendChild(h2);
+          title.appendChild(line);
+
+
+          const grid =
+            document.createElement(
+              "div"
+            );
+
+          grid.className =
+            "products-grid";
+
+
+          categoryProducts.forEach(
+            product=>{
+
+              const available =
+                isProductAvailable(
+                  product
+                );
+
+              const card =
+                document.createElement(
+                  "article"
+                );
+
+              card.className =
+                "product-card" +
+                (
+                  !available
+                    ? " disabled-product"
+                    : ""
+                );
+
+
+              const name =
+                document.createElement(
+                  "div"
+                );
+
+              name.className =
+                "product-name";
+
+              name.textContent =
+                product.name;
+
+
+              const description =
+                document.createElement(
+                  "div"
+                );
+
+              description.className =
+                "product-description";
+
+              description.textContent =
+                product.description;
+
+
+              const bottom =
+                document.createElement(
+                  "div"
+                );
+
+              bottom.className =
+                "product-bottom";
+
+
+              const price =
+                document.createElement(
+                  "div"
+                );
+
+              price.className =
+                "price";
+
+              price.textContent =
+                money(
+                  product.price
+                );
+
+
+              const button =
+                document.createElement(
+                  "button"
+                );
+
+              button.className =
+                "add-btn";
+
+
+              if(available){
+
+                button.textContent =
+                  "Adicionar";
+
+                button.onclick =
+                  ()=>add(
+                    product.id
+                  );
+
+              }else{
+
+                button.textContent =
+                  "Só sábado/domingo";
+
+                button.disabled =
+                  true;
+
+                button.title =
+                  "Disponível somente sábado e domingo";
+
+              }
+
+
+              bottom.appendChild(
+                price
+              );
+
+              bottom.appendChild(
+                button
+              );
+
+              card.appendChild(
+                name
+              );
+
+              card.appendChild(
+                description
+              );
+
+              card.appendChild(
+                bottom
+              );
+
+              grid.appendChild(
+                card
+              );
+
+            }
+          );
+
+
+          section.appendChild(
+            title
+          );
+
+          section.appendChild(
+            grid
+          );
+
+          container.appendChild(
+            section
+          );
+
+        }
+      );
+
+
+      if(
+        !container.children.length
+      ){
 
         container.innerHTML = `
           <div class="empty">
@@ -2709,7 +3250,11 @@
       }
 
 
-      if(!isProductAvailable(product)){
+      if(
+        !isProductAvailable(
+          product
+        )
+      ){
 
         toast(
           "Frango Assado disponível somente sábado e domingo."
@@ -2722,11 +3267,23 @@
 
       const existing =
         cart.find(
-          item => item.id === product.id
+          item =>
+            item.id ===
+            product.id
         );
 
 
       if(existing){
+
+        if(existing.qty >= 99){
+
+          toast(
+            "Limite máximo de 99 unidades."
+          );
+
+          return;
+
+        }
 
         existing.qty++;
 
@@ -2747,11 +3304,11 @@
       updateCartBadge();
 
       toast(
-        product.name + " adicionado ao pedido!"
+        product.name +
+        " adicionado ao pedido!"
       );
 
 
-      /* abre o carrinho imediatamente */
       openCart();
 
     }
@@ -2765,7 +3322,9 @@
 
       const item =
         cart.find(
-          item => item.id === Number(id)
+          item =>
+            item.id ===
+            Number(id)
         );
 
       if(!item){
@@ -2778,8 +3337,20 @@
 
         cart =
           cart.filter(
-            item => item.id !== Number(id)
+            item =>
+              item.id !==
+              Number(id)
           );
+
+      }
+
+      if(item.qty > 99){
+
+        item.qty = 99;
+
+        toast(
+          "Limite máximo de 99 unidades."
+        );
 
       }
 
@@ -2800,7 +3371,9 @@
 
       cart =
         cart.filter(
-          item => item.id !== Number(id)
+          item =>
+            item.id !==
+            Number(id)
         );
 
       saveCart();
@@ -2808,6 +3381,10 @@
       renderCart();
 
       updateCartBadge();
+
+      toast(
+        "Produto removido do pedido."
+      );
 
     }
 
@@ -2819,16 +3396,26 @@
     function clearCart(){
 
       if(!cart.length){
+
+        toast(
+          "Seu pedido já está vazio."
+        );
+
         return;
+
       }
+
 
       if(
         !confirm(
           "Deseja realmente limpar seu pedido?"
         )
       ){
+
         return;
+
       }
+
 
       cart = [];
 
@@ -2838,7 +3425,9 @@
 
       updateCartBadge();
 
-      toast("Pedido limpo.");
+      toast(
+        "Pedido limpo."
+      );
 
     }
 
@@ -2850,10 +3439,14 @@
     function renderCart(){
 
       const body =
-        document.getElementById("cartBody");
+        document.getElementById(
+          "cartBody"
+        );
 
       const total =
-        document.getElementById("cartTotal");
+        document.getElementById(
+          "cartTotal"
+        );
 
 
       if(!cart.length){
@@ -2869,16 +3462,32 @@
               stroke="currentColor"
               stroke-width="1.5"
             >
-              <circle cx="9" cy="20" r="1.5"></circle>
-              <circle cx="18" cy="20" r="1.5"></circle>
-              <path d="M3 4h2l2.5 11h10.8l2-8H6"></path>
+
+              <circle
+                cx="9"
+                cy="20"
+                r="1.5"
+              ></circle>
+
+              <circle
+                cx="18"
+                cy="20"
+                r="1.5"
+              ></circle>
+
+              <path
+                d="M3 4h2l2.5 11h10.8l2-8H6"
+              ></path>
+
             </svg>
 
             <div>
               Seu pedido está vazio.
             </div>
 
-            <div style="margin-top:7px;font-size:12px;">
+            <div
+              style="margin-top:7px;font-size:12px;"
+            >
               Escolha seus produtos no cardápio.
             </div>
 
@@ -2908,11 +3517,14 @@
 
 
         const itemTotal =
-          product.price * item.qty;
+          product.price *
+          item.qty;
 
 
         const div =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
         div.className =
           "cart-item";
@@ -2942,6 +3554,7 @@
 
               <button
                 onclick="changeQty(${product.id},-1)"
+                aria-label="Diminuir quantidade"
               >
                 −
               </button>
@@ -2952,6 +3565,7 @@
 
               <button
                 onclick="changeQty(${product.id},1)"
+                aria-label="Aumentar quantidade"
               >
                 +
               </button>
@@ -2970,13 +3584,17 @@
         `;
 
 
-        body.appendChild(div);
+        body.appendChild(
+          div
+        );
 
       });
 
 
       total.textContent =
-        money(cartTotal());
+        money(
+          cartTotal()
+        );
 
     }
 
@@ -3015,8 +3633,16 @@
       renderCheckoutSummary();
 
       document
-        .getElementById("checkoutModal")
-        .classList.add("show");
+        .getElementById(
+          "checkoutModal"
+        )
+        .classList.add(
+          "show"
+        );
+
+      document.body.classList.add(
+        "modal-open"
+      );
 
     }
 
@@ -3024,8 +3650,14 @@
     function closeCheckout(){
 
       document
-        .getElementById("checkoutModal")
-        .classList.remove("show");
+        .getElementById(
+          "checkoutModal"
+        )
+        .classList.remove(
+          "show"
+        );
+
+      updateBodyLock();
 
     }
 
@@ -3051,7 +3683,9 @@
 
 
         const div =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
         div.className =
           "summary-item";
@@ -3060,7 +3694,8 @@
         div.innerHTML = `
 
           <div class="summary-name">
-            ${item.qty}x ${escapeHtml(product.name)}
+            ${item.qty}x
+            ${escapeHtml(product.name)}
           </div>
 
           <div class="summary-description">
@@ -3068,13 +3703,18 @@
           </div>
 
           <div class="summary-price">
-            ${money(product.price * item.qty)}
+            ${money(
+              product.price *
+              item.qty
+            )}
           </div>
 
         `;
 
 
-        summary.appendChild(div);
+        summary.appendChild(
+          div
+        );
 
       });
 
@@ -3082,7 +3722,9 @@
       document.getElementById(
         "checkoutTotal"
       ).textContent =
-        money(cartTotal());
+        money(
+          cartTotal()
+        );
 
     }
 
@@ -3093,11 +3735,15 @@
 
     function setOrderType(type){
 
-      orderType = type;
+      orderType =
+        type === "pickup"
+          ? "pickup"
+          : "delivery";
 
       document.getElementById(
         "orderType"
-      ).value = type;
+      ).value =
+        orderType;
 
 
       const delivery =
@@ -3113,12 +3759,12 @@
 
       delivery.classList.toggle(
         "active",
-        type === "delivery"
+        orderType === "delivery"
       );
 
       pickup.classList.toggle(
         "active",
-        type === "pickup"
+        orderType === "pickup"
       );
 
 
@@ -3128,26 +3774,34 @@
         );
 
 
-      if(type === "delivery"){
+      if(
+        orderType === "delivery"
+      ){
 
         fields.style.display =
           "block";
 
-        setDeliveryRequired(true);
+        setDeliveryRequired(
+          true
+        );
 
       }else{
 
         fields.style.display =
           "none";
 
-        setDeliveryRequired(false);
+        setDeliveryRequired(
+          false
+        );
 
       }
 
     }
 
 
-    function setDeliveryRequired(required){
+    function setDeliveryRequired(
+      required
+    ){
 
       [
         "address",
@@ -3155,9 +3809,17 @@
         "neighborhood"
       ].forEach(id=>{
 
-        document.getElementById(
-          id
-        ).required = required;
+        const element =
+          document.getElementById(
+            id
+          );
+
+        element.required =
+          required;
+
+        element.classList.remove(
+          "invalid"
+        );
 
       });
 
@@ -3181,7 +3843,9 @@
         );
 
 
-      if(payment === "Dinheiro"){
+      if(
+        payment === "Dinheiro"
+      ){
 
         field.style.display =
           "block";
@@ -3201,11 +3865,844 @@
 
 
     /* =========================================
-       ENVIAR WHATSAPP
+       TELEFONE
+    ========================================= */
+
+    function formatPhone(value){
+
+      let digits =
+        String(value)
+          .replace(/\D/g,"")
+          .slice(0,11);
+
+      if(
+        digits.length <= 2
+      ){
+
+        return digits;
+
+      }
+
+      if(
+        digits.length <= 7
+      ){
+
+        return "(" +
+          digits.slice(0,2) +
+          ") " +
+          digits.slice(2);
+
+      }
+
+      return "(" +
+        digits.slice(0,2) +
+        ") " +
+        digits.slice(2,7) +
+        "-" +
+        digits.slice(7);
+
+    }
+
+
+    document
+      .getElementById(
+        "customerPhone"
+      )
+      .addEventListener(
+        "input",
+        function(){
+
+          this.value =
+            formatPhone(
+              this.value
+            );
+
+        }
+      );
+
+
+    /* =========================================
+       VALIDAR CHECKOUT
+    ========================================= */
+
+    function validateCheckout(){
+
+      const name =
+        document
+          .getElementById(
+            "customerName"
+          )
+          .value
+          .trim();
+
+      const phone =
+        document
+          .getElementById(
+            "customerPhone"
+          )
+          .value
+          .trim();
+
+      const payment =
+        document
+          .getElementById(
+            "payment"
+          )
+          .value;
+
+
+      clearInvalidFields();
+
+
+      if(
+        name.length < 2
+      ){
+
+        markInvalid(
+          "customerName"
+        );
+
+        toast(
+          "Informe seu nome."
+        );
+
+        return false;
+
+      }
+
+
+      const phoneDigits =
+        phone.replace(
+          /\D/g,
+          ""
+        );
+
+
+      if(
+        phoneDigits.length < 10
+      ){
+
+        markInvalid(
+          "customerPhone"
+        );
+
+        toast(
+          "Informe um telefone válido."
+        );
+
+        return false;
+
+      }
+
+
+      if(!payment){
+
+        markInvalid(
+          "payment"
+        );
+
+        toast(
+          "Selecione a forma de pagamento."
+        );
+
+        return false;
+
+      }
+
+
+      if(
+        orderType ===
+        "delivery"
+      ){
+
+        const requiredFields = [
+          "address",
+          "addressNumber",
+          "neighborhood"
+        ];
+
+        for(
+          const id
+          of requiredFields
+        ){
+
+          const value =
+            document
+              .getElementById(id)
+              .value
+              .trim();
+
+          if(!value){
+
+            markInvalid(id);
+
+            toast(
+              "Preencha os dados de entrega."
+            );
+
+            return false;
+
+          }
+
+        }
+
+      }
+
+
+      if(
+        payment ===
+        "Dinheiro"
+      ){
+
+        const changeFor =
+          document
+            .getElementById(
+              "changeFor"
+            )
+            .value
+            .trim();
+
+        if(!changeFor){
+
+          toast(
+            "Informe para quanto precisa de troco."
+          );
+
+          markInvalid(
+            "changeFor"
+          );
+
+          return false;
+
+        }
+
+      }
+
+
+      return true;
+
+    }
+
+
+    function markInvalid(id){
+
+      const element =
+        document.getElementById(
+          id
+        );
+
+      if(element){
+
+        element.classList.add(
+          "invalid"
+        );
+
+        element.focus();
+
+      }
+
+    }
+
+
+    function clearInvalidFields(){
+
+      document
+        .querySelectorAll(
+          ".invalid"
+        )
+        .forEach(
+          element =>
+            element.classList.remove(
+              "invalid"
+            )
+        );
+
+    }
+
+
+    /* =========================================
+       PREPARAR PEDIDO
+    ========================================= */
+
+    function prepareOrder(){
+
+      if(!cart.length){
+
+        toast(
+          "Seu pedido está vazio."
+        );
+
+        return null;
+
+      }
+
+
+      const name =
+        document
+          .getElementById(
+            "customerName"
+          )
+          .value
+          .trim();
+
+      const phone =
+        document
+          .getElementById(
+            "customerPhone"
+          )
+          .value
+          .trim();
+
+      const payment =
+        document
+          .getElementById(
+            "payment"
+          )
+          .value;
+
+      const notes =
+        document
+          .getElementById(
+            "notes"
+          )
+          .value
+          .trim();
+
+      const changeFor =
+        document
+          .getElementById(
+            "changeFor"
+          )
+          .value
+          .trim();
+
+
+      let addressText = "";
+
+
+      if(
+        orderType ===
+        "delivery"
+      ){
+
+        const address =
+          document
+            .getElementById(
+              "address"
+            )
+            .value
+            .trim();
+
+        const number =
+          document
+            .getElementById(
+              "addressNumber"
+            )
+            .value
+            .trim();
+
+        const complement =
+          document
+            .getElementById(
+              "complement"
+            )
+            .value
+            .trim();
+
+        const neighborhood =
+          document
+            .getElementById(
+              "neighborhood"
+            )
+            .value
+            .trim();
+
+        const reference =
+          document
+            .getElementById(
+              "reference"
+            )
+            .value
+            .trim();
+
+
+        addressText =
+          address +
+          ", " +
+          number;
+
+        if(complement){
+
+          addressText +=
+            " - " +
+            complement;
+
+        }
+
+        addressText +=
+          " - " +
+          neighborhood;
+
+        if(reference){
+
+          addressText +=
+            " - Ref.: " +
+            reference;
+
+        }
+
+      }
+
+
+      return {
+
+        date:
+          new Date().toISOString(),
+
+        name,
+
+        phone,
+
+        type:
+          orderType,
+
+        address:
+          addressText,
+
+        payment,
+
+        changeFor,
+
+        notes,
+
+        total:
+          cartTotal(),
+
+        items:
+          cart.map(item=>{
+
+            const product =
+              getProduct(
+                item.id
+              );
+
+            return {
+
+              id:item.id,
+
+              qty:item.qty,
+
+              name:
+                product
+                  ? product.name
+                  : "",
+
+              description:
+                product
+                  ? product.description
+                  : "",
+
+              price:
+                product
+                  ? product.price
+                  : 0
+
+            };
+
+          })
+
+      };
+
+    }
+
+
+    /* =========================================
+       CONFIRMAÇÃO
+    ========================================= */
+
+    function openConfirmation(){
+
+      const order =
+        prepareOrder();
+
+      if(!order){
+        return;
+      }
+
+
+      pendingOrder =
+        order;
+
+
+      renderConfirmation(
+        order
+      );
+
+
+      closeCheckout();
+
+
+      document
+        .getElementById(
+          "confirmModal"
+        )
+        .classList.add(
+          "show"
+        );
+
+      document.body.classList.add(
+        "modal-open"
+      );
+
+    }
+
+
+    function renderConfirmation(
+      order
+    ){
+
+      const content =
+        document.getElementById(
+          "confirmContent"
+        );
+
+
+      let itemsHtml = "";
+
+
+      order.items.forEach(
+        item=>{
+
+          itemsHtml += `
+
+            <div class="confirm-row">
+
+              <strong>
+                ${item.qty}x
+                ${escapeHtml(item.name)}
+              </strong>
+
+              <br>
+
+              ${money(
+                item.price *
+                item.qty
+              )}
+
+            </div>
+
+          `;
+
+        }
+      );
+
+
+      content.innerHTML = `
+
+        <div class="confirm-row">
+
+          <strong>Cliente:</strong>
+          ${escapeHtml(order.name)}
+
+        </div>
+
+        <div class="confirm-row">
+
+          <strong>Telefone:</strong>
+          ${escapeHtml(order.phone)}
+
+        </div>
+
+        <div class="confirm-row">
+
+          <strong>Forma:</strong>
+          ${
+            order.type === "delivery"
+              ? "Entrega"
+              : "Retirada"
+          }
+
+        </div>
+
+        ${
+          order.address
+            ? `
+              <div class="confirm-row">
+                <strong>Endereço:</strong>
+                ${escapeHtml(order.address)}
+              </div>
+            `
+            : ""
+        }
+
+        <div class="confirm-row">
+
+          <strong>Pagamento:</strong>
+          ${escapeHtml(order.payment)}
+
+        </div>
+
+        ${
+          order.changeFor
+            ? `
+              <div class="confirm-row">
+                <strong>Troco para:</strong>
+                ${escapeHtml(order.changeFor)}
+              </div>
+            `
+            : ""
+        }
+
+        <div class="confirm-row">
+
+          <strong>Itens:</strong>
+
+          <br><br>
+
+          ${itemsHtml}
+
+        </div>
+
+        ${
+          order.notes
+            ? `
+              <div class="confirm-row">
+                <strong>Observações:</strong>
+                ${escapeHtml(order.notes)}
+              </div>
+            `
+            : ""
+        }
+
+        <div
+          class="confirm-row"
+          style="color:#f1d36b;font-size:18px;font-weight:900;"
+        >
+
+          <strong>Total:</strong>
+          ${money(order.total)}
+
+        </div>
+
+      `;
+
+    }
+
+
+    function closeConfirm(){
+
+      document
+        .getElementById(
+          "confirmModal"
+        )
+        .classList.remove(
+          "show"
+        );
+
+      pendingOrder =
+        null;
+
+      updateBodyLock();
+
+    }
+
+
+    /* =========================================
+       ENVIAR PEDIDO CONFIRMADO
+    ========================================= */
+
+    function sendConfirmedOrder(){
+
+      if(
+        !pendingOrder
+      ){
+
+        toast(
+          "Não foi possível preparar o pedido."
+        );
+
+        return;
+
+      }
+
+
+      const order =
+        pendingOrder;
+
+
+      let message =
+        "*NOVO PEDIDO - VF FILHOS LANCHES*";
+
+
+      message +=
+        "\n\n*CLIENTE:* " +
+        order.name;
+
+
+      message +=
+        "\n*TELEFONE:* " +
+        order.phone;
+
+
+      message +=
+        "\n*FORMA:* " +
+        (
+          order.type === "delivery"
+            ? "Entrega"
+            : "Retirada"
+        );
+
+
+      if(
+        order.type ===
+        "delivery"
+      ){
+
+        message +=
+          "\n*ENDEREÇO:* " +
+          order.address;
+
+      }
+
+
+      message +=
+        "\n*PAGAMENTO:* " +
+        order.payment;
+
+
+      if(
+        order.payment ===
+        "Dinheiro" &&
+        order.changeFor
+      ){
+
+        message +=
+          "\n*TROCO PARA:* " +
+          order.changeFor;
+
+      }
+
+
+      message +=
+        "\n\n*ITENS DO PEDIDO:*";
+
+
+      order.items.forEach(
+        item=>{
+
+          message +=
+            "\n\n*" +
+            item.qty +
+            "x " +
+            item.name +
+            "*";
+
+          message +=
+            "\n" +
+            item.description;
+
+          message +=
+            "\nSubtotal: " +
+            money(
+              item.price *
+              item.qty
+            );
+
+        }
+      );
+
+
+      message +=
+        "\n\n*TOTAL: " +
+        money(order.total) +
+        "*";
+
+
+      if(order.notes){
+
+        message +=
+          "\n\n*OBSERVAÇÕES:* " +
+          order.notes;
+
+      }
+
+
+      message +=
+        "\n\n_Aguardando confirmação da loja._";
+
+
+      /* SALVAR ÚLTIMO PEDIDO */
+
+      try{
+
+        localStorage.setItem(
+          STORAGE_LAST_ORDER,
+          JSON.stringify(
+            order
+          )
+        );
+
+      }catch(error){
+
+        console.error(
+          "Erro ao salvar último pedido:",
+          error
+        );
+
+      }
+
+
+      const whatsappUrl =
+        "https://wa.me/" +
+        WHATSAPP +
+        "?text=" +
+        encodeURIComponent(
+          message
+        );
+
+
+      /* ABRIR WHATSAPP */
+
+      window.open(
+        whatsappUrl,
+        "_blank",
+        "noopener"
+      );
+
+
+      /* LIMPAR PEDIDO */
+
+      cart = [];
+
+      saveCart();
+
+      renderCart();
+
+      updateCartBadge();
+
+
+      /* FECHAR TELAS */
+
+      closeConfirm();
+
+      closeCart();
+
+
+      toast(
+        "Pedido preparado no WhatsApp!"
+      );
+
+    }
+
+
+    /* =========================================
+       FORM SUBMIT
     ========================================= */
 
     document
-      .getElementById("checkoutForm")
+      .getElementById(
+        "checkoutForm"
+      )
       .addEventListener(
         "submit",
         function(event){
@@ -3213,307 +4710,836 @@
           event.preventDefault();
 
 
-          if(!cart.length){
-
-            toast(
-              "Seu pedido está vazio."
-            );
-
-            return;
-
-          }
-
-
-          const name =
-            document
-              .getElementById("customerName")
-              .value
-              .trim();
-
-          const phone =
-            document
-              .getElementById("customerPhone")
-              .value
-              .trim();
-
-          const payment =
-            document
-              .getElementById("payment")
-              .value;
-
-          const notes =
-            document
-              .getElementById("notes")
-              .value
-              .trim();
-
-          const changeFor =
-            document
-              .getElementById("changeFor")
-              .value
-              .trim();
-
-
-          if(!name || !phone || !payment){
-
-            toast(
-              "Preencha os campos obrigatórios."
-            );
-
-            return;
-
-          }
-
-
-          let addressText = "";
-
-
-          if(orderType === "delivery"){
-
-            const address =
-              document
-                .getElementById("address")
-                .value
-                .trim();
-
-            const number =
-              document
-                .getElementById("addressNumber")
-                .value
-                .trim();
-
-            const complement =
-              document
-                .getElementById("complement")
-                .value
-                .trim();
-
-            const neighborhood =
-              document
-                .getElementById("neighborhood")
-                .value
-                .trim();
-
-            const reference =
-              document
-                .getElementById("reference")
-                .value
-                .trim();
-
-
-            if(
-              !address ||
-              !number ||
-              !neighborhood
-            ){
-
-              toast(
-                "Preencha endereço, número e bairro."
-              );
-
-              return;
-
-            }
-
-
-            addressText =
-              address +
-              ", " +
-              number;
-
-            if(complement){
-              addressText +=
-                " - " + complement;
-            }
-
-            addressText +=
-              " - " + neighborhood;
-
-            if(reference){
-              addressText +=
-                " - Ref.: " + reference;
-            }
-
-          }
-
-
-          /* =========================
-             MENSAGEM WHATSAPP
-          ========================= */
-
-          let message =
-            "*NOVO PEDIDO - VF FILHOS LANCHES*";
-
-          message +=
-            "\n\n*CLIENTE:* " +
-            name;
-
-          message +=
-            "\n*TELEFONE:* " +
-            phone;
-
-          message +=
-            "\n*FORMA:* " +
-            (
-              orderType === "delivery"
-                ? "Entrega"
-                : "Retirada"
-            );
-
-
-          if(orderType === "delivery"){
-
-            message +=
-              "\n*ENDEREÇO:* " +
-              addressText;
-
-          }
-
-
-          message +=
-            "\n*PAGAMENTO:* " +
-            payment;
-
-
           if(
-            payment === "Dinheiro" &&
-            changeFor
+            !validateCheckout()
           ){
 
-            message +=
-              "\n*TROCO PARA:* " +
-              changeFor;
+            return;
 
           }
 
 
-          message +=
-            "\n\n*ITENS DO PEDIDO:*";
+          openConfirmation();
+
+        }
+      );
 
 
-          cart.forEach(item=>{
+    /* =========================================
+       ÚLTIMO PEDIDO
+    ========================================= */
 
-            const product =
-              getProduct(item.id);
+    function showLastOrder(){
 
-            if(!product){
-              return;
-            }
-
-
-            message +=
-              "\n\n" +
-              "*" +
-              item.qty +
-              "x " +
-              product.name +
-              "*";
-
-            message +=
-              "\n" +
-              product.description;
-
-            message +=
-              "\nSubtotal: " +
-              money(
-                product.price *
-                item.qty
-              );
-
-          });
+      closeDrawer();
 
 
-          message +=
-            "\n\n*TOTAL: " +
-            money(cartTotal()) +
-            "*";
+      const modal =
+        document.getElementById(
+          "lastOrderModal"
+        );
 
 
-          if(notes){
-
-            message +=
-              "\n\n*OBSERVAÇÕES:* " +
-              notes;
-
-          }
+      const content =
+        document.getElementById(
+          "lastOrderContent"
+        );
 
 
-          message +=
-            "\n\n_Aguardando confirmação da loja._";
+      let data = null;
 
 
-          /* =========================
-             SALVAR ÚLTIMO PEDIDO
-          ========================= */
+      try{
 
-          const lastOrder = {
-
-            date:
-              new Date().toISOString(),
-
-            name:name,
-
-            phone:phone,
-
-            type:
-              orderType,
-
-            address:
-              addressText,
-
-            payment:
-              payment,
-
-            changeFor:
-              changeFor,
-
-            notes:
-              notes,
-
-            total:
-              cartTotal(),
-
-            items:
-              cart.map(item=>{
-
-                const product =
-                  getProduct(item.id);
-
-                return {
-
-                  id:item.id,
-
-                  qty:item.qty,
-
-                  name:
-                    product
-                      ? product.name
-                      : "",
-
-                  description:
-                    product
-                      ? product.description
-                      : "",
-
-                  price:
-                    product
-                      ? product.price
-                      : 0
-
-                };
-
-              })
-
-          };
-
-
-          localStorage.setItem(
-            STORAGE_LAST_ORDER,
-            JSON.stringify(lastOrder)
+        data =
+          JSON.parse(
+            localStorage.getItem(
+              STORAGE_LAST_ORDER
+            ) || "null"
           );
 
+      }catch(error){
 
-          const whatsappUrl =
-            "https://wa.me/" +
-            WHATSAPP +
-          
+        data = null;
+
+      }
+
+
+      if(!data){
+
+        content.innerHTML = `
+
+          <div class="last-order">
+
+            Você ainda não fez nenhum pedido
+            neste aparelho.
+
+          </div>
+
+        `;
+
+        modal.classList.add(
+          "show"
+        );
+
+        document.body.classList.add(
+          "modal-open"
+        );
+
+        return;
+
+      }
+
+
+      const date =
+        new Date(
+          data.date
+        );
+
+
+      let itemsHtml = "";
+
+
+      if(
+        Array.isArray(
+          data.items
+        )
+      ){
+
+        data.items.forEach(
+          item=>{
+
+            itemsHtml += `
+
+              <div
+                style="
+                  padding:8px 0;
+                  border-bottom:1px solid #252525;
+                "
+              >
+
+                <strong>
+                  ${item.qty}x
+                  ${escapeHtml(item.name)}
+                </strong>
+
+                <br>
+
+                <span
+                  style="
+                    color:#888;
+                    font-size:11px;
+                  "
+                >
+                  ${escapeHtml(
+                    item.description || ""
+                  )}
+                </span>
+
+              </div>
+
+            `;
+
+          }
+        );
+
+      }
+
+
+      content.innerHTML = `
+
+        <div class="last-order">
+
+          <strong>Data:</strong>
+          ${date.toLocaleString("pt-BR")}
+
+          <br>
+
+          <strong>Nome:</strong>
+          ${escapeHtml(data.name)}
+
+          <br>
+
+          <strong>Telefone:</strong>
+          ${escapeHtml(data.phone)}
+
+          <br>
+
+          <strong>Forma:</strong>
+          ${
+            data.type === "delivery"
+              ? "Entrega"
+              : "Retirada"
+          }
+
+          ${
+            data.address
+              ? `
+                <br>
+                <strong>Endereço:</strong>
+                ${escapeHtml(
+                  data.address
+                )}
+              `
+              : ""
+          }
+
+          <br>
+
+          <strong>Pagamento:</strong>
+          ${escapeHtml(
+            data.payment
+          )}
+
+          ${
+            data.changeFor
+              ? `
+                <br>
+                <strong>Troco para:</strong>
+                ${escapeHtml(
+                  data.changeFor
+                )}
+              `
+              : ""
+          }
+
+          <div
+            style="
+              margin-top:14px;
+              color:#f1d36b;
+              font-weight:900;
+            "
+          >
+            Itens
+          </div>
+
+          ${itemsHtml}
+
+          <div class="last-order-total">
+            Total:
+            ${money(data.total)}
+          </div>
+
+          ${
+            data.notes
+              ? `
+                <div style="margin-top:10px;">
+                  <strong>Observações:</strong>
+                  ${escapeHtml(
+                    data.notes
+                  )}
+                </div>
+              `
+              : ""
+          }
+
+          <div
+            class="notice"
+            style="margin-top:15px;"
+          >
+
+            O acompanhamento do pedido
+            acontece pelo WhatsApp após
+            o envio para a loja.
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      modal.classList.add(
+        "show"
+      );
+
+      document.body.classList.add(
+        "modal-open"
+      );
+
+    }
+
+
+    function closeLastOrder(){
+
+      document
+        .getElementById(
+          "lastOrderModal"
+        )
+        .classList.remove(
+          "show"
+        );
+
+      updateBodyLock();
+
+    }
+
+
+    /* =========================================
+       INFORMAÇÕES
+    ========================================= */
+
+    function showAbout(){
+
+      closeDrawer();
+
+      openInfo(
+        "Sobre a VF FILHOS LANCHES",
+        `
+          <div class="last-order">
+
+            <strong>
+              VF FILHOS LANCHES
+            </strong>
+
+            <br><br>
+
+            Nosso cardápio reúne
+            hambúrgueres, fritas,
+            combos, promoções,
+            bebidas, adicionais e
+            Frango Assado aos finais
+            de semana.
+
+            <br><br>
+
+            Os pedidos são enviados
+            diretamente para o
+            WhatsApp da loja.
+
+          </div>
+        `
+      );
+
+    }
+
+
+    function showDelivery(){
+
+      closeDrawer();
+
+      openInfo(
+        "Entrega e retirada",
+        `
+          <div class="last-order">
+
+            <strong>Entrega</strong>
+
+            <br>
+
+            Informe seu endereço completo
+            durante o fechamento do pedido.
+
+            <br><br>
+
+            <strong>Retirada</strong>
+
+            <br>
+
+            Você também pode escolher
+            retirar o pedido.
+
+            <br><br>
+
+            A taxa e a disponibilidade
+            da entrega podem ser confirmadas
+            diretamente pelo WhatsApp da loja.
+
+          </div>
+        `
+      );
+
+    }
+
+
+    function showHours(){
+
+      closeDrawer();
+
+      openInfo(
+        "Horário",
+        `
+          <div class="last-order">
+
+            <strong>Atendimento:</strong>
+
+            <br>
+
+            Todos os dias
+            <br>
+            10:00 às 00:00
+
+            <br><br>
+
+            <strong>Frango Assado:</strong>
+
+            <br>
+
+            Somente sábado e domingo.
+
+          </div>
+        `
+      );
+
+    }
+
+
+    function openInfo(
+      title,
+      content
+    ){
+
+      document.getElementById(
+        "infoTitle"
+      ).textContent =
+        title;
+
+      document.getElementById(
+        "infoContent"
+      ).innerHTML =
+        content;
+
+      document
+        .getElementById(
+          "infoModal"
+        )
+        .classList.add(
+          "show"
+        );
+
+      document.body.classList.add(
+        "modal-open"
+      );
+
+    }
+
+
+    function closeInfo(){
+
+      document
+        .getElementById(
+          "infoModal"
+        )
+        .classList.remove(
+          "show"
+        );
+
+      updateBodyLock();
+
+    }
+
+
+    /* =========================================
+       DRAWER
+    ========================================= */
+
+    function openDrawer(){
+
+      document
+        .getElementById(
+          "drawer"
+        )
+        .classList.add(
+          "open"
+        );
+
+      document
+        .getElementById(
+          "overlay"
+        )
+        .classList.add(
+          "show"
+        );
+
+    }
+
+
+    function closeDrawer(){
+
+      document
+        .getElementById(
+          "drawer"
+        )
+        .classList.remove(
+          "open"
+        );
+
+      document
+        .getElementById(
+          "overlay"
+        )
+        .classList.remove(
+          "show"
+        );
+
+    }
+
+
+    /* =========================================
+       CART
+    ========================================= */
+
+    function openCart(){
+
+      document
+        .getElementById(
+          "cartPanel"
+        )
+        .classList.add(
+          "open"
+        );
+
+      document
+        .getElementById(
+          "overlay"
+        )
+        .classList.add(
+          "show"
+        );
+
+      renderCart();
+
+    }
+
+
+    function closeCart(){
+
+      document
+        .getElementById(
+          "cartPanel"
+        )
+        .classList.remove(
+          "open"
+        );
+
+      document
+        .getElementById(
+          "overlay"
+        )
+        .classList.remove(
+          "show"
+        );
+
+    }
+
+
+    function closeAll(){
+
+      closeDrawer();
+
+      closeCart();
+
+    }
+
+
+    /* =========================================
+       NAVEGAÇÃO
+    ========================================= */
+
+    function goHome(){
+
+      closeDrawer();
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+
+    }
+
+
+    function goToCardapio(){
+
+      closeDrawer();
+
+      const element =
+        document.getElementById(
+          "cardapio"
+        );
+
+      if(element){
+
+        element.scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+
+      }
+
+    }
+
+
+    /* =========================================
+       TOAST
+    ========================================= */
+
+    let toastTimer =
+      null;
+
+
+    function toast(
+      message
+    ){
+
+      const element =
+        document.getElementById(
+          "toast"
+        );
+
+      element.textContent =
+        message;
+
+      element.classList.add(
+        "show"
+      );
+
+
+      clearTimeout(
+        toastTimer
+      );
+
+
+      toastTimer =
+        setTimeout(
+          ()=>{
+
+            element.classList.remove(
+              "show"
+            );
+
+          },
+          2600
+        );
+
+    }
+
+
+    /* =========================================
+       ESCAPE HTML
+    ========================================= */
+
+    function escapeHtml(
+      value
+    ){
+
+      return String(
+        value ?? ""
+      )
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
+        .replaceAll(
+          "'",
+          "&#039;"
+        );
+
+    }
+
+
+    /* =========================================
+       ESC PARA FECHAR
+    ========================================= */
+
+    document.addEventListener(
+      "keydown",
+      function(event){
+
+        if(
+          event.key !== "Escape"
+        ){
+
+          return;
+
+        }
+
+
+        closeDrawer();
+
+        closeCart();
+
+        closeCheckout();
+
+        closeConfirm();
+
+        closeLastOrder();
+
+        closeInfo();
+
+      }
+    );
+
+
+    /* =========================================
+       CONTROLE DO SCROLL DO MODAL
+    ========================================= */
+
+    function updateBodyLock(){
+
+      const hasOpenModal =
+        document
+          .querySelector(
+            ".modal.show"
+          );
+
+      if(hasOpenModal){
+
+        document.body.classList.add(
+          "modal-open"
+        );
+
+      }else{
+
+        document.body.classList.remove(
+          "modal-open"
+        );
+
+      }
+
+    }
+
+
+    /* =========================================
+       CLIQUE FORA DO MODAL
+    ========================================= */
+
+    document
+      .getElementById(
+        "checkoutModal"
+      )
+      .addEventListener(
+        "click",
+        function(event){
+
+          if(
+            event.target ===
+            this
+          ){
+
+            closeCheckout();
+
+          }
+
+        }
+      );
+
+
+    document
+      .getElementById(
+        "confirmModal"
+      )
+      .addEventListener(
+        "click",
+        function(event){
+
+          if(
+            event.target ===
+            this
+          ){
+
+            closeConfirm();
+
+          }
+
+        }
+      );
+
+
+    document
+      .getElementById(
+        "lastOrderModal"
+      )
+      .addEventListener(
+        "click",
+        function(event){
+
+          if(
+            event.target ===
+            this
+          ){
+
+            closeLastOrder();
+
+          }
+
+        }
+      );
+
+
+    document
+      .getElementById(
+        "infoModal"
+      )
+      .addEventListener(
+        "click",
+        function(event){
+
+          if(
+            event.target ===
+            this
+          ){
+
+            closeInfo();
+
+          }
+
+        }
+      );
+
+
+    /* =========================================
+       INICIALIZAÇÃO
+    ========================================= */
+
+    function init(){
+
+      carregarCarrinhoSeguro();
+
+      renderCategories();
+
+      renderProducts();
+
+      renderCart();
+
+      updateCartBadge();
+
+      updateStoreStatus();
+
+      document.getElementById(
+        "year"
+      ).textContent =
+        new Date().getFullYear();
+
+      setOrderType(
+        "delivery"
+      );
+
+    }
+
+
+    init();
+
+
+    /* Atualiza o status do horário */
+
+    setInterval(
+      updateStoreStatus,
+      60000
+    );
+
+  </script>
+
+</body>
+  </html>
